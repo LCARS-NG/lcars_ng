@@ -2,6 +2,8 @@
 
 namespace Drupal\lcars_ng\Hook;
 
+use Drupal\block\BlockInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Extension\ThemeSettingsProvider;
 use Drupal\Core\Form\FormBuilderInterface;
 use Drupal\Core\Hook\Attribute\Hook;
@@ -48,7 +50,25 @@ class LcarsNgHooks {
     private readonly AccountInterface $currentUser,
     private readonly FormBuilderInterface $formBuilder,
     private readonly ThemeSettingsProvider $themeSettings,
+    private readonly EntityTypeManagerInterface $entityTypeManager,
   ) {}
+
+  /**
+   * Implements hook_theme_suggestions_block_alter().
+   *
+   * Adds the region of a placed block as its least specific suggestion
+   * (block__REGION): blocks in the right sidebar become LCARS panels
+   * (block--sidebar-second.html.twig), as block-right.tpl.php in the Drupal 6
+   * theme LCNG. Templates for a plugin or a single block still win.
+   */
+  #[Hook('theme_suggestions_block_alter')]
+  public function themeSuggestionsBlockAlter(array &$suggestions, array $variables): void {
+    $id = $variables['elements']['#id'] ?? NULL;
+    $block = $id ? $this->entityTypeManager->getStorage('block')->load($id) : NULL;
+    if ($block instanceof BlockInterface) {
+      array_unshift($suggestions, 'block__' . $block->getRegion());
+    }
+  }
 
   /**
    * Implements hook_theme_suggestions_page_alter().

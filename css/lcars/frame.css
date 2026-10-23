@@ -107,6 +107,20 @@
   font-size: 0.9em;
 }
 
+/* Blocks in the right sidebar are LCARS panels (block--sidebar-second.html.twig)
+   with a lower ceiling, so their titles fit the narrow column in one line
+   (user decision 24.10.2026). The inner frame has no right padding, as
+   .innerframeTop in LCNG, and scrolls content wider than the column (tables)
+   instead of pushing it out of the frame. */
+.lcars-aside .lcars-panel {
+  --lcars-panel-ceiling: 1.125rem; /* 18px: capitals 14px */
+}
+
+.lcars-aside .lcars-panel__inner {
+  overflow-x: auto;
+  padding-inline-end: 0;
+}
+
 /* Bottom-left elbow */
 
 .lcars-foot {
