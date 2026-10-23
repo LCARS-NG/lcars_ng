@@ -48,6 +48,7 @@
   --lcars-button-large-height: 2.75rem; /* 44px, LCARS button component and login buttons */
   --lcars-button-large-width: 8rem; /* their minimum width */
   --lcars-pill: 9999px; /* pill: a radius larger than any element */
+  --lcars-cap-inset: 2px; /* capitals cut into a bar stop this short of its top and bottom edge (user decision 23.10.2026) */
 
   /* Plain box (box.css) */
   --lcars-box-border-width: 1px;

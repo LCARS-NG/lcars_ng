@@ -129,10 +129,16 @@
   grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
 }
 
-/* Page title: a bar with the title cut into it, as high as a menu button.
-   The line height sets that height, so the cut runs through the whole bar. */
+/* Page title: a bar with the title cut into it, as high as a menu button
+   (--lcars-title-height). The cut runs through the whole bar; the capitals
+   fill it up to --lcars-cap-inset at the top and bottom. font-size-adjust
+   makes the cap height equal the font size in any typeface, text-box trims
+   the line box to the capitals. A long title wraps with the bar height as
+   line height, so the lines stand a seam apart. */
 
 .lcars-title {
+  --lcars-title-height: var(--lcars-button-height);
+
   display: flex;
   align-items: center;
   margin-block-end: 2rem;
@@ -144,11 +150,13 @@
 /* The title takes the color of its bar, as the site name in the header bar. */
 .lcars-title .page-title {
   margin: 0;
-  padding: 0 0.3em;
+  padding: var(--lcars-cap-inset) 0.3em;
   color: var(--lcars-accent);
   background: var(--lcars-space);
-  font-size: 2rem;
-  line-height: var(--lcars-button-height);
+  font-size: calc(var(--lcars-title-height) - 2 * var(--lcars-cap-inset));
+  font-size-adjust: cap-height 1;
+  line-height: var(--lcars-title-height);
+  text-box: trim-both cap alphabetic;
 }
 
 @media (max-width: 39.9375rem) {
@@ -160,8 +168,8 @@
     font-size: 1.5rem;
   }
 
-  .lcars-title .page-title {
-    font-size: 1.5rem;
+  .lcars-title {
+    --lcars-title-height: 1.5rem; /* 24px: capitals 20px, long titles in two lines (user decision 24.10.2026) */
   }
 
   .lcars-aside {

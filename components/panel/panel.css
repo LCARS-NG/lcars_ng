@@ -5,6 +5,7 @@
 
 .lcars-panel {
   --lcars-panel-color: var(--lcars-frame);
+  --lcars-panel-ceiling: 1.5625rem; /* 25px */
 
   display: grid;
   grid-template-rows: auto 1fr;
@@ -18,21 +19,23 @@
   display: flex;
   align-items: stretch;
   justify-content: flex-end;
-  min-block-size: 1.5625rem; /* 25px */
+  min-block-size: var(--lcars-panel-ceiling);
   padding-inline-end: 1.5625rem;
 }
 
-/* The label cuts the ceiling over its full height, as the dashboard cards. */
+/* The label cuts the ceiling over its full height, as the dashboard cards;
+   its capitals fill it up to --lcars-cap-inset, as the page title
+   (frame.css). */
 .lcars-panel__label {
-  display: flex;
-  align-items: center;
   margin: 0;
-  padding: 0 0.3em;
+  padding: var(--lcars-cap-inset) 0.3em;
   color: var(--lcars-panel-color);
   background: var(--lcars-space);
-  font-size: 1.25rem;
+  font-size: calc(var(--lcars-panel-ceiling) - 2 * var(--lcars-cap-inset));
   font-weight: bold;
-  line-height: 0.85;
+  font-size-adjust: cap-height 1;
+  line-height: var(--lcars-panel-ceiling);
+  text-box: trim-both cap alphabetic;
 }
 
 .lcars-panel__inner {
