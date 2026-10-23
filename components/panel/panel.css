@@ -5,12 +5,13 @@
 
 .lcars-panel {
   --lcars-panel-color: var(--lcars-frame);
+
   display: grid;
+  grid-template-rows: auto 1fr;
   margin-block-end: 1.5rem;
   padding-inline-start: 0.3125rem; /* 5px */
-  border-start-start-radius: 1.8125rem; /* 29px */
   background: var(--lcars-panel-color);
-  grid-template-rows: auto 1fr;
+  border-start-start-radius: 1.8125rem; /* 29px */
 }
 
 .lcars-panel__ceiling {
@@ -27,8 +28,8 @@
   align-items: center;
   margin: 0;
   padding: 0 0.3em;
-  background: var(--lcars-space);
   color: var(--lcars-panel-color);
+  background: var(--lcars-space);
   font-size: 1.25rem;
   font-weight: bold;
   line-height: 0.85;
@@ -44,8 +45,18 @@
   margin-block-end: 0;
 }
 
-.lcars-panel--button { --lcars-panel-color: var(--lcars-button); }
-.lcars-panel--sidebar { --lcars-panel-color: var(--lcars-sidebar); }
-.lcars-panel--sub { --lcars-panel-color: var(--lcars-button-sub); }
-.lcars-panel--accent { --lcars-panel-color: var(--lcars-accent); }
-.lcars-panel--alert { --lcars-panel-color: var(--lcars-alert); }
+.lcars-panel--button {
+  --lcars-panel-color: var(--lcars-button);
+}
+.lcars-panel--sidebar {
+  --lcars-panel-color: var(--lcars-sidebar);
+}
+.lcars-panel--sub {
+  --lcars-panel-color: var(--lcars-button-sub);
+}
+.lcars-panel--accent {
+  --lcars-panel-color: var(--lcars-accent);
+}
+.lcars-panel--alert {
+  --lcars-panel-color: var(--lcars-alert);
+}

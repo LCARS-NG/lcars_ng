@@ -6,9 +6,9 @@
 label,
 .form-item label,
 fieldset legend {
+  text-transform: uppercase;
   color: var(--lcars-frame);
   font-family: var(--lcars-font-label);
-  text-transform: uppercase;
 }
 
 /* Fields without a background: a quiet line around light text. */
@@ -16,12 +16,12 @@ input:where([type="text"], [type="email"], [type="password"], [type="search"], [
 textarea,
 select {
   box-sizing: border-box;
-  max-inline-size: 100%;
   padding: 0.25em 0.5em;
+  color: var(--lcars-text);
   border: 1px solid var(--lcars-field-border);
   background: none;
-  color: var(--lcars-text);
   font: inherit;
+  max-inline-size: 100%;
 }
 
 /* The black eye of view_password, made light for the dark fields. */
@@ -40,22 +40,22 @@ button.shwpd {
 input:where([type="submit"], [type="button"], [type="reset"]) {
   margin: 0 0.5em 1em 0;
   padding: 0.3125rem 0.625rem; /* 5px 10px */
+  cursor: pointer;
+  text-transform: uppercase;
+  color: var(--lcars-on-color);
   border: 0;
   border-radius: 0.625rem; /* 10px */
   background: var(--lcars-button);
-  color: var(--lcars-on-color);
-  cursor: pointer;
   font-family: var(--lcars-font-label);
   font-size: 0.85em;
   font-weight: bold;
-  text-transform: uppercase;
 }
 
 .button:hover,
 .form-submit:hover,
 input:where([type="submit"], [type="button"], [type="reset"]):hover {
-  background: var(--lcars-button-hover);
   color: var(--lcars-on-color);
+  background: var(--lcars-button-hover);
 }
 
 fieldset {
@@ -89,7 +89,7 @@ fieldset {
 
 .tabs .is-active a,
 .tabs a.is-active {
+  color: var(--lcars-frame);
   border: 0;
   background: #333;
-  color: var(--lcars-frame);
 }

@@ -1,7 +1,7 @@
 # LCARS-NG
 
 LCARS-NG is a theme inspired by Michael Okuda's LCARS interface from
-*Star Trek: The Next Generation*: rounded elbows, coloured bars and buttons on
+*Star Trek: The Next Generation*: rounded elbows, colored bars and buttons on
 a black screen. It is a rebuild of the Drupal 6 theme
 [LCNG](https://github.com/LCARS-NG/LCNG) (2011) by the same author, with the
 same design on current techniques: Twig, CSS Grid and custom properties, no
@@ -78,7 +78,7 @@ Regions:
 - `highlighted`, `help`, `content`, `sidebar_second`
 - `footer`: in the lower curve, blocks side by side
 
-Colours and frame sizes are custom properties in `css/lcars/tokens.css`
+Colors and frame sizes are custom properties in `css/lcars/tokens.css`
 (`--lcars-*`). A sub-theme can override them in its own stylesheet.
 
 

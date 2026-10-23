@@ -5,11 +5,11 @@
 
 .lcars-login {
   display: grid;
-  box-sizing: border-box;
-  min-block-size: 100dvh;
-  padding: 1rem;
-  gap: 1rem;
   grid-template-rows: auto 1fr auto;
+  box-sizing: border-box;
+  padding: 1rem;
+  min-block-size: 100dvh;
+  gap: 1rem;
 }
 
 .lcars-login__bar {
@@ -32,12 +32,12 @@
 
 .lcars-login__panel .site-name {
   margin-block-end: 0.5em;
+  text-transform: uppercase;
   color: var(--lcars-frame);
   font-family: var(--lcars-font-label);
   font-size: 2rem;
   font-weight: bold;
   line-height: 1;
-  text-transform: uppercase;
 }
 
 .lcars-login__panel .site-name a {
@@ -64,10 +64,10 @@
 }
 
 .lcars-login__panel .site-slogan {
-  margin-block: -0.25rem 0;
+  text-transform: uppercase;
   color: var(--lcars-text-dim);
   font-size: 0.75rem;
-  text-transform: uppercase;
+  margin-block: -0.25rem 0;
 }
 
 .lcars-login__panel .lcars-title {
@@ -85,10 +85,10 @@
 }
 
 .lcars-login__panel input:where([type="text"], [type="email"], [type="password"]) {
-  inline-size: 12em;
   padding: 0.35em;
-  border-radius: var(--lcars-pill);
   text-align: center;
+  border-radius: var(--lcars-pill);
+  inline-size: 12em;
 }
 
 /* Submit in the size of the LCARS button component (pill), centred without

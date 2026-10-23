@@ -45,18 +45,18 @@
 .dashboard .layout .block > h2 {
   display: flex;
   align-items: center;
-  block-size: var(--lcars-card-bar);
   margin: 0 calc(-1 * var(--lcars-card-pad)) var(--lcars-card-pad) calc(-1 * (var(--lcars-card-pad) + var(--lcars-card-edge)));
   padding: 0;
+  white-space: nowrap;
+  text-transform: uppercase;
+  color: var(--lcars-card-frame);
   border-radius: 0;
   background: none;
-  color: var(--lcars-card-frame);
   font-family: var(--lcars-font-label);
   font-size: 1.25rem;
   font-weight: bold;
   line-height: 0.85;
-  text-transform: uppercase;
-  white-space: nowrap;
+  block-size: var(--lcars-card-bar);
 }
 
 .dashboard .layout .block > h2::before,
@@ -90,8 +90,8 @@
   color: var(--lcars-text-dim);
 }
 
-/* Views blocks: dashboard.css colours links with Claro's --color-absolutezero
-   and the dates of recent content with a dark grey. */
+/* Views blocks: dashboard.css colors links with Claro's --color-absolutezero
+   and the dates of recent content with a dark gray. */
 .dashboard .block-views a {
   color: var(--lcars-link);
 }
@@ -109,7 +109,7 @@
   margin-block-start: 0.5rem;
 }
 
-@media (width < 40rem) {
+@media (max-width: 39.9375rem) {
   .dashboard .layout .block {
     margin-inline-end: 0;
   }

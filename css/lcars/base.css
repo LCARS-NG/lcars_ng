@@ -9,8 +9,8 @@ html {
 
 body {
   margin: 0;
-  background: var(--lcars-space);
   color: var(--lcars-text);
+  background: var(--lcars-space);
   font-family: var(--lcars-font);
   line-height: 1.5;
 }
@@ -22,12 +22,12 @@ h4,
 h5,
 h6 {
   margin: 0 0 0.5em;
+  text-transform: uppercase;
   color: var(--lcars-heading);
   font-family: var(--lcars-font-label);
   font-size: 1em;
   font-weight: normal;
   line-height: 1.25;
-  text-transform: uppercase;
 }
 
 h1 {
@@ -44,9 +44,9 @@ p {
 
 /* LCNG set every link in capitals. */
 a {
-  color: var(--lcars-link);
   text-decoration: none;
   text-transform: uppercase;
+  color: var(--lcars-link);
 }
 
 a:hover {

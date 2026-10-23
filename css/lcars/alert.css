@@ -14,6 +14,6 @@
 }
 
 .lcars-alert .lcars-main {
-  color: var(--lcars-alert);
   text-transform: uppercase;
+  color: var(--lcars-alert);
 }

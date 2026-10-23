@@ -2,13 +2,13 @@
  * @file
  * LCARS-NG design tokens.
  *
- * Colours and frame geometry are taken from the Drupal 6 theme LCNG (2011,
+ * Colors and frame geometry are taken from the Drupal 6 theme LCNG (2011,
  * css/page.css and css/style.css). Every other file uses these properties;
- * alert.css swaps the colours for red alert.
+ * alert.css swaps the colors for red alert.
  */
 
 :root {
-  /* Colours */
+  /* Colors */
   --lcars-space: #001b33; /* page background, "negative" parts of the frame */
   --lcars-frame: #a7d4ff; /* elbows and bars */
   --lcars-sidebar: #579df9; /* sidebar filler (LCNG css/1px.png) */
@@ -47,7 +47,7 @@
   --lcars-button-height: 2.125rem; /* 34px, a sidebar menu button without its seam (navigation.css) */
   --lcars-button-large-height: 2.75rem; /* 44px, LCARS button component and login buttons */
   --lcars-button-large-width: 8rem; /* their minimum width */
-  --lcars-pill: 100vmax;
+  --lcars-pill: 9999px; /* pill: a radius larger than any element */
 
   /* Plain box (box.css) */
   --lcars-box-border-width: 1px;
@@ -56,7 +56,7 @@
   --lcars-box-padding: 2rem 2.5rem;
 }
 
-@media (width < 40rem) {
+@media (max-width: 39.9375rem) {
   :root {
     --lcars-sidebar-width: 6rem; /* 96px */
     --lcars-gutter: 0.75rem;

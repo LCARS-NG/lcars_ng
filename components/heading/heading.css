@@ -5,6 +5,7 @@
 
 .lcars-heading {
   --lcars-heading-color: var(--lcars-accent);
+
   margin-block-end: 1.5rem;
 }
 
@@ -21,7 +22,7 @@
   background: var(--lcars-heading-color);
 }
 
-/* Text in the colour of the bar (bar) or of the chosen colour (plain). */
+/* Text in the color of the bar (bar) or of the chosen color (plain). */
 .lcars-heading__text {
   color: var(--lcars-heading-color);
 }
@@ -32,8 +33,18 @@
   line-height: 0.85;
 }
 
-.lcars-heading--button { --lcars-heading-color: var(--lcars-button); }
-.lcars-heading--frame { --lcars-heading-color: var(--lcars-frame); }
-.lcars-heading--sidebar { --lcars-heading-color: var(--lcars-sidebar); }
-.lcars-heading--sub { --lcars-heading-color: var(--lcars-button-sub); }
-.lcars-heading--alert { --lcars-heading-color: var(--lcars-alert); }
+.lcars-heading--button {
+  --lcars-heading-color: var(--lcars-button);
+}
+.lcars-heading--frame {
+  --lcars-heading-color: var(--lcars-frame);
+}
+.lcars-heading--sidebar {
+  --lcars-heading-color: var(--lcars-sidebar);
+}
+.lcars-heading--sub {
+  --lcars-heading-color: var(--lcars-button-sub);
+}
+.lcars-heading--alert {
+  --lcars-heading-color: var(--lcars-alert);
+}

@@ -19,15 +19,15 @@
   display: block;
   margin: 0;
   padding: 0.9375rem 0.3125rem 0.1875rem 0; /* 15px 5px 3px 0 */
-  border-block-end: var(--lcars-seam) solid var(--lcars-space);
+  text-align: end;
+  text-transform: uppercase;
   color: var(--lcars-on-color);
+  border-block-end: var(--lcars-seam) solid var(--lcars-space);
   font-family: var(--lcars-font-label);
   font-size: 1rem;
   font-weight: bold;
   line-height: 1;
   overflow-wrap: anywhere;
-  text-align: end;
-  text-transform: uppercase;
 }
 
 .lcars-sidebar .menu a {
