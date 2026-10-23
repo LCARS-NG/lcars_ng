@@ -9,6 +9,10 @@ JavaScript and no build step. The CSS is served as it is in the repository.
 
 The theme works as front-end theme and as administration theme.
 
+![LCARS-NG front page for signed-in users: upper panel with site name, slogan
+and logo, status line with date and user, menu buttons on the left, content
+below](screenshot.png)
+
 - For a full description of the theme, visit the
   [project page](https://www.drupal.org/project/lcars_ng).
 - To submit bug reports and feature suggestions, or track changes, use the
