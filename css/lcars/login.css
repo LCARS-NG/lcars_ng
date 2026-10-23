@@ -25,6 +25,11 @@
   text-align: center;
 }
 
+/* The bars above and below frame the panel; the box keeps its padding only. */
+.lcars-login__panel.lcars-box {
+  border: none;
+}
+
 .lcars-login__panel .site-name {
   margin-block-end: 0.5em;
   color: var(--lcars-frame);
