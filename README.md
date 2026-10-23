@@ -105,8 +105,11 @@ Basic site settings*. Anonymous visitors then get the login panel.
 
 - Design after the Drupal 6 theme LCNG (2011) by the same author, source:
   [github.com/LCARS-NG/LCNG](https://github.com/LCARS-NG/LCNG).
-- The logo `lcars-ng-logo.svg` is the logo of LCNG, redrawn as SVG: an
-  icosahedron in a Schlegel diagram with 12 vertices and 30 edges.
+- `lcars-ng-logo.svg` is the logo of LCNG, redrawn as SVG: an icosahedron in
+  a Schlegel diagram with 12 vertices and 30 edges. The theme logo
+  `lcars-ng-logo-glow.svg` is derived from it: edges towards the centre lie
+  further back (thinner and more transparent), a soft glow, transparent
+  background.
 - The icons in `images/icons/` come from the Drupal core Starterkit theme, the
   base styles in `css/components/` and most templates are based on it
   (GPL-2.0-or-later).

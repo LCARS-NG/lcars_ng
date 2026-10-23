@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="85" height="80" viewBox="-4 -4 85 80" role="img" aria-labelledby="lcars-ng-logo-title">
+  <title id="lcars-ng-logo-title">LCARS-NG</title>
+  <!-- Icosahedron, Schlegel diagram: 30 edges. Edges towards the centre lie further
+       back: thinner and more transparent; the outer triangle is lighter. Soft glow,
+       transparent background. Derived from lcars-ng-logo.svg. -->
+  <defs>
+    <filter id="lcars-ng-logo-glow" x="-4" y="-4" width="85" height="80" filterUnits="userSpaceOnUse">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="0.69" result="blur"/>
+      <feComponentTransfer in="blur" result="glow"><feFuncA type="linear" slope="0.8"/></feComponentTransfer>
+      <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <g filter="url(#lcars-ng-logo-glow)" stroke-linecap="round">
+    <line x1="35.0" y1="41.85" x2="38.5" y2="46.8" stroke="#579df9" stroke-width="0.582" stroke-opacity="0.582"/>
+    <line x1="42.0" y1="41.85" x2="38.5" y2="46.8" stroke="#579df9" stroke-width="0.582" stroke-opacity="0.582"/>
+    <line x1="35.0" y1="41.85" x2="42.0" y2="41.85" stroke="#579df9" stroke-width="0.605" stroke-opacity="0.605"/>
+    <line x1="38.5" y1="46.8" x2="38.5" y2="56.05" stroke="#579df9" stroke-width="0.606" stroke-opacity="0.606"/>
+    <line x1="38.5" y1="46.8" x2="48.98" y2="50.18" stroke="#579df9" stroke-width="0.612" stroke-opacity="0.612"/>
+    <line x1="38.5" y1="46.8" x2="28.02" y2="50.18" stroke="#579df9" stroke-width="0.612" stroke-opacity="0.612"/>
+    <line x1="42.0" y1="41.85" x2="48.98" y2="50.18" stroke="#579df9" stroke-width="0.635" stroke-opacity="0.635"/>
+    <line x1="35.0" y1="41.85" x2="28.02" y2="50.18" stroke="#579df9" stroke-width="0.635" stroke-opacity="0.635"/>
+    <line x1="28.16" y1="38.79" x2="35.0" y2="41.85" stroke="#579df9" stroke-width="0.641" stroke-opacity="0.641"/>
+    <line x1="48.84" y1="38.79" x2="42.0" y2="41.85" stroke="#579df9" stroke-width="0.641" stroke-opacity="0.641"/>
+    <line x1="38.5" y1="32.22" x2="35.0" y2="41.85" stroke="#579df9" stroke-width="0.647" stroke-opacity="0.647"/>
+    <line x1="38.5" y1="32.22" x2="42.0" y2="41.85" stroke="#579df9" stroke-width="0.647" stroke-opacity="0.647"/>
+    <line x1="48.98" y1="50.18" x2="38.5" y2="56.05" stroke="#579df9" stroke-width="0.660" stroke-opacity="0.660"/>
+    <line x1="28.02" y1="50.18" x2="38.5" y2="56.05" stroke="#579df9" stroke-width="0.660" stroke-opacity="0.660"/>
+    <line x1="28.16" y1="38.79" x2="28.02" y2="50.18" stroke="#579df9" stroke-width="0.672" stroke-opacity="0.672"/>
+    <line x1="48.84" y1="38.79" x2="48.98" y2="50.18" stroke="#579df9" stroke-width="0.672" stroke-opacity="0.672"/>
+    <line x1="38.5" y1="32.22" x2="28.16" y2="38.79" stroke="#579df9" stroke-width="0.684" stroke-opacity="0.684"/>
+    <line x1="38.5" y1="32.22" x2="48.84" y2="38.79" stroke="#579df9" stroke-width="0.684" stroke-opacity="0.684"/>
+    <line x1="38.5" y1="56.05" x2="1.67" y2="70.12" stroke="#579df9" stroke-width="0.827" stroke-opacity="0.827"/>
+    <line x1="38.5" y1="56.05" x2="75.33" y2="70.12" stroke="#579df9" stroke-width="0.827" stroke-opacity="0.827"/>
+    <line x1="48.98" y1="50.18" x2="75.33" y2="70.12" stroke="#579df9" stroke-width="0.833" stroke-opacity="0.833"/>
+    <line x1="28.02" y1="50.18" x2="1.67" y2="70.12" stroke="#579df9" stroke-width="0.833" stroke-opacity="0.833"/>
+    <line x1="38.5" y1="1.81" x2="28.16" y2="38.79" stroke="#579df9" stroke-width="0.839" stroke-opacity="0.839"/>
+    <line x1="38.5" y1="1.81" x2="48.84" y2="38.79" stroke="#579df9" stroke-width="0.839" stroke-opacity="0.839"/>
+    <line x1="28.16" y1="38.79" x2="1.67" y2="70.12" stroke="#579df9" stroke-width="0.839" stroke-opacity="0.839"/>
+    <line x1="48.84" y1="38.79" x2="75.33" y2="70.12" stroke="#579df9" stroke-width="0.839" stroke-opacity="0.839"/>
+    <line x1="38.5" y1="1.81" x2="38.5" y2="32.22" stroke="#579df9" stroke-width="0.845" stroke-opacity="0.845"/>
+    <line x1="38.5" y1="1.81" x2="1.67" y2="70.12" stroke="#77b3fb" stroke-width="1.000" stroke-opacity="1.000"/>
+    <line x1="38.5" y1="1.81" x2="75.33" y2="70.12" stroke="#77b3fb" stroke-width="1.000" stroke-opacity="1.000"/>
+    <line x1="1.67" y1="70.12" x2="75.33" y2="70.12" stroke="#77b3fb" stroke-width="1.000" stroke-opacity="1.000"/>
+  </g>
+</svg>
