@@ -63,5 +63,6 @@
     --lcars-gutter: 0.75rem;
     --lcars-elbow-outer: 1.75rem;
     --lcars-elbow-inner: 0.875rem;
+    --lcars-bar-top: 1.5rem; /* 24px as the title bar, so the site name fits (user decision 24.10.2026) */
   }
 }

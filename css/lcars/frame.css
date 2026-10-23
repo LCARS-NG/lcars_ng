@@ -51,15 +51,18 @@
   background: var(--lcars-space);
 }
 
-/* The site name cuts into the bar. */
+/* The site name cuts into the bar over its full height; its capitals fill it
+   up to --lcars-cap-inset, as the page title (below). */
 .lcars-head__bar .site-name {
-  padding: 0 0.15em;
+  padding: var(--lcars-cap-inset) 0.15em;
   text-transform: uppercase;
   background: var(--lcars-space);
   font-family: var(--lcars-font-label);
-  font-size: 2.5rem;
+  font-size: calc(var(--lcars-bar-top) - 2 * var(--lcars-cap-inset));
   font-weight: bold;
-  line-height: 0.8;
+  font-size-adjust: cap-height 1;
+  line-height: var(--lcars-bar-top);
+  text-box: trim-both cap alphabetic;
 }
 
 .lcars-head__bar .site-name a {
@@ -162,10 +165,6 @@
 @media (max-width: 39.9375rem) {
   .lcars-frame {
     padding: 0.5rem;
-  }
-
-  .lcars-head__bar .site-name {
-    font-size: 1.5rem;
   }
 
   .lcars-title {
