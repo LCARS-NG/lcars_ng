@@ -117,6 +117,13 @@ Basic site settings*. Anonymous visitors then get the login panel.
   of Star Trek.
 
 
+## License
+
+LCARS-NG is licensed under the GNU General Public License, version 2 or
+later (GPL-2.0-or-later), like Drupal core. The full text is in
+`LICENSE.txt`; drupal.org also adds it to every release package.
+
+
 ## Maintainers
 
 - Giang Ng
