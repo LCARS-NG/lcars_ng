@@ -1,0 +1,40 @@
+{#
+/**
+ * @file
+ * Theme override for the login panel.
+ *
+ * Used for the account pages (log in, register, reset password) and, with the
+ * theme setting front_page_login, for the front page of anonymous visitors, as
+ * page-userauth.tpl.php and page-front-anonymous.tpl.php in the Drupal 6 theme
+ * LCNG: a bar at the top and the bottom of the window, the site name and the
+ * form centred between them.
+ *
+ * Available variables:
+ * - login_form: The user login form, set on the front page of anonymous
+ *   visitors (LcarsNgHooks::preprocessPage()). On the account pages the form
+ *   is the main content.
+ *
+ * @see page.html.twig
+ * @see \Drupal\lcars_ng\Hook\LcarsNgHooks
+ */
+#}
+{{ attach_library('lcars_ng/login') }}
+<div class="lcars-login">
+  <div class="lcars-login__bar"></div>
+
+  <main class="lcars-login__panel lcars-box">
+    <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
+    {{ page.header }}
+    {{ page.highlighted }}
+    {% if login_form %}
+      {{ login_form }}
+      <p class="lcars-login__links">
+        <a href="{{ path('user.pass') }}">{{ 'Reset your password'|t }}</a>
+      </p>
+    {% else %}
+      {{ page.content }}
+    {% endif %}
+  </main>
+
+  <div class="lcars-login__bar"></div>
+</div>

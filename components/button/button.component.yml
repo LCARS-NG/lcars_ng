@@ -1,0 +1,53 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: LCARS button
+description: A coloured LCARS button; label centred in the pill, at the bottom right with rounded corners.
+group: LCARS
+status: stable
+props:
+  type: object
+  required:
+    - label
+    - color
+    - shape
+  properties:
+    label:
+      type: string
+      title: Label
+      examples:
+        - Engage
+    href:
+      type: string
+      title: Link
+      format: uri-reference
+    color:
+      type: string
+      title: Colour
+      enum:
+        - button
+        - frame
+        - sidebar
+        - sub
+        - accent
+        - alert
+      meta:enum:
+        button: Blue
+        frame: Light blue
+        sidebar: Mid blue
+        sub: Violet
+        accent: Gold
+        alert: Red
+      default: button
+      examples:
+        - button
+    shape:
+      type: string
+      title: Shape
+      enum:
+        - pill
+        - rounded
+      meta:enum:
+        pill: Pill
+        rounded: Rounded corners
+      default: pill
+      examples:
+        - pill

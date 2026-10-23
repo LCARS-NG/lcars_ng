@@ -1,0 +1,46 @@
+/**
+ * @file
+ * Admin pages in the LCARS frame.
+ *
+ * Colours of core's system.admin.css for the dark background: its values
+ * (#1d1d1d, #5c5c5b, #666) are made for light admin themes. Extends the
+ * library system/admin (lcars_ng.info.yml, libraries-extend).
+ */
+
+/* Modules and uninstall pages */
+.system-modules label,
+.system-modules-uninstall label {
+  color: var(--lcars-frame);
+}
+
+.system-modules details {
+  color: var(--lcars-text-soft);
+}
+
+.system-modules td details a {
+  color: var(--lcars-link);
+}
+
+.system-modules td details a:hover {
+  color: var(--lcars-link-hover);
+}
+
+/* Package headings (Core, …) as the fieldset legends of LCNG */
+.system-modules details.package-listing > summary {
+  color: var(--lcars-link);
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.admin-requirements,
+.admin-required {
+  color: var(--lcars-text-dim);
+}
+
+.admin-enabled {
+  color: #6fcf6f;
+}
+
+.admin-missing {
+  color: #ff7a7a;
+}

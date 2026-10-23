@@ -1,0 +1,95 @@
+/**
+ * @file
+ * Form elements, buttons, messages and tabs.
+ */
+
+label,
+.form-item label,
+fieldset legend {
+  color: var(--lcars-frame);
+  font-family: var(--lcars-font-label);
+  text-transform: uppercase;
+}
+
+/* Fields without a background: a quiet line around light text. */
+input:where([type="text"], [type="email"], [type="password"], [type="search"], [type="url"], [type="tel"], [type="number"], [type="date"]),
+textarea,
+select {
+  box-sizing: border-box;
+  max-inline-size: 100%;
+  padding: 0.25em 0.5em;
+  border: 1px solid var(--lcars-field-border);
+  background: none;
+  color: var(--lcars-text);
+  font: inherit;
+}
+
+/* The black eye of view_password, made light for the dark fields. */
+button.shwpd {
+  filter: invert(1);
+}
+
+.form-item .description {
+  padding-block-start: 0.5em;
+  color: var(--lcars-text-muted);
+  font-size: 0.875em;
+}
+
+.button,
+.form-submit,
+input:where([type="submit"], [type="button"], [type="reset"]) {
+  margin: 0 0.5em 1em 0;
+  padding: 0.3125rem 0.625rem; /* 5px 10px */
+  border: 0;
+  border-radius: 0.625rem; /* 10px */
+  background: var(--lcars-button);
+  color: var(--lcars-on-color);
+  cursor: pointer;
+  font-family: var(--lcars-font-label);
+  font-size: 0.85em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.button:hover,
+.form-submit:hover,
+input:where([type="submit"], [type="button"], [type="reset"]):hover {
+  background: var(--lcars-button-hover);
+  color: var(--lcars-on-color);
+}
+
+fieldset {
+  border: 0;
+  background: var(--lcars-space);
+}
+
+.messages {
+  margin-block-end: 0.5em;
+  padding: 1em 1.5em;
+  border: 0;
+  border-radius: 1.5rem;
+}
+
+/* Local tasks (tabs) */
+.tabs {
+  border: 0;
+}
+
+.tabs a {
+  padding: 0.35em 1.4em 0.5em;
+  border: 0;
+  background: #111;
+  font-weight: bold;
+}
+
+.tabs a:hover,
+.tabs a:focus {
+  background: #333;
+}
+
+.tabs .is-active a,
+.tabs a.is-active {
+  border: 0;
+  background: #333;
+  color: var(--lcars-frame);
+}

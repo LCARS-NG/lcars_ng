@@ -1,0 +1,56 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: LCARS heading
+description: A heading cut into a coloured bar, like the page title, or plain.
+group: LCARS
+status: stable
+props:
+  type: object
+  required:
+    - heading_text
+    - level
+    - style
+    - color
+  properties:
+    heading_text:
+      type: string
+      title: Heading
+      examples:
+        - Your heading goes here
+    level:
+      type: number
+      title: Heading level
+      enum: [1, 2, 3, 4, 5, 6]
+      examples:
+        - 2
+    style:
+      type: string
+      title: Style
+      enum:
+        - bar
+        - plain
+      meta:enum:
+        bar: Cut into a bar
+        plain: Plain
+      default: bar
+      examples:
+        - bar
+    color:
+      type: string
+      title: Colour
+      enum:
+        - button
+        - frame
+        - sidebar
+        - sub
+        - accent
+        - alert
+      meta:enum:
+        button: Blue
+        frame: Light blue
+        sidebar: Mid blue
+        sub: Violet
+        accent: Gold
+        alert: Red
+      default: accent
+      examples:
+        - accent

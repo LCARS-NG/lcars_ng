@@ -1,0 +1,60 @@
+/**
+ * @file
+ * LCARS-NG base styles: page, type, links.
+ */
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background: var(--lcars-space);
+  color: var(--lcars-text);
+  font-family: var(--lcars-font);
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0 0 0.5em;
+  color: var(--lcars-heading);
+  font-family: var(--lcars-font-label);
+  font-size: 1em;
+  font-weight: normal;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 2em;
+}
+
+p {
+  margin: 0 0 0.75em;
+}
+
+/* LCNG set every link in capitals. */
+a {
+  color: var(--lcars-link);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+a:hover {
+  color: var(--lcars-link-hover);
+}
+
+/* LCNG removed all outlines; keyboard focus stays visible here. */
+:focus-visible {
+  outline: 2px solid var(--lcars-accent);
+  outline-offset: 2px;
+}

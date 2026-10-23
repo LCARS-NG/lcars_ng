@@ -1,0 +1,62 @@
+name: LCARS-NG
+type: theme
+'base theme': false
+libraries:
+  - lcars_ng/base
+  - lcars_ng/messages
+  - core/normalize
+  - lcars_ng/global
+libraries-extend:
+  user/drupal.user:
+    - lcars_ng/user
+  core/drupal.dropbutton:
+    - lcars_ng/dropbutton
+  core/drupal.dialog:
+    - lcars_ng/dialog
+  file/drupal.file:
+    - lcars_ng/file
+  core/drupal.item-list:
+    - lcars_ng/item-list
+  core/drupal.progress:
+    - lcars_ng/progress
+  core/drupal.tablesort:
+    - lcars_ng/drupal.tablesort
+  system/admin:
+    - lcars_ng/admin
+  project_browser/app:
+    - lcars_ng/project-browser
+  dashboard/dashboard:
+    - lcars_ng/dashboard
+# gin_toolbar attaches the dialog styles of Gin and Claro to every dialog in
+# every theme (gin_toolbar_library_info_alter()). They rely on Gin's CSS
+# variables and leave dialogs transparent here; css/components/dialog.css
+# styles them instead.
+libraries-override:
+  gin/dialog:
+    css:
+      theme:
+        dist/css/components/dialog.css: false
+  claro/claro.drupal.dialog:
+    css:
+      theme:
+        css/components/dialog.css: false
+description: 'Inspired by the LCARS interface of Star Trek: The Next Generation. Rebuild of the Drupal 6 theme LCNG.'
+# 11.3: ThemeSettingsProvider and hook classes in themes (src/Hook).
+core_version_requirement: ^11.3
+# The logo of the Drupal 6 theme LCNG, redrawn as SVG (icosahedron).
+logo: lcars-ng-logo.svg
+generator: 'starterkit_theme:11.4.10'
+regions:
+  header: 'Header bar'
+  panel_sidebar: 'Panel menu'
+  panel: Panel
+  panel_status: 'Panel status'
+  breadcrumb: Breadcrumb
+  sidebar: 'Sidebar menu'
+  highlighted: Highlighted
+  help: Help
+  content: Content
+  sidebar_second: 'Right sidebar'
+  footer: Footer
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'

@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - lcars_ng
+id: lcars_ng_breadcrumbs
+theme: lcars_ng
+region: breadcrumb
+weight: 0
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: ''
+  label_display: '0'
+  provider: system
+visibility: {  }

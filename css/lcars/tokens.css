@@ -1,0 +1,66 @@
+/**
+ * @file
+ * LCARS-NG design tokens.
+ *
+ * Colours and frame geometry are taken from the Drupal 6 theme LCNG (2011,
+ * css/page.css and css/style.css). Every other file uses these properties;
+ * alert.css swaps the colours for red alert.
+ */
+
+:root {
+  /* Colours */
+  --lcars-space: #001b33; /* page background, "negative" parts of the frame */
+  --lcars-frame: #a7d4ff; /* elbows and bars */
+  --lcars-sidebar: #579df9; /* sidebar filler (LCNG css/1px.png) */
+  --lcars-button: #3786ff; /* menu and form buttons */
+  --lcars-button-sub: #6257fa; /* second menu level */
+  --lcars-button-hover: var(--lcars-frame);
+  --lcars-button-active: #fff;
+  --lcars-accent: #ffd068; /* page title bar */
+  --lcars-alert: #9e0e26; /* red alert: error pages */
+  --lcars-text: #fefefe;
+  /* Secondary text in the same white as all text (user decision 21.10.2026;
+     was #eee, #c2c9ce, #999). Kept as tokens to set them apart again. */
+  --lcars-text-muted: var(--lcars-text); /* form descriptions */
+  --lcars-text-soft: var(--lcars-text); /* secondary text, descriptions */
+  --lcars-text-dim: var(--lcars-text); /* slogan, status line, meta data */
+  --lcars-heading: var(--lcars-frame);
+  --lcars-link: #4bb0ff;
+  --lcars-link-hover: var(--lcars-frame);
+  --lcars-on-color: #000; /* text on bars and buttons */
+  --lcars-line-subtle: #579df91f; /* --lcars-sidebar at 12 %, dark blue: quiet frames inside a box */
+  --lcars-field-border: var(--lcars-line-subtle); /* form fields (forms.css) */
+
+  /* Typography: the typeface is not chosen yet. LCNG used Droid Sans. */
+  --lcars-font: system-ui, sans-serif;
+  --lcars-font-label: var(--lcars-font);
+
+  /* Frame geometry */
+  --lcars-sidebar-width: 9.375rem; /* 150px (LCNG: 120px) */
+  --lcars-gutter: 1.25rem; /* 20px between sidebar and content */
+  --lcars-seam: 4px; /* dark gap between frame segments */
+  --lcars-elbow-outer: 2.4375rem; /* 39px */
+  --lcars-elbow-inner: 1.25rem; /* 20px */
+  --lcars-bar-top: 2rem;
+  --lcars-bar-bottom: 1.5625rem; /* 25px */
+  --lcars-curve: 2.5rem; /* 40px, height of the inner curve */
+  --lcars-button-height: 2.125rem; /* 34px, a sidebar menu button without its seam (navigation.css) */
+  --lcars-button-large-height: 2.75rem; /* 44px, LCARS button component and login buttons */
+  --lcars-button-large-width: 8rem; /* their minimum width */
+  --lcars-pill: 100vmax;
+
+  /* Plain box (box.css) */
+  --lcars-box-border-width: 1px;
+  --lcars-box-border-color: var(--lcars-sidebar);
+  --lcars-box-radius: var(--lcars-elbow-inner);
+  --lcars-box-padding: 2rem 2.5rem;
+}
+
+@media (width < 40rem) {
+  :root {
+    --lcars-sidebar-width: 6rem; /* 96px */
+    --lcars-gutter: 0.75rem;
+    --lcars-elbow-outer: 1.75rem;
+    --lcars-elbow-inner: 0.875rem;
+  }
+}

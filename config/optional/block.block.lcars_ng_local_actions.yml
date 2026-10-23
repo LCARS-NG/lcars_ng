@@ -1,0 +1,17 @@
+langcode: en
+status: true
+dependencies:
+  theme:
+    - lcars_ng
+id: lcars_ng_local_actions
+theme: lcars_ng
+region: content
+weight: -7
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: ''
+  label_display: '0'
+  provider: core
+visibility: {  }

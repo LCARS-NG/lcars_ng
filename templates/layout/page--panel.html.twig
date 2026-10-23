@@ -1,0 +1,74 @@
+{#
+/**
+ * @file
+ * Theme override for the two-part LCARS screen.
+ *
+ * Used for the front page of signed-in users and for user profiles, as
+ * page-h2panel.tpl.php in the Drupal 6 theme LCNG: an upper panel (site name,
+ * panel blocks, panel menu) that ends in a bottom-left elbow, and below it the
+ * regular frame starting with a top-left elbow. The lower part has no bottom
+ * elbow; the footer follows the content.
+ *
+ * Available variables:
+ * - status_line: Date, time and signed-in user, in the curve below the upper
+ *   panel (\Drupal\lcars_ng\StatusLine, built per request).
+ *
+ * Regions:
+ * - page.panel_sidebar: Buttons beside the upper panel.
+ * - page.header: Site name, slogan and logo in the upper panel.
+ * - page.panel: Blocks in the upper panel, side by side.
+ * - page.panel_status: Inside the curve that closes the upper panel.
+ * - The other regions as in page.html.twig.
+ *
+ * @see page.html.twig
+ */
+#}
+<div class="lcars-frame lcars-frame--panel">
+
+  <div class="lcars-panel-side">
+    {{ page.panel_sidebar }}
+  </div>
+
+  <div class="lcars-panel-top">
+    {{ page.header }}
+    {{ page.panel }}
+  </div>
+
+  <div class="lcars-foot lcars-foot--split">
+    <div class="lcars-foot__inner">
+      {{ status_line }}
+      {{ page.panel_status }}
+    </div>
+  </div>
+
+  <header class="lcars-head">
+    <div class="lcars-head__bar"></div>
+    <div class="lcars-head__inner">
+      {{ page.breadcrumb }}
+    </div>
+  </header>
+
+  <div class="lcars-sidebar">
+    {{ page.sidebar }}
+  </div>
+
+  <main class="lcars-main">
+    <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
+    {{ page.highlighted }}
+    {{ page.help }}
+    {{ page.content }}
+  </main>
+
+  {% if page.sidebar_second %}
+    <aside class="lcars-aside">
+      {{ page.sidebar_second }}
+    </aside>
+  {% endif %}
+
+  {% if page.footer %}
+    <footer class="lcars-panel-foot">
+      {{ page.footer }}
+    </footer>
+  {% endif %}
+
+</div>{# /.lcars-frame #}

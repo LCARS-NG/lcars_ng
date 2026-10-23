@@ -1,0 +1,62 @@
+/**
+ * @file
+ * Project Browser (Extend → Browse modules) on the dark background.
+ *
+ * pb.css of project_browser is made for light admin themes. The filter panel
+ * takes the dark colour of the tabs (forms.css), project titles the frame
+ * colour. Extends the library project_browser/app (lcars_ng.info.yml).
+ */
+
+/* Filter panel and category dropdown */
+.search__form-container {
+  border-color: #333;
+  background-color: #111;
+  box-shadow: none;
+}
+
+.dropdown-filters {
+  border-color: #111;
+}
+
+.pb-filter__multi-dropdown__items--visible {
+  background-color: #111;
+}
+
+.pb-filter__multi-dropdown__items div:hover,
+.pb-filter__multi-dropdown__items div:focus {
+  background-color: #333;
+}
+
+.search__filter-button {
+  color: var(--lcars-link);
+}
+
+.search__filter-button:hover {
+  color: var(--lcars-link-hover);
+}
+
+/* Projects */
+.pb-project__link {
+  color: var(--lcars-frame);
+}
+
+.pb-project__link:hover {
+  color: var(--lcars-text);
+}
+
+.pb-project--list {
+  background: var(--lcars-space);
+}
+
+.project_status-indicator__label {
+  color: var(--lcars-text-soft);
+}
+
+[data-project-browser-instance-id] .pb-projects__loading-overlay {
+  background: rgb(0 27 51 / 60%); /* --lcars-space */
+}
+
+/* Detail dialog: pb.css gives the sidebar a light grey in light mode. */
+.pb-detail-modal__sidebar {
+  background-color: #111;
+}

@@ -1,0 +1,12 @@
+/**
+ * @file
+ * A plain box: a thin line around a block of content, such as the login
+ * panel (page--login.html.twig). Unlike the L-shaped LCARS panel component
+ * and the dashboard cards, it has no ceiling and no label.
+ */
+
+.lcars-box {
+  padding: var(--lcars-box-padding);
+  border: var(--lcars-box-border-width) solid var(--lcars-box-border-color);
+  border-radius: var(--lcars-box-radius);
+}

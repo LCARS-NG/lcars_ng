@@ -1,0 +1,52 @@
+/**
+ * @file
+ * The sidebar menu as stacked LCARS buttons, label at the bottom right.
+ */
+
+.lcars-sidebar .menu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lcars-sidebar .menu-item {
+  margin: 0;
+  padding: 0;
+}
+
+.lcars-sidebar .menu a,
+.lcars-sidebar .block > h2 {
+  display: block;
+  margin: 0;
+  padding: 0.9375rem 0.3125rem 0.1875rem 0; /* 15px 5px 3px 0 */
+  border-block-end: var(--lcars-seam) solid var(--lcars-space);
+  color: var(--lcars-on-color);
+  font-family: var(--lcars-font-label);
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 1;
+  overflow-wrap: anywhere;
+  text-align: end;
+  text-transform: uppercase;
+}
+
+.lcars-sidebar .menu a {
+  background: var(--lcars-button);
+}
+
+.lcars-sidebar .block > h2 {
+  background: var(--lcars-frame);
+}
+
+.lcars-sidebar .menu .menu a {
+  background: var(--lcars-button-sub);
+}
+
+.lcars-sidebar .menu a:hover {
+  background: var(--lcars-button-hover);
+}
+
+.lcars-sidebar .menu a.is-active,
+.lcars-sidebar .menu-item--active-trail > a {
+  background: var(--lcars-button-active);
+}

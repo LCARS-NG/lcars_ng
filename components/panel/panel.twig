@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * LCARS panel, as .ceilingTop and .innerframeTop in the Drupal 6 theme LCNG:
+ * the coloured ceiling carries the label, the dark inner frame the content.
+ */
+#}
+{% set classes = [
+  'lcars-panel',
+  'lcars-panel--' ~ color|default('frame'),
+] %}
+<section{{ attributes.addClass(classes) }}>
+  <div class="lcars-panel__ceiling">
+    {% if label %}
+      <h2 class="lcars-panel__label">{{ label }}</h2>
+    {% endif %}
+  </div>
+  <div class="lcars-panel__inner">
+    {% block content %}{% endblock %}
+  </div>
+</section>

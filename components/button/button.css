@@ -1,0 +1,47 @@
+/**
+ * @file
+ * LCARS button.
+ */
+
+.lcars-button {
+  --lcars-button-color: var(--lcars-button);
+  display: inline-flex;
+  box-sizing: border-box;
+  align-items: flex-end;
+  justify-content: flex-end;
+  min-inline-size: var(--lcars-button-large-width);
+  min-block-size: var(--lcars-button-large-height);
+  margin: 0 var(--lcars-seam) var(--lcars-seam) 0;
+  padding: 0.25rem 1rem;
+  border-radius: var(--lcars-pill);
+  background: var(--lcars-button-color);
+  color: var(--lcars-on-color);
+  font-family: var(--lcars-font-label);
+  font-weight: bold;
+  line-height: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+a.lcars-button:hover,
+a.lcars-button:focus-visible {
+  background: color-mix(in srgb, var(--lcars-button-color), #fff 35%);
+  color: var(--lcars-on-color);
+}
+
+/* Pill: label centred. Rounded corners: label at the bottom right, as the
+   buttons of the sidebar menu. */
+.lcars-button--pill {
+  align-items: center;
+  justify-content: center;
+}
+
+.lcars-button--rounded {
+  border-radius: 0.625rem;
+}
+
+.lcars-button--frame { --lcars-button-color: var(--lcars-frame); }
+.lcars-button--sidebar { --lcars-button-color: var(--lcars-sidebar); }
+.lcars-button--sub { --lcars-button-color: var(--lcars-button-sub); }
+.lcars-button--accent { --lcars-button-color: var(--lcars-accent); }
+.lcars-button--alert { --lcars-button-color: var(--lcars-alert); }

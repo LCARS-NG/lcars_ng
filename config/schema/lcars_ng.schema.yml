@@ -1,0 +1,9 @@
+# Schema for the configuration files of the LCARS-NG theme.
+
+lcars_ng.settings:
+  type: theme_settings
+  label: 'LCARS-NG settings'
+  mapping:
+    front_page_login:
+      type: boolean
+      label: 'Login panel on the front page for anonymous visitors'

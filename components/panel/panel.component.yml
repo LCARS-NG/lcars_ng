@@ -1,0 +1,38 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: LCARS panel
+description: A frame with a coloured ceiling and left edge around its content, as the block frames of LCNG.
+group: LCARS
+status: stable
+props:
+  type: object
+  required:
+    - color
+  properties:
+    label:
+      type: string
+      title: Label
+      examples:
+        - Status
+    color:
+      type: string
+      title: Colour
+      enum:
+        - button
+        - frame
+        - sidebar
+        - sub
+        - accent
+        - alert
+      meta:enum:
+        button: Blue
+        frame: Light blue
+        sidebar: Mid blue
+        sub: Violet
+        accent: Gold
+        alert: Red
+      default: frame
+      examples:
+        - frame
+slots:
+  content:
+    title: Content

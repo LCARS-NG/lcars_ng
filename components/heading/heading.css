@@ -1,0 +1,39 @@
+/**
+ * @file
+ * LCARS heading.
+ */
+
+.lcars-heading {
+  --lcars-heading-color: var(--lcars-accent);
+  margin-block-end: 1.5rem;
+}
+
+.lcars-heading__text {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.lcars-heading--bar {
+  display: flex;
+  align-items: center;
+  padding-inline-start: 1.5em;
+  border-radius: var(--lcars-pill);
+  background: var(--lcars-heading-color);
+}
+
+/* Text in the colour of the bar (bar) or of the chosen colour (plain). */
+.lcars-heading__text {
+  color: var(--lcars-heading-color);
+}
+
+.lcars-heading--bar .lcars-heading__text {
+  padding: 0 0.3em;
+  background: var(--lcars-space);
+  line-height: 0.85;
+}
+
+.lcars-heading--button { --lcars-heading-color: var(--lcars-button); }
+.lcars-heading--frame { --lcars-heading-color: var(--lcars-frame); }
+.lcars-heading--sidebar { --lcars-heading-color: var(--lcars-sidebar); }
+.lcars-heading--sub { --lcars-heading-color: var(--lcars-button-sub); }
+.lcars-heading--alert { --lcars-heading-color: var(--lcars-alert); }

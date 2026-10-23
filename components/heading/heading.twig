@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * LCARS heading, as #page-title in the Drupal 6 theme LCNG.
+ */
+#}
+{% set level = level|default(2) %}
+{% set classes = [
+  'lcars-heading',
+  'lcars-heading--' ~ style|default('bar'),
+  'lcars-heading--' ~ color|default('accent'),
+] %}
+<div{{ attributes.addClass(classes) }}>
+  <h{{ level }} class="lcars-heading__text">{{ heading_text }}</h{{ level }}>
+</div>

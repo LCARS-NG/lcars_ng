@@ -1,0 +1,116 @@
+/**
+ * @file
+ * The dashboard (admin/dashboard) with its blocks as LCARS cards.
+ *
+ * dashboard.css of the dashboard module relies on Claro's variables
+ * (--space-*, --color-gray-*), which this theme does not define, and draws
+ * light headings. Each block becomes an L-shaped frame as the LCARS panel
+ * component: a ceiling bar with the title cut into it near the right end, a
+ * narrow left edge and the inner curve between them. Extends the library
+ * dashboard/dashboard (lcars_ng.info.yml).
+ */
+
+.dashboard {
+  --lcars-card-frame: var(--lcars-frame);
+  --lcars-card-bar: 1.5625rem; /* 25px, as the panel ceiling */
+  --lcars-card-edge: 0.3125rem; /* 5px */
+  --lcars-card-pad: 1.25rem;
+  --lcars-card-gap: 1.5rem;
+}
+
+/* Cards */
+.dashboard .layout .block {
+  position: relative;
+  margin: 0 var(--lcars-card-gap) var(--lcars-card-gap) 0;
+  padding: 0 var(--lcars-card-pad) var(--lcars-card-pad);
+  border: 0;
+  border-inline-start: var(--lcars-card-edge) solid var(--lcars-card-frame);
+  border-radius: 0;
+  border-start-start-radius: 1.8125rem; /* 29px */
+  box-shadow: none;
+}
+
+/* Inner curve between the ceiling and the left edge */
+.dashboard .layout .block::before {
+  position: absolute;
+  inset-block-start: var(--lcars-card-bar);
+  inset-inline-start: 0;
+  inline-size: var(--lcars-elbow-inner);
+  block-size: var(--lcars-elbow-inner);
+  content: "";
+  background: radial-gradient(circle at 100% 100%, transparent calc(var(--lcars-elbow-inner) - 0.5px), var(--lcars-card-frame) var(--lcars-elbow-inner));
+}
+
+/* Ceiling with the title cut into it */
+.dashboard .layout .block > h2 {
+  display: flex;
+  align-items: center;
+  block-size: var(--lcars-card-bar);
+  margin: 0 calc(-1 * var(--lcars-card-pad)) var(--lcars-card-pad) calc(-1 * (var(--lcars-card-pad) + var(--lcars-card-edge)));
+  padding: 0;
+  border-radius: 0;
+  background: none;
+  color: var(--lcars-card-frame);
+  font-family: var(--lcars-font-label);
+  font-size: 1.25rem;
+  font-weight: bold;
+  line-height: 0.85;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.dashboard .layout .block > h2::before,
+.dashboard .layout .block > h2::after {
+  align-self: stretch;
+  content: "";
+  background: var(--lcars-card-frame);
+}
+
+.dashboard .layout .block > h2::before {
+  flex: 1;
+  margin-inline-end: 0.3em;
+  border-start-start-radius: 1.8125rem;
+}
+
+.dashboard .layout .block > h2::after {
+  flex: 0 0 1.5625rem;
+  margin-inline-start: 0.3em;
+}
+
+/* Announcements: dashboard.css sets dark greys. */
+.dashboard .layout .block .announcement a {
+  color: var(--lcars-link);
+}
+
+.dashboard .layout .block .announcement a:hover {
+  color: var(--lcars-link-hover);
+}
+
+.dashboard .layout .block .announcement__date {
+  color: var(--lcars-text-dim);
+}
+
+/* Views blocks: dashboard.css colours links with Claro's --color-absolutezero
+   and the dates of recent content with a dark grey. */
+.dashboard .block-views a {
+  color: var(--lcars-link);
+}
+
+.dashboard .block-views a:hover {
+  color: var(--lcars-link-hover);
+}
+
+.dashboard .block-views-blockrecent-content-block-recent-content time {
+  color: var(--lcars-text-soft);
+}
+
+/* Top tasks: links one below the other with some air. */
+.dashboard .block-menu li.menu-item + li.menu-item {
+  margin-block-start: 0.5rem;
+}
+
+@media (width < 40rem) {
+  .dashboard .layout .block {
+    margin-inline-end: 0;
+  }
+}

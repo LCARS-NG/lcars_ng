@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * LCARS button: a link when href is set, otherwise a plain label.
+ */
+#}
+{% set classes = [
+  'lcars-button',
+  'lcars-button--' ~ color|default('button'),
+  'lcars-button--' ~ shape|default('pill'),
+] %}
+{% if href %}
+  <a{{ attributes.addClass(classes).setAttribute('href', href) }}>{{ label }}</a>
+{% else %}
+  <span{{ attributes.addClass(classes) }}>{{ label }}</span>
+{% endif %}

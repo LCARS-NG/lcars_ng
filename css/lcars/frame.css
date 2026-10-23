@@ -1,0 +1,273 @@
+/**
+ * @file
+ * The LCARS frame: elbows, sidebar, content and footer.
+ *
+ * Grid areas replace the floats and the 1px.png filler of LCNG. The sidebar
+ * filler stretches with its grid row, so it reaches the bottom elbow without
+ * lcng.magicheight.js.
+ *
+ * Each elbow is a coloured block with a large outer radius; its dark inner
+ * part (__inner) has the smaller inner radius and forms the curve.
+ */
+
+.lcars-frame {
+  display: grid;
+  box-sizing: border-box;
+  /* Fill the window below Drupal's toolbars (Drupal.displace). */
+  min-block-size: calc(100dvh - var(--drupal-displace-offset-top, 0px) - var(--drupal-displace-offset-bottom, 0px));
+  padding: 1rem;
+  grid-template-areas:
+    "head head head"
+    "side main aside"
+    "foot foot foot";
+  grid-template-columns: var(--lcars-sidebar-width) minmax(0, 1fr) auto;
+  grid-template-rows: auto 1fr auto;
+  row-gap: var(--lcars-seam);
+}
+
+/* Top-left elbow */
+
+.lcars-head {
+  display: grid;
+  grid-area: head;
+  grid-template-columns: var(--lcars-sidebar-width) minmax(0, 1fr);
+  grid-template-rows: var(--lcars-bar-top) minmax(var(--lcars-curve), auto);
+  border-start-start-radius: var(--lcars-elbow-outer);
+  background: var(--lcars-frame);
+}
+
+.lcars-head__bar {
+  display: flex;
+  grid-area: 1 / 2;
+  align-items: center;
+  justify-content: flex-end;
+  padding-inline-end: 1.5625rem; /* 25px */
+}
+
+.lcars-head__inner {
+  grid-area: 2 / 2;
+  padding: 0.625rem 0 0.625rem var(--lcars-gutter);
+  border-start-start-radius: var(--lcars-elbow-inner);
+  background: var(--lcars-space);
+}
+
+/* The site name cuts into the bar. */
+.lcars-head__bar .site-name {
+  padding: 0 0.15em;
+  background: var(--lcars-space);
+  font-family: var(--lcars-font-label);
+  font-size: 2.5rem;
+  font-weight: bold;
+  line-height: 0.8;
+  text-transform: uppercase;
+}
+
+.lcars-head__bar .site-name a {
+  color: var(--lcars-frame);
+}
+
+.lcars-head__bar .site-logo,
+.lcars-head__bar .site-slogan {
+  display: none;
+}
+
+/* Breadcrumb inside the curve */
+
+.lcars-head__inner .breadcrumb {
+  padding: 0;
+  font-size: 0.625rem;
+  text-transform: uppercase;
+}
+
+/* Sidebar */
+
+.lcars-sidebar {
+  grid-area: side;
+  padding-block-end: 2.1875rem; /* 35px */
+  background: var(--lcars-sidebar);
+  line-height: 1;
+}
+
+/* Content: no space at the top, so the page title bar lines up with the
+   first menu button. */
+
+.lcars-main {
+  grid-area: main;
+  min-inline-size: 0;
+  padding: 0 0 2rem var(--lcars-gutter);
+}
+
+.lcars-aside {
+  grid-area: aside;
+  inline-size: 11.25rem; /* 180px */
+  padding: 0 0 2rem var(--lcars-gutter);
+  font-size: 0.9em;
+}
+
+/* Bottom-left elbow */
+
+.lcars-foot {
+  display: grid;
+  grid-area: foot;
+  grid-template-columns: var(--lcars-sidebar-width) minmax(0, 1fr);
+  grid-template-rows: minmax(var(--lcars-curve), auto) var(--lcars-bar-bottom);
+  border-end-start-radius: var(--lcars-elbow-outer);
+  background: var(--lcars-frame);
+}
+
+.lcars-foot__inner {
+  grid-area: 1 / 2;
+  padding: 0.75rem 1rem 0.75rem var(--lcars-gutter);
+  border-end-start-radius: var(--lcars-elbow-inner);
+  background: var(--lcars-space);
+}
+
+/* Footer blocks side by side, as the four-column Gpanel of LCNG. */
+.lcars-foot__inner .region-footer {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+}
+
+/* Page title: a bar with the title cut into it, as high as a menu button.
+   The line height sets that height, so the cut runs through the whole bar. */
+
+.lcars-title {
+  display: flex;
+  align-items: center;
+  margin-block-end: 2rem;
+  padding-inline-start: 1.5em;
+  border-radius: var(--lcars-pill);
+  background: var(--lcars-accent);
+}
+
+/* The title takes the colour of its bar, as the site name in the header bar. */
+.lcars-title .page-title {
+  margin: 0;
+  padding: 0 0.3em;
+  background: var(--lcars-space);
+  color: var(--lcars-accent);
+  font-size: 2rem;
+  line-height: var(--lcars-button-height);
+}
+
+@media (width < 40rem) {
+  .lcars-frame {
+    padding: 0.5rem;
+  }
+
+  .lcars-head__bar .site-name {
+    font-size: 1.5rem;
+  }
+
+  .lcars-title .page-title {
+    font-size: 1.5rem;
+  }
+
+  .lcars-aside {
+    display: none;
+  }
+}
+
+/* Two-part screen (page--panel.html.twig), as page-h2panel in LCNG */
+
+.lcars-frame--panel {
+  --lcars-bar-top: 0.9375rem; /* 15px */
+  --lcars-bar-bottom: 0.9375rem;
+  grid-template-areas:
+    "pside ptop ptop"
+    "split split split"
+    "head head head"
+    "side main aside"
+    "foot foot foot";
+  grid-template-rows: auto auto auto 1fr auto;
+}
+
+.lcars-panel-side {
+  grid-area: pside;
+  background: var(--lcars-sidebar);
+  line-height: 1;
+}
+
+.lcars-panel-top {
+  grid-area: ptop;
+  min-inline-size: 0;
+  padding: 0.5rem 0 1rem var(--lcars-gutter);
+}
+
+/* Branding in the upper panel: name and slogan, the logo on the right. */
+.lcars-panel-top .block-system-branding-block {
+  display: grid;
+  align-items: start;
+  margin-block-end: 1rem;
+  column-gap: 1rem;
+  grid-template-areas:
+    "name logo"
+    "slogan logo";
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.lcars-panel-top .site-name {
+  grid-area: name;
+  font-family: var(--lcars-font-label);
+  font-size: 2.5rem;
+  font-weight: bold;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.lcars-panel-top .site-name a {
+  color: var(--lcars-frame);
+}
+
+.lcars-panel-top .site-slogan {
+  grid-area: slogan;
+  padding-block-start: 0.25rem;
+  color: var(--lcars-text-dim);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.lcars-panel-top .site-logo {
+  grid-area: logo;
+  padding-inline-end: 1rem;
+}
+
+.lcars-panel-top .site-logo img {
+  display: block;
+}
+
+/* Status line in the curve below the upper panel */
+.lcars-status {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+  font-size: 0.625rem;
+  text-transform: uppercase;
+}
+
+.lcars-status__date {
+  color: var(--lcars-text-dim);
+}
+
+/* Panel blocks side by side, as the four-column Gpanel of LCNG. */
+.lcars-panel-top .region-panel {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+}
+
+.lcars-foot--split {
+  grid-area: split;
+}
+
+/* The two elbows face each other with a wider gap. */
+.lcars-frame--panel .lcars-head {
+  margin-block-start: var(--lcars-seam);
+}
+
+.lcars-panel-foot {
+  grid-area: foot;
+  padding: 1rem 0 0 calc(var(--lcars-sidebar-width) + var(--lcars-gutter));
+}

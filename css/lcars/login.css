@@ -1,0 +1,122 @@
+/**
+ * @file
+ * The login panel between two bars (page--login.html.twig).
+ */
+
+.lcars-login {
+  display: grid;
+  box-sizing: border-box;
+  min-block-size: 100dvh;
+  padding: 1rem;
+  gap: 1rem;
+  grid-template-rows: auto 1fr auto;
+}
+
+.lcars-login__bar {
+  block-size: 6ex;
+  border-radius: var(--lcars-pill);
+  background: var(--lcars-frame);
+}
+
+.lcars-login__panel {
+  align-self: center;
+  justify-self: center;
+  max-inline-size: 30rem;
+  text-align: center;
+}
+
+.lcars-login__panel .site-name {
+  margin-block-end: 0.5em;
+  color: var(--lcars-frame);
+  font-family: var(--lcars-font-label);
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.lcars-login__panel .site-name a {
+  color: inherit;
+}
+
+/* Logo above the site name, slogan below, as page-front-anonymous in LCNG. */
+.lcars-login__panel .site-logo {
+  display: inline-block;
+  margin-block-end: 1rem;
+}
+
+.lcars-login__panel .site-logo img {
+  display: block;
+}
+
+/* The branding as a card inside the panel: a thin, quiet dark blue line,
+   corners as the box around it (box.css). */
+.lcars-login__panel .block-system-branding-block {
+  margin-block-end: 1.5rem;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--lcars-line-subtle);
+  border-radius: var(--lcars-box-radius);
+}
+
+.lcars-login__panel .site-slogan {
+  margin-block: -0.25rem 0;
+  color: var(--lcars-text-dim);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.lcars-login__panel .lcars-title {
+  justify-content: center;
+  padding-inline-start: 0;
+}
+
+.lcars-login__panel .form-item label {
+  display: block;
+  margin-block-end: 0.25em;
+}
+
+.lcars-login__panel .form-item .description {
+  display: none;
+}
+
+.lcars-login__panel input:where([type="text"], [type="email"], [type="password"]) {
+  inline-size: 12em;
+  padding: 0.35em;
+  border-radius: var(--lcars-pill);
+  text-align: center;
+}
+
+/* Submit in the size of the LCARS button component (pill), centred without
+   the right margin of the form buttons (forms.css). */
+.lcars-login__panel .form-actions .form-submit {
+  min-inline-size: var(--lcars-button-large-width);
+  min-block-size: var(--lcars-button-large-height);
+  margin: 0 0 1em;
+  padding: 0.25rem 1rem;
+  border-radius: var(--lcars-pill);
+  font-size: 1rem;
+}
+
+.lcars-login__panel .tabs {
+  justify-content: center;
+}
+
+/* Tabs as outlines in the line of the box (box.css) instead of the dark
+   backgrounds of forms.css; corners as the form buttons. The active tab keeps
+   its light blue text. */
+.lcars-login__panel .tabs a,
+.lcars-login__panel .tabs a.is-active {
+  border: var(--lcars-box-border-width) solid var(--lcars-box-border-color);
+  border-radius: 0.625rem;
+  background: none;
+}
+
+.lcars-login__panel .tabs a:hover,
+.lcars-login__panel .tabs a:focus {
+  border-color: var(--lcars-frame);
+  background: none;
+}
+
+.lcars-login__links {
+  font-size: 0.875rem;
+}

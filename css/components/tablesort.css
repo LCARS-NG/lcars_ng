@@ -1,0 +1,12 @@
+/**
+ * @file
+ * Table sort indicator.
+ */
+
+th.is-active img {
+  display: inline;
+}
+/* LCARS-NG: the sorted column on the dark background (was #ddd). */
+td.is-active {
+  background-color: #111;
+}

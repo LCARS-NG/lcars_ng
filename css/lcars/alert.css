@@ -1,0 +1,19 @@
+/**
+ * @file
+ * Red alert: error pages (401, 403, 404) turn the frame red, as .page-error
+ * in LCNG.
+ */
+
+.lcars-alert {
+  --lcars-frame: var(--lcars-alert);
+  --lcars-sidebar: var(--lcars-alert);
+  --lcars-button: var(--lcars-alert);
+  --lcars-button-sub: var(--lcars-alert);
+  --lcars-accent: var(--lcars-alert);
+  --lcars-heading: var(--lcars-alert);
+}
+
+.lcars-alert .lcars-main {
+  color: var(--lcars-alert);
+  text-transform: uppercase;
+}
