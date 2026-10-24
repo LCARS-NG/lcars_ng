@@ -156,6 +156,40 @@
   grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
 }
 
+/* Footer menu (privacy policy, imprint): small capitals in the link colour at
+   the end of the line, above the bar of the bottom elbow and below the panel
+   screen. The login panel has no footer. */
+.region-footer .menu--footer .menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.25rem 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.region-footer .menu--footer .menu-item {
+  padding: 0;
+}
+
+.region-footer .menu--footer a {
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--lcars-link);
+  font-family: var(--lcars-font-label);
+  font-size: 0.8125rem;
+}
+
+.region-footer .menu--footer a.is-active {
+  color: var(--lcars-frame);
+}
+
+.region-footer .menu--footer a:hover,
+.region-footer .menu--footer a:focus {
+  color: var(--lcars-link-hover);
+}
+
 /* Page title: a bar with the title cut into it, as high as a menu button
    (--lcars-title-height). The cut runs through the whole bar; the capitals
    fill it up to --lcars-cap-inset at the top and bottom. font-size-adjust

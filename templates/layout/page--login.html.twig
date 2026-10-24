@@ -13,6 +13,8 @@
  * - login_form: The user login form, set on the front page of anonymous
  *   visitors (LcarsNgHooks::preprocessPage()). On the account pages the form
  *   is the main content.
+ * - reset_password_url: The password reset form, set with login_form when the
+ *   form is available.
  *
  * @see page.html.twig
  * @see \Drupal\lcars_ng\Hook\LcarsNgHooks
@@ -28,9 +30,11 @@
     {{ page.highlighted }}
     {% if login_form %}
       {{ login_form }}
-      <p class="lcars-login__links">
-        <a href="{{ path('user.pass') }}">{{ 'Reset your password'|t }}</a>
-      </p>
+      {% if reset_password_url %}
+        <p class="lcars-login__links">
+          <a href="{{ reset_password_url }}">{{ 'Reset your password'|t }}</a>
+        </p>
+      {% endif %}
     {% else %}
       {{ page.content }}
     {% endif %}

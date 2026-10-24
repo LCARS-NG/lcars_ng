@@ -10,6 +10,7 @@ use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\Core\Path\PathMatcherInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Url;
 use Drupal\lcars_ng\StatusLine;
 use Drupal\user\Form\UserLoginForm;
 
@@ -103,11 +104,18 @@ class LcarsNgHooks {
 
   /**
    * Implements hook_preprocess_page().
+   *
+   * The login panel on the front page links to the password reset form only
+   * where that form is available; a site may deny its route.
    */
   #[Hook('preprocess_page')]
   public function preprocessPage(array &$variables): void {
     if ($this->isLoginFrontPage()) {
       $variables['login_form'] = $this->formBuilder->getForm(UserLoginForm::class);
+      $reset = Url::fromRoute('user.pass');
+      if ($reset->access()) {
+        $variables['reset_password_url'] = $reset->toString();
+      }
     }
     elseif ($this->isPanelPage()) {
       $variables['status_line'] = [
