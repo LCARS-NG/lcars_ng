@@ -36,6 +36,25 @@
   color: var(--lcars-on-color);
   background: var(--lcars-button-hover);
 }
+
+/* With the arrow: square at the right end, as the arrow is when highlighted
+   (user decision 25.10.2026). The highlighted action follows the rounded
+   corners at the left: the first action at the top, closed at the bottom as
+   well; open, the last action at the bottom (the arrow comes after the first
+   action, dropbutton.js). */
+.js .dropbutton-multiple .dropbutton-widget {
+  border-start-end-radius: 0;
+  border-end-end-radius: 0;
+}
+
+.js .dropbutton-multiple .dropbutton-action:first-child > * {
+  border-start-start-radius: 0.625rem;
+}
+
+.js .dropbutton-multiple:not(.open) .dropbutton-action:first-child > *,
+.js .dropbutton-multiple.open .dropbutton-action:last-child > * {
+  border-end-start-radius: 0.625rem;
+}
 .dropbutton .secondary-action {
   border-top: 1px solid var(--lcars-space);
 }
