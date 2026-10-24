@@ -121,6 +121,7 @@ global:
     component:
       css/lcars/navigation.css: {  }
       css/lcars/forms.css: {  }
+      css/lcars/table.css: {  }
       css/lcars/box.css: {  }
     theme:
       css/lcars/alert.css: {  }

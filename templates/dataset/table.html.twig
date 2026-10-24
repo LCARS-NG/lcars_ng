@@ -38,9 +38,13 @@
  * - no_striping: A boolean indicating that the row should receive no striping.
  * - header_columns: The number of columns in the header.
  *
+ * The table is wrapped in .lcars-table, where a table wider than the content
+ * scrolls on phones (css/lcars/table.css).
+ *
  * @see \Drupal\Core\Theme\ThemePreprocess::preprocessTable()
  */
 #}
+<div class="lcars-table">
 <table{{ attributes }}>
   {% if caption %}
     <caption>{{ caption }}</caption>
@@ -113,3 +117,4 @@
     </tfoot>
   {% endif %}
 </table>
+</div>

@@ -24,6 +24,15 @@ select {
   max-inline-size: 100%;
 }
 
+/* Phones: the fields of inline forms (exposed filters of views) one below the
+   other. Floated, a form item would grow with its field beyond the content. */
+@media (max-width: 39.9375rem) {
+  .lcars-main .form--inline .form-item {
+    float: none;
+    margin-inline-end: 0;
+  }
+}
+
 /* The black eye of view_password, made light for the dark fields. */
 button.shwpd {
   filter: invert(1);

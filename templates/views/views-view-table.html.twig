@@ -28,6 +28,9 @@
  * - sticky: A flag indicating whether table header is sticky.
  * - summary_element: A render array with table summary information (if any).
  *
+ * The table is wrapped in .lcars-table, where a table wider than the content
+ * scrolls on phones (css/lcars/table.css).
+ *
  * @see template_preprocess_views_view_table()
  */
 #}
@@ -40,6 +43,7 @@
     sticky ? 'sticky-header',
   ]
 %}
+<div class="lcars-table">
 <table{{ attributes.addClass(classes) }}>
   {% if caption_needed %}
     <caption>
@@ -118,3 +122,4 @@
     {% endfor %}
   </tbody>
 </table>
+</div>

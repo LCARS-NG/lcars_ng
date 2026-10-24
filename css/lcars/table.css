@@ -1,0 +1,46 @@
+/**
+ * @file
+ * Tables on phones: columns of lower priority hide, the rest scrolls.
+ */
+
+/* As in Claro, columns of low and medium priority hide on phones;
+   tableresponsive.js then shows a toggle above the table to bring them back.
+   A table still wider than the content scrolls in its wrapper
+   (table.html.twig, views-view-table.html.twig) instead of widening the page
+   (user decision 24.10.2026). The wrapper is positioned, so it also holds the
+   visually hidden labels in the cells; the toggles and warnings that core
+   scripts insert before the table stay in view while it scrolls. */
+@media (max-width: 39.9375rem) {
+  th.priority-low,
+  th.priority-medium,
+  td.priority-low,
+  td.priority-medium {
+    display: none;
+  }
+
+  .lcars-table {
+    position: relative;
+    overflow-x: auto;
+  }
+
+  .lcars-table > :not(table) {
+    position: sticky;
+    inset-inline-start: 0;
+  }
+
+  /* The toggle as a link, on the right above the table. */
+  .tableresponsive-toggle-columns {
+    margin-block-end: 0.5rem;
+    text-align: end;
+  }
+
+  .tableresponsive-toggle {
+    text-transform: uppercase;
+    color: var(--lcars-link);
+    font: inherit;
+  }
+
+  .tableresponsive-toggle:hover {
+    color: var(--lcars-link-hover);
+  }
+}
