@@ -21,8 +21,48 @@
   box-sizing: border-box;
   padding: 1rem;
   /* Fill the window below Drupal's toolbars (Drupal.displace). */
-  min-block-size: calc(100dvh - var(--drupal-displace-offset-top, 0px) - var(--drupal-displace-offset-bottom, 0px));
+  --lcars-frame-offset: 0px;
+  min-block-size: calc(100dvh - var(--drupal-displace-offset-top, 0px) - var(--drupal-displace-offset-bottom, 0px) - var(--lcars-frame-offset));
   row-gap: var(--lcars-seam);
+}
+
+/* The top bar of the Navigation module (entity title, Edit) is fixed and does
+   not take part in Drupal.displace; navigation/css/components/top-bar.css
+   moves the page down by its height instead, from 64rem and only when it has
+   content. The frame then ends at the bottom of the window too; longer pages
+   scroll as before (user decision 24.10.2026). */
+@media (min-width: 64rem) {
+  .top-bar:has(.top-bar__tools:not(:empty), .top-bar__context:not(:empty), .top-bar__actions:not(:empty)) ~ .dialog-off-canvas-main-canvas .lcars-frame {
+    --lcars-frame-offset: var(--admin-toolbar-top-bar-height, 0px);
+  }
+}
+
+/* Below 64rem the control bar and the top bar stand in the flow above the
+   page, with heights of their own: the body becomes a column and the frame
+   fills what is left of the window. */
+@media (max-width: 63.9375rem) {
+  body.user-logged-in {
+    display: flex;
+    flex-direction: column;
+    min-block-size: 100dvh;
+  }
+
+  body.user-logged-in > .dialog-off-canvas-main-canvas {
+    display: flex;
+    flex: 1 0 auto;
+    flex-direction: column;
+  }
+
+  body.user-logged-in > .dialog-off-canvas-main-canvas > .lcars-frame {
+    flex: 1 0 auto;
+    min-block-size: 0;
+  }
+}
+
+/* Drupal's live region for screen readers is absolutely positioned but stays
+   at its place below the frame, so the page scrolled by its 1px. */
+#drupal-live-announce {
+  inset-block-start: 0;
 }
 
 /* Top-left elbow */
@@ -103,7 +143,7 @@
 .lcars-aside {
   grid-area: aside;
   padding: 0 0 2rem var(--lcars-gutter);
-  font-size: 0.9em;
+  font-size: 0.8125rem; /* 13px, more fits the narrow column (user decision 24.10.2026) */
 }
 
 /* With blocks in the right sidebar, its column takes a fifth of the frame,
@@ -128,7 +168,14 @@
 
 .lcars-aside .lcars-panel__inner {
   overflow-x: auto;
-  padding-inline-end: 0;
+  padding-inline: 0.625rem 0; /* 10px: narrow column (user decision 24.10.2026) */
+}
+
+/* Menus in these panels (block--sidebar-second--system-menu-block.html.twig)
+   start at the edge and the top of the inner frame, like the text of the
+   other blocks. */
+.lcars-aside .lcars-panel ul.menu {
+  margin: 0;
 }
 
 /* Bottom-left elbow */
@@ -332,7 +379,8 @@
   flex-wrap: wrap;
   justify-content: space-between;
   text-transform: uppercase;
-  font-size: 0.625rem;
+  font-size: 0.875rem; /* 14px */
+  font-weight: bold;
   gap: 0.25rem 1rem;
 }
 
@@ -354,11 +402,6 @@
 /* The two elbows face each other with a wider gap. */
 .lcars-frame--panel .lcars-head {
   margin-block-start: var(--lcars-seam);
-}
-
-.lcars-panel-foot {
-  grid-area: foot;
-  padding: 1rem 0 0 calc(var(--lcars-sidebar-width) + var(--lcars-gutter));
 }
 
 /* Phones: the menu above the content as on other pages; beside the upper

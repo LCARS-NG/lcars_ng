@@ -6,8 +6,9 @@
  * Used for the front page of signed-in users and for user profiles, as
  * page-h2panel.tpl.php in the Drupal 6 theme LCNG: an upper panel (site name,
  * panel blocks, panel menu) that ends in a bottom-left elbow, and below it the
- * regular frame starting with a top-left elbow. The lower part has no bottom
- * elbow; the footer follows the content.
+ * regular frame starting with a top-left elbow and ending, unlike LCNG, in
+ * the bottom-left elbow of the other pages with the footer (user decision
+ * 24.10.2026).
  *
  * Available variables:
  * - status_line: Date, time and signed-in user, in the curve below the upper
@@ -65,10 +66,10 @@
     </aside>
   {% endif %}
 
-  {% if page.footer %}
-    <footer class="lcars-panel-foot">
+  <footer class="lcars-foot">
+    <div class="lcars-foot__inner">
       {{ page.footer }}
-    </footer>
-  {% endif %}
+    </div>
+  </footer>
 
 </div>{# /.lcars-frame #}

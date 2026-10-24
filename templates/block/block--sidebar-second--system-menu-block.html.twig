@@ -1,0 +1,39 @@
+{#
+/**
+ * @file
+ * Theme override for a menu block in the right sidebar: an LCARS panel like
+ * the other blocks there (block--sidebar-second.html.twig), with the menu in
+ * a nav element named after the block title.
+ *
+ * The suggestion block__REGION__PLUGIN comes from LcarsNgHooks; it wins over
+ * block--system-menu-block.html.twig.
+ *
+ * @see block--sidebar-second.html.twig
+ * @see block--system-menu-block.html.twig
+ */
+#}
+{%
+  set classes = [
+    'block',
+    'block-menu',
+    'navigation',
+    'menu--' ~ derivative_plugin_id|clean_class,
+  ]
+%}
+{% embed 'lcars_ng:panel' with {
+  attributes: attributes.addClass(classes)|without('role', 'aria-labelledby'),
+  label: label,
+  color: 'frame',
+  nav_label: configuration.label,
+  block_content: content,
+  title_prefix: title_prefix,
+  title_suffix: title_suffix,
+} only %}
+  {% block content %}
+    {{ title_prefix }}
+    {{ title_suffix }}
+    <nav aria-label="{{ nav_label }}">
+      {{ block_content }}
+    </nav>
+  {% endblock %}
+{% endembed %}

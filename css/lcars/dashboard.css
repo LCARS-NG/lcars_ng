@@ -28,6 +28,21 @@
   border-radius: 0;
   border-start-start-radius: 1.8125rem; /* 29px */
   box-shadow: none;
+  font-size: 0.8125rem; /* 13px like the right sidebar (user decision 24.10.2026) */
+}
+
+/* The content of every card starts at its padding: lists, the announcements
+   and the links of the top tasks lose their indent (user decision
+   24.10.2026). The nested rules of dashboard.css are specific, hence the long
+   selectors. */
+.dashboard .layout .block :is(ul, ol),
+.dashboard .layout .block .announcements ul {
+  margin-inline-start: 0;
+  padding-inline-start: 0;
+}
+
+.dashboard .layout .block.block-menu ul.menu li.menu-item a {
+  padding-inline-start: 0;
 }
 
 /* Inner curve between the ceiling and the left edge */

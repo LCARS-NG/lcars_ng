@@ -18,6 +18,10 @@
   --lcars-button-active: #fff;
   --lcars-accent: #ffd068; /* page title bar */
   --lcars-alert: #9e0e26; /* red alert: error pages */
+  /* Status messages (messages.css), light tones for black text (user decision 24.10.2026) */
+  --lcars-message-status: #99d98c;
+  --lcars-message-warning: #ffd068; /* gold of --lcars-accent, fixed: red alert swaps the accent */
+  --lcars-message-error: #ff7a6b;
   --lcars-text: #fefefe;
   /* Secondary text in the same white as all text (user decision 21.10.2026;
      was #eee, #c2c9ce, #999). Kept as tokens to set them apart again. */

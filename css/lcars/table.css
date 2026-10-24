@@ -1,7 +1,24 @@
 /**
  * @file
- * Tables on phones: columns of lower priority hide, the rest scrolls.
+ * Tables in narrow boxes; on phones columns of lower priority hide, the rest
+ * scrolls.
  */
+
+/* Tables in the panels of the right sidebar and in the dashboard cards start
+   at the edge of the text (user decision 24.10.2026): no cell spacing,
+   headings aligned like the cells, space only between columns. */
+:is(.lcars-aside .lcars-panel, .dashboard .layout .block) table {
+  border-collapse: collapse;
+}
+
+:is(.lcars-aside .lcars-panel, .dashboard .layout .block) :is(th, td) {
+  padding: 0.125rem 0.5rem 0.125rem 0;
+  text-align: start;
+}
+
+:is(.lcars-aside .lcars-panel, .dashboard .layout .block) :is(th, td):last-child {
+  padding-inline-end: 0;
+}
 
 /* As in Claro, columns of low and medium priority hide on phones;
    tableresponsive.js then shows a toggle above the table to bring them back.

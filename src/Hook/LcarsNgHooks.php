@@ -60,14 +60,18 @@ class LcarsNgHooks {
    * Adds the region of a placed block as its least specific suggestion
    * (block__REGION): blocks in the right sidebar become LCARS panels
    * (block--sidebar-second.html.twig), as block-right.tpl.php in the Drupal 6
-   * theme LCNG. Templates for a plugin or a single block still win.
+   * theme LCNG. Templates for a plugin or a single block still win; for a
+   * plugin in a region, block__REGION__PLUGIN comes after them
+   * (block--sidebar-second--system-menu-block.html.twig: menus as panels).
    */
   #[Hook('theme_suggestions_block_alter')]
   public function themeSuggestionsBlockAlter(array &$suggestions, array $variables): void {
     $id = $variables['elements']['#id'] ?? NULL;
     $block = $id ? $this->entityTypeManager->getStorage('block')->load($id) : NULL;
     if ($block instanceof BlockInterface) {
-      array_unshift($suggestions, 'block__' . $block->getRegion());
+      $region = 'block__' . $block->getRegion();
+      array_unshift($suggestions, $region);
+      $suggestions[] = $region . '__' . $block->getPlugin()->getBaseId();
     }
   }
 

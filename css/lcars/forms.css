@@ -1,6 +1,6 @@
 /**
  * @file
- * Form elements, buttons, messages and tabs.
+ * Form elements, buttons and tabs (messages: css/components/messages.css).
  */
 
 label,
@@ -22,6 +22,16 @@ select {
   background: none;
   font: inherit;
   max-inline-size: 100%;
+}
+
+/* The open list of a select is drawn by the browser: without a background of
+   its own it is white, and the light text vanishes. Field and options take the
+   page background, in dialogs too (user decision 24.10.2026). */
+select,
+select option,
+select optgroup {
+  color: var(--lcars-text);
+  background-color: var(--lcars-space);
 }
 
 /* Phones: the fields of inline forms (exposed filters of views) one below the
@@ -72,13 +82,6 @@ fieldset {
   background: var(--lcars-space);
 }
 
-.messages {
-  margin-block-end: 0.5em;
-  padding: 1em 1.5em;
-  border: 0;
-  border-radius: 1.5rem;
-}
-
 /* Local tasks (tabs) */
 .tabs {
   border: 0;
@@ -101,4 +104,41 @@ fieldset {
   color: var(--lcars-frame);
   border: 0;
   background: #333;
+}
+
+/* Vertical tabs (block visibility, node form): dark like the tabs above
+   instead of the light gray of core/misc/vertical-tabs.css; the selected tab
+   takes the page background and joins its pane (user decision 24.10.2026).
+   "html" outweighs core, whose library may load after the theme. */
+html .vertical-tabs,
+html .vertical-tabs__menu,
+html .vertical-tabs__menu-item {
+  border-color: var(--lcars-field-border);
+}
+
+html .vertical-tabs__menu-item {
+  background: #111;
+}
+
+html .vertical-tabs__menu-item a {
+  color: var(--lcars-text);
+}
+
+html .vertical-tabs__menu-item-title {
+  color: var(--lcars-frame);
+  text-transform: uppercase;
+}
+
+html .vertical-tabs__menu-item a:hover {
+  outline: 0;
+  background: #333;
+}
+
+html .vertical-tabs__menu-item.is-selected,
+html .vertical-tabs__menu-item.is-selected a:hover {
+  background: var(--lcars-space);
+}
+
+html .vertical-tabs__menu-item.is-selected .vertical-tabs__menu-item-title {
+  color: var(--lcars-text);
 }

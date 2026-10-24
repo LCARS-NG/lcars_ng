@@ -1,33 +1,55 @@
 /**
  * @file
  * General styles for dropbuttons.
+ *
+ * LCARS-NG: a dropbutton (Configure, Edit … with the arrow for more) looks
+ * like the other buttons (forms.css): button blue, rounded, black bold
+ * capitals; the parts are divided by thin lines in the page color (user
+ * decision 24.10.2026). The arrow of core takes the text color.
  */
 
 .js .dropbutton-widget {
-  border: 1px solid #ccc;
-  background-color: white;
-}
-.js .dropbutton-widget:hover {
-  border-color: #b8b8b8;
+  border: 0;
+  border-radius: 0.625rem; /* 10px, as .button */
+  background-color: var(--lcars-button);
 }
 .dropbutton .dropbutton-action > * {
-  padding: 0.1em 0.5em;
+  padding: 0.3125rem 0.625rem; /* 5px 10px, as .button */
   white-space: nowrap;
 }
+.js .dropbutton a,
+.js .dropbutton .dropbutton-action :is(input, button),
+.dropbutton-toggle button {
+  margin: 0;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: var(--lcars-on-color);
+  border: 0;
+  border-radius: 0;
+  background: none;
+  font-family: var(--lcars-font-label);
+  font-size: 0.85em;
+  font-weight: bold;
+}
+.js .dropbutton :is(a, input, button):is(:hover, :focus),
+.dropbutton-toggle button:is(:hover, :focus) {
+  color: var(--lcars-on-color);
+  background: var(--lcars-button-hover);
+}
 .dropbutton .secondary-action {
-  border-top: 1px solid #e8e8e8;
+  border-top: 1px solid var(--lcars-space);
 }
 .dropbutton-multiple .dropbutton {
-  border-right: 1px solid #e8e8e8; /* LTR */
+  border-right: 1px solid var(--lcars-space); /* LTR */
 }
 [dir="rtl"] .dropbutton-multiple .dropbutton {
   border-right: 0 none;
-  border-left: 1px solid #e8e8e8;
+  border-left: 1px solid var(--lcars-space);
 }
 .dropbutton-multiple .dropbutton .dropbutton-action > * {
-  margin-right: 0.25em; /* LTR */
+  margin-right: 0; /* LTR */
 }
 [dir="rtl"] .dropbutton-multiple .dropbutton .dropbutton-action > * {
   margin-right: 0;
-  margin-left: 0.25em;
+  margin-left: 0;
 }

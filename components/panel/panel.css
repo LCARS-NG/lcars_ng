@@ -9,24 +9,31 @@
 
   display: grid;
   grid-template-rows: auto 1fr;
+  grid-template-columns: minmax(0, 1fr); /* not wider than the panel for a long label */
   margin-block-end: 1.5rem;
   padding-inline-start: 0.3125rem; /* 5px */
   background: var(--lcars-panel-color);
   border-start-start-radius: 1.8125rem; /* 29px */
 }
 
+/* At least the elbow and a piece of ceiling as long as the end stays visible
+   left of the label; a longer label is cut with an ellipsis. */
 .lcars-panel__ceiling {
   display: flex;
   align-items: stretch;
   justify-content: flex-end;
   min-block-size: var(--lcars-panel-ceiling);
-  padding-inline-end: 1.5625rem;
+  padding-inline: calc(1.8125rem + 1.5625rem) 1.5625rem; /* 29px elbow + 25px */
 }
 
 /* The label cuts the ceiling over its full height, as the dashboard cards;
    its capitals fill it up to --lcars-cap-inset, as the page title
    (frame.css). */
 .lcars-panel__label {
+  min-inline-size: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   margin: 0;
   padding: var(--lcars-cap-inset) 0.3em;
   color: var(--lcars-panel-color);
@@ -38,8 +45,10 @@
   text-box: trim-both cap alphabetic;
 }
 
+/* The content keeps the distance from the left edge that the content of a
+   page keeps from the sidebar (--lcars-gutter, user decision 24.10.2026). */
 .lcars-panel__inner {
-  padding: 1.25rem 1rem 1rem 0.625rem; /* 20px … 10px */
+  padding: 1.25rem 1rem 1rem var(--lcars-gutter, 1.25rem); /* 20px … 20px */
   border-start-start-radius: var(--lcars-elbow-inner);
   background: var(--lcars-space);
 }

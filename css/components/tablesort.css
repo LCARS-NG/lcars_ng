@@ -6,7 +6,6 @@
 th.is-active img {
   display: inline;
 }
-/* LCARS-NG: the sorted column on the dark background (was #ddd). */
-td.is-active {
-  background-color: #111;
-}
+/* LCARS-NG: the sorted column keeps the background of the other cells (core:
+   #ddd, later #111; user decision 24.10.2026); the arrow in its heading marks
+   it. */

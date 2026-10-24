@@ -1,23 +1,35 @@
 /**
  * @file
  * Styles for system messages.
+ *
+ * LCARS bars: the type colors the whole message (--lcars-message-status,
+ * --lcars-message-warning, --lcars-message-error in tokens.css), the text and
+ * the icon are black like on bars and buttons (user decision 24.10.2026). The
+ * icon is the Starterkit icon used as a mask, so it takes the text color.
  */
 
 .messages {
-  padding: 15px 20px 15px 35px; /* LTR */
-  word-wrap: break-word;
-  border: 1px solid;
-  border-width: 1px 1px 1px 0; /* LTR */
-  border-radius: 2px;
-  background: no-repeat 10px 17px; /* LTR */
+  position: relative;
+  margin-block-end: 0.5em;
+  padding: 1em 1.5em 1em 2.9em; /* LTR */
+  color: var(--lcars-on-color);
+  border-radius: 1.5rem;
+  background: var(--lcars-message-status);
   overflow-wrap: break-word;
 }
 [dir="rtl"] .messages {
-  padding-right: 35px;
-  padding-left: 20px;
-  text-align: right;
-  border-width: 1px 0 1px 1px;
-  background-position: right 10px top 17px;
+  padding-right: 2.9em;
+  padding-left: 1.5em;
+}
+.messages::before {
+  position: absolute;
+  inset-block-start: 1.2em;
+  inset-inline-start: 1.15em;
+  width: 1em;
+  height: 1em;
+  content: "";
+  background: currentColor;
+  mask: var(--lcars-message-icon) no-repeat center / contain;
 }
 .messages + .messages {
   margin-top: 1.538em;
@@ -30,40 +42,22 @@
 .messages__item + .messages__item {
   margin-top: 0.769em;
 }
-.messages--status {
-  color: #325e1c;
-  border-color: #c9e1bd #c9e1bd #c9e1bd transparent; /* LTR */
-  background-color: #f3faef;
-  background-image: url(../../images/icons/check.svg);
-  box-shadow: -8px 0 0 #77b259; /* LTR */
+.messages a {
+  color: inherit;
+  text-decoration: underline;
 }
-[dir="rtl"] .messages--status {
-  margin-left: 0;
-  border-color: #c9e1bd transparent #c9e1bd #c9e1bd;
-  box-shadow: 8px 0 0 #77b259;
+.messages--status {
+  --lcars-message-icon: url(../../images/icons/check.svg);
+  background: var(--lcars-message-status);
 }
 .messages--warning {
-  color: #734c00;
-  border-color: #f4daa6 #f4daa6 #f4daa6 transparent; /* LTR */
-  background-color: #fdf8ed;
-  background-image: url(../../images/icons/warning.svg);
-  box-shadow: -8px 0 0 #e09600; /* LTR */
-}
-[dir="rtl"] .messages--warning {
-  border-color: #f4daa6 transparent #f4daa6 #f4daa6;
-  box-shadow: 8px 0 0 #e09600;
+  --lcars-message-icon: url(../../images/icons/warning.svg);
+  background: var(--lcars-message-warning);
 }
 .messages--error {
-  color: #a51b00;
-  border-color: #f9c9bf #f9c9bf #f9c9bf transparent; /* LTR */
-  background-color: #fcf4f2;
-  background-image: url(../../images/icons/error.svg);
-  box-shadow: -8px 0 0 #e62600; /* LTR */
-}
-[dir="rtl"] .messages--error {
-  border-color: #f9c9bf transparent #f9c9bf #f9c9bf;
-  box-shadow: 8px 0 0 #e62600;
+  --lcars-message-icon: url(../../images/icons/error.svg);
+  background: var(--lcars-message-error);
 }
 .messages--error p.error {
-  color: #a51b00;
+  color: inherit;
 }
