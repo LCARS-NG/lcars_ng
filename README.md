@@ -113,6 +113,8 @@ Basic site settings*. Anonymous visitors then get the login panel.
   `lcars-ng-logo-glow.svg` is derived from it: edges towards the centre lie
   further back (thinner and more transparent), a soft glow, transparent
   background.
+- `favicon.ico` (16, 32 and 48 px) shows the same icosahedron with thicker
+  lines, on a transparent background.
 - The icons in `images/icons/` come from the Drupal core Starterkit theme, the
   base styles in `css/components/` and most templates are based on it
   (GPL-2.0-or-later).
