@@ -50,3 +50,32 @@
 .lcars-sidebar .menu-item--active-trail > a {
   background: var(--lcars-button-active);
 }
+
+/* Phones: each menu above the content as a grid of buttons (frame.css), the
+   menus one below the other. Gaps replace the seams; the buttons of a row are
+   equally high, their labels stay at the bottom right. */
+@media (max-width: 39.9375rem) {
+  .lcars-sidebar .region,
+  .lcars-sidebar .block > .menu {
+    display: grid;
+    gap: var(--lcars-seam);
+  }
+
+  .lcars-sidebar .block > .menu {
+    grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr));
+  }
+
+  .lcars-sidebar .block > .menu > .menu-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--lcars-seam);
+  }
+
+  .lcars-sidebar .block > .menu > .menu-item > a {
+    display: flex;
+    flex-grow: 1;
+    align-items: flex-end;
+    justify-content: flex-end;
+    border-block-end: 0;
+  }
+}

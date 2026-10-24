@@ -61,7 +61,7 @@
 
 @media (max-width: 39.9375rem) {
   :root {
-    --lcars-sidebar-width: 6rem; /* 96px */
+    --lcars-sidebar-width: 1rem; /* 16px: only an edge, the menu moves above the content (user decision 24.10.2026) */
     --lcars-gutter: 0.75rem;
     --lcars-elbow-outer: 1.75rem;
     --lcars-elbow-inner: 0.875rem;

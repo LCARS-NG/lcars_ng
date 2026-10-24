@@ -186,9 +186,32 @@
   text-box: trim-both cap alphabetic;
 }
 
+/* Phones show the content only (user decision 24.10.2026): the menu moves out
+   of the sidebar above the content, as a grid of buttons (navigation.css). The
+   sidebar filler stays as an edge (--lcars-sidebar-width), drawn by the frame
+   itself; the right sidebar is hidden. */
 @media (max-width: 39.9375rem) {
   .lcars-frame {
+    grid-template-areas:
+      "head head"
+      "edge side"
+      "edge main"
+      "foot foot";
+    grid-template-rows: auto auto 1fr auto;
+    grid-template-columns: var(--lcars-sidebar-width) minmax(0, 1fr);
     padding: 0.5rem;
+  }
+
+  .lcars-frame::before {
+    grid-area: edge;
+    content: "";
+    background: var(--lcars-sidebar);
+  }
+
+  .lcars-sidebar {
+    margin-block-end: 1.5rem;
+    padding: 0 0 0 var(--lcars-gutter);
+    background: none;
   }
 
   .lcars-title {
@@ -302,4 +325,23 @@
 .lcars-panel-foot {
   grid-area: foot;
   padding: 1rem 0 0 calc(var(--lcars-sidebar-width) + var(--lcars-gutter));
+}
+
+/* Phones: the menu above the content as on other pages; beside the upper
+   panel the edge remains without the blocks of the panel menu. */
+@media (max-width: 39.9375rem) {
+  .lcars-frame--panel {
+    grid-template-areas:
+      "pside ptop"
+      "split split"
+      "head head"
+      "edge side"
+      "edge main"
+      "foot foot";
+    grid-template-rows: auto auto auto auto 1fr auto;
+  }
+
+  .lcars-panel-side .region {
+    display: none;
+  }
 }
