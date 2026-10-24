@@ -102,9 +102,19 @@
 
 .lcars-aside {
   grid-area: aside;
-  inline-size: 11.25rem; /* 180px */
   padding: 0 0 2rem var(--lcars-gutter);
   font-size: 0.9em;
+}
+
+/* With blocks in the right sidebar, its column takes a fifth of the frame,
+   between --lcars-aside-min and --lcars-aside-max for the blocks plus the
+   gutter (LCNG: fixed 180px). Phones hide the sidebar (below). */
+@media (min-width: 40rem) {
+  .lcars-frame:has(> .lcars-aside) {
+    grid-template-columns:
+      var(--lcars-sidebar-width) minmax(0, 1fr)
+      clamp(calc(var(--lcars-aside-min) + var(--lcars-gutter)), 20%, calc(var(--lcars-aside-max) + var(--lcars-gutter)));
+  }
 }
 
 /* Blocks in the right sidebar are LCARS panels (block--sidebar-second.html.twig)

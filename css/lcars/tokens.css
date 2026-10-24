@@ -38,6 +38,8 @@
   /* Frame geometry */
   --lcars-sidebar-width: 9.375rem; /* 150px (LCNG: 120px) */
   --lcars-gutter: 1.25rem; /* 20px between sidebar and content */
+  --lcars-aside-min: 16.875rem; /* 270px: right sidebar, wide enough for a three-column table (user decision 24.10.2026) */
+  --lcars-aside-max: 22.5rem; /* 360px: twice the right sidebar of LCNG */
   --lcars-seam: 4px; /* dark gap between frame segments */
   --lcars-elbow-outer: 2.4375rem; /* 39px */
   --lcars-elbow-inner: 1.25rem; /* 20px */
