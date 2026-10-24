@@ -4,7 +4,7 @@
  *
  * As the blocks in the right sidebar (components/panel): a ceiling with the
  * title cut into it, the elbow at the top left, the content on the space
- * colour. The notice floats above the bottom elbow and its footer (privacy
+ * color. The notice floats above the bottom elbow and its footer (privacy
  * links) instead of covering them, on phones as well (Klaro spans the full
  * width below 1024px); the dialog keeps a margin on phones. Klaro adds the
  * class klaro-theme-lcars_ng while this theme is active.
@@ -36,7 +36,7 @@
 
 /* Links, buttons and switches through Klaro's own properties
    (klaro-override.css): buttons as the login button, switches in the button
-   colour, the required one dimmed. */
+   color, the required one dimmed. */
 .klaro.klaro-theme-lcars_ng .cookie-notice:not(.cookie-modal-notice),
 .klaro.klaro-theme-lcars_ng .cookie-modal {
   --klaro-link-color: var(--lcars-link);
@@ -56,7 +56,7 @@
 }
 
 /* Klaro's palette for secondary text in the dialog (required, purposes,
-   powered by): dimmed text colour on the space colour. */
+   powered by): dimmed text color on the space color. */
 .klaro.klaro-theme-lcars_ng .cookie-modal {
   --dark2: color-mix(in sRGB, var(--lcars-text) 70%, var(--lcars-space));
   --dark3: var(--dark2);
@@ -99,7 +99,7 @@
   }
 }
 
-/* Inside the ceiling: the space colour, the inner curve at the top left. */
+/* Inside the ceiling: the space color, the inner curve at the top left. */
 .klaro.klaro-theme-lcars_ng .cookie-notice:not(.cookie-modal-notice) .cn-body {
   padding: 1rem 1rem 1rem var(--lcars-gutter, 1.25rem);
   border-start-start-radius: var(--lcars-elbow-inner);

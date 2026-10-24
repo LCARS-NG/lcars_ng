@@ -204,7 +204,7 @@
   grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
 }
 
-/* Footer menu (privacy policy, imprint): small capitals in the link colour at
+/* Footer menu (privacy policy, imprint): small capitals in the link color at
    the end of the line, above the bar of the bottom elbow and below the panel
    screen; in the login panel above the bottom bar (login.css). */
 .region-footer .menu--footer .menu {

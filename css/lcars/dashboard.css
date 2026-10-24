@@ -92,7 +92,7 @@
   margin-inline-start: 0.3em;
 }
 
-/* Announcements: dashboard.css sets dark greys. */
+/* Announcements: dashboard.css sets dark grays. */
 .dashboard .layout .block .announcement a {
   color: var(--lcars-link);
 }

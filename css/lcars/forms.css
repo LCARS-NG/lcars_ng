@@ -26,7 +26,7 @@ select {
 
 /* Fields the browser fills in (saved logins) get a background of the browser
    that a stylesheet cannot replace (!important in the browser: an olive in
-   Firefox, a grey blue in Chrome, both in dark mode). An inset shadow in the
+   Firefox, a gray blue in Chrome, both in dark mode). An inset shadow in the
    page background covers it inside the line, and it no longer shows through
    the translucent line; the text stays light. */
 input:autofill {
