@@ -30,18 +30,18 @@
    its capitals fill it up to --lcars-cap-inset, as the page title
    (frame.css). */
 .lcars-panel__label {
-  min-inline-size: 0;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
   margin: 0;
   padding: var(--lcars-cap-inset) 0.3em;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   color: var(--lcars-panel-color);
   background: var(--lcars-space);
   font-size: calc(var(--lcars-panel-ceiling) - 2 * var(--lcars-cap-inset));
   font-weight: bold;
   font-size-adjust: cap-height 1;
   line-height: var(--lcars-panel-ceiling);
+  min-inline-size: 0;
   text-box: trim-both cap alphabetic;
 }
 

@@ -43,19 +43,22 @@
   margin-top: 0.769em;
 }
 .messages a {
-  color: inherit;
   text-decoration: underline;
+  color: inherit;
 }
 .messages--status {
   --lcars-message-icon: url(../../images/icons/check.svg);
+
   background: var(--lcars-message-status);
 }
 .messages--warning {
   --lcars-message-icon: url(../../images/icons/warning.svg);
+
   background: var(--lcars-message-warning);
 }
 .messages--error {
   --lcars-message-icon: url(../../images/icons/error.svg);
+
   background: var(--lcars-message-error);
 }
 .messages--error p.error {

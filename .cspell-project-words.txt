@@ -2,6 +2,7 @@ blockrecent
 Giang
 gpanel
 innerframe
+klaro
 lcng
 magicheight
 Okuda

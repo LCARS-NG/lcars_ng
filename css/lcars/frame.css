@@ -11,6 +11,9 @@
  */
 
 .lcars-frame {
+  /* Fill the window below Drupal's toolbars (Drupal.displace). */
+  --lcars-frame-offset: 0px;
+
   display: grid;
   grid-template-areas:
     "head head head"
@@ -20,8 +23,6 @@
   grid-template-columns: var(--lcars-sidebar-width) minmax(0, 1fr) auto;
   box-sizing: border-box;
   padding: 1rem;
-  /* Fill the window below Drupal's toolbars (Drupal.displace). */
-  --lcars-frame-offset: 0px;
   min-block-size: calc(100dvh - var(--drupal-displace-offset-top, 0px) - var(--drupal-displace-offset-bottom, 0px) - var(--lcars-frame-offset));
   row-gap: var(--lcars-seam);
 }
@@ -205,7 +206,7 @@
 
 /* Footer menu (privacy policy, imprint): small capitals in the link colour at
    the end of the line, above the bar of the bottom elbow and below the panel
-   screen. The login panel has no footer. */
+   screen; in the login panel above the bottom bar (login.css). */
 .region-footer .menu--footer .menu {
   display: flex;
   flex-wrap: wrap;
@@ -221,8 +222,8 @@
 
 .region-footer .menu--footer a {
   text-decoration: none;
-  text-transform: uppercase;
   letter-spacing: 0.04em;
+  text-transform: uppercase;
   color: var(--lcars-link);
   font-family: var(--lcars-font-label);
   font-size: 0.8125rem;

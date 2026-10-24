@@ -27,6 +27,8 @@ libraries-extend:
     - lcars_ng/project-browser
   dashboard/dashboard:
     - lcars_ng/dashboard
+  klaro/klaro:
+    - lcars_ng/klaro
 # gin_toolbar attaches the dialog styles of Gin and Claro to every dialog in
 # every theme (gin_toolbar_library_info_alter()). They rely on Gin's CSS
 # variables and leave dialogs transparent here; css/components/dialog.css

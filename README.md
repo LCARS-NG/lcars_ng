@@ -79,7 +79,15 @@ Regions:
 - `breadcrumb`: in the upper curve
 - `sidebar`: menu buttons
 - `highlighted`, `help`, `content`, `sidebar_second`
-- `footer`: in the lower curve, blocks side by side
+- `footer`: in the lower curve, blocks side by side; in the login panel above
+  the bottom bar
+
+With the [Klaro!](https://www.drupal.org/project/klaro) consent manager (part
+of Drupal CMS), the consent notice is an LCARS panel floating above the bottom
+elbow and its footer, and the consent dialog is a panel of the same kind. Their
+titles are cut into the ceiling of the panel (the notice title with Klaro's
+setting *Show notice title*); short titles such as "Privacy" and "Privacy
+settings" fit best.
 
 Colors and frame sizes are custom properties in `css/lcars/tokens.css`
 (`--lcars-*`). A sub-theme can override them in its own stylesheet.

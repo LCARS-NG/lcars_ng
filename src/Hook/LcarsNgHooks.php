@@ -10,6 +10,7 @@ use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\Core\Path\PathMatcherInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Url;
 use Drupal\lcars_ng\StatusLine;
 use Drupal\user\Form\UserLoginForm;
@@ -18,6 +19,8 @@ use Drupal\user\Form\UserLoginForm;
  * Hook implementations for lcars_ng.
  */
 class LcarsNgHooks {
+
+  use StringTranslationTrait;
 
   /**
    * Routes rendered in the login layout (page--login.html.twig).
@@ -142,6 +145,32 @@ class LcarsNgHooks {
     if (isset($data['preview']['#access']) && $data['preview']['#access'] === FALSE) {
       unset($data['preview']);
     }
+  }
+
+  /**
+   * Implements hook_form_FORM_ID_alter() for system_theme_settings.
+   *
+   * Not in theme-settings.php: core registers a function there as a hook of
+   * this theme, but loads the file only on this theme's settings page. Where
+   * LCARS-NG is also the administration theme, the settings pages of all other
+   * themes would call the missing function.
+   */
+  #[Hook('form_system_theme_settings_alter')]
+  public function formSystemThemeSettingsAlter(array &$form): void {
+    if (($form['config_key']['#value'] ?? NULL) !== 'lcars_ng.settings') {
+      return;
+    }
+    $form['lcars_ng'] = [
+      '#type' => 'details',
+      '#title' => $this->t('LCARS-NG'),
+      '#open' => TRUE,
+    ];
+    $form['lcars_ng']['front_page_login'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Login panel on the front page'),
+      '#description' => $this->t('Anonymous visitors see the login form in the LCARS login panel instead of the front page content, as in the Drupal 6 theme LCNG.'),
+      '#config_target' => 'lcars_ng.settings:front_page_login',
+    ];
   }
 
   /**

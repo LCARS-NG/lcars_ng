@@ -1,0 +1,187 @@
+/**
+ * @file
+ * The Klaro! consent notice and consent dialog as LCARS panels.
+ *
+ * As the blocks in the right sidebar (components/panel): a ceiling with the
+ * title cut into it, the elbow at the top left, the content on the space
+ * colour. The notice floats above the bottom elbow and its footer (privacy
+ * links) instead of covering them, on phones as well (Klaro spans the full
+ * width below 1024px); the dialog keeps a margin on phones. Klaro adds the
+ * class klaro-theme-lcars_ng while this theme is active.
+ */
+
+.klaro.klaro-theme-lcars_ng {
+  /* Above the bar of the bottom elbow and the footer menu in its curve
+     (frame.css). */
+  --lcars-notice-bottom: calc(1rem + var(--lcars-bar-bottom) + var(--lcars-curve) + 0.25rem);
+  --lcars-notice-ceiling: 1.125rem; /* 18px: capitals 14px, as the sidebar panels */
+}
+
+/* Login panel: above the bottom bar (6ex), the gaps of the grid and the
+   footer row (login.css). */
+.lcars-login-page .klaro.klaro-theme-lcars_ng {
+  --lcars-notice-bottom: 7.5rem;
+}
+
+@media (max-width: 39.9375rem) {
+  /* The footer menu wraps to two lines on phones. */
+  .klaro.klaro-theme-lcars_ng {
+    --lcars-notice-bottom: 7.5rem;
+  }
+
+  .lcars-login-page .klaro.klaro-theme-lcars_ng {
+    --lcars-notice-bottom: 9rem;
+  }
+}
+
+/* Links, buttons and switches through Klaro's own properties
+   (klaro-override.css): buttons as the login button, switches in the button
+   colour, the required one dimmed. */
+.klaro.klaro-theme-lcars_ng .cookie-notice:not(.cookie-modal-notice),
+.klaro.klaro-theme-lcars_ng .cookie-modal {
+  --klaro-link-color: var(--lcars-link);
+  --klaro-link-color-hover: var(--lcars-link-hover);
+  --klaro-button-bg: var(--lcars-button);
+  --klaro-button-text-color: var(--lcars-on-color);
+  --klaro-button-border: 0 solid transparent;
+  --klaro-button-border-radius: var(--lcars-pill);
+  --klaro-button-padding: 0.7em 1.25em;
+  --klaro-button-bg-hover: var(--lcars-button-hover);
+  --klaro-button-text-color-hover: var(--lcars-on-color);
+  --klaro-button-border-hover: 0 solid transparent;
+  --klaro-button-focus-outline: 2px solid var(--lcars-frame);
+  --klaro-slider-bg: color-mix(in sRGB, var(--lcars-sidebar) 28%, var(--lcars-space));
+  --klaro-slider-bg-active: var(--lcars-button);
+  --klaro-slider-bg-required: color-mix(in sRGB, var(--lcars-button) 50%, var(--lcars-space));
+}
+
+/* Klaro's palette for secondary text in the dialog (required, purposes,
+   powered by): dimmed text colour on the space colour. */
+.klaro.klaro-theme-lcars_ng .cookie-modal {
+  --dark2: color-mix(in sRGB, var(--lcars-text) 70%, var(--lcars-space));
+  --dark3: var(--dark2);
+  --light3: var(--dark2);
+}
+
+/* The panel: ceiling, 5px edge on the left and the elbow, as the panel. */
+.klaro.klaro-theme-lcars_ng .cookie-notice:not(.cookie-modal-notice),
+.klaro.klaro-theme-lcars_ng .cookie-modal .cm-modal.cm-klaro {
+  box-sizing: border-box;
+  padding: var(--lcars-notice-ceiling) 0 0 0.3125rem;
+  color: var(--lcars-text);
+  border: none;
+  border-radius: 1.8125rem 0 0; /* 29px */
+  background: var(--lcars-sidebar);
+  box-shadow: 0 0.75rem 2rem rgb(0, 0, 0, 0.55);
+  font-family: var(--lcars-font);
+}
+
+.klaro.klaro-theme-lcars_ng .cookie-notice:not(.cookie-modal-notice) {
+  position: fixed;
+  inset: auto 3rem var(--lcars-notice-bottom) auto;
+  width: auto;
+  max-width: 25rem;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 39.9375rem) {
+  .klaro.klaro-theme-lcars_ng .cookie-notice:not(.cookie-modal-notice) {
+    inset-inline: 1.5rem;
+    max-width: none;
+  }
+}
+
+/* Klaro shows the dialog over the full width below 660px. */
+@media (max-width: 41.1875rem) {
+  .klaro.klaro-theme-lcars_ng .cookie-modal .cm-modal.cm-klaro {
+    inset-inline: 1.5rem;
+    width: auto;
+  }
+}
+
+/* Inside the ceiling: the space colour, the inner curve at the top left. */
+.klaro.klaro-theme-lcars_ng .cookie-notice:not(.cookie-modal-notice) .cn-body {
+  padding: 1rem 1rem 1rem var(--lcars-gutter, 1.25rem);
+  border-start-start-radius: var(--lcars-elbow-inner);
+  background: var(--lcars-space);
+}
+
+.klaro.klaro-theme-lcars_ng .cookie-modal .cm-modal.cm-klaro :is(.cm-header, .cm-body, .cm-footer) {
+  border-color: var(--lcars-line-subtle);
+  background: var(--lcars-space);
+}
+
+.klaro.klaro-theme-lcars_ng .cookie-modal .cm-modal.cm-klaro .cm-header {
+  padding-block-start: 1.5rem;
+  border-start-start-radius: var(--lcars-elbow-inner);
+}
+
+.klaro.klaro-theme-lcars_ng .cookie-notice:not(.cookie-modal-notice) .cn-body p,
+.klaro.klaro-theme-lcars_ng .cookie-modal .cm-modal.cm-klaro :is(.cm-header p, .cm-list-description, .cm-service) {
+  color: var(--lcars-text);
+}
+
+.klaro.klaro-theme-lcars_ng .cookie-notice:not(.cookie-modal-notice) .cn-body p {
+  margin-block-end: 0.75em;
+}
+
+.klaro.klaro-theme-lcars_ng .cookie-notice:not(.cookie-modal-notice) .cn-body strong {
+  color: var(--lcars-frame);
+}
+
+/* The titles cut the ceiling at its end, as the label of the panel
+   (components/panel/panel.css); a long title ends with an ellipsis. The
+   notice title only with Klaro's setting "Show notice title". */
+.klaro.klaro-theme-lcars_ng:not(.hide-consent-dialog-title) .cookie-notice:not(.cookie-modal-notice) #id-cookie-title,
+.klaro.klaro-theme-lcars_ng .cookie-modal .cm-modal.cm-klaro .cm-header .title {
+  position: absolute;
+  overflow: hidden;
+  margin: 0;
+  padding: var(--lcars-cap-inset) 0.3em;
+  white-space: nowrap;
+  text-transform: uppercase;
+  text-overflow: ellipsis;
+  color: var(--lcars-sidebar);
+  background: var(--lcars-space);
+  font-family: var(--lcars-font-label);
+  font-size: calc(var(--lcars-notice-ceiling) - 2 * var(--lcars-cap-inset));
+  font-weight: bold;
+  font-size-adjust: cap-height 1;
+  line-height: var(--lcars-notice-ceiling);
+  inset-block-start: 0;
+  inset-inline-end: 1.5625rem;
+  max-inline-size: calc(100% - 4.6875rem); /* elbow, a piece of ceiling, end */
+  text-box: trim-both cap alphabetic;
+}
+
+.klaro.klaro-theme-lcars_ng .cookie-notice:not(.cookie-modal-notice) .cn-learn-more {
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-family: var(--lcars-font-label);
+}
+
+/* Purposes and services as the headings of the theme. */
+.klaro.klaro-theme-lcars_ng .cookie-modal .cm-modal.cm-klaro .cm-list-title {
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--lcars-heading);
+  font-weight: bold;
+}
+
+.klaro.klaro-theme-lcars_ng .cookie-modal .cm-modal.cm-klaro .cm-caret a {
+  color: var(--lcars-link);
+}
+
+.klaro.klaro-theme-lcars_ng .cookie-modal .cm-modal.cm-klaro .hide svg {
+  stroke: var(--lcars-frame);
+}
+
+/* Buttons as the login button: pills with black bold capitals. */
+.klaro.klaro-theme-lcars_ng .cookie-notice:not(.cookie-modal-notice) .cm-btn,
+.klaro.klaro-theme-lcars_ng .cookie-modal .cm-btn {
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  font-family: var(--lcars-font-label);
+  font-weight: bold;
+}

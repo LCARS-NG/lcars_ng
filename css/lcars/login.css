@@ -12,6 +12,18 @@
   gap: 1rem;
 }
 
+/* With the footer region: a row for it above the bottom bar. */
+.lcars-login--foot {
+  grid-template-rows: auto 1fr auto auto;
+}
+
+/* Footer region at the end of the line above the bottom bar, as the footer
+   menu of the frame (frame.css) above the bar of the bottom elbow. */
+.lcars-login__foot {
+  justify-self: end;
+  padding-inline-end: 1rem;
+}
+
 .lcars-login__bar {
   block-size: 6ex;
   border-radius: var(--lcars-pill);

@@ -24,6 +24,18 @@ select {
   max-inline-size: 100%;
 }
 
+/* Fields the browser fills in (saved logins) get a background of the browser
+   that a stylesheet cannot replace (!important in the browser: an olive in
+   Firefox, a grey blue in Chrome, both in dark mode). An inset shadow in the
+   page background covers it inside the line, and it no longer shows through
+   the translucent line; the text stays light. */
+input:autofill {
+  background-clip: padding-box;
+  box-shadow: inset 0 0 0 100rem var(--lcars-space);
+  caret-color: var(--lcars-text);
+  -webkit-text-fill-color: var(--lcars-text);
+}
+
 /* The open list of a select is drawn by the browser: without a background of
    its own it is white, and the light text vanishes. Field and options take the
    page background, in dialogs too (user decision 24.10.2026). */
@@ -125,8 +137,8 @@ html .vertical-tabs__menu-item a {
 }
 
 html .vertical-tabs__menu-item-title {
-  color: var(--lcars-frame);
   text-transform: uppercase;
+  color: var(--lcars-frame);
 }
 
 html .vertical-tabs__menu-item a:hover {

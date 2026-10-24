@@ -137,6 +137,10 @@ dashboard:
   css:
     theme:
       css/lcars/dashboard.css: {  }
+klaro:
+  css:
+    theme:
+      css/lcars/klaro.css: {  }
 login:
   css:
     layout:
