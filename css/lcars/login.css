@@ -66,21 +66,17 @@
   display: block;
 }
 
-/* The branding and the form as cards inside the panel, with the line and the
-   corners of the boxes (box.css; user decision 25.10.2026, the branding had
-   the quieter --lcars-line-subtle before). On the front page the form and the
-   link to reset the password share one card (.lcars-login__form). */
+/* The branding and the content as cards inside the panel, with the line and
+   the corners of the boxes (box.css; user decision 25.10.2026, the branding
+   had the quieter --lcars-line-subtle before). On the account pages the card
+   holds the title, the tabs and the form (the content region), on the front
+   page the form and the link to reset the password (.lcars-login__form). */
 .lcars-login__panel .block-system-branding-block,
-.lcars-login__panel form,
+.lcars-login__panel .region-content,
 .lcars-login__form {
   padding: 1.25rem 1.5rem;
   border: var(--lcars-box-border-width) solid var(--lcars-box-border-color);
   border-radius: var(--lcars-box-radius);
-}
-
-.lcars-login__panel .lcars-login__form form {
-  padding: 0;
-  border: none;
 }
 
 .lcars-login__panel .block-system-branding-block {
@@ -114,7 +110,7 @@
   }
 
   .lcars-login__panel .block-system-branding-block,
-  .lcars-login__panel form,
+  .lcars-login__panel .region-content,
   .lcars-login__form {
     padding-inline: 0.75rem;
   }
@@ -149,6 +145,13 @@
   padding: 0.25rem 1rem;
   border-radius: var(--lcars-pill);
   font-size: 1rem;
+}
+
+/* The button ends the card of the account pages: as far from its bottom line
+   as the title from the top line. */
+.lcars-login__panel .region-content .form-actions,
+.lcars-login__panel .region-content .form-actions .form-submit {
+  margin-block-end: 0;
 }
 
 .lcars-login__panel .tabs {

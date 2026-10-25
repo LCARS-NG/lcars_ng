@@ -23,7 +23,7 @@
     '.system-status-general-info__item',
     '.password-suggestions',
     '.lcars-login__panel .block-system-branding-block',
-    '.lcars-login__panel form',
+    '.lcars-login__panel .region-content',
     '.lcars-login__form',
     '.entity-moderation-form',
     '.ui-dialog',
