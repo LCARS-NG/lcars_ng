@@ -14,11 +14,11 @@
   --lcars-sidebar: #579df9; /* sidebar filler (LCNG css/1px.png) */
   --lcars-bar: var(--lcars-sidebar); /* bars outside the frame (login panel), the blue of the Klaro ceiling (user decision 25.10.2026) */
   --lcars-button: #3786ff; /* menu and form buttons */
-  --lcars-button-sub: #6257fa; /* second menu level */
+  --lcars-button-sub: #6e64ff; /* second menu level; lighter than LCNG's #6257fa for black labels at 4.93:1 (user decision 25.10.2026) */
   --lcars-button-hover: var(--lcars-frame);
   --lcars-button-active: #fff;
   --lcars-accent: #ffd068; /* page title bar */
-  --lcars-alert: #9e0e26; /* red alert: error pages */
+  --lcars-alert: #ff3b4f; /* red alert: error pages; lighter than #9e0e26 for black labels at 5.99:1 and text at 4.97:1 (user decision 25.10.2026) */
   /* Status messages (messages.css), light tones for black text (user decision 24.10.2026) */
   --lcars-message-status: #99d98c;
   --lcars-message-warning: #ffd068; /* gold of --lcars-accent, fixed: red alert swaps the accent */
@@ -34,7 +34,8 @@
   --lcars-link-hover: var(--lcars-frame);
   --lcars-on-color: #000; /* text on bars and buttons */
   --lcars-line-subtle: #579df91f; /* --lcars-sidebar at 12 %, dark blue: quiet frames inside a box */
-  --lcars-field-border: var(--lcars-line-subtle); /* form fields (forms.css) */
+  --lcars-field-border: color-mix(in sRGB, var(--lcars-sidebar) 60%, var(--lcars-space)); /* form fields (forms.css): 3.11:1, as WCAG 1.4.11 asks (user decision 25.10.2026; was --lcars-line-subtle) */
+  --lcars-row-highlight: color-mix(in sRGB, var(--lcars-sidebar) 20%, var(--lcars-space)); /* selected and dragged table rows (tableselect.css, tabledrag.css; user decision 25.10.2026) */
 
   /* Typography: the typeface is not chosen yet. LCNG used Droid Sans. */
   --lcars-font: system-ui, sans-serif;

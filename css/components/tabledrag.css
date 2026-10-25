@@ -4,10 +4,10 @@
  */
 
 tr.drag {
-  background-color: #fffff0;
+  background-color: var(--lcars-row-highlight);
 }
 tr.drag-previous {
-  background-color: #ffd;
+  background-color: var(--lcars-line-subtle);
 }
 body div.tabledrag-changed-warning {
   margin-bottom: 0.5em;

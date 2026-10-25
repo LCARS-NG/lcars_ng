@@ -67,8 +67,9 @@ label.option {
   margin-right: 2.4em;
   margin-left: 0;
 }
+/* The light red of the error messages: #e00 of starterkit reached 3.85:1. */
 .marker {
-  color: #e00;
+  color: var(--lcars-message-error);
 }
 .form-required::after {
   display: inline-block;

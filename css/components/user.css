@@ -3,10 +3,15 @@
  * Theme styling for user module.
  */
 
-/* Visual styling for the Password strength indicator */
+/* Visual styling for the Password strength indicator: a track like the
+   progress bar, the strength in the colors of the messages (user decision
+   25.10.2026). */
 .password-strength__meter {
+  overflow: hidden;
   margin-top: 0.5em;
-  background-color: #ebeae4;
+  border: var(--lcars-box-border-width) solid var(--lcars-box-border-color);
+  border-radius: var(--lcars-pill);
+  background: none;
 }
 .password-strength__indicator {
   -webkit-transition: width 0.5s ease-out;
@@ -14,16 +19,16 @@
   background-color: #77b259;
 }
 .password-strength__indicator.is-weak {
-  background-color: #e62600;
+  background-color: var(--lcars-message-error);
 }
 .password-strength__indicator.is-fair {
-  background-color: #e09600;
+  background-color: var(--lcars-message-warning);
 }
 .password-strength__indicator.is-good {
-  background-color: #0074bd;
+  background-color: var(--lcars-button);
 }
 .password-strength__indicator.is-strong {
-  background-color: #77b259;
+  background-color: var(--lcars-message-status);
 }
 
 .password-confirm,
@@ -34,11 +39,13 @@
   width: 55%;
 }
 
+/* A plain box like .lcars-box (box.css). */
 .password-suggestions {
   max-width: 34.7em;
   margin: 0.7em 0;
-  padding: 0.2em 0.5em;
-  border: 1px solid #b4b4b4;
+  padding: 0.5em 1.25rem;
+  border: var(--lcars-box-border-width) solid var(--lcars-box-border-color);
+  border-radius: var(--lcars-box-radius);
 }
 .password-suggestions ul {
   margin-bottom: 0;
@@ -56,12 +63,14 @@
   clear: right;
 }
 
-/* Styling for the status indicator of the passwords match test.  */
-.password-confirm .ok {
-  color: #325e1c;
+/* Styling for the status indicator of the passwords match test, in the colors
+   of the messages. user.theme.js puts it into .password-confirm-message; the
+   selectors of starterkit (.password-confirm .ok) no longer matched. */
+.password-confirm-message .ok {
+  color: var(--lcars-message-status);
   font-weight: bold;
 }
-.password-confirm .error {
-  color: #a51b00;
+.password-confirm-message .error {
+  color: var(--lcars-message-error);
   font-weight: bold;
 }

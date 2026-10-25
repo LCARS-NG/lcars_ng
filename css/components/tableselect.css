@@ -6,7 +6,7 @@
  */
 
 tr.selected td {
-  background: #ffc;
+  background: var(--lcars-row-highlight);
 }
 td.checkbox,
 th.checkbox {

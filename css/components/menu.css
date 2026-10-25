@@ -29,6 +29,7 @@ ul.menu {
   margin: 0;
   padding-top: 0.2em;
 }
+/* As the active link of the footer menu (frame.css). */
 ul.menu a.is-active {
-  color: #000;
+  color: var(--lcars-frame);
 }

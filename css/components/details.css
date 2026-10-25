@@ -6,10 +6,12 @@
  * @see http://nicolasgallagher.com/css-background-image-hacks/
  */
 
+/* A plain box like .lcars-box (box.css) (user decision 25.10.2026). */
 details {
   margin-top: 1em;
   margin-bottom: 1em;
-  border: 1px solid #ccc;
+  border: var(--lcars-box-border-width) solid var(--lcars-box-border-color);
+  border-radius: var(--lcars-box-radius);
 }
 details > .details-wrapper {
   padding: 0.5em 1.5em;
