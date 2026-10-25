@@ -55,3 +55,16 @@
 .system-status-general-info__item-title {
   border-bottom-color: var(--lcars-box-border-color);
 }
+
+/* Core puts the button right after the text of the last cron run, as an
+   inline link: on its own line it touched the text. */
+.cron-description__run-cron {
+  display: block;
+  margin-top: 0.5rem;
+}
+/* As a block its bottom margin (forms.css) would count; the card has its
+   own padding. */
+.system-status-general-info__run-cron {
+  display: inline-block;
+  margin-bottom: 0;
+}
