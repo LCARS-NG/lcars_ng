@@ -68,7 +68,8 @@ button.shwpd {
 
 .button,
 .form-submit,
-input:where([type="submit"], [type="button"], [type="reset"]) {
+input:where([type="submit"], [type="button"], [type="reset"]),
+[data-vertical-tabs-panes] > .token-dialog {
   margin: 0 0.5em 1em 0;
   padding: 0.3125rem 0.625rem; /* 5px 10px */
   cursor: pointer;
@@ -84,7 +85,8 @@ input:where([type="submit"], [type="button"], [type="reset"]) {
 
 .button:hover,
 .form-submit:hover,
-input:where([type="submit"], [type="button"], [type="reset"]):hover {
+input:where([type="submit"], [type="button"], [type="reset"]):hover,
+[data-vertical-tabs-panes] > .token-dialog:hover {
   color: var(--lcars-on-color);
   background: var(--lcars-button-hover);
 }
@@ -162,4 +164,19 @@ html .vertical-tabs__menu-item.is-selected a:hover {
 html .vertical-tabs__menu-item.is-selected a,
 html .vertical-tabs__menu-item.is-selected .vertical-tabs__menu-item-title {
   color: var(--lcars-text);
+}
+
+/* Content of the panes that is not a pane sat on the line of the tab bar:
+   it starts with the text of the panes (details.css) and keeps room below.
+   So far the token module's "Browse available tokens." link after the email
+   tabs of the account settings, drawn as a form button above (user decision
+   25.10.2026). Below 640px core keeps the panes as boxes without a tab bar
+   (no .vertical-tabs); the button starts with the boxes there. The link
+   takes vertical margins and padding only as a block. */
+.vertical-tabs .vertical-tabs__panes > :not(.vertical-tabs__pane, [type="hidden"]) {
+  margin: 0 1.5rem 1rem;
+}
+
+[data-vertical-tabs-panes] > a {
+  display: inline-block;
 }
