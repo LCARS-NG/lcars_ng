@@ -15,7 +15,8 @@
  *   visitors (LcarsNgHooks::preprocessPage()). On the account pages the form
  *   is the main content.
  * - reset_password_url: The password reset form, set with login_form when the
- *   form is available.
+ *   form is available. The form and this link share one card
+ *   (.lcars-login__form).
  *
  * @see page.html.twig
  * @see \Drupal\lcars_ng\Hook\LcarsNgHooks
@@ -30,12 +31,14 @@
     {{ page.header }}
     {{ page.highlighted }}
     {% if login_form %}
-      {{ login_form }}
-      {% if reset_password_url %}
-        <p class="lcars-login__links">
-          <a href="{{ reset_password_url }}">{{ 'Reset your password'|t }}</a>
-        </p>
-      {% endif %}
+      <div class="lcars-login__form">
+        {{ login_form }}
+        {% if reset_password_url %}
+          <p class="lcars-login__links">
+            <a href="{{ reset_password_url }}">{{ 'Reset your password'|t }}</a>
+          </p>
+        {% endif %}
+      </div>
     {% else %}
       {{ page.content }}
     {% endif %}

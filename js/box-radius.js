@@ -24,6 +24,7 @@
     '.password-suggestions',
     '.lcars-login__panel .block-system-branding-block',
     '.lcars-login__panel form',
+    '.lcars-login__form',
     '.entity-moderation-form',
     '.ui-dialog',
     '.search__form-container',

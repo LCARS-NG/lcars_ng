@@ -68,12 +68,19 @@
 
 /* The branding and the form as cards inside the panel, with the line and the
    corners of the boxes (box.css; user decision 25.10.2026, the branding had
-   the quieter --lcars-line-subtle before). */
+   the quieter --lcars-line-subtle before). On the front page the form and the
+   link to reset the password share one card (.lcars-login__form). */
 .lcars-login__panel .block-system-branding-block,
-.lcars-login__panel form {
+.lcars-login__panel form,
+.lcars-login__form {
   padding: 1.25rem 1.5rem;
   border: var(--lcars-box-border-width) solid var(--lcars-box-border-color);
   border-radius: var(--lcars-box-radius);
+}
+
+.lcars-login__panel .lcars-login__form form {
+  padding: 0;
+  border: none;
 }
 
 .lcars-login__panel .block-system-branding-block {
@@ -107,7 +114,8 @@
   }
 
   .lcars-login__panel .block-system-branding-block,
-  .lcars-login__panel form {
+  .lcars-login__panel form,
+  .lcars-login__form {
     padding-inline: 0.75rem;
   }
 
