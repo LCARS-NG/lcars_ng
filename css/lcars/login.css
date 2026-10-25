@@ -118,18 +118,27 @@
   justify-content: center;
 }
 
-/* Tabs as outlines in the line of the box (box.css) instead of the dark
-   backgrounds of forms.css; corners as the form buttons. The active tab keeps
-   its light blue text. */
+/* Tabs as outlines in the line of the box (box.css) instead of the buttons of
+   forms.css; corners as the form buttons. Labels in the link colors, the
+   active tab in the frame color: forms.css sets black labels for its
+   buttons. */
 .lcars-login__panel .tabs a,
-.lcars-login__panel .tabs a.is-active {
+.lcars-login__panel .tabs a.is-active,
+.lcars-login__panel .tabs .is-active a {
+  color: var(--lcars-link);
   border: var(--lcars-box-border-width) solid var(--lcars-box-border-color);
   border-radius: 0.625rem;
   background: none;
 }
 
+.lcars-login__panel .tabs a.is-active,
+.lcars-login__panel .tabs .is-active a {
+  color: var(--lcars-frame);
+}
+
 .lcars-login__panel .tabs a:hover,
 .lcars-login__panel .tabs a:focus {
+  color: var(--lcars-link-hover);
   border-color: var(--lcars-frame);
   background: none;
 }

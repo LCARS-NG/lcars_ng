@@ -99,51 +99,59 @@ fieldset {
   border: 0;
 }
 
+/* LCARS buttons like the sidebar menu: black labels on the button blue, the
+   frame color on hover, white when active (user decision 25.10.2026; were
+   #111 and #333). Corners as the form buttons. The login panel draws its tabs
+   as outlines (login.css). */
 .tabs a {
   padding: 0.35em 1.4em 0.5em;
+  color: var(--lcars-on-color);
   border: 0;
-  background: #111;
+  border-radius: 0.625rem; /* 10px, as .button */
+  background: var(--lcars-button);
   font-weight: bold;
 }
 
 .tabs a:hover,
 .tabs a:focus {
-  background: #333;
+  color: var(--lcars-on-color);
+  background: var(--lcars-button-hover);
 }
 
 .tabs .is-active a,
 .tabs a.is-active {
-  color: var(--lcars-frame);
+  color: var(--lcars-on-color);
   border: 0;
-  background: #333;
+  background: var(--lcars-button-active);
 }
 
-/* Vertical tabs (block visibility, node form): dark like the tabs above
-   instead of the light gray of core/misc/vertical-tabs.css; the selected tab
-   takes the page background and joins its pane (user decision 24.10.2026).
+/* Vertical tabs (block visibility, node form): buttons like the tabs above,
+   divided by dark seams like the segments of the sidebar, instead of the
+   light gray of core/misc/vertical-tabs.css; the selected tab takes the page
+   background and joins its pane (user decisions 24.10. and 25.10.2026).
    "html" outweighs core, whose library may load after the theme. */
 html .vertical-tabs,
-html .vertical-tabs__menu,
-html .vertical-tabs__menu-item {
+html .vertical-tabs__menu {
   border-color: var(--lcars-field-border);
 }
 
 html .vertical-tabs__menu-item {
-  background: #111;
+  border-color: var(--lcars-space);
+  background: var(--lcars-button);
 }
 
 html .vertical-tabs__menu-item a {
-  color: var(--lcars-text);
+  color: var(--lcars-on-color);
 }
 
 html .vertical-tabs__menu-item-title {
   text-transform: uppercase;
-  color: var(--lcars-frame);
+  color: var(--lcars-on-color);
 }
 
 html .vertical-tabs__menu-item a:hover {
   outline: 0;
-  background: #333;
+  background: var(--lcars-button-hover);
 }
 
 html .vertical-tabs__menu-item.is-selected,
@@ -151,6 +159,7 @@ html .vertical-tabs__menu-item.is-selected a:hover {
   background: var(--lcars-space);
 }
 
+html .vertical-tabs__menu-item.is-selected a,
 html .vertical-tabs__menu-item.is-selected .vertical-tabs__menu-item-title {
   color: var(--lcars-text);
 }
