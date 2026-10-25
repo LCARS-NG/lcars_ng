@@ -82,9 +82,26 @@
   margin-block: -0.25rem 0;
 }
 
+/* The page title as high as the title of a panel (components/panel): the
+   title bar of the frame was larger than the site name, and long titles broke
+   into two lines that hid the bar (user decision 25.10.2026). */
 .lcars-login__panel .lcars-title {
+  --lcars-title-height: 1.5625rem; /* 25px: capitals 21px */
+
   justify-content: center;
   padding-inline-start: 0;
+}
+
+/* Phones: as the panels of the right sidebar, and half the side padding of
+   the box, so long titles stay on one line with the ends of the bar showing. */
+@media (max-width: 39.9375rem) {
+  .lcars-login__panel.lcars-box {
+    padding-inline: 1.25rem;
+  }
+
+  .lcars-login__panel .lcars-title {
+    --lcars-title-height: 1.125rem; /* 18px: capitals 14px */
+  }
 }
 
 .lcars-login__panel .form-item label {
