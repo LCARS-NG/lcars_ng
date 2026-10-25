@@ -62,8 +62,8 @@
 
   /* Plain box (box.css) */
   --lcars-box-border-width: 1px;
-  --lcars-box-border-color: var(--lcars-sidebar);
-  --lcars-box-radius: var(--lcars-elbow-inner);
+  --lcars-box-border-color: color-mix(in sRGB, var(--lcars-sidebar) 40%, var(--lcars-space)); /* a dark, quiet line (user decision 25.10.2026; was --lcars-sidebar) */
+  --lcars-box-radius: 0.375rem; /* 6px on every box and card (user decision 25.10.2026; was --lcars-elbow-inner, 20px, 14px on phones) */
   --lcars-box-padding: 2rem 2.5rem;
 }
 

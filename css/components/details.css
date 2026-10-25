@@ -16,7 +16,9 @@ details {
 details > .details-wrapper {
   padding: 0.5em 1.5em;
 }
+/* Room above the title, which sat 5px below the line (user decision
+   25.10.2026). */
 summary {
-  padding: 0.2em 0.5em;
+  padding: 0.75em 1em;
   cursor: pointer;
 }

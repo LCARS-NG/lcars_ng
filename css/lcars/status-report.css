@@ -3,8 +3,8 @@
  * The status report of core (admin/reports/status), extending
  * system/status.report: the counters as pills in the color of their type like
  * the messages, labeled in bold capitals like the buttons, and the general
- * information as cards with a slight radius, a lighter background and the
- * line of the form fields instead of #ccc (user decision 25.10.2026).
+ * information as cards with the radius and line of the boxes and a lighter
+ * background instead of #ccc (user decision 25.10.2026).
  */
 
 /* Core marks only the icon with the severity: :has() takes it to the pill. */
@@ -44,11 +44,14 @@
   mask-image: url(../../images/icons/error.svg);
 }
 
+/* Cards like every box (box.css), with room above the title, which core puts
+   right below the line (user decision 25.10.2026). */
 .system-status-general-info__item {
-  border-color: var(--lcars-field-border);
-  border-radius: 0.625rem; /* 10px, as .button */
+  padding-top: 0.75em;
+  border-color: var(--lcars-box-border-color);
+  border-radius: var(--lcars-box-radius);
   background: var(--lcars-card-bg);
 }
 .system-status-general-info__item-title {
-  border-bottom-color: var(--lcars-field-border);
+  border-bottom-color: var(--lcars-box-border-color);
 }
