@@ -66,13 +66,18 @@
   display: block;
 }
 
-/* The branding as a card inside the panel: a thin, quiet dark blue line,
-   corners as the box around it (box.css). */
+/* The branding and the form as cards inside the panel, with the line and the
+   corners of the boxes (box.css; user decision 25.10.2026, the branding had
+   the quieter --lcars-line-subtle before). */
+.lcars-login__panel .block-system-branding-block,
+.lcars-login__panel form {
+  padding: 1.25rem 1.5rem;
+  border: var(--lcars-box-border-width) solid var(--lcars-box-border-color);
+  border-radius: var(--lcars-box-radius);
+}
+
 .lcars-login__panel .block-system-branding-block {
   margin-block-end: 1.5rem;
-  padding: 1.25rem 1.5rem;
-  border: 1px solid var(--lcars-line-subtle);
-  border-radius: var(--lcars-box-radius);
 }
 
 .lcars-login__panel .site-slogan {
@@ -93,10 +98,17 @@
 }
 
 /* Phones: as the panels of the right sidebar, and half the side padding of
-   the box, so long titles stay on one line with the ends of the bar showing. */
+   the box, so long titles stay on one line with the ends of the bar showing.
+   The cards keep 0.75rem at the sides, so the longest label (Username or
+   email address *) stays on one line down to 360px. */
 @media (max-width: 39.9375rem) {
   .lcars-login__panel.lcars-box {
     padding-inline: 1.25rem;
+  }
+
+  .lcars-login__panel .block-system-branding-block,
+  .lcars-login__panel form {
+    padding-inline: 0.75rem;
   }
 
   .lcars-login__panel .lcars-title {

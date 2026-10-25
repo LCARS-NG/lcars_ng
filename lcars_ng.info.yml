@@ -6,6 +6,7 @@ libraries:
   - lcars_ng/messages
   - core/normalize
   - lcars_ng/global
+  - lcars_ng/box-radius
 libraries-extend:
   user/drupal.user:
     - lcars_ng/user

@@ -125,6 +125,12 @@ global:
       css/lcars/box.css: {  }
     theme:
       css/lcars/alert.css: {  }
+box-radius:
+  js:
+    js/box-radius.js: {  }
+  dependencies:
+    - core/drupal
+    - core/once
 admin:
   css:
     theme:
