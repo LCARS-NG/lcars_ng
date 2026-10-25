@@ -13,8 +13,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Lazy builder for the status line of the two-part screen.
  *
- * The status line sits in the curve below the upper panel: the date and time
- * on the left, the signed-in user on the right. LCNG tried a date and a clock
+ * The status line sits in the curve below the upper panel: the date and time,
+ * the signed-in user right beside them. LCNG tried a date and a clock
  * in its h2panel_status region. The line is built for every request
  * (placeholder, max-age 0), so page caches do not freeze the time.
  *

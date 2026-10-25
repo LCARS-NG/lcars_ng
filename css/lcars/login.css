@@ -27,7 +27,7 @@
 .lcars-login__bar {
   block-size: 6ex;
   border-radius: var(--lcars-pill);
-  background: var(--lcars-frame);
+  background: var(--lcars-bar);
 }
 
 .lcars-login__panel {

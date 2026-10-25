@@ -12,6 +12,7 @@
   --lcars-space: #001b33; /* page background, "negative" parts of the frame */
   --lcars-frame: #a7d4ff; /* elbows and bars */
   --lcars-sidebar: #579df9; /* sidebar filler (LCNG css/1px.png) */
+  --lcars-bar: var(--lcars-sidebar); /* bars outside the frame (login panel), the blue of the Klaro ceiling (user decision 25.10.2026) */
   --lcars-button: #3786ff; /* menu and form buttons */
   --lcars-button-sub: #6257fa; /* second menu level */
   --lcars-button-hover: var(--lcars-frame);

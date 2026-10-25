@@ -374,15 +374,15 @@
   display: block;
 }
 
-/* Status line in the curve below the upper panel */
+/* Status line in the curve below the upper panel: the user right beside the
+   date (user decision 25.10.2026, was at the right end). */
 .lcars-status {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   text-transform: uppercase;
   font-size: 0.875rem; /* 14px */
   font-weight: bold;
-  gap: 0.25rem 1rem;
+  gap: 0.25rem 1.25rem;
 }
 
 .lcars-status__date {

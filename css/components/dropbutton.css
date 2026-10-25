@@ -55,6 +55,12 @@
 .js .dropbutton-multiple.open .dropbutton-action:last-child > * {
   border-end-start-radius: 0.625rem;
 }
+
+/* Without the arrow (Place block …): the highlighted action keeps the rounded
+   corners of the button (user decision 25.10.2026). */
+.js .dropbutton-single .dropbutton-action > * {
+  border-radius: 0.625rem;
+}
 .dropbutton .secondary-action {
   border-top: 1px solid var(--lcars-space);
 }
