@@ -1,0 +1,74 @@
+/**
+ * @file
+ * The token browser of the module token (the dialog "Available tokens" and
+ * token trees in forms), extending token/jquery.treeTable. Its stylesheet
+ * token.treetable.theme.css, made for light themes, gives the rows of the
+ * groups a light gray behind the light text, and core's jQuery UI theme sets
+ * dark links and Arial in dialogs. Here: rows without a background, divided
+ * by the line of the form fields, tokens as code in the frame color as they
+ * are typed, arrows as masks (user decision 25.10.2026). The stylesheet of
+ * the module stays: its arrows and indents build the tree.
+ */
+
+.token-tree-dialog.ui-widget {
+  font-family: var(--lcars-font);
+}
+
+.token-tree {
+  border-collapse: collapse;
+}
+.token-tree th {
+  text-align: start;
+  text-transform: uppercase;
+  color: var(--lcars-frame);
+  font-weight: normal;
+}
+.token-tree td,
+.token-tree th {
+  padding: 0.25em 0.75em 0.25em 0;
+  vertical-align: top;
+}
+/* Room for the arrow, which the tree pulls 19px to the left of the name. */
+.token-tree :is(td, th):first-child {
+  padding-inline-start: 1.5em;
+}
+.token-tree tbody td {
+  border-top: 1px solid var(--lcars-field-border);
+}
+
+table.treetable tr.branch {
+  background: none;
+}
+table.treetable tr.selected,
+table.treetable tr.accept {
+  color: var(--lcars-text);
+  background: var(--lcars-row-highlight);
+}
+
+.ui-dialog .token-tree a {
+  color: var(--lcars-link);
+}
+.ui-dialog .token-tree a:hover {
+  color: var(--lcars-link-hover);
+}
+
+/* The token as it is inserted: lower case, monospaced. */
+.token-tree td.token-key a {
+  text-transform: none;
+  color: var(--lcars-frame);
+  font-family: var(--lcars-font-code);
+}
+.token-tree td.token-key a:hover {
+  text-decoration: underline;
+  color: var(--lcars-text);
+}
+
+/* Arrows of the module as gray images: masks in the frame color. */
+table.treetable tr.collapsed span.indenter a,
+table.treetable tr.expanded span.indenter a {
+  background: var(--lcars-frame);
+  mask: url(../../../../../core/misc/icons/000000/chevron-right.svg) no-repeat left center / 0.75em;
+}
+table.treetable tr.expanded span.indenter a {
+  mask-image: url(../../../../../core/misc/icons/545560/chevron-down.svg);
+}

@@ -41,6 +41,7 @@
   /* Typography: the typeface is not chosen yet. LCNG used Droid Sans. */
   --lcars-font: system-ui, sans-serif;
   --lcars-font-label: var(--lcars-font);
+  --lcars-font-code: ui-monospace, "DejaVu Sans Mono", monospace; /* tokens and other code, as typed (token.css; user decision 25.10.2026) */
 
   /* Frame geometry */
   --lcars-sidebar-width: 9.375rem; /* 150px (LCNG: 120px) */

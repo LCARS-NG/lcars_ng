@@ -157,3 +157,7 @@ tagify:
   css:
     theme:
       css/lcars/tagify.css: {  }
+token:
+  css:
+    theme:
+      css/lcars/token.css: {  }
