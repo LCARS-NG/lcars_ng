@@ -2,8 +2,9 @@
  * @file
  * Presentational styles for Drupal dialogs.
  *
- * LCARS-NG: dark dialogs, title bar and button pane in the dark color of the
- * tabs (css/lcars/forms.css).
+ * LCARS-NG: dialogs on the space color, title bar and button pane a little
+ * lighter (--lcars-card-bg), frame and lines as the boxes (user decision
+ * 25.10.2026).
  */
 
 .ui-dialog {
@@ -12,14 +13,25 @@
   overflow: visible;
   padding: 0;
   color: var(--lcars-text);
-  border: solid 1px #333;
+  border: solid 1px var(--lcars-box-border-color);
   background: var(--lcars-space);
 }
 
-/* jQuery UI's theme sets a white content area and gray headers; Claro's
+/* jQuery UI's theme sets a white content area, gray headers and a light gray
+   frame (.ui-widget.ui-widget-content, more specific than .ui-dialog); Claro's
    jQuery UI theme (claro/claro.jquery.ui) resets .ui-widget backgrounds. */
 .ui-dialog.ui-widget {
   background: var(--lcars-space);
+}
+
+.ui-dialog.ui-widget.ui-widget-content {
+  border-color: var(--lcars-box-border-color);
+}
+
+/* Rounded as the boxes; the off-canvas dialog keeps its square edge at the
+   side of the window. */
+.ui-dialog.ui-widget.ui-widget-content:not(.ui-dialog-off-canvas) {
+  border-radius: var(--lcars-box-radius);
 }
 
 .ui-dialog .ui-widget-content {
@@ -38,10 +50,13 @@
   color: var(--lcars-frame);
   border-width: 0 0 1px 0;
   border-style: solid;
-  border-color: #333;
+  border-color: var(--lcars-box-border-color);
   border-radius: 0;
-  background: #111;
+  background: var(--lcars-card-bg);
   font-weight: bold;
+}
+.ui-dialog:not(.ui-dialog-off-canvas) .ui-dialog-titlebar {
+  border-radius: calc(var(--lcars-box-radius) - 1px) calc(var(--lcars-box-radius) - 1px) 0 0;
 }
 .ui-dialog .ui-dialog-titlebar-close {
   border: 0;
@@ -64,8 +79,12 @@
   margin-top: 0;
   padding: 0.3em 1em;
   border-width: 1px 0 0 0;
-  border-color: #333;
-  background: #111;
+  border-style: solid;
+  border-color: var(--lcars-box-border-color);
+  background: var(--lcars-card-bg);
+}
+.ui-dialog:not(.ui-dialog-off-canvas) .ui-dialog-buttonpane {
+  border-radius: 0 0 calc(var(--lcars-box-radius) - 1px) calc(var(--lcars-box-radius) - 1px);
 }
 .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
   margin: 0;

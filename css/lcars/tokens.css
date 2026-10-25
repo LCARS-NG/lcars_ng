@@ -35,8 +35,8 @@
   --lcars-on-color: #000; /* text on bars and buttons */
   --lcars-line-subtle: #579df91f; /* --lcars-sidebar at 12 %, dark blue: quiet frames inside a box */
   --lcars-field-border: color-mix(in sRGB, var(--lcars-sidebar) 60%, var(--lcars-space)); /* form fields (forms.css): 3.11:1, as WCAG 1.4.11 asks (user decision 25.10.2026; was --lcars-line-subtle) */
-  --lcars-row-highlight: color-mix(in sRGB, var(--lcars-sidebar) 20%, var(--lcars-space)); /* selected and dragged table rows (tableselect.css, tabledrag.css; user decision 25.10.2026) */
-  --lcars-card-bg: color-mix(in sRGB, var(--lcars-sidebar) 8%, var(--lcars-space)); /* cards a little lighter than the page: general information of the status report (status-report.css; user decision 25.10.2026) */
+  --lcars-row-highlight: color-mix(in sRGB, var(--lcars-sidebar) 20%, var(--lcars-space)); /* selected and dragged table rows, the category under the pointer in Project Browser (tableselect.css, tabledrag.css, project-browser.css; user decision 25.10.2026) */
+  --lcars-card-bg: color-mix(in sRGB, var(--lcars-sidebar) 8%, var(--lcars-space)); /* cards a little lighter than the page: general information of the status report, title bar and button pane of dialogs, filter panel of Project Browser (status-report.css, dialog.css, project-browser.css; user decision 25.10.2026) */
 
   /* Typography: the typeface is not chosen yet. LCNG used Droid Sans. */
   --lcars-font: system-ui, sans-serif;
