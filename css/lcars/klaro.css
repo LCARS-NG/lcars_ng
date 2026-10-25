@@ -6,8 +6,9 @@
  * title cut into it, the elbow at the top left, the content on the space
  * color. The notice floats above the bottom elbow and its footer (privacy
  * links) instead of covering them, on phones as well (Klaro spans the full
- * width below 1024px); the dialog keeps a margin on phones. Klaro adds the
- * class klaro-theme-lcars_ng while this theme is active.
+ * width below 1024px); the dialog takes its place instead of the middle of
+ * the page. Klaro adds the class klaro-theme-lcars_ng while this theme is
+ * active.
  */
 
 .klaro.klaro-theme-lcars_ng {
@@ -91,9 +92,22 @@
   }
 }
 
-/* Klaro shows the dialog over the full width below 660px. */
-@media (max-width: 41.1875rem) {
-  .klaro.klaro-theme-lcars_ng .cookie-modal .cm-modal.cm-klaro {
+/* The dialog in the place of the notice, as wide, growing upwards (user
+   decision 25.10.2026; Klaro centers it, 640px wide, over the full width
+   below 660px). It scrolls when it is higher than the room above. */
+.klaro.klaro-theme-lcars_ng .cookie-modal:not(.cm-embedded) .cm-modal.cm-klaro {
+  position: fixed;
+  inset: auto 3rem var(--lcars-notice-bottom) auto;
+  overflow: auto;
+  width: 25rem;
+  max-width: none;
+  max-height: calc(100% - var(--lcars-notice-bottom) - 2rem);
+  margin: 0;
+  transform: none;
+}
+
+@media (max-width: 39.9375rem) {
+  .klaro.klaro-theme-lcars_ng .cookie-modal:not(.cm-embedded) .cm-modal.cm-klaro {
     inset-inline: 1.5rem;
     width: auto;
   }
