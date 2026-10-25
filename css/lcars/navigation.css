@@ -46,8 +46,11 @@
   background: var(--lcars-button-hover);
 }
 
+/* The label stays black: ul.menu a.is-active (menu.css) colors active links
+   outside the sidebar in the frame color and would otherwise win here. */
 .lcars-sidebar .menu a.is-active,
 .lcars-sidebar .menu-item--active-trail > a {
+  color: var(--lcars-on-color);
   background: var(--lcars-button-active);
 }
 
