@@ -145,3 +145,7 @@ login:
   css:
     layout:
       css/lcars/login.css: {  }
+moderation:
+  css:
+    theme:
+      css/lcars/moderation.css: {  }

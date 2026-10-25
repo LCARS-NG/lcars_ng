@@ -29,6 +29,8 @@ libraries-extend:
     - lcars_ng/dashboard
   klaro/klaro:
     - lcars_ng/klaro
+  content_moderation/content_moderation:
+    - lcars_ng/moderation
 # gin_toolbar attaches the dialog styles of Gin and Claro to every dialog in
 # every theme (gin_toolbar_library_info_alter()). They rely on Gin's CSS
 # variables and leave dialogs transparent here; css/components/dialog.css
@@ -42,6 +44,11 @@ libraries-override:
     css:
       theme:
         css/components/dialog.css: false
+  # A white box with dark text in mind; css/lcars/moderation.css instead.
+  content_moderation/content_moderation:
+    css:
+      theme:
+        css/content_moderation.theme.css: false
 description: 'Inspired by the LCARS interface of Star Trek: The Next Generation. Rebuild of the Drupal 6 theme LCNG.'
 # 11.3: ThemeSettingsProvider and hook classes in themes (src/Hook).
 core_version_requirement: ^11.3

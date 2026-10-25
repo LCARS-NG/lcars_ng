@@ -1,0 +1,29 @@
+/**
+ * @file
+ * The moderation form of Content Moderation (moderation state, change to, log
+ * message) on the latest revision of a node: a plain box like .lcars-box
+ * (box.css) with a tight padding instead of the white dashed box of core,
+ * whose stylesheet lcars_ng.info.yml removes (user decision 25.10.2026).
+ */
+
+.entity-moderation-form {
+  margin: 2em 0;
+  padding: 0 1.25rem;
+  border: var(--lcars-box-border-width) solid var(--lcars-box-border-color);
+  border-radius: var(--lcars-box-radius);
+}
+
+/* Phones: one item per line, and the log message as wide as the box. As a
+   table, the item grew with the size attribute of the field beyond the
+   content. */
+@media (max-width: 39.9375rem) {
+  .entity-moderation-form__item {
+    display: block;
+    inline-size: 100%;
+    margin-inline-end: 0;
+  }
+
+  .entity-moderation-form input[type="text"] {
+    inline-size: 100%;
+  }
+}

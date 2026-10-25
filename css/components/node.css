@@ -1,8 +1,9 @@
 /**
  * @file
  * Visual styles for nodes.
+ *
+ * Unpublished nodes (.node--unpublished) get no mark of their own: the light
+ * pink of starterkit left the light text unreadable, and the moderation form
+ * (css/lcars/moderation.css) and the top bar of Navigation show the state
+ * (user decision 25.10.2026).
  */
-
-.node--unpublished {
-  background-color: #fff4f4;
-}
