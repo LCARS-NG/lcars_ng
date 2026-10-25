@@ -1,0 +1,54 @@
+/**
+ * @file
+ * The status report of core (admin/reports/status), extending
+ * system/status.report: the counters as pills in the color of their type like
+ * the messages, labeled in bold capitals like the buttons, and the general
+ * information as cards with a slight radius, a lighter background and the
+ * line of the form fields instead of #ccc (user decision 25.10.2026).
+ */
+
+/* Core marks only the icon with the severity: :has() takes it to the pill. */
+.system-status-report-counters__item {
+  --lcars-counter-color: var(--lcars-message-status);
+
+  box-sizing: border-box;
+  padding: 0.625em 1.25em;
+  text-transform: uppercase;
+  color: var(--lcars-on-color);
+  border-radius: var(--lcars-pill);
+  background: var(--lcars-counter-color);
+  font-family: var(--lcars-font-label);
+  font-size: 0.85em;
+  font-weight: bold;
+}
+.system-status-report-counters__item:has(.system-status-counter__status-icon--warning) {
+  --lcars-counter-color: var(--lcars-message-warning);
+}
+.system-status-report-counters__item:has(.system-status-counter__status-icon--error) {
+  --lcars-counter-color: var(--lcars-message-error);
+}
+.system-status-report-counters__item a {
+  text-decoration: underline;
+  color: inherit;
+}
+
+/* The colored icons of core as masks in the text color, as in messages.css. */
+.system-status-counter__status-icon::before {
+  background: currentColor;
+  mask: url(../../images/icons/check.svg) no-repeat center 2px / 16px;
+}
+.system-status-counter__status-icon--warning::before {
+  mask-image: url(../../images/icons/warning.svg);
+}
+.system-status-counter__status-icon--error::before {
+  mask-image: url(../../images/icons/error.svg);
+}
+
+.system-status-general-info__item {
+  border-color: var(--lcars-field-border);
+  border-radius: 0.625rem; /* 10px, as .button */
+  background: var(--lcars-card-bg);
+}
+.system-status-general-info__item-title {
+  border-bottom-color: var(--lcars-field-border);
+}

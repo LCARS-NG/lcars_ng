@@ -1,0 +1,62 @@
+/**
+ * @file
+ * The Tagify widget of the module tagify (tag fields such as Tags), extending
+ * tagify/default. The library (Tagify 4, from cdnjs) comes with colors for
+ * light themes, and the module adapts it only to Gin and Claro. Here: the line
+ * of the other fields, gold when focused, tags outlined in the sidebar blue
+ * with a light label and a dark cross in a light circle, and a dark list of
+ * suggestions (user decision 25.10.2026).
+ */
+
+.tagify {
+  --tags-border-color: var(--lcars-field-border);
+  --tags-hover-border-color: var(--lcars-sidebar);
+  --tags-focus-border-color: var(--lcars-accent);
+  --input-color: var(--lcars-text);
+  --placeholder-color: color-mix(in sRGB, var(--lcars-text) 60%, transparent);
+  --placeholder-color-focus: color-mix(in sRGB, var(--lcars-text) 45%, transparent);
+  --tag-bg: var(--lcars-space);
+  --tag-hover: var(--lcars-row-highlight);
+  --tag-text-color: var(--lcars-text);
+}
+
+/* Setting --tags-border-color on .tagify overrides the states of the library,
+   so they are repeated here. */
+.tagify:hover:not(.tagify--focus, .tagify--invalid) {
+  --tags-border-color: var(--tags-hover-border-color);
+}
+.tagify--focus {
+  --tags-border-color: var(--tags-focus-border-color);
+}
+
+/* The library fills a tag with an inset shadow in --tag-bg; a line goes on
+   top of it, and hovering still fills the tag with --tag-hover. */
+.tagify__tag > div::before {
+  box-shadow:
+    0 0 0 1px var(--lcars-sidebar) inset,
+    0 0 0 var(--tag-inset-shadow-size) var(--tag-bg) inset;
+}
+
+/* The module colors the cross by its id (css/tagify.css). Hovering it marks
+   the tag for removal in the color of error messages. */
+.tagify #tagify__tag-remove-button {
+  color: var(--lcars-space);
+  background: var(--lcars-text);
+}
+.tagify #tagify__tag-remove-button:hover {
+  color: var(--lcars-on-color);
+  background: var(--lcars-message-error);
+}
+
+/* The list of suggestions hangs at the end of the page, outside .tagify. */
+.tagify__dropdown {
+  --tagify-dd-bg-color: var(--lcars-space);
+  --tagify-dd-text-color: var(--lcars-text);
+  --tagify-dd-color-primary: var(--lcars-row-highlight);
+}
+.tagify__dropdown__wrapper {
+  border: 1px solid var(--lcars-sidebar);
+}
+.tagify__dropdown__item--active {
+  color: var(--lcars-text);
+}

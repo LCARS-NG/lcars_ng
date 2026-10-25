@@ -1,4 +1,5 @@
 blockrecent
+cdnjs
 Giang
 gpanel
 innerframe
@@ -10,4 +11,5 @@ Okuda's
 pside
 ptop
 shwpd
+tagify
 userauth

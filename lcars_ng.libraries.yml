@@ -149,3 +149,11 @@ moderation:
   css:
     theme:
       css/lcars/moderation.css: {  }
+status-report:
+  css:
+    theme:
+      css/lcars/status-report.css: {  }
+tagify:
+  css:
+    theme:
+      css/lcars/tagify.css: {  }

@@ -31,6 +31,10 @@ libraries-extend:
     - lcars_ng/klaro
   content_moderation/content_moderation:
     - lcars_ng/moderation
+  system/status.report:
+    - lcars_ng/status-report
+  tagify/default:
+    - lcars_ng/tagify
 # gin_toolbar attaches the dialog styles of Gin and Claro to every dialog in
 # every theme (gin_toolbar_library_info_alter()). They rely on Gin's CSS
 # variables and leave dialogs transparent here; css/components/dialog.css
