@@ -20,6 +20,72 @@
   padding-inline-end: 0;
 }
 
+/* Revision overviews: of nodes (.node-revision-table) and of other entities
+   (VersionHistoryController, easy_email: tables without a class, recognized
+   by the class revision-current on the row of the current revision, in
+   easy_email on its cells; so on later pages of a pager without these
+   rules). Cells and lines as in the token browser (token.css); the current
+   revision is marked by a gold bar at its start instead of core's light
+   yellow, which lcars_ng.info.yml removes (#16, variant C1, user decision
+   26.10.2026). */
+:is(.node-revision-table, table:has(> tbody .revision-current)) {
+  border-collapse: collapse;
+}
+:is(.node-revision-table, table:has(> tbody .revision-current)) :is(td, th) {
+  padding: 0.5em 0.75em;
+  text-align: start;
+  vertical-align: top;
+}
+:is(.node-revision-table, table:has(> tbody .revision-current)) th {
+  text-transform: uppercase;
+  color: var(--lcars-frame);
+  font-weight: normal;
+}
+:is(.node-revision-table, table:has(> tbody .revision-current)) tbody td {
+  border-top: 1px solid var(--lcars-field-border);
+}
+:is(.node-revision-table, table:has(> tbody .revision-current)) .revision-log {
+  margin: 0.25em 0 0;
+}
+:is(.node-revision-table, table:has(> tbody .revision-current)) .revision-log:empty {
+  display: none;
+}
+
+:is(tr.revision-current, tr:has(> td.revision-current)) > td:first-child {
+  position: relative;
+}
+:is(tr.revision-current, tr:has(> td.revision-current)) > td:first-child::before {
+  position: absolute;
+  inset-block: 0.5em;
+  inset-inline-start: 0;
+  width: 0.375em;
+  content: "";
+  border-radius: var(--lcars-pill);
+  background: var(--lcars-accent);
+}
+
+/* Phones: Operations only as wide as its content, the button not stretched.
+   Core reserves 10em + 2em beside a dropbutton in a cell for the open menu
+   and stretches it to the full width below 600px (dropbutton.css); here the
+   open menu pushes the row down instead. */
+@media (max-width: 39.9375rem) {
+  :is(.node-revision-table, table:has(> tbody .revision-current)) td:last-child {
+    width: 1%;
+    white-space: nowrap;
+  }
+
+  .js :is(.node-revision-table, table:has(> tbody .revision-current)) td .dropbutton-multiple {
+    width: auto;
+    margin-inline-end: 0;
+    padding-inline-end: 0;
+  }
+
+  .js :is(.node-revision-table, table:has(> tbody .revision-current)) td .dropbutton-widget {
+    position: relative;
+    display: inline-block;
+  }
+}
+
 /* As in Claro, columns of low and medium priority hide on phones;
    tableresponsive.js then shows a toggle above the table to bring them back.
    A table still wider than the content scrolls in its wrapper

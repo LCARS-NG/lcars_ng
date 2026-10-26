@@ -56,6 +56,12 @@ libraries-override:
     css:
       theme:
         css/content_moderation.theme.css: false
+  # Only the light yellow #ffc behind the current revision, under light text;
+  # css/lcars/table.css marks it instead.
+  node/drupal.node.admin:
+    css:
+      theme:
+        css/node.admin.css: false
 description: 'Inspired by the LCARS interface of Star Trek: The Next Generation. Rebuild of the Drupal 6 theme LCNG.'
 # 11.3: ThemeSettingsProvider and hook classes in themes (src/Hook).
 core_version_requirement: ^11.3
