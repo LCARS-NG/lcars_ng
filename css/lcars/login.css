@@ -97,7 +97,7 @@
   --lcars-title-height: 1.5625rem; /* 25px: capitals 21px */
 
   justify-content: center;
-  padding-inline-start: 0;
+  padding-inline: 0;
 }
 
 /* Phones: as the panels of the right sidebar, and half the side padding of

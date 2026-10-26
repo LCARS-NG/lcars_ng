@@ -238,28 +238,33 @@
   color: var(--lcars-link-hover);
 }
 
-/* Page title: a bar with the title cut into it, as high as a menu button
-   (--lcars-title-height). The cut runs through the whole bar; the capitals
-   fill it up to --lcars-cap-inset at the top and bottom. font-size-adjust
-   makes the cap height equal the font size in any typeface, text-box trims
-   the line box to the capitals. A long title wraps with the bar height as
-   line height, so the lines stand a seam apart. */
+/* Page title: a bar with the title cut into it, as high as the title of the
+   login panel (--lcars-title-height). The cut runs through the whole bar; the
+   capitals fill it up to --lcars-cap-inset at the top and bottom.
+   font-size-adjust makes the cap height equal the font size in any typeface,
+   text-box trims the line box to the capitals. A long title stays on one line
+   and ends in an ellipsis, so the end of the bar shows as wide as its start;
+   the whole title stays in the markup (#15, user decision 26.10.2026). */
 
 .lcars-title {
-  --lcars-title-height: var(--lcars-button-height);
+  --lcars-title-height: 1.5625rem; /* 25px: capitals 21px, smaller than the site name (28px); was --lcars-button-height, 34px */
 
   display: flex;
   align-items: center;
   margin-block-end: 2rem;
-  padding-inline-start: 1.5em;
+  padding-inline: 1.5em;
   border-radius: var(--lcars-pill);
   background: var(--lcars-accent);
 }
 
 /* The title takes the color of its bar, as the site name in the header bar. */
 .lcars-title .page-title {
+  overflow: hidden;
+  min-width: 0;
   margin: 0;
   padding: var(--lcars-cap-inset) 0.3em;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   color: var(--lcars-accent);
   background: var(--lcars-space);
   font-size: calc(var(--lcars-title-height) - 2 * var(--lcars-cap-inset));
@@ -297,7 +302,7 @@
   }
 
   .lcars-title {
-    --lcars-title-height: 1.5rem; /* 24px: capitals 20px, long titles in two lines (user decision 24.10.2026) */
+    --lcars-title-height: 1.125rem; /* 18px: capitals 14px, as the panels of the right sidebar (#15, user decision 26.10.2026; was 24px with long titles in two lines) */
   }
 
   .lcars-aside {
