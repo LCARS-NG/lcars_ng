@@ -125,12 +125,15 @@
   font-size: 0.625rem;
 }
 
-/* Sidebar */
+/* Sidebar: the column of the menu in the lighter blue of its buttons, between
+   the elbows in the blue of the frame (user decision 27.10.2026; was
+   --lcars-sidebar). On phones the menu stands above the content without a
+   column (below). */
 
 .lcars-sidebar {
   grid-area: side;
   padding-block-end: 2.1875rem; /* 35px */
-  background: var(--lcars-sidebar);
+  background: var(--lcars-button);
   line-height: 1;
 }
 
