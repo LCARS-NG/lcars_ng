@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="77" height="72" viewBox="0 0 77 72" role="img" aria-labelledby="lcars-ng-logo-title">
+  <title id="lcars-ng-logo-title">LCARS-NG</title>
+  <!-- Icosahedron, Schlegel diagram, flat: 7 areas, flat tones, transparent background.
+       Derived from lcars-ng-logo.svg. -->
+  <g stroke-width="0.3" stroke-linejoin="round">
+    <path d="M38.5 1.81L1.67 70.12L28.02 50.18L28.16 38.79L38.5 32.22Z" fill="#a7d4ff" stroke="#a7d4ff"/>
+    <path d="M1.67 70.12L75.33 70.12L48.98 50.18L38.5 56.05L28.02 50.18Z" fill="#579df9" stroke="#579df9"/>
+    <path d="M38.5 1.81L38.5 32.22L48.84 38.79L48.98 50.18L75.33 70.12Z" fill="#3786ff" stroke="#3786ff"/>
+    <path d="M28.16 38.79L35 41.85L42 41.85L48.84 38.79L38.5 32.22Z" fill="#579df9" stroke="#579df9"/>
+    <path d="M28.16 38.79L28.02 50.18L38.5 56.05L38.5 46.8L35 41.85Z" fill="#3786ff" stroke="#3786ff"/>
+    <path d="M48.98 50.18L48.84 38.79L42 41.85L38.5 46.8L38.5 56.05Z" fill="#1f5bc4" stroke="#1f5bc4"/>
+    <path d="M42 41.85L35 41.85L38.5 46.8Z" fill="#a7d4ff" stroke="#a7d4ff"/>
+  </g>
+</svg>
