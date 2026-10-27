@@ -42,15 +42,29 @@ html[data-lcars-navigation="auto"] [data-drupal-admin-styles] {
   color-scheme: light dark;
 }
 
-/* The icon before the page title in the top bar is drawn with
-   fill="#000000" in its markup. */
+/* Icons with colors in their markup take the color of their label: the icon
+   before the page title in the top bar (fill="#000000"), the burger of the
+   bar below 64rem (stroke="#55565B"), the cross and the eye (fill). */
 :is(html[data-lcars-navigation="dark"], html[data-lcars-navigation="auto"]) .toolbar-title__icon {
   fill: light-dark(#000, currentcolor);
 }
 
+:is(html[data-lcars-navigation="dark"], html[data-lcars-navigation="auto"]) [data-drupal-admin-styles] svg [fill="#55565B" i] {
+  fill: light-dark(#55565b, currentcolor);
+}
+
+:is(html[data-lcars-navigation="dark"], html[data-lcars-navigation="auto"]) [data-drupal-admin-styles] svg [stroke="#55565B" i] {
+  stroke: light-dark(#55565b, currentcolor);
+}
+
 /* Core sets these in rules that count an ID (#extra-specificity-hack): the
-   primary button (Edit in the top bar) as an LCARS button, the menu behind
-   "More actions" with its fixed white and line. */
+   primary button (Edit in the top bar) as an LCARS button, the bar with
+   "Expand sidebar" below 64rem and the menu behind "More actions" with their
+   fixed white and line. */
+:is(html[data-lcars-navigation="dark"], html[data-lcars-navigation="auto"]) :is(#extra-specificity-hack, [data-drupal-admin-styles]).admin-toolbar-control-bar {
+  background-color: light-dark(white, var(--lcars-space));
+}
+
 :is(html[data-lcars-navigation="dark"], html[data-lcars-navigation="auto"]) :is(#extra-specificity-hack, [data-drupal-admin-styles]) .toolbar-button--primary {
   --toolbar-button-color: light-dark(#fff, var(--lcars-on-color));
   --toolbar-button-bg: light-dark(var(--drupal-admin-color-blue-450, #015efe), var(--lcars-button));
