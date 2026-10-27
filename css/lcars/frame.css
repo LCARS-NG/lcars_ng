@@ -378,11 +378,13 @@
   color: var(--lcars-sidebar);
 }
 
+/* The slogan in the blue of the name (user decision 28.10.2026; was
+   --lcars-text-dim, white). */
 .lcars-panel-top .site-slogan {
   grid-area: slogan;
   padding-block-start: 0.25rem;
   text-transform: uppercase;
-  color: var(--lcars-text-dim);
+  color: var(--lcars-sidebar);
   font-size: 0.75rem;
 }
 
@@ -413,8 +415,10 @@
   gap: 0.25rem 1.25rem;
 }
 
+/* The date in the blue of the site name, as the slogan (user decision
+   28.10.2026; was --lcars-text-dim, white). */
 .lcars-status__date {
-  color: var(--lcars-text-dim);
+  color: var(--lcars-sidebar);
 }
 
 /* Panel blocks side by side, as the four-column Gpanel of LCNG. */

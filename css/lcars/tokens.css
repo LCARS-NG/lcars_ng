@@ -29,7 +29,7 @@
      was #eee, #c2c9ce, #999). Kept as tokens to set them apart again. */
   --lcars-text-muted: var(--lcars-text); /* form descriptions */
   --lcars-text-soft: var(--lcars-text); /* secondary text, descriptions */
-  --lcars-text-dim: var(--lcars-text); /* slogan, status line, meta data */
+  --lcars-text-dim: var(--lcars-text); /* meta data; slogan and date of the status line in --lcars-sidebar since 28.10.2026 */
   --lcars-heading: var(--lcars-frame);
   --lcars-link: #4bb0ff;
   --lcars-link-hover: var(--lcars-frame);

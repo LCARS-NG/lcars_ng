@@ -90,9 +90,11 @@
   margin-block-end: 1.5rem;
 }
 
+/* In the blue of the name above (user decision 28.10.2026; was
+   --lcars-text-dim, white). */
 .lcars-login__panel .site-slogan {
   text-transform: uppercase;
-  color: var(--lcars-text-dim);
+  color: var(--lcars-sidebar);
   font-size: 0.75rem;
   margin-block: -0.25rem 0;
 }
@@ -127,9 +129,24 @@
   }
 }
 
+/* The text of the cards in one color, the blue of the site name: labels with
+   their required mark, the text in the fields and the eye of view_password,
+   the hints of the forms (user decision 28.10.2026; labels were
+   --lcars-frame, fields and hints --lcars-text, the eye white, the mark red).
+   Title, tabs, buttons and links keep their colors. */
 .lcars-login__panel .form-item label {
   display: block;
   margin-block-end: 0.25em;
+  color: var(--lcars-sidebar);
+}
+
+.lcars-login__panel .form-required::after {
+  background: var(--lcars-sidebar);
+  mask: url(../../images/icons/required.svg) center / contain no-repeat;
+}
+
+.lcars-login__panel form p {
+  color: var(--lcars-sidebar);
 }
 
 .lcars-login__panel .form-item .description {
@@ -139,8 +156,30 @@
 .lcars-login__panel input:where([type="text"], [type="email"], [type="password"]) {
   padding: 0.35em;
   text-align: center;
+  color: var(--lcars-sidebar);
   border-radius: var(--lcars-pill);
   inline-size: 12em;
+}
+
+/* Fields the browser fills in keep the blue as well (forms.css sets the
+   light text there). */
+.lcars-login__panel input:autofill {
+  caret-color: var(--lcars-sidebar);
+  -webkit-text-fill-color: var(--lcars-sidebar);
+}
+
+/* The eye of view_password in the blue: its icons (copies of the module's
+   css/images, GPL-2.0-or-later) as masks over the color instead of the
+   inverted black of forms.css. Only the module's own classes: icons set in
+   its configuration stay as they are. */
+.lcars-login__panel button.shwpd:is(.eye-open, .eye-close) {
+  filter: none;
+  background: var(--lcars-sidebar);
+  mask: url(../../images/icons/view-password-eye-close.svg) center / contain no-repeat;
+}
+
+.lcars-login__panel button.shwpd.eye-open {
+  mask-image: url(../../images/icons/view-password-eye-open.svg);
 }
 
 /* Submit in the size of the LCARS button component (pill), centred without
