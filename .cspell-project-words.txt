@@ -1,6 +1,7 @@
 blockrecent
 cdnjs
 DejaVu
+drupical
 Giang
 gpanel
 indenter

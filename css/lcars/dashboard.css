@@ -27,12 +27,12 @@
   border-inline-start: var(--lcars-card-edge) solid var(--lcars-card-frame);
   border-radius: 0;
   border-start-start-radius: 1.8125rem; /* 29px */
-  box-shadow: none;
-  font-size: 0.8125rem; /* 13px like the right sidebar (user decision 24.10.2026) */
   /* The ceiling, rounded with the corner of the card; the title cuts it. */
   background-image: linear-gradient(var(--lcars-card-frame), var(--lcars-card-frame));
   background-repeat: no-repeat;
   background-size: 100% var(--lcars-card-bar);
+  box-shadow: none;
+  font-size: 0.8125rem; /* 13px like the right sidebar (user decision 24.10.2026) */
 }
 
 /* The content of every card starts at its padding: lists, the announcements
