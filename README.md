@@ -14,9 +14,10 @@ adapts to the width and height of the screen, from phones to wide desktop
 screens, for mouse and touch: it fills the window on short pages, and longer
 pages scroll.
 
-![LCARS-NG front page for signed-in users: upper panel with site name, slogan
-and logo, status line with date and user, menu buttons on the left, content
-below](screenshot.png)
+<p>
+  <a href="images/screenshots/front-page.png"><img src="images/screenshots/front-page.png" width="49%" alt="LCARS-NG front page for signed-in users, with the Navigation of Drupal on the left and at the top: upper panel with site name, slogan and logo, status line with date and user, menu buttons on the left, content and panels below"></a>
+  <a href="images/screenshots/dashboard.png"><img src="images/screenshots/dashboard.png" width="49%" alt="The dashboard in LCARS-NG: cards for recent content and top tasks, below them the Drupal events as an agenda"></a>
+</p>
 
 - To see the theme on a live site, visit the
   [demo](https://demo.lcars-ng.org). The login form shows the credentials of
