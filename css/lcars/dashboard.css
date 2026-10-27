@@ -77,12 +77,14 @@
 /* The title cuts the ceiling near its end, with the dark of the page. At least
    the elbow and a piece of ceiling stay left of it, as in the panel component;
    a longer title ends with an ellipsis (user wish 27.10.2026, "Drupal Events
-   and User Groups" ran over the elbow). */
+   and User Groups" ran over the elbow). Its capitals fill the ceiling up to
+   --lcars-cap-inset, as the label of the panel and the page title (user wish
+   27.10.2026; were 20px letters in the 25px ceiling). */
 .dashboard .layout .block > h2 {
   overflow: hidden;
   box-sizing: border-box;
   margin: 0 calc(1.5625rem - var(--lcars-card-pad)) var(--lcars-card-pad) auto; /* end of the ceiling 25px */
-  padding: 0 0.3em;
+  padding: var(--lcars-cap-inset) 0.3em;
   white-space: nowrap;
   text-transform: uppercase;
   text-overflow: ellipsis;
@@ -90,9 +92,11 @@
   border-radius: 0;
   background: var(--lcars-space);
   font-family: var(--lcars-font-label);
-  font-size: 1.25rem;
+  font-size: calc(var(--lcars-card-bar) - 2 * var(--lcars-cap-inset));
   font-weight: bold;
+  font-size-adjust: cap-height 1;
   line-height: var(--lcars-card-bar);
+  text-box: trim-both cap alphabetic;
   block-size: var(--lcars-card-bar);
   inline-size: fit-content;
   /* The width of the card without the elbow (29px) and the pieces of ceiling
