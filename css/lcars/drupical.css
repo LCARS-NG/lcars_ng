@@ -1,0 +1,102 @@
+/**
+ * @file
+ * Drupal events (module drupical) as an agenda.
+ *
+ * The date with its time on the left, the title and below it type and
+ * location on the right, a line between the events; "Load more events" right
+ * below the list, the links and the call to organize below it (user decision
+ * 27.10.2026, variant C; drupical.css draws two cells per event with the colors
+ * of Gin and puts the button beside the links). The rows of the table become
+ * cells of one grid, so the column of the dates is as wide as the longest date,
+ * also for the rows "Load more events" appends. Extends the library
+ * drupical/drupical (lcars_ng.info.yml).
+ */
+
+.events-feed .events-list {
+  padding-inline: 0;
+}
+
+.events-feed .events-community-info {
+  padding: 0 0 0.75rem;
+  border-bottom: 0;
+}
+
+.events-feed .events-table {
+  display: block;
+  margin: 0;
+}
+
+.events-feed .events-table tbody {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  grid-auto-flow: dense;
+}
+
+.events-feed .events-table tr {
+  display: contents;
+}
+
+/* "tr td" outweighs the cell padding of tables in dashboard cards
+   (table.css). */
+.events-feed .events-table tr td.event-meta,
+.events-feed .events-table tr td.event-info {
+  padding: 0.45rem 0;
+  border-block-start: 1px solid var(--lcars-box-border-color);
+}
+
+.events-feed .events-table tr td.event-meta {
+  grid-column: 1;
+  align-items: flex-start;
+  color: var(--lcars-text);
+  font-size: inherit;
+}
+
+/* The space to the title; table.css takes it from the last cell of a row. */
+.events-feed .events-table tr td.event-meta:last-child {
+  padding-inline-end: 1.5rem;
+}
+
+.events-feed .events-table tr td.event-info {
+  grid-column: 2;
+}
+
+.events-feed .event-date {
+  color: var(--lcars-text);
+  font-weight: bold;
+}
+
+.events-feed .event-time {
+  color: var(--lcars-text);
+  font-size: inherit;
+}
+
+.events-feed .event-info .event-title {
+  font-weight: bold;
+}
+
+/* DrupalCon: the module marks these events with a badge before the title and
+   leaves out their type; here "DrupalCon" stands as their type before the
+   location. */
+.events-feed .event-featured .event-info::before {
+  content: none;
+}
+
+.events-feed .event-featured .event-details::before {
+  content: "DrupalCon · ";
+}
+
+.events-feed .events-footer {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.75rem;
+  margin-block: 0.75rem 0.5rem;
+  padding-inline: 0;
+}
+
+.events-feed .events-load-more {
+  align-self: flex-start;
+}
+
+.events-feed .events-footer-links {
+  align-self: flex-end;
+}

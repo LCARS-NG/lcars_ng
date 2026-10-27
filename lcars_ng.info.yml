@@ -34,6 +34,8 @@ libraries-extend:
     - lcars_ng/layout-builder
   ckeditor5/internal.drupal.ckeditor5:
     - lcars_ng/ckeditor5
+  drupical/drupical:
+    - lcars_ng/drupical
   klaro/klaro:
     - lcars_ng/klaro
   content_moderation/content_moderation:

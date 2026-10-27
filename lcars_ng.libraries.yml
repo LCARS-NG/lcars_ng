@@ -155,6 +155,10 @@ ckeditor5:
   css:
     theme:
       css/lcars/ckeditor5.css: {  }
+drupical:
+  css:
+    theme:
+      css/lcars/drupical.css: {  }
 klaro:
   css:
     theme:
