@@ -36,7 +36,9 @@ This theme requires no modules outside of Drupal core (11.3 or later).
 ## Recommended modules
 
 - The theme also styles the pages of Dashboard and Project Browser when they
-  are installed.
+  are installed, and shows the events of
+  [Drupical](https://www.drupal.org/project/drupical) as an agenda. Layout
+  Builder and CKEditor 5 of core take its dark colors as well.
 
 
 ## Installation
