@@ -117,29 +117,32 @@ fieldset {
   border: 0;
 }
 
-/* LCARS buttons like the sidebar menu: black labels on the button blue, the
-   frame color on hover, white when active (user decision 25.10.2026; were
-   #111 and #333). Corners as the form buttons. The login panel draws its tabs
-   as outlines (login.css). */
+/* Tabs as outlines, as in the login panel: the quiet line of the fields, labels
+   in the link color, the frame color on hover; the active tab white with a
+   black label. The buttons stay the only filled blue in the content, so they
+   read as actions (user decision 27.10.2026, variant C; until then filled
+   like the buttons, user decision 25.10.2026). Corners as the form buttons.
+   The login panel keeps its own outlines (login.css). */
 .tabs a {
   padding: 0.35em 1.4em 0.5em;
-  color: var(--lcars-on-color);
-  border: 0;
+  color: var(--lcars-link);
+  border: 1px solid var(--lcars-field-border);
   border-radius: 0.625rem; /* 10px, as .button */
-  background: var(--lcars-button);
+  background: none;
   font-weight: bold;
 }
 
 .tabs a:hover,
 .tabs a:focus {
-  color: var(--lcars-on-color);
-  background: var(--lcars-button-hover);
+  color: var(--lcars-link-hover);
+  border-color: var(--lcars-frame);
+  background: none;
 }
 
 .tabs .is-active a,
 .tabs a.is-active {
   color: var(--lcars-on-color);
-  border: 0;
+  border-color: var(--lcars-button-active);
   background: var(--lcars-button-active);
 }
 
