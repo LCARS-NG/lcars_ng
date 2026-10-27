@@ -43,11 +43,12 @@
 }
 
 /* Below the larger logo a little smaller, about as high as the title of the
-   form card (user decision 27.10.2026, variant B; was 2rem). */
+   form card (user decision 27.10.2026, variant B; was 2rem), in the blue of
+   the sidebar (user decision 27.10.2026; was --lcars-frame, too light). */
 .lcars-login__panel .site-name {
   margin-block-end: 0.5em;
   text-transform: uppercase;
-  color: var(--lcars-frame);
+  color: var(--lcars-sidebar);
   font-family: var(--lcars-font-label);
   font-size: 1.75rem;
   font-weight: bold;

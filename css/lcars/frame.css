@@ -358,8 +358,11 @@
   line-height: 1;
 }
 
+/* In the blue of the sidebar beside the logo, as in the login panel (user
+   decision 27.10.2026; was --lcars-frame, too light). The name in the header
+   bar keeps the color of its bar. */
 .lcars-panel-top .site-name a {
-  color: var(--lcars-frame);
+  color: var(--lcars-sidebar);
 }
 
 .lcars-panel-top .site-slogan {
