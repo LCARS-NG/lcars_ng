@@ -67,11 +67,14 @@ button.shwpd {
 }
 
 /* One height for buttons and links drawn as buttons: 29px with the padding
-   at 0.85em (user decision 27.10.2026; inputs were 26px, links 29px). */
+   at 0.85em (user decision 27.10.2026; inputs were 26px, links 29px). The
+   operations of the themes on the Appearance page are links of core, drawn
+   as buttons as well (admin.css lays them out). */
 .button,
 .form-submit,
 input:where([type="submit"], [type="button"], [type="reset"]),
-[data-vertical-tabs-panes] > .token-dialog {
+[data-vertical-tabs-panes] > .token-dialog,
+.theme-selector .operations a {
   display: inline-block;
   box-sizing: border-box;
   margin: 0 0.5em 1em 0;
@@ -98,7 +101,8 @@ input:where([type="submit"], [type="button"], [type="reset"]),
 .button:hover,
 .form-submit:hover,
 input:where([type="submit"], [type="button"], [type="reset"]):hover,
-[data-vertical-tabs-panes] > .token-dialog:hover {
+[data-vertical-tabs-panes] > .token-dialog:hover,
+.theme-selector .operations a:hover {
   color: var(--lcars-on-color);
   background: var(--lcars-button-hover);
 }

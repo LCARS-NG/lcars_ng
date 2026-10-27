@@ -61,3 +61,23 @@
   border: var(--lcars-box-border-width) solid var(--lcars-box-border-color);
   border-radius: var(--lcars-box-radius-small);
 }
+
+/* The operations of each theme (Settings, Install, Uninstall, Set as default)
+   are buttons in a row (forms.css) instead of links divided by lines (user
+   decision 27.10.2026). Core sets lines and paddings per direction and for
+   the first and last item: html[dir] and :nth-child(n) outweigh them all. */
+.theme-selector .operations {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+}
+
+html[dir] .theme-selector .operations li:nth-child(n) {
+  float: none;
+  padding: 0;
+  border: 0;
+}
+
+.theme-selector .operations a {
+  margin: 0;
+}
