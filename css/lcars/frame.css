@@ -262,6 +262,14 @@
   background: var(--lcars-accent);
 }
 
+/* In the content area the bar ends straight on the right, cut as the bars of
+   the elbows and panels; the login panel keeps the pill on both ends (user
+   decision 27.10.2026). */
+.lcars-main .lcars-title {
+  border-start-end-radius: 0;
+  border-end-end-radius: 0;
+}
+
 /* The title takes the color of its bar, as the site name in the header bar. */
 .lcars-title .page-title {
   overflow: hidden;
