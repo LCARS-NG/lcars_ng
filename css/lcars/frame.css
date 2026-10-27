@@ -370,13 +370,20 @@
   font-size: 0.75rem;
 }
 
+/* The logo as high as the content of the panel, from the top of the name down
+   into the margin below the branding (user decision 27.10.2026, variant B; was
+   its own size, 72px): the negative margin keeps the grid, and so the panel, at
+   its height. */
 .lcars-panel-top .site-logo {
   grid-area: logo;
+  margin-block-end: -1rem;
   padding-inline-end: 1rem;
 }
 
 .lcars-panel-top .site-logo img {
   display: block;
+  block-size: 5.5rem;
+  inline-size: auto;
 }
 
 /* Status line in the curve below the upper panel: the user right beside the
