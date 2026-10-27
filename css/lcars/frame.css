@@ -66,14 +66,16 @@
   inset-block-start: 0;
 }
 
-/* Top-left elbow */
+/* Top-left elbow. The elbows, the sidebar, the panels and the dashboard cards
+   share the blue of the sidebar (user decision 27.10.2026; the elbows, panels
+   and cards were --lcars-frame). */
 
 .lcars-head {
   display: grid;
   grid-area: head;
   grid-template-rows: var(--lcars-bar-top) minmax(var(--lcars-curve), auto);
   grid-template-columns: var(--lcars-sidebar-width) minmax(0, 1fr);
-  background: var(--lcars-frame);
+  background: var(--lcars-sidebar);
   border-start-start-radius: var(--lcars-elbow-outer);
 }
 
@@ -107,7 +109,7 @@
 }
 
 .lcars-head__bar .site-name a {
-  color: var(--lcars-frame);
+  color: var(--lcars-sidebar);
 }
 
 .lcars-head__bar .site-logo,
@@ -186,7 +188,7 @@
   grid-area: foot;
   grid-template-rows: minmax(var(--lcars-curve), auto) var(--lcars-bar-bottom);
   grid-template-columns: var(--lcars-sidebar-width) minmax(0, 1fr);
-  background: var(--lcars-frame);
+  background: var(--lcars-sidebar);
   border-end-start-radius: var(--lcars-elbow-outer);
 }
 

@@ -11,7 +11,7 @@
  */
 
 .dashboard {
-  --lcars-card-frame: var(--lcars-frame);
+  --lcars-card-frame: var(--lcars-sidebar); /* as the frame (user decision 27.10.2026; was --lcars-frame) */
   --lcars-card-bar: 1.5625rem; /* 25px, as the panel ceiling */
   --lcars-card-edge: 0.3125rem; /* 5px */
   --lcars-card-pad: 1.25rem;
