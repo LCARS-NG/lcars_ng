@@ -42,12 +42,14 @@
   border: none;
 }
 
+/* Below the larger logo a little smaller, about as high as the title of the
+   form card (user decision 27.10.2026, variant B; was 2rem). */
 .lcars-login__panel .site-name {
   margin-block-end: 0.5em;
   text-transform: uppercase;
   color: var(--lcars-frame);
   font-family: var(--lcars-font-label);
-  font-size: 2rem;
+  font-size: 1.75rem;
   font-weight: bold;
   line-height: 1;
 }
@@ -62,8 +64,12 @@
   margin-block-end: 1rem;
 }
 
+/* Larger than in the upper panel, where it stands beside the name (user
+   decision 27.10.2026, variant C; was its own size, 72px). */
 .lcars-login__panel .site-logo img {
   display: block;
+  block-size: 6.5rem;
+  inline-size: auto;
 }
 
 /* The branding and the content as cards inside the panel, with the line and
