@@ -2,12 +2,16 @@
 
 LCARS-NG is a theme inspired by Michael Okuda's LCARS interface from
 *Star Trek: The Next Generation*: rounded elbows, colored bars and buttons on
-a black screen. It is a rebuild of the Drupal 6 theme
-[LCNG](https://github.com/LCARS-NG/LCNG) (2011) by the same author, with the
-same design on current techniques: Twig, CSS Grid and custom properties, no
-JavaScript and no build step. The CSS is served as it is in the repository.
+a dark background. It takes up the idea of the interface, but its colors and
+shapes are its own. It is a rebuild of the Drupal 6 theme
+[LCNG](https://github.com/LCARS-NG/LCNG) (2011) by the same author, on
+current techniques: Twig, CSS Grid and custom properties, with no build step.
+The CSS is served as it is in the repository. One small script sets the
+corners of boxes by their width; without JavaScript everything stays usable.
 
-The theme works as front-end theme and as administration theme.
+The theme works as front-end theme and as administration theme. Its frame
+adapts to the width of the screen, from phones to wide desktop screens, for
+mouse and touch.
 
 ![LCARS-NG front page for signed-in users: upper panel with site name, slogan
 and logo, status line with date and user, menu buttons on the left, content
@@ -29,9 +33,6 @@ This theme requires no modules outside of Drupal core (11.3 or later).
 
 ## Recommended modules
 
-- [Canvas](https://www.drupal.org/project/canvas): the theme provides four
-  single-directory components for Canvas pages in the group "LCARS": button,
-  heading, text and panel.
 - The theme also styles the pages of Dashboard and Project Browser when they
   are installed.
 
@@ -68,7 +69,8 @@ favicon:
 The theme chooses its layout per page:
 
 - **Frame** on all pages: elbows at the top and the bottom, menu buttons on
-  the left, the content in between.
+  the left, the content in between. On phones only the content remains, with
+  the menus as a grid of buttons above the title.
 - **Login panel** on the account pages (log in, register, reset password).
 - **Two-part screen** on the front page for signed-in users and on user
   profiles: an upper panel with site name, logo and slogan, a status line with
@@ -96,14 +98,11 @@ settings" fit best.
 Colors and frame sizes are custom properties in `css/lcars/tokens.css`
 (`--lcars-*`). A sub-theme can override them in its own stylesheet.
 
+The theme provides four single-directory components to embed in templates:
+button, heading, text and panel (`components/`).
+
 
 ## Troubleshooting & FAQ
-
-**The block layout is ignored on pages built with Canvas.**
-If the Canvas setting `default_page_variant` names a page variant (for
-example the one of Mercury), that variant fills the regions of every theme
-instead of the block layout. Leave the setting empty to use the blocks placed
-in LCARS-NG.
 
 **Why does the theme override dialog styles of Gin and Claro?**
 The module Gin Toolbar attaches the dialog styles of Gin and Claro to every
