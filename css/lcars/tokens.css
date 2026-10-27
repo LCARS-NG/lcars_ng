@@ -14,8 +14,8 @@
   --lcars-sidebar: #3469aa; /* the frame: sidebar filler, elbows and bars, panels, dashboard cards; a quiet steel blue, 3.11:1 (user decision 27.10.2026, variant C; was #579df9 after LCNG css/1px.png) */
   --lcars-blue: #579df9; /* the former sidebar blue: base of the mixed lines and backgrounds below, which keep their values */
   --lcars-bar: var(--lcars-sidebar); /* bars outside the frame (login panel), the blue of the Klaro ceiling (user decision 25.10.2026) */
-  --lcars-button: #3786ff; /* menu and form buttons */
-  --lcars-button-sub: #6e64ff; /* second menu level; lighter than LCNG's #6257fa for black labels at 4.93:1 (user decision 25.10.2026) */
+  --lcars-button: #5280b7; /* menu and form buttons: the steel blue of the frame lightened by 15 % (color-mix with white), black labels at 5.1:1 (user decision 27.10.2026, variant D; was #3786ff) */
+  --lcars-button-sub: var(--lcars-button); /* second menu level, in the one blue of the buttons (user decision 27.10.2026; was #6e64ff, a violet lighter than LCNG's #6257fa) */
   --lcars-button-hover: var(--lcars-frame);
   --lcars-button-active: #fff;
   --lcars-accent: #ffd068; /* page title bar */
