@@ -32,6 +32,8 @@ libraries-extend:
     - lcars_ng/dashboard
   layout_builder/drupal.layout_builder:
     - lcars_ng/layout-builder
+  ckeditor5/internal.drupal.ckeditor5:
+    - lcars_ng/ckeditor5
   klaro/klaro:
     - lcars_ng/klaro
   content_moderation/content_moderation:

@@ -1,0 +1,51 @@
+/**
+ * @file
+ * CKEditor 5 on the dark background.
+ *
+ * CKEditor brings its colors as custom properties: a white editing area and
+ * toolbar, black text; the headings took the light heading color of the theme
+ * on the white (1.6:1, 27.10.2026). Here the editor shows the text as the page
+ * does: the editing area in the page background, text, headings and links in
+ * their colors; toolbar, lists and panels on the card background with the
+ * line of the fields; the focus in the accent (user decision 27.10.2026,
+ * variant B). CKEditor adds its styles while the page loads, after the theme:
+ * "html:root" outweighs its ":root". Extends the library
+ * ckeditor5/internal.drupal.ckeditor5 (lcars_ng.info.yml).
+ */
+
+html:root {
+  --ck-color-base-background: var(--lcars-space);
+  --ck-color-base-foreground: var(--lcars-card-bg);
+  --ck-color-base-border: var(--lcars-field-border);
+  --ck-color-focus-border: var(--lcars-accent);
+  --ck-color-text: var(--lcars-text);
+  --ck-content-font-color: var(--lcars-text);
+  --ck-color-shadow-drop: rgb(0, 0, 0, 0.4);
+  --ck-color-shadow-inner: transparent;
+
+  /* Toolbar and its buttons */
+  --ck-color-toolbar-background: var(--lcars-card-bg);
+  --ck-color-toolbar-border: var(--lcars-field-border);
+  --ck-color-button-default-hover-background: var(--lcars-row-highlight);
+  --ck-color-button-default-active-background: var(--lcars-row-highlight);
+  --ck-color-button-on-background: var(--lcars-row-highlight);
+  --ck-color-button-on-hover-background: var(--lcars-row-highlight);
+  --ck-color-button-on-color: var(--lcars-frame);
+  --ck-color-split-button-hover-background: var(--lcars-row-highlight);
+
+  /* Dropdowns, lists, balloons and their fields */
+  --ck-color-panel-background: var(--lcars-card-bg);
+  --ck-color-panel-border: var(--lcars-field-border);
+  --ck-color-dropdown-panel-background: var(--lcars-card-bg);
+  --ck-color-dropdown-panel-border: var(--lcars-field-border);
+  --ck-color-list-background: var(--lcars-card-bg);
+  --ck-color-list-button-hover-background: var(--lcars-row-highlight);
+  --ck-color-list-button-on-background: var(--lcars-button);
+  --ck-color-list-button-on-text: var(--lcars-on-color);
+  --ck-color-input-background: var(--lcars-space);
+  --ck-color-input-border: var(--lcars-field-border);
+  --ck-color-input-text: var(--lcars-text);
+  --ck-color-labeled-field-label-background: var(--lcars-card-bg);
+  --ck-color-tooltip-background: var(--lcars-frame);
+  --ck-color-tooltip-text: var(--lcars-on-color);
+}

@@ -151,6 +151,10 @@ layout-builder:
   css:
     theme:
       css/lcars/layout-builder.css: {  }
+ckeditor5:
+  css:
+    theme:
+      css/lcars/ckeditor5.css: {  }
 klaro:
   css:
     theme:
