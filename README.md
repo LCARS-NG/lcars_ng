@@ -10,8 +10,9 @@ The CSS is served as it is in the repository. One small script sets the
 corners of boxes by their width; without JavaScript everything stays usable.
 
 The theme works as front-end theme and as administration theme. Its frame
-adapts to the width of the screen, from phones to wide desktop screens, for
-mouse and touch.
+adapts to the width and height of the screen, from phones to wide desktop
+screens, for mouse and touch: it fills the window on short pages, and longer
+pages scroll.
 
 ![LCARS-NG front page for signed-in users: upper panel with site name, slogan
 and logo, status line with date and user, menu buttons on the left, content
