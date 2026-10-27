@@ -7,3 +7,11 @@ lcars_ng.settings:
     front_page_login:
       type: boolean
       label: 'Login panel on the front page for anonymous visitors'
+    navigation_scheme:
+      type: string
+      label: 'Colors of the Navigation module: dark, light, or as the system'
+      constraints:
+        Choice:
+          - dark
+          - light
+          - auto

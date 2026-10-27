@@ -107,6 +107,12 @@ class LcarsNgHooks {
     if (in_array($this->routeMatch->getRouteName(), self::ALERT_ROUTES, TRUE)) {
       $variables['attributes']['class'][] = 'lcars-alert';
     }
+    // Colors of the Navigation module (css/lcars/navigation-scheme.css): dark
+    // unless a site chose light; sites from before the setting have none.
+    $scheme = $this->themeSettings->getSetting('navigation_scheme') ?? 'dark';
+    if ($scheme !== 'light') {
+      $variables['html_attributes']->setAttribute('data-lcars-navigation', $scheme);
+    }
   }
 
   /**
@@ -170,6 +176,17 @@ class LcarsNgHooks {
       '#title' => $this->t('Login panel on the front page'),
       '#description' => $this->t('Anonymous visitors see the login form in the LCARS login panel instead of the front page content, as in the Drupal 6 theme LCNG.'),
       '#config_target' => 'lcars_ng.settings:front_page_login',
+    ];
+    $form['lcars_ng']['navigation_scheme'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Navigation colors'),
+      '#description' => $this->t('Colors of the bars of the Navigation module on the left and at the top: dark in the colors of the theme, light as in core, or after the light or dark setting of the system of each user.'),
+      '#options' => [
+        'dark' => $this->t('Dark'),
+        'light' => $this->t('Light'),
+        'auto' => $this->t('As the system'),
+      ],
+      '#config_target' => 'lcars_ng.settings:navigation_scheme',
     ];
   }
 

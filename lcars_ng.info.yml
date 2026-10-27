@@ -24,6 +24,8 @@ libraries-extend:
     - lcars_ng/drupal.tablesort
   system/admin:
     - lcars_ng/admin
+  navigation/internal.navigation:
+    - lcars_ng/navigation-scheme
   project_browser/app:
     - lcars_ng/project-browser
   dashboard/dashboard:

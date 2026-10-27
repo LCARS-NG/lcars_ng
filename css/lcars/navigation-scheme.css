@@ -1,0 +1,69 @@
+/**
+ * @file
+ * Colors of the Navigation module (the administration bars on the left and at
+ * the top) after the theme setting "Navigation colors": dark in the colors of
+ * the theme, or after the system of the user. preprocess_html sets
+ * data-lcars-navigation on html for both; without it, as with "Light", the
+ * bars keep the colors of core. Extends navigation/internal.navigation
+ * (lcars_ng.info.yml, libraries-extend).
+ *
+ * The bars take their colors from variables on [data-drupal-admin-styles]
+ * (core/modules/navigation/css/base/variables.css). light-dark() holds the
+ * values of core and those of the theme; color-scheme picks one (user
+ * decision 27.10.2026, variant A of the matrix in the project docs).
+ */
+
+:is(html[data-lcars-navigation="dark"], html[data-lcars-navigation="auto"]) [data-drupal-admin-styles] {
+  --admin-toolbar-color-white: light-dark(var(--drupal-admin-color-white, #fff), var(--lcars-space));
+  --admin-toolbar-color-gray-020: light-dark(var(--drupal-admin-color-gray-020, #f8f9fc), var(--lcars-row-highlight));
+  --admin-toolbar-color-gray-050: light-dark(var(--drupal-admin-color-gray-050, #f3f5f9), var(--lcars-row-highlight));
+  --admin-toolbar-color-gray-070: light-dark(var(--drupal-admin-color-gray-070, #e3e9f2), var(--lcars-box-border-color));
+  --admin-toolbar-color-gray-100: light-dark(var(--drupal-admin-color-gray-100, #d8dfea), var(--lcars-box-border-color));
+  --admin-toolbar-color-gray-200: light-dark(var(--drupal-admin-color-gray-200, #cfd4dd), var(--lcars-box-border-color));
+  --admin-toolbar-color-gray-300: light-dark(var(--drupal-admin-color-gray-300, #b8c1d0), var(--lcars-navigation-muted));
+  --admin-toolbar-color-gray-600: light-dark(var(--drupal-admin-color-gray-600, #798291), var(--lcars-navigation-muted));
+  --admin-toolbar-color-gray-700: light-dark(var(--drupal-admin-color-gray-700, #6d7583), var(--lcars-navigation-muted));
+  --admin-toolbar-color-gray-800: light-dark(var(--drupal-admin-color-gray-800, #4f5661), var(--lcars-frame));
+  --admin-toolbar-color-gray-900: light-dark(var(--drupal-admin-color-gray-900, #323946), var(--lcars-text));
+  --admin-toolbar-color-gray-950: light-dark(var(--drupal-admin-color-gray-950, #1f242d), var(--lcars-text));
+  --admin-toolbar-color-gray-990: light-dark(var(--drupal-admin-color-gray-990, #13161a), var(--lcars-text));
+  --admin-toolbar-color-blue-300: light-dark(var(--drupal-admin-color-blue-300, #669eff), var(--lcars-button));
+  --admin-toolbar-color-blue-600: light-dark(var(--drupal-admin-color-blue-600, #0041b1), var(--lcars-link));
+  --admin-toolbar-color-blue-700: light-dark(var(--drupal-admin-color-blue-700, #002566), var(--lcars-link));
+  --admin-toolbar-color-expanded: light-dark(rgb(231, 234, 243, 0.5), var(--lcars-row-highlight));
+  --lcars-navigation-muted: color-mix(in sRGB, var(--lcars-frame) 75%, var(--lcars-space));
+}
+
+html[data-lcars-navigation="dark"] [data-drupal-admin-styles] {
+  color-scheme: dark;
+}
+
+html[data-lcars-navigation="auto"] [data-drupal-admin-styles] {
+  color-scheme: light dark;
+}
+
+/* The icon before the page title in the top bar is drawn with
+   fill="#000000" in its markup. */
+:is(html[data-lcars-navigation="dark"], html[data-lcars-navigation="auto"]) .toolbar-title__icon {
+  fill: light-dark(#000, currentcolor);
+}
+
+/* Core sets these in rules that count an ID (#extra-specificity-hack): the
+   primary button (Edit in the top bar) as an LCARS button, the menu behind
+   "More actions" with its fixed white and line. */
+:is(html[data-lcars-navigation="dark"], html[data-lcars-navigation="auto"]) :is(#extra-specificity-hack, [data-drupal-admin-styles]) .toolbar-button--primary {
+  --toolbar-button-color: light-dark(#fff, var(--lcars-on-color));
+  --toolbar-button-bg: light-dark(var(--drupal-admin-color-blue-450, #015efe), var(--lcars-button));
+  --toolbar-button-hover-color: light-dark(#fff, var(--lcars-on-color));
+  --toolbar-button-hover-bg: light-dark(var(--drupal-admin-color-blue-600, #0041b1), var(--lcars-button-hover));
+  --toolbar-button-focus-color: light-dark(#fff, var(--lcars-on-color));
+}
+
+:is(html[data-lcars-navigation="dark"], html[data-lcars-navigation="auto"]) :is(#extra-specificity-hack, [data-drupal-admin-styles]) .toolbar-dropdown__menu {
+  border-color: light-dark(transparent, var(--lcars-box-border-color));
+  background: light-dark(white, var(--lcars-space));
+}
+
+:is(html[data-lcars-navigation="dark"], html[data-lcars-navigation="auto"]) :is(#extra-specificity-hack, [data-drupal-admin-styles]) .toolbar-dropdown__item + .toolbar-dropdown__item {
+  border-top-color: light-dark(#d8dfea, var(--lcars-box-border-color));
+}

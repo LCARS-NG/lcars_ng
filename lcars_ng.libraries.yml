@@ -48,6 +48,10 @@ dialog:
     component:
       css/components/dialog.css:
         weight: -10
+navigation-scheme:
+  css:
+    theme:
+      css/lcars/navigation-scheme.css: {  }
 dropbutton:
   version: VERSION
   css:

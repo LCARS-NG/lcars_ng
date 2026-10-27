@@ -54,12 +54,16 @@ theme under *Appearance*.
 
 ## Configuration
 
-*Appearance > Settings > LCARS-NG* offers one setting besides the logo and
+*Appearance > Settings > LCARS-NG* offers two settings besides the logo and
 favicon:
 
 - **Login panel on the front page** (`front_page_login`, off by default):
   anonymous visitors see the login form in the LCARS login panel instead of
   the front page content, as in the Drupal 6 theme LCNG.
+- **Navigation colors** (`navigation_scheme`, dark by default): the bars of
+  the Navigation module on the left and at the top in the colors of the
+  theme (*Dark*), in the colors of core (*Light*), or after the light or dark
+  setting of the system of each user (*As the system*).
 
 The theme chooses its layout per page:
 
