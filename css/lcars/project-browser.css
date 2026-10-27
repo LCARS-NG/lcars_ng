@@ -2,10 +2,11 @@
  * @file
  * Project Browser (Extend → Browse modules) on the dark background.
  *
- * pb.css of project_browser is made for light admin themes. The filter panel
- * and the category list are cards a little lighter than the page
+ * pb.css of project_browser is made for light admin themes. The filter panel,
+ * the category list and the projects are cards a little lighter than the page
  * (--lcars-card-bg) with the line of the boxes, as the title bar of the
- * dialogs (user decision 25.10.2026); project titles in the frame color.
+ * dialogs (user decisions 25.10.2026 and 27.10.2026); project titles in the
+ * frame color; the search field and the buttons as in forms.css.
  * Extends the library project_browser/app (lcars_ng.info.yml).
  */
 
@@ -31,6 +32,27 @@
   background-color: var(--lcars-row-highlight);
 }
 
+/* Search field as the other fields (forms.css): pb.css gives the bar around
+   the field a white background, the light text vanished on it (27.10.2026).
+   The icons are dark images for light themes, made light as the eye of
+   view_password. */
+.search__search-bar,
+.search__search-bar:hover {
+  border-color: var(--lcars-field-border);
+  border-radius: 0;
+  background-color: transparent;
+}
+
+.search__search-bar:focus-within {
+  outline: 2px solid var(--lcars-accent);
+  outline-offset: 2px;
+}
+
+.search__search-clear img,
+.search__search-icon {
+  filter: invert(1);
+}
+
 .search__filter-button {
   color: var(--lcars-link);
 }
@@ -48,8 +70,41 @@
   color: var(--lcars-text);
 }
 
-.pb-project--list {
-  background: var(--lcars-space);
+/* The projects as cards like the filter panel: the line of the boxes, the
+   card background, corners by width (js/box-radius.js), no shadow (user
+   decision 27.10.2026, variant B; were gray 0.5px lines with square corners).
+   The list starts flush with the filter panel. */
+.pb-projects-list {
+  padding-inline-start: 0;
+}
+
+.pb-project--list,
+.pb-project--grid {
+  border: 1px solid var(--lcars-box-border-color);
+  border-radius: var(--lcars-box-radius);
+  background: var(--lcars-card-bg);
+  box-shadow: none;
+}
+
+/* "Install" (select a project) as the form buttons (forms.css); pb.css draws
+   it white with a blue outline. */
+.select_button {
+  padding: 0.3125rem 0.625rem; /* 5px 10px */
+  text-transform: uppercase;
+  color: var(--lcars-on-color);
+  border: 0;
+  border-radius: 0.625rem; /* 10px */
+  background: var(--lcars-button);
+  font-family: var(--lcars-font-label);
+  font-size: 0.85em;
+  line-height: 1.4;
+}
+
+.select_button:hover,
+.select_button:active {
+  color: var(--lcars-on-color);
+  border: 0;
+  background: var(--lcars-button-hover);
 }
 
 .project_status-indicator__label {
@@ -64,4 +119,30 @@
 .pb-detail-modal__sidebar {
   border-radius: var(--lcars-box-radius);
   background-color: var(--lcars-card-bg);
+}
+
+/* Phones: pb.css gives every card at least 350px and no layout below that, the
+   cards ran out of the screen (504px wide at 375px). Here the logo stands
+   above the text and the row with the icons and the button may wrap. */
+@media (max-width: 39.9375rem) {
+  .pb-projects-list,
+  .pb-projects-grid {
+    --grid-item--min-width: 0px;
+  }
+
+  .pb-project--list {
+    grid-template-areas:
+      "aside"
+      "main"
+      "footer";
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pb-project__logo--list {
+    justify-self: start;
+  }
+
+  .pb-project__icons {
+    flex-wrap: wrap;
+  }
 }

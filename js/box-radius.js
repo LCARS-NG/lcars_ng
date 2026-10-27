@@ -29,6 +29,7 @@
     '.ui-dialog',
     '.search__form-container',
     '.pb-detail-modal__sidebar',
+    '.pb-project',
   ].join(', ');
 
   /**
