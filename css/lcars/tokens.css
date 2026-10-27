@@ -18,7 +18,7 @@
   --lcars-button-sub: var(--lcars-button); /* second menu level, in the one blue of the buttons (user decision 27.10.2026; was #6e64ff, a violet lighter than LCNG's #6257fa) */
   --lcars-button-hover: var(--lcars-frame);
   --lcars-button-active: #fff;
-  --lcars-accent: #c89d41; /* page title bar, focus ring: an ochre as muted as the steel blue of the frame, 6.94:1 (user decision 27.10.2026, variant C; was #ffd068) */
+  --lcars-accent: #a6843f; /* page title bar, focus ring: a bronze, darker than the ochre #c89d41 of variant C, 4.98:1 (user decision 27.10.2026, variant D; was #ffd068) */
   --lcars-alert: #ff3b4f; /* red alert: error pages; lighter than #9e0e26 for black labels at 5.99:1 and text at 4.97:1 (user decision 25.10.2026) */
   /* Status messages (messages.css), light tones for black text (user decision 24.10.2026) */
   --lcars-message-status: #99d98c;
