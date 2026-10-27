@@ -10,8 +10,9 @@
 :root {
   /* Colors */
   --lcars-space: #001b33; /* page background, "negative" parts of the frame */
-  --lcars-frame: #a7d4ff; /* elbows and bars */
-  --lcars-sidebar: #579df9; /* sidebar filler (LCNG css/1px.png) */
+  --lcars-frame: #a7d4ff; /* labels and headings; the elbows and bars until 27.10.2026 */
+  --lcars-sidebar: #3469aa; /* the frame: sidebar filler, elbows and bars, panels, dashboard cards; a quiet steel blue, 3.11:1 (user decision 27.10.2026, variant C; was #579df9 after LCNG css/1px.png) */
+  --lcars-blue: #579df9; /* the former sidebar blue: base of the mixed lines and backgrounds below, which keep their values */
   --lcars-bar: var(--lcars-sidebar); /* bars outside the frame (login panel), the blue of the Klaro ceiling (user decision 25.10.2026) */
   --lcars-button: #3786ff; /* menu and form buttons */
   --lcars-button-sub: #6e64ff; /* second menu level; lighter than LCNG's #6257fa for black labels at 4.93:1 (user decision 25.10.2026) */
@@ -33,10 +34,10 @@
   --lcars-link: #4bb0ff;
   --lcars-link-hover: var(--lcars-frame);
   --lcars-on-color: #000; /* text on bars and buttons */
-  --lcars-line-subtle: #579df91f; /* --lcars-sidebar at 12 %, dark blue: quiet frames inside a box */
-  --lcars-field-border: color-mix(in sRGB, var(--lcars-sidebar) 60%, var(--lcars-space)); /* form fields (forms.css): 3.11:1, as WCAG 1.4.11 asks (user decision 25.10.2026; was --lcars-line-subtle) */
-  --lcars-row-highlight: color-mix(in sRGB, var(--lcars-sidebar) 20%, var(--lcars-space)); /* selected and dragged table rows, the category under the pointer in Project Browser (tableselect.css, tabledrag.css, project-browser.css; user decision 25.10.2026) */
-  --lcars-card-bg: color-mix(in sRGB, var(--lcars-sidebar) 8%, var(--lcars-space)); /* cards a little lighter than the page: general information of the status report, title bar and button pane of dialogs, filter panel of Project Browser (status-report.css, dialog.css, project-browser.css; user decision 25.10.2026) */
+  --lcars-line-subtle: #579df91f; /* --lcars-blue at 12 %, dark blue: quiet frames inside a box */
+  --lcars-field-border: color-mix(in sRGB, var(--lcars-blue) 60%, var(--lcars-space)); /* form fields (forms.css): 3.11:1, as WCAG 1.4.11 asks (user decision 25.10.2026; was --lcars-line-subtle) */
+  --lcars-row-highlight: color-mix(in sRGB, var(--lcars-blue) 20%, var(--lcars-space)); /* selected and dragged table rows, the category under the pointer in Project Browser (tableselect.css, tabledrag.css, project-browser.css; user decision 25.10.2026) */
+  --lcars-card-bg: color-mix(in sRGB, var(--lcars-blue) 8%, var(--lcars-space)); /* cards a little lighter than the page: general information of the status report, title bar and button pane of dialogs, filter panel of Project Browser (status-report.css, dialog.css, project-browser.css; user decision 25.10.2026) */
 
   /* Typography: the typeface is not chosen yet. LCNG used Droid Sans. */
   --lcars-font: system-ui, sans-serif;
@@ -62,7 +63,7 @@
 
   /* Plain box (box.css) */
   --lcars-box-border-width: 1px;
-  --lcars-box-border-color: color-mix(in sRGB, var(--lcars-sidebar) 40%, var(--lcars-space)); /* a dark, quiet line (user decision 25.10.2026; was --lcars-sidebar) */
+  --lcars-box-border-color: color-mix(in sRGB, var(--lcars-blue) 40%, var(--lcars-space)); /* a dark, quiet line (user decision 25.10.2026; was --lcars-sidebar) */
   --lcars-box-radius-small: 0.375rem; /* 6px on boxes and cards up to --lcars-box-wide-from (user decision 25.10.2026; was --lcars-elbow-inner, 20px, 14px on phones) */
   --lcars-box-radius-wide: 0.625rem; /* 10px on wider boxes and cards (user decision 25.10.2026) */
   --lcars-box-wide-from: 25rem; /* 400px: js/box-radius.js compares the width of each box with it */
