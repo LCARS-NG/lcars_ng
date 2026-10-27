@@ -45,8 +45,22 @@
   padding-inline-start: 0;
 }
 
+/* The links of the top tasks: dashboard.css of the module colors them with
+   variables of Claro, which are set only while the layout is edited (Layout
+   Builder); there the links turned dark, with arrows and lines between them.
+   They stay as on the dashboard. */
 .dashboard .layout .block.block-menu ul.menu li.menu-item a {
   padding-inline-start: 0;
+  color: inherit;
+  border-block-end: 0;
+}
+
+.dashboard .layout .block.block-menu ul.menu li.menu-item a::after {
+  content: none;
+}
+
+.dashboard .layout .block.block-menu ul.menu li.menu-item a:hover {
+  color: var(--lcars-link-hover);
 }
 
 /* Inner curve between the ceiling and the left edge */

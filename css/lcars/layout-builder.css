@@ -1,0 +1,77 @@
+/**
+ * @file
+ * Layout Builder (also "Edit layout" of a dashboard) on the dark background.
+ *
+ * layout-builder.css of core paints the builder and its blocks white, the
+ * fields to add a section light gray and those to add a block light blue: the
+ * light text of the theme vanished on them (27.10.2026). Here the frame and the
+ * dashed outlines take the quiet line of the fields, the fields to add the
+ * card background (user decision 27.10.2026, variant A); dragging and the
+ * highlighted element take the accent. Extends the library
+ * layout_builder/drupal.layout_builder (lcars_ng.info.yml).
+ */
+
+.layout-builder {
+  border: 2px solid var(--lcars-field-border);
+  border-radius: var(--lcars-box-radius);
+  background-color: transparent;
+}
+
+.layout-builder-block {
+  background-color: transparent;
+}
+
+.layout-builder__add-section {
+  outline: 2px dashed var(--lcars-field-border);
+  background-color: var(--lcars-card-bg);
+}
+
+.layout-builder__add-block {
+  background-color: var(--lcars-card-bg);
+}
+
+.layout-builder__region {
+  outline: 2px dashed var(--lcars-field-border);
+}
+
+/* The links to add in the link color, the plus as text instead of the gray
+   icon. */
+.layout-builder__link--add {
+  padding-inline-start: 0;
+  color: var(--lcars-link);
+  background-image: none;
+}
+
+.layout-builder__link--add::before {
+  margin-inline-end: 0.35em;
+  content: "+";
+  font-weight: bold;
+}
+
+.layout-builder__link--add:hover,
+.layout-builder__link--add:active {
+  color: var(--lcars-link-hover);
+}
+
+.layout-builder__link--remove {
+  border-color: var(--lcars-field-border);
+  background-color: var(--lcars-space);
+}
+
+.layout-builder__section .ui-state-drop {
+  outline-color: var(--lcars-accent);
+  background-color: var(--lcars-row-highlight);
+}
+
+.layout-builder__add-block.is-layout-builder-highlighted,
+.layout-builder__add-section.is-layout-builder-highlighted,
+.layout-builder__layout.is-layout-builder-highlighted,
+.layout-builder__layout.is-layout-builder-highlighted::before,
+.layout-builder-block.is-layout-builder-highlighted {
+  border-color: var(--lcars-accent);
+}
+
+.layout__region-info,
+.layout-builder--content-preview-disabled .layout-builder-block {
+  border-bottom-color: var(--lcars-field-border);
+}

@@ -30,6 +30,8 @@ libraries-extend:
     - lcars_ng/project-browser
   dashboard/dashboard:
     - lcars_ng/dashboard
+  layout_builder/drupal.layout_builder:
+    - lcars_ng/layout-builder
   klaro/klaro:
     - lcars_ng/klaro
   content_moderation/content_moderation:

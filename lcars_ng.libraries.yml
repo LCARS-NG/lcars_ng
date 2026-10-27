@@ -147,6 +147,10 @@ dashboard:
   css:
     theme:
       css/lcars/dashboard.css: {  }
+layout-builder:
+  css:
+    theme:
+      css/lcars/layout-builder.css: {  }
 klaro:
   css:
     theme:
