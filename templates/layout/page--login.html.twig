@@ -7,8 +7,8 @@
  * theme setting front_page_login, for the front page of anonymous visitors, as
  * page-userauth.tpl.php and page-front-anonymous.tpl.php in the Drupal 6 theme
  * LCNG: a bar at the top and the bottom of the window, the site name and the
- * form centred between them. The footer region (privacy policy, imprint,
- * consent settings) sits above the bottom bar, as on the other pages.
+ * form centred between them. The footer region is not shown here (user
+ * decision 28.10.2026; from 24.10.2026 it sat above the bottom bar).
  *
  * Available variables:
  * - login_form: The user login form, set on the front page of anonymous
@@ -23,7 +23,7 @@
  */
 #}
 {{ attach_library('lcars_ng/login') }}
-<div{{ create_attribute({'class': ['lcars-login', page.footer ? 'lcars-login--foot']}) }}>
+<div class="lcars-login">
   <div class="lcars-login__bar"></div>
 
   <main class="lcars-login__panel lcars-box">
@@ -43,12 +43,6 @@
       {{ page.content }}
     {% endif %}
   </main>
-
-  {% if page.footer %}
-    <footer class="lcars-login__foot">
-      {{ page.footer }}
-    </footer>
-  {% endif %}
 
   <div class="lcars-login__bar"></div>
 </div>

@@ -18,20 +18,16 @@
   --lcars-notice-ceiling: 1.125rem; /* 18px: capitals 14px, as the sidebar panels */
 }
 
-/* Login panel: above the bottom bar (6ex), the gaps of the grid and the
-   footer row (login.css). */
+/* Login panel: above the bottom bar (6ex) and the padding of the grid
+   (login.css), at all widths. */
 .lcars-login-page .klaro.klaro-theme-lcars_ng {
-  --lcars-notice-bottom: 7.5rem;
+  --lcars-notice-bottom: 5.25rem;
 }
 
 @media (max-width: 39.9375rem) {
   /* The footer menu wraps to two lines on phones. */
   .klaro.klaro-theme-lcars_ng {
     --lcars-notice-bottom: 7.5rem;
-  }
-
-  .lcars-login-page .klaro.klaro-theme-lcars_ng {
-    --lcars-notice-bottom: 9rem;
   }
 }
 

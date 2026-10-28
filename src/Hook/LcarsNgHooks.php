@@ -141,6 +141,18 @@ class LcarsNgHooks {
   }
 
   /**
+   * Implements hook_preprocess_page_title().
+   *
+   * The log in page shows no title bar, as the login panel on the front page:
+   * the button below the form says the same (user decision 28.10.2026). The
+   * heading stays for screen readers (page-title.html.twig).
+   */
+  #[Hook('preprocess_page_title')]
+  public function preprocessPageTitle(array &$variables): void {
+    $variables['title_hidden'] = $this->routeMatch->getRouteName() === 'user.login';
+  }
+
+  /**
    * Implements hook_preprocess_image_widget().
    */
   #[Hook('preprocess_image_widget')]

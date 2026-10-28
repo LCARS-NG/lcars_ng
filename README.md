@@ -89,8 +89,8 @@ Regions:
 - `breadcrumb`: in the upper curve
 - `sidebar`: menu buttons
 - `highlighted`, `help`, `content`, `sidebar_second`
-- `footer`: in the lower curve, blocks side by side; in the login panel above
-  the bottom bar
+- `footer`: in the lower curve, blocks side by side; not shown in the login
+  panel
 
 With the [Klaro!](https://www.drupal.org/project/klaro) consent manager (part
 of Drupal CMS), the consent notice is an LCARS panel floating above the bottom

@@ -10,12 +10,14 @@
  * - title: The page title, for use in the actual content.
  * - title_suffix: Additional output populated by modules, intended to be
  *   displayed after the main title tag that appears in the template.
+ * - title_hidden: Whether the title and its bar are visually hidden
+ *   (LcarsNgHooks::preprocessPageTitle(), the log in page).
  */
 #}
 {{ title_prefix }}
 {% if title %}
   {# The title cuts into a bar, as #page-title in the Drupal 6 theme LCNG. #}
-  <div class="lcars-title">
+  <div{{ create_attribute({'class': ['lcars-title', title_hidden ? 'visually-hidden']}) }}>
     <h1{{ title_attributes.addClass('page-title') }}>{{ title }}</h1>
   </div>
 {% endif %}
