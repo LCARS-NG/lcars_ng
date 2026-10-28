@@ -6,13 +6,15 @@
  * (--space-*, --color-gray-*), which this theme does not define, and draws
  * light headings. Each block becomes an L-shaped frame as the LCARS panel
  * component: a ceiling bar with the title cut into it near the right end, a
- * narrow left edge and the inner curve between them. Extends the library
- * dashboard/dashboard (lcars_ng.info.yml).
+ * narrow left edge and the inner curve between them. The ceiling is as high as
+ * the title bar of the page (--lcars-title-height; #21, user wish 28.10.2026).
+ * Extends the library dashboard/dashboard (lcars_ng.info.yml).
  */
 
 .dashboard {
   --lcars-card-frame: var(--lcars-sidebar); /* as the frame (user decision 27.10.2026; was --lcars-frame) */
-  --lcars-card-bar: 1.5625rem; /* 25px, as the panel ceiling */
+  --lcars-card-corner: 1.8125rem; /* 29px, outer curve of the elbow, as the panel */
+  --lcars-card-end: var(--lcars-title-height); /* the ceiling right of the title, a square */
   --lcars-card-edge: 0.3125rem; /* 5px */
   --lcars-card-pad: 1.25rem;
   --lcars-card-gap: 1.5rem;
@@ -26,11 +28,7 @@
   border: 0;
   border-inline-start: var(--lcars-card-edge) solid var(--lcars-card-frame);
   border-radius: 0;
-  border-start-start-radius: 1.8125rem; /* 29px */
-  /* The ceiling, rounded with the corner of the card; the title cuts it. */
-  background-image: linear-gradient(var(--lcars-card-frame), var(--lcars-card-frame));
-  background-repeat: no-repeat;
-  background-size: 100% var(--lcars-card-bar);
+  border-start-start-radius: var(--lcars-card-corner);
   box-shadow: none;
   font-size: 0.8125rem; /* 13px like the right sidebar (user decision 24.10.2026) */
 }
@@ -63,27 +61,50 @@
   color: var(--lcars-link-hover);
 }
 
-/* Inner curve between the ceiling and the left edge */
+/* The ceiling and the inner curve below it, between the ceiling and the left
+   edge. It lies under the edge and takes the curve of the card, so the elbow
+   has one outline (with the inner curve of the edge, smoothing drew a fine
+   line along it). Without anchor positioning (below) it is as high as the
+   title should be. */
 .dashboard .layout .block::before {
   position: absolute;
-  inset-block-start: var(--lcars-card-bar);
-  inset-inline-start: 0;
-  inline-size: var(--lcars-elbow-inner);
-  block-size: var(--lcars-elbow-inner);
+  inset-block-start: 0;
+  inset-inline: calc(-1 * var(--lcars-card-edge)) 0;
+  block-size: calc(var(--lcars-title-height) + var(--lcars-elbow-inner));
   content: "";
-  background: radial-gradient(circle at 100% 100%, transparent calc(var(--lcars-elbow-inner) - 0.5px), var(--lcars-card-frame) var(--lcars-elbow-inner));
+  border-start-start-radius: var(--lcars-card-corner);
+  background:
+    radial-gradient(circle at 100% 100%, transparent calc(var(--lcars-elbow-inner) - 0.5px), var(--lcars-card-frame) var(--lcars-elbow-inner)) left var(--lcars-card-edge) bottom / var(--lcars-elbow-inner) var(--lcars-elbow-inner) no-repeat,
+    linear-gradient(var(--lcars-card-frame), var(--lcars-card-frame)) top / 100% calc(100% - var(--lcars-elbow-inner)) no-repeat;
+}
+
+/* The ceiling ends with the title, whose height comes from its capitals, as
+   the title bar of the page: where the capitals come out larger than set (on
+   the phone of the user about 1.2 times), both grow alike (#21). A card
+   without a title keeps a ceiling of --lcars-title-height. */
+@supports (anchor-name: --lcars-card-title) {
+  .dashboard .layout .block > h2 {
+    anchor-name: --lcars-card-title;
+  }
+
+  .dashboard .layout .block::before {
+    inset-block-end: calc(anchor(--lcars-card-title bottom, calc(100% - var(--lcars-title-height))) - var(--lcars-elbow-inner));
+    block-size: auto;
+  }
 }
 
 /* The title cuts the ceiling near its end, with the dark of the page. At least
    the elbow and a piece of ceiling stay left of it, as in the panel component;
    a longer title ends with an ellipsis (user wish 27.10.2026, "Drupal Events
    and User Groups" ran over the elbow). Its capitals fill the ceiling up to
-   --lcars-cap-inset, as the label of the panel and the page title (user wish
-   27.10.2026; were 20px letters in the 25px ceiling). */
+   --lcars-cap-inset with the rules of the page title (frame.css; user wish
+   27.10.2026, were 20px letters in the 25px ceiling). Positioned, so it lies
+   above the ceiling. */
 .dashboard .layout .block > h2 {
+  position: relative;
   overflow: hidden;
   box-sizing: border-box;
-  margin: 0 calc(1.5625rem - var(--lcars-card-pad)) var(--lcars-card-pad) auto; /* end of the ceiling 25px */
+  margin: 0 calc(var(--lcars-card-end) - var(--lcars-card-pad)) var(--lcars-card-pad) auto;
   padding: var(--lcars-cap-inset) 0.3em;
   white-space: nowrap;
   text-transform: uppercase;
@@ -92,16 +113,15 @@
   border-radius: 0;
   background: var(--lcars-space);
   font-family: var(--lcars-font-label);
-  font-size: calc(var(--lcars-card-bar) - 2 * var(--lcars-cap-inset));
+  font-size: calc(var(--lcars-title-height) - 2 * var(--lcars-cap-inset));
   font-weight: bold;
   font-size-adjust: cap-height 1;
-  line-height: var(--lcars-card-bar);
+  line-height: var(--lcars-title-height);
   text-box: trim-both cap alphabetic;
-  block-size: var(--lcars-card-bar);
   inline-size: fit-content;
-  /* The width of the card without the elbow (29px) and the pieces of ceiling
-     left and right of the title (25px each). */
-  max-inline-size: calc(100% + 2 * var(--lcars-card-pad) + var(--lcars-card-edge) - 1.8125rem - 2 * 1.5625rem);
+  /* The width of the card without the elbow and the pieces of ceiling left
+     and right of the title. */
+  max-inline-size: calc(100% + 2 * var(--lcars-card-pad) + var(--lcars-card-edge) - var(--lcars-card-corner) - 2 * var(--lcars-card-end));
 }
 
 /* Announcements: dashboard.css sets dark grays. */
@@ -136,7 +156,14 @@
   margin-block-start: 0.5rem;
 }
 
+/* Phones: the elbow shrinks with the ceiling (18 instead of 25px), so the card
+   keeps the proportions of the desktop (#21, user decision 28.10.2026,
+   variant D; were 29px). */
 @media (max-width: 39.9375rem) {
+  .dashboard {
+    --lcars-card-corner: 1.3125rem; /* 21px */
+  }
+
   .dashboard .layout .block {
     margin-inline-end: 0;
   }

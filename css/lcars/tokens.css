@@ -60,6 +60,7 @@
   --lcars-button-large-width: 8rem; /* their minimum width */
   --lcars-pill: 9999px; /* pill: a radius larger than any element */
   --lcars-cap-inset: 2px; /* capitals cut into a bar stop this short of its top and bottom edge (user decision 23.10.2026) */
+  --lcars-title-height: 1.5625rem; /* 25px: the title bar of the page (frame.css) and the titles of the dashboard cards (dashboard.css), capitals 21px, smaller than the site name (28px); was --lcars-button-height, 34px */
 
   /* Plain box (box.css) */
   --lcars-box-border-width: 1px;
@@ -78,6 +79,7 @@
     --lcars-elbow-outer: 1.75rem;
     --lcars-elbow-inner: 0.875rem;
     --lcars-bar-top: 1.5rem; /* 24px as the title bar, so the site name fits (user decision 24.10.2026) */
+    --lcars-title-height: 1.125rem; /* 18px: capitals 14px, as the panels of the right sidebar (#15, user decision 26.10.2026; was 24px with long titles in two lines); the dashboard cards too (#21, user wish 28.10.2026) */
     --lcars-box-radius: var(--lcars-box-radius-small); /* boxes are narrower than 400px here */
   }
 }

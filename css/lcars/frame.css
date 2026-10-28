@@ -244,7 +244,8 @@
 }
 
 /* Page title: a bar with the title cut into it, as high as the title of the
-   login panel (--lcars-title-height). The cut runs through the whole bar; the
+   login panel and the titles of the dashboard cards (--lcars-title-height,
+   tokens.css). The cut runs through the whole bar; the
    capitals fill it up to --lcars-cap-inset at the top and bottom.
    font-size-adjust makes the cap height equal the font size in any typeface,
    text-box trims the line box to the capitals. A long title stays on one line
@@ -252,8 +253,6 @@
    the whole title stays in the markup (#15, user decision 26.10.2026). */
 
 .lcars-title {
-  --lcars-title-height: 1.5625rem; /* 25px: capitals 21px, smaller than the site name (28px); was --lcars-button-height, 34px */
-
   display: flex;
   align-items: center;
   margin-block-end: 2rem;
@@ -312,10 +311,6 @@
     margin-block-end: 1.5rem;
     padding: 0 0 0 var(--lcars-gutter);
     background: none;
-  }
-
-  .lcars-title {
-    --lcars-title-height: 1.125rem; /* 18px: capitals 14px, as the panels of the right sidebar (#15, user decision 26.10.2026; was 24px with long titles in two lines) */
   }
 
   .lcars-aside {
