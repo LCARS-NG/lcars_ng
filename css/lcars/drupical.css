@@ -97,6 +97,22 @@
   align-self: flex-start;
 }
 
+/* "Load more events" as the buttons in the content, as "Edit layout" above
+   the dashboard (forms.css; user decision 28.10.2026): drupical.css colors
+   the links of the feed and the button on hover with variables of Gin that
+   this theme does not define (a white label, no background on hover), and
+   the 13px of the cards (dashboard.css) made it smaller. The second class
+   outweighs the link color of drupical.css. */
+.events-feed .events-load-more a.button.button--extrasmall {
+  color: var(--lcars-on-color);
+  font-size: 0.85rem;
+}
+
+.events-feed .events-load-more a.button.button--extrasmall:hover {
+  color: var(--lcars-on-color);
+  background: var(--lcars-button-hover);
+}
+
 .events-feed .events-footer-links {
   align-self: flex-end;
 }
