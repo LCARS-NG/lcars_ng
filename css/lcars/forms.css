@@ -60,6 +60,18 @@ button.shwpd {
   filter: invert(1);
 }
 
+/* An SVG preview of an image field drawn in currentColor (the default user
+   picture), as a mask over the color (LcarsNgHooks::preprocessImageWidget):
+   as an image it was black. In the color of the picture on the profile, where
+   it is a link (user decision 28.10.2026). */
+.image-preview__svg {
+  display: inline-block;
+  vertical-align: top;
+  color: var(--lcars-link);
+  background: currentColor;
+  mask: var(--lcars-preview-mask) center / contain no-repeat;
+}
+
 .form-item .description {
   padding-block-start: 0.5em;
   color: var(--lcars-text-muted);

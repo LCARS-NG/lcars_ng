@@ -5,6 +5,7 @@ namespace Drupal\lcars_ng\Hook;
 use Drupal\block\BlockInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Extension\ThemeSettingsProvider;
+use Drupal\Core\File\FileUrlGeneratorInterface;
 use Drupal\Core\Form\FormBuilderInterface;
 use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\Core\Path\PathMatcherInterface;
@@ -55,6 +56,7 @@ class LcarsNgHooks {
     private readonly FormBuilderInterface $formBuilder,
     private readonly ThemeSettingsProvider $themeSettings,
     private readonly EntityTypeManagerInterface $entityTypeManager,
+    private readonly FileUrlGeneratorInterface $fileUrlGenerator,
   ) {}
 
   /**
@@ -150,7 +152,32 @@ class LcarsNgHooks {
     // @todo revisit in https://drupal.org/node/3114318
     if (isset($data['preview']['#access']) && $data['preview']['#access'] === FALSE) {
       unset($data['preview']);
+      return;
     }
+    // An SVG drawn in currentColor (the default user picture of Drupal CMS)
+    // takes the color of its text where it is rendered inline, as on the
+    // profile; as the <img> of the preview it falls back to black. Drawn as a
+    // mask over the color instead (forms.css).
+    $uri = $data['preview']['#uri'] ?? NULL;
+    if (!is_string($uri) || !str_ends_with(strtolower($uri), '.svg') || !is_file($uri) || filesize($uri) > 65536
+      || !str_contains((string) file_get_contents($uri), 'currentColor')) {
+      return;
+    }
+    $data['preview'] = [
+      '#type' => 'html_tag',
+      '#tag' => 'span',
+      '#weight' => $data['preview']['#weight'] ?? -10,
+      '#attributes' => [
+        'class' => ['image-preview__svg'],
+        'aria-hidden' => 'true',
+        'style' => sprintf(
+          '--lcars-preview-mask: url("%s"); inline-size: %dpx; block-size: %dpx;',
+          $this->fileUrlGenerator->generateString($uri),
+          (int) ($data['preview']['#width'] ?? 64),
+          (int) ($data['preview']['#height'] ?? 64),
+        ),
+      ],
+    ];
   }
 
   /**
