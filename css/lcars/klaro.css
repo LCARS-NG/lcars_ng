@@ -16,6 +16,12 @@
      (frame.css). */
   --lcars-notice-bottom: calc(1rem + var(--lcars-bar-bottom) + var(--lcars-curve) + 0.25rem);
   --lcars-notice-ceiling: 1.125rem; /* 18px: capitals 14px, as the sidebar panels */
+  /* The elbow of an 18px ceiling, as the sidebar panels (user decision
+     28.10.2026, variant C; were 29px outside, 25px end, --lcars-elbow-inner
+     inside). */
+  --lcars-notice-corner: 1.3125rem; /* 21px */
+  --lcars-notice-end: var(--lcars-notice-ceiling);
+  --lcars-notice-inner: 0.875rem; /* 14px */
 }
 
 /* Login panel: above the bottom bar (6ex) and the padding of the grid
@@ -67,7 +73,7 @@
   padding: var(--lcars-notice-ceiling) 0 0 0.3125rem;
   color: var(--lcars-text);
   border: none;
-  border-radius: 1.8125rem 0 0; /* 29px */
+  border-radius: var(--lcars-notice-corner) 0 0;
   background: var(--lcars-sidebar);
   box-shadow: 0 0.75rem 2rem rgb(0, 0, 0, 0.55);
   font-family: var(--lcars-font);
@@ -112,7 +118,7 @@
 /* Inside the ceiling: the space color, the inner curve at the top left. */
 .klaro.klaro-theme-lcars_ng .cookie-notice:not(.cookie-modal-notice) .cn-body {
   padding: 1rem 1rem 1rem var(--lcars-gutter, 1.25rem);
-  border-start-start-radius: var(--lcars-elbow-inner);
+  border-start-start-radius: var(--lcars-notice-inner);
   background: var(--lcars-space);
 }
 
@@ -123,7 +129,7 @@
 
 .klaro.klaro-theme-lcars_ng .cookie-modal .cm-modal.cm-klaro .cm-header {
   padding-block-start: 1.5rem;
-  border-start-start-radius: var(--lcars-elbow-inner);
+  border-start-start-radius: var(--lcars-notice-inner);
 }
 
 .klaro.klaro-theme-lcars_ng .cookie-notice:not(.cookie-modal-notice) .cn-body p,
@@ -159,8 +165,8 @@
   font-size-adjust: cap-height 1;
   line-height: var(--lcars-notice-ceiling);
   inset-block-start: 0;
-  inset-inline-end: 1.5625rem;
-  max-inline-size: calc(100% - 4.6875rem); /* elbow, a piece of ceiling, end */
+  inset-inline-end: var(--lcars-notice-end);
+  max-inline-size: calc(100% - var(--lcars-notice-corner) - 2 * var(--lcars-notice-end)); /* elbow, a piece of ceiling, end */
   text-box: trim-both cap alphabetic;
 }
 

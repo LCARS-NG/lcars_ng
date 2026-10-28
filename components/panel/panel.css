@@ -6,6 +6,12 @@
 .lcars-panel {
   --lcars-panel-color: var(--lcars-frame);
   --lcars-panel-ceiling: 1.5625rem; /* 25px */
+  /* The elbow follows the ceiling: outer curve 1.16 times its height, the
+     piece right of the label a square, the inner curve about 0.8 times
+     (design guide, section 4, "Ellbogen"; user decision 28.10.2026). */
+  --lcars-panel-corner: 1.8125rem; /* 29px */
+  --lcars-panel-end: var(--lcars-panel-ceiling);
+  --lcars-panel-inner: var(--lcars-elbow-inner);
 
   display: grid;
   grid-template-rows: auto 1fr;
@@ -13,7 +19,7 @@
   margin-block-end: 1.5rem;
   padding-inline-start: 0.3125rem; /* 5px */
   background: var(--lcars-panel-color);
-  border-start-start-radius: 1.8125rem; /* 29px */
+  border-start-start-radius: var(--lcars-panel-corner);
 }
 
 /* At least the elbow and a piece of ceiling as long as the end stays visible
@@ -23,7 +29,7 @@
   align-items: stretch;
   justify-content: flex-end;
   min-block-size: var(--lcars-panel-ceiling);
-  padding-inline: calc(1.8125rem + 1.5625rem) 1.5625rem; /* 29px elbow + 25px */
+  padding-inline: calc(var(--lcars-panel-corner) + var(--lcars-panel-end)) var(--lcars-panel-end);
 }
 
 /* The label cuts the ceiling over its full height, as the dashboard cards;
@@ -49,7 +55,7 @@
    page keeps from the sidebar (--lcars-gutter, user decision 24.10.2026). */
 .lcars-panel__inner {
   padding: 1.25rem 1rem 1rem var(--lcars-gutter, 1.25rem); /* 20px … 20px */
-  border-start-start-radius: var(--lcars-elbow-inner);
+  border-start-start-radius: var(--lcars-panel-inner);
   background: var(--lcars-space);
 }
 
