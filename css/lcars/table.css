@@ -12,7 +12,8 @@
 }
 
 :is(.lcars-aside .lcars-panel, .dashboard .layout .block) :is(th, td) {
-  padding: 0.125rem 0.5rem 0.125rem 0;
+  padding-block: 0.125rem;
+  padding-inline: 0 0.5rem;
   text-align: start;
 }
 

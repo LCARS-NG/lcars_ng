@@ -51,7 +51,8 @@
 /* The content keeps the distance from the left edge that the content of a
    page keeps from the sidebar (--lcars-gutter, user decision 24.10.2026). */
 .lcars-panel__inner {
-  padding: 1.25rem 1rem 1rem var(--lcars-gutter, 1.25rem); /* 20px … 20px */
+  padding-block: 1.25rem 1rem; /* 20px 16px */
+  padding-inline: var(--lcars-gutter, 1.25rem) 1rem; /* 20px 16px */
   border-start-start-radius: var(--lcars-panel-inner);
   background: var(--lcars-space);
 }

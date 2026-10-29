@@ -25,7 +25,8 @@
 }
 .token-tree td,
 .token-tree th {
-  padding: 0.25em 0.75em 0.25em 0;
+  padding-block: 0.25em;
+  padding-inline: 0 0.75em;
   vertical-align: top;
 }
 /* Room for the arrow, which the tree pulls 19px to the left of the name. */

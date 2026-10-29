@@ -26,7 +26,8 @@
 /* Cards */
 .dashboard .layout .block {
   position: relative;
-  margin: 0 var(--lcars-card-gap) var(--lcars-card-gap) 0;
+  margin-block: 0 var(--lcars-card-gap);
+  margin-inline: 0 var(--lcars-card-gap);
   padding: 0 var(--lcars-card-pad) var(--lcars-card-pad);
   border: 0;
   border-inline-start: var(--lcars-card-edge) solid var(--lcars-card-frame);
@@ -81,6 +82,14 @@
     linear-gradient(var(--lcars-card-frame), var(--lcars-card-frame)) top / 100% calc(100% - var(--lcars-card-inner)) no-repeat;
 }
 
+/* Right to left the edge and the corner move to the right (logical
+   properties above); the inner curve, a gradient, follows them (#32). */
+[dir="rtl"] .dashboard .layout .block::before {
+  background:
+    radial-gradient(circle at 0 100%, transparent calc(var(--lcars-card-inner) - 0.5px), var(--lcars-card-frame) var(--lcars-card-inner)) right var(--lcars-card-edge) bottom / var(--lcars-card-inner) var(--lcars-card-inner) no-repeat,
+    linear-gradient(var(--lcars-card-frame), var(--lcars-card-frame)) top / 100% calc(100% - var(--lcars-card-inner)) no-repeat;
+}
+
 /* The ceiling ends with the title, whose height comes from its capitals, as
    the title bar of the page: where the capitals come out larger than set (on
    the phone of the user about 1.2 times), both grow alike (#21). A card
@@ -109,7 +118,8 @@
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
-  margin: 0 calc(var(--lcars-card-end) - var(--lcars-card-pad)) var(--lcars-card-pad) auto;
+  margin-block: 0 var(--lcars-card-pad);
+  margin-inline: auto calc(var(--lcars-card-end) - var(--lcars-card-pad));
   padding-inline: 0.3em;
   white-space: nowrap;
   text-transform: uppercase;

@@ -10,7 +10,8 @@
   align-items: flex-end;
   justify-content: flex-end;
   box-sizing: border-box;
-  margin: 0 var(--lcars-seam) var(--lcars-seam) 0;
+  margin-block: 0 var(--lcars-seam);
+  margin-inline: 0 var(--lcars-seam);
   padding: 0.25rem 1rem;
   text-decoration: none;
   text-transform: uppercase;

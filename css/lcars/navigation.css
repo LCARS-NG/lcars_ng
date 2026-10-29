@@ -18,7 +18,8 @@
 .lcars-sidebar .block > h2 {
   display: block;
   margin: 0;
-  padding: 0.9375rem 0.3125rem 0.1875rem 0; /* 15px 5px 3px 0 */
+  padding-block: 0.9375rem 0.1875rem; /* 15px 3px */
+  padding-inline: 0 0.3125rem; /* 0 5px: the label at the end, by the content */
   text-align: end;
   text-transform: uppercase;
   color: var(--lcars-on-color);

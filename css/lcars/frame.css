@@ -89,7 +89,8 @@
 
 .lcars-head__inner {
   grid-area: 2 / 2;
-  padding: 0.625rem 0 0.625rem var(--lcars-gutter);
+  padding-block: 0.625rem;
+  padding-inline: var(--lcars-gutter) 0;
   border-start-start-radius: var(--lcars-elbow-inner);
   background: var(--lcars-space);
 }
@@ -161,12 +162,14 @@
 .lcars-main {
   grid-area: main;
   min-inline-size: 0;
-  padding: 0 0 2rem var(--lcars-gutter);
+  padding-block: 0 2rem;
+  padding-inline: var(--lcars-gutter) 0;
 }
 
 .lcars-aside {
   grid-area: aside;
-  padding: 0 0 2rem var(--lcars-gutter);
+  padding-block: 0 2rem;
+  padding-inline: var(--lcars-gutter) 0;
   font-size: 0.8125rem; /* 13px, more fits the narrow column (user decision 24.10.2026) */
 }
 
@@ -217,7 +220,8 @@
 
 .lcars-foot__inner {
   grid-area: 1 / 2;
-  padding: 0.75rem 1rem 0.75rem var(--lcars-gutter);
+  padding-block: 0.75rem;
+  padding-inline: var(--lcars-gutter) 1rem;
   border-end-start-radius: var(--lcars-elbow-inner);
   background: var(--lcars-space);
 }
@@ -323,7 +327,8 @@
 
   .lcars-sidebar {
     margin-block-end: 1.5rem;
-    padding: 0 0 0 var(--lcars-gutter);
+    padding-block: 0;
+    padding-inline: var(--lcars-gutter) 0;
     background: none;
   }
 
@@ -356,7 +361,8 @@
 .lcars-panel-top {
   grid-area: ptop;
   min-inline-size: 0;
-  padding: 0.5rem 0 1rem var(--lcars-gutter);
+  padding-block: 0.5rem 1rem;
+  padding-inline: var(--lcars-gutter) 0;
 }
 
 /* Branding in the upper panel: name and slogan, the logo on the right. */
