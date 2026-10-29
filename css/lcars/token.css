@@ -63,12 +63,14 @@ table.treetable tr.accept {
   color: var(--lcars-text);
 }
 
-/* Arrows of the module as gray images: masks in the frame color. */
+/* Arrows of the module as gray images: masks in the frame color. The icons
+   are copies of core's misc/icons (GPL-2.0-or-later) in the theme, so the
+   path holds wherever the theme lies (#28; was ../../../../../core/). */
 table.treetable tr.collapsed span.indenter a,
 table.treetable tr.expanded span.indenter a {
   background: var(--lcars-frame);
-  mask: url(../../../../../core/misc/icons/000000/chevron-right.svg) no-repeat left center / 0.75em;
+  mask: url(../../images/icons/chevron-right.svg) no-repeat left center / 0.75em;
 }
 table.treetable tr.expanded span.indenter a {
-  mask-image: url(../../../../../core/misc/icons/545560/chevron-down.svg);
+  mask-image: url(../../images/icons/chevron-down.svg);
 }

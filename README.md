@@ -134,8 +134,11 @@ Basic site settings*. Anonymous visitors then get the login panel.
   1.0.2, shows the edges only, with a soft glow.
 - `favicon.ico` (16, 32 and 48 px) shows the flat logo on a transparent
   background.
-- The icons in `images/icons/` come from the Drupal core Starterkit theme, the
-  base styles in `css/components/` and most templates are based on it
+- The icons in `images/icons/` come from Drupal core (the Starterkit theme;
+  `ex.svg`, `chevron-right.svg` and `chevron-down.svg` from `core/misc/icons`)
+  and from the module View Password (`view-password-eye-*.svg`);
+  `checkbox-check.svg` is the theme's own. The base styles in
+  `css/components/` and most templates are based on the Starterkit
   (GPL-2.0-or-later).
 - LCARS-NG is a fan work. It is not affiliated with or endorsed by the owners
   of Star Trek.

@@ -64,11 +64,12 @@
 }
 
 /* Close button: core's icon as a mask in the frame color (the jQuery UI
-   sprite is dark gray). */
+   sprite is dark gray); a copy in the theme, so the path holds wherever the
+   theme lies (#28). */
 .ui-dialog .ui-dialog-titlebar-close .ui-icon-closethick {
   background: var(--lcars-frame);
-  -webkit-mask: url(../../../../../core/misc/icons/000000/ex.svg) center / 0.875rem no-repeat;
-  mask: url(../../../../../core/misc/icons/000000/ex.svg) center / 0.875rem no-repeat;
+  -webkit-mask: url(../../images/icons/ex.svg) center / 0.875rem no-repeat;
+  mask: url(../../images/icons/ex.svg) center / 0.875rem no-repeat;
 }
 
 .ui-dialog .ui-dialog-titlebar-close:hover .ui-icon-closethick,
