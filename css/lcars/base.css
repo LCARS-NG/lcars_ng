@@ -81,6 +81,18 @@ a:hover {
   margin-block: calc(-1 * var(--lcars-target-pad));
 }
 
+/* Menus in the panels of the right sidebar stand one link to a line, 22px
+   apart (the 0.2em of menu.css above a line): there the links keep the room
+   of their target, so the lines move 2px apart and the targets no longer
+   overlap (user decision 29.10.2026, #20). */
+.lcars-panel__inner .menu-item {
+  padding-block-start: 0;
+}
+
+.lcars-panel__inner .menu a:not(.button) {
+  margin-block: 0;
+}
+
 /* LCNG removed all outlines; keyboard focus stays visible here. */
 :focus-visible {
   outline: 2px solid var(--lcars-accent);
