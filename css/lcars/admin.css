@@ -25,6 +25,15 @@
   color: var(--lcars-link-hover);
 }
 
+/* The modules in their packages: tables with hidden headings that read as
+   lists, so without the lines of all tables and with closer rows (user
+   decision 29.10.2026, variant B; table.css). The uninstall page is a table
+   with headings and keeps them. */
+.system-modules details.package-listing :is(th, td) {
+  padding-block: 0.25em;
+  border-top: 0;
+}
+
 /* Package headings (Core, …) as the fieldset legends of LCNG */
 .system-modules details.package-listing > summary {
   text-transform: uppercase;
