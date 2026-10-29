@@ -1,7 +1,8 @@
 /**
  * @file
- * Tables: room in the cells and lines between the rows, closer in narrow
- * boxes; on phones columns of lower priority hide, the rest scrolls.
+ * Tables: room in the cells, lines between the rows, headings as labels,
+ * closer in narrow boxes; on phones columns of lower priority hide, the rest
+ * scrolls.
  */
 
 /* All tables: room in the cells and a line between the rows, no space between
@@ -22,6 +23,19 @@ tbody td {
   border-top: 1px solid var(--lcars-field-border);
 }
 
+/* Column headings as labels: capitals in the frame color, not bold, at the
+   start like the cells, as in the revision overviews, the token browser and
+   the labels of forms (variant D, user decision 29.10.2026). Sortable
+   headings stay links in their color. Before, headings without sorting were
+   white, bold, centered and not in capitals. Columns of checkboxes stay
+   centered (tableselect.css). */
+th {
+  text-align: start;
+  text-transform: uppercase;
+  color: var(--lcars-frame);
+  font-weight: normal;
+}
+
 /* Tables in the panels of the right sidebar and in the dashboard cards start
    at the edge of the text (user decision 24.10.2026): no cell spacing,
    headings aligned like the cells, space only between columns, no lines. */
@@ -40,18 +54,13 @@ tbody td {
    (VersionHistoryController, easy_email: tables without a class, recognized
    by the class revision-current on the row of the current revision, in
    easy_email on its cells; so on later pages of a pager without these
-   rules). Cells and lines as in all tables (above), text at the start and
-   the top; the current revision is marked by a gold bar at its start
+   rules). Cells, lines and headings as in all tables (above), text at the
+   start and the top; the current revision is marked by a gold bar at its start
    instead of core's light yellow, which lcars_ng.info.yml removes (#16,
    variant C1, user decision 26.10.2026). */
 :is(.node-revision-table, table:has(> tbody .revision-current)) :is(td, th) {
   text-align: start;
   vertical-align: top;
-}
-:is(.node-revision-table, table:has(> tbody .revision-current)) th {
-  text-transform: uppercase;
-  color: var(--lcars-frame);
-  font-weight: normal;
 }
 :is(.node-revision-table, table:has(> tbody .revision-current)) .revision-log {
   margin: 0.25em 0 0;
