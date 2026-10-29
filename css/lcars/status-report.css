@@ -81,3 +81,37 @@ h3:is(#error, #warning, #checked) {
   margin-block-start: 1.25em;
   font-size: 1.25em;
 }
+
+/* The value of each requirement (LcarsNgHooks::preprocessStatusReportGrouped())
+   as a status item: bold capitals in the color of its group, as the counters,
+   behind a segment of that color, as the bar of the current revision; links
+   in it underlined in that color, as in messages (user decision 29.10.2026,
+   variant B; was plain text). */
+.lcars-status-value {
+  --lcars-status-color: var(--lcars-message-status);
+
+  text-transform: uppercase;
+  color: var(--lcars-status-color);
+  font-size: 0.875em;
+  font-weight: bold;
+}
+.lcars-status-value--warning {
+  --lcars-status-color: var(--lcars-message-warning);
+}
+.lcars-status-value--error {
+  --lcars-status-color: var(--lcars-message-error);
+}
+.lcars-status-value::before {
+  display: inline-block;
+  inline-size: 0.375em;
+  block-size: 1em;
+  margin-inline-end: 0.5em;
+  content: "";
+  vertical-align: -0.125em;
+  border-radius: var(--lcars-pill);
+  background: currentColor;
+}
+.lcars-status-value a {
+  text-decoration: underline;
+  color: inherit;
+}

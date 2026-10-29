@@ -3,6 +3,7 @@
 namespace Drupal\lcars_ng\Hook;
 
 use Drupal\block\BlockInterface;
+use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Extension\ThemeSettingsProvider;
@@ -214,6 +215,37 @@ class LcarsNgHooks {
       }
       CacheableMetadata::createFromRenderArray($item['content'])->applyTo($picture);
       $item['content'] = $picture;
+    }
+  }
+
+  /**
+   * Implements hook_preprocess_status_report_grouped().
+   *
+   * Core prints the value of each requirement (Protected, Up to date, …) as
+   * bare text before its description. Wrapped here, it stands as a status
+   * item in the color of its group (status-report.css).
+   */
+  #[Hook('preprocess_status_report_grouped')]
+  public function preprocessStatusReportGrouped(array &$variables): void {
+    foreach ($variables['grouped_requirements'] as &$group) {
+      foreach ($group['items'] as &$requirement) {
+        $value = $requirement['value'] ?? NULL;
+        if ($value === NULL || $value === '' || $value === []) {
+          continue;
+        }
+        $requirement['value'] = [
+          '#type' => 'html_tag',
+          '#tag' => 'span',
+          '#attributes' => [
+            'class' => ['lcars-status-value', 'lcars-status-value--' . $group['type']],
+          ],
+          'value' => match (TRUE) {
+            is_array($value) => $value,
+            $value instanceof MarkupInterface => ['#markup' => $value],
+            default => ['#plain_text' => (string) $value],
+          },
+        ];
+      }
     }
   }
 
