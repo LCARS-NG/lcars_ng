@@ -3,6 +3,7 @@
 namespace Drupal\lcars_ng\Hook;
 
 use Drupal\block\BlockInterface;
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Extension\ThemeSettingsProvider;
 use Drupal\Core\File\FileUrlGeneratorInterface;
@@ -121,23 +122,40 @@ class LcarsNgHooks {
    * Implements hook_preprocess_page().
    *
    * The login panel on the front page links to the password reset form only
-   * where that form is available; a site may deny its route.
+   * where that form is available; a site may deny its route. The status line
+   * of the two-part screen is for signed-in users: anonymous visitors see
+   * profiles there only where a site grants them, and the page cache of
+   * anonymous visitors would keep its time (user decision 29.10.2026, #26).
+   *
+   * The type of the page (login panel, two-part screen, plain page) depends on
+   * whether the visitor is signed in and on the front page. The page caches
+   * vary by permissions only, which anonymous and signed-in users may share:
+   * the contexts set here reach the response and the page template
+   * suggestions alike (themeSuggestionsPageAlter(), preprocessHtml()).
    */
   #[Hook('preprocess_page')]
   public function preprocessPage(array &$variables): void {
+    $cacheability = (new CacheableMetadata())
+      ->addCacheContexts(['user.roles:authenticated', 'url.path.is_front']);
     if ($this->isLoginFrontPage()) {
       $variables['login_form'] = $this->formBuilder->getForm(UserLoginForm::class);
       $reset = Url::fromRoute('user.pass');
-      if ($reset->access()) {
+      $access = $reset->access(NULL, TRUE);
+      $cacheability->addCacheableDependency($access);
+      if ($access->isAllowed()) {
         $variables['reset_password_url'] = $reset->toString();
       }
     }
-    elseif ($this->isPanelPage()) {
+    elseif ($this->isPanelPage() && $this->currentUser->isAuthenticated()) {
       $variables['status_line'] = [
         '#lazy_builder' => [StatusLine::class . '::build', []],
         '#create_placeholder' => TRUE,
       ];
     }
+    // Merged, as applyTo() replaces what other preprocess functions set.
+    CacheableMetadata::createFromRenderArray($variables)
+      ->merge($cacheability)
+      ->applyTo($variables);
   }
 
   /**

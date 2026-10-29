@@ -16,7 +16,9 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * The status line sits in the curve below the upper panel: the date and time,
  * the signed-in user right beside them. LCNG tried a date and a clock
  * in its h2panel_status region. The line is built for every request
- * (placeholder, max-age 0), so page caches do not freeze the time.
+ * (placeholder, max-age 0), so the Dynamic Page Cache does not freeze the
+ * time. It is for signed-in users only: the Internal Page Cache of anonymous
+ * visitors ignores max-age and would keep the time.
  *
  * Themes cannot define services; the callable resolver instantiates this
  * class through create() for the 'StatusLine::build' callback.
