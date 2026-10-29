@@ -137,7 +137,14 @@
   color: var(--lcars-sidebar);
 }
 
+/* Hints in the other forms of the panel (register, reset password) stay
+   visible, in the size of forms.css (user decision 29.10.2026, variant A,
+   #23); the login form drops its hint, which repeats the label. */
 .lcars-login__panel .form-item .description {
+  color: var(--lcars-sidebar);
+}
+
+.lcars-login__panel .user-login-form .description {
   display: none;
 }
 
