@@ -1,20 +1,35 @@
 /**
  * @file
- * Tables in narrow boxes; on phones columns of lower priority hide, the rest
- * scrolls.
+ * Tables: room in the cells and lines between the rows, closer in narrow
+ * boxes; on phones columns of lower priority hide, the rest scrolls.
  */
 
-/* Tables in the panels of the right sidebar and in the dashboard cards start
-   at the edge of the text (user decision 24.10.2026): no cell spacing,
-   headings aligned like the cells, space only between columns. */
-:is(.lcars-aside .lcars-panel, .dashboard .layout .block) table {
+/* All tables: room in the cells and a line between the rows, no space between
+   the cells, as in the revision overviews and the token browser (variant D,
+   user decision 29.10.2026). Before, the cells kept the 1px of the browser,
+   and text touched the edge of a selected row. Tables with rules of their
+   own below and in token.css and drupical.css keep theirs. */
+table {
   border-collapse: collapse;
 }
 
+th,
+td {
+  padding: 0.5em 0.75em;
+}
+
+tbody td {
+  border-top: 1px solid var(--lcars-field-border);
+}
+
+/* Tables in the panels of the right sidebar and in the dashboard cards start
+   at the edge of the text (user decision 24.10.2026): no cell spacing,
+   headings aligned like the cells, space only between columns, no lines. */
 :is(.lcars-aside .lcars-panel, .dashboard .layout .block) :is(th, td) {
   padding-block: 0.125rem;
   padding-inline: 0 0.5rem;
   text-align: start;
+  border-top: 0;
 }
 
 :is(.lcars-aside .lcars-panel, .dashboard .layout .block) :is(th, td):last-child {
@@ -25,15 +40,11 @@
    (VersionHistoryController, easy_email: tables without a class, recognized
    by the class revision-current on the row of the current revision, in
    easy_email on its cells; so on later pages of a pager without these
-   rules). Cells and lines as in the token browser (token.css); the current
-   revision is marked by a gold bar at its start instead of core's light
-   yellow, which lcars_ng.info.yml removes (#16, variant C1, user decision
-   26.10.2026). */
-:is(.node-revision-table, table:has(> tbody .revision-current)) {
-  border-collapse: collapse;
-}
+   rules). Cells and lines as in all tables (above), text at the start and
+   the top; the current revision is marked by a gold bar at its start
+   instead of core's light yellow, which lcars_ng.info.yml removes (#16,
+   variant C1, user decision 26.10.2026). */
 :is(.node-revision-table, table:has(> tbody .revision-current)) :is(td, th) {
-  padding: 0.5em 0.75em;
   text-align: start;
   vertical-align: top;
 }
@@ -41,9 +52,6 @@
   text-transform: uppercase;
   color: var(--lcars-frame);
   font-weight: normal;
-}
-:is(.node-revision-table, table:has(> tbody .revision-current)) tbody td {
-  border-top: 1px solid var(--lcars-field-border);
 }
 :is(.node-revision-table, table:has(> tbody .revision-current)) .revision-log {
   margin: 0.25em 0 0;
