@@ -34,6 +34,16 @@
   border-top: 0;
 }
 
+/* Phones: the descriptions hide (table.css), and core's 25% for the names
+   then made the column of checkboxes 46 to 61px wide, different in each
+   package. With the names taking the rest, the checkboxes line up as on
+   desktops (29.10.2026). */
+@media (max-width: 39.9375rem) {
+  .system-modules td.module {
+    width: auto;
+  }
+}
+
 /* Package headings (Core, …) as the fieldset legends of LCNG */
 .system-modules details.package-listing > summary {
   text-transform: uppercase;
