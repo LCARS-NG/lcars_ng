@@ -66,6 +66,7 @@ button.shwpd {
 /* Buttons drawn as links (Show row weights) reach the smallest pointer
    target as the links of base.css, without moving their line (#20). */
 button.link {
+  /* stylelint-disable-next-line unit-allowed-list -- lh: the height of a link follows its line height, not the metrics of system-ui (#20). */
   --lcars-target-pad: max(0px, round(up, (var(--lcars-target) - 1lh) / 2, 0.5px));
 
   padding-block: var(--lcars-target-pad);
@@ -78,16 +79,16 @@ button.link {
    browser). :where() leaves the rules of modules with switches of their own
    (Klaro) above these. */
 :where(input[type="checkbox"], input[type="radio"]) {
-  appearance: none;
-  box-sizing: border-box;
-  inline-size: var(--lcars-target);
-  block-size: var(--lcars-target);
   flex-shrink: 0;
-  vertical-align: middle;
+  box-sizing: border-box;
   cursor: pointer;
+  vertical-align: middle;
   border: 2px solid var(--lcars-field-border);
   border-radius: 0.25rem;
   background: none;
+  appearance: none;
+  inline-size: var(--lcars-target);
+  block-size: var(--lcars-target);
 }
 
 :where(input[type="radio"]) {

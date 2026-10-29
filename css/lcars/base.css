@@ -70,10 +70,9 @@ a:hover {
    lh, the line height, not in the metrics of the system font, and rounded up
    to half pixels, as layout rounds a little down. Links in running text keep
    their size; WCAG 2.5.8 leaves them out. */
-:is(.breadcrumb, .region-footer .menu, .lcars-panel__inner .menu, .more-link,
-  .list-group__link, .compact-link, .system-status-report-counters__item,
-  .lcars-login__links, .lcars-status) a:not(.button),
+:is(.breadcrumb, .region-footer .menu, .lcars-panel__inner .menu, .more-link, .list-group__link, .compact-link, .system-status-report-counters__item, .lcars-login__links, .lcars-status) a:not(.button),
 :is(td, th) > a:not(.button) {
+  /* stylelint-disable-next-line unit-allowed-list -- lh: the height of a link follows its line height, not the metrics of system-ui (#20). */
   --lcars-target-pad: max(0px, round(up, (var(--lcars-target) - 1lh) / 2, 0.5px));
 
   display: inline-block;
