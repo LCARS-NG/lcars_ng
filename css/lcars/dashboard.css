@@ -13,7 +13,10 @@
 
 .dashboard {
   --lcars-card-frame: var(--lcars-sidebar); /* as the frame (user decision 27.10.2026; was --lcars-frame) */
-  --lcars-card-corner: 1.8125rem; /* 29px, outer curve of the elbow, as the panel */
+  /* The elbow by the rule of the elbows (tokens.css), from the ceiling: 29 and
+     20px for 25px, 21 and 14px on phones, where the ceiling is 18px (#21). */
+  --lcars-card-corner: round(calc(var(--lcars-title-height) * var(--lcars-elbow-corner-ratio)), 1px);
+  --lcars-card-inner: round(calc(var(--lcars-title-height) * var(--lcars-elbow-inner-ratio)), 1px);
   --lcars-card-end: var(--lcars-title-height); /* the ceiling right of the title, a square */
   --lcars-card-edge: 0.3125rem; /* 5px */
   --lcars-card-pad: 1.25rem;
@@ -70,12 +73,12 @@
   position: absolute;
   inset-block-start: 0;
   inset-inline: calc(-1 * var(--lcars-card-edge)) 0;
-  block-size: calc(var(--lcars-title-height) + var(--lcars-elbow-inner));
+  block-size: calc(var(--lcars-title-height) + var(--lcars-card-inner));
   content: "";
   border-start-start-radius: var(--lcars-card-corner);
   background:
-    radial-gradient(circle at 100% 100%, transparent calc(var(--lcars-elbow-inner) - 0.5px), var(--lcars-card-frame) var(--lcars-elbow-inner)) left var(--lcars-card-edge) bottom / var(--lcars-elbow-inner) var(--lcars-elbow-inner) no-repeat,
-    linear-gradient(var(--lcars-card-frame), var(--lcars-card-frame)) top / 100% calc(100% - var(--lcars-elbow-inner)) no-repeat;
+    radial-gradient(circle at 100% 100%, transparent calc(var(--lcars-card-inner) - 0.5px), var(--lcars-card-frame) var(--lcars-card-inner)) left var(--lcars-card-edge) bottom / var(--lcars-card-inner) var(--lcars-card-inner) no-repeat,
+    linear-gradient(var(--lcars-card-frame), var(--lcars-card-frame)) top / 100% calc(100% - var(--lcars-card-inner)) no-repeat;
 }
 
 /* The ceiling ends with the title, whose height comes from its capitals, as
@@ -88,7 +91,7 @@
   }
 
   .dashboard .layout .block::before {
-    inset-block-end: calc(anchor(--lcars-card-title bottom, calc(100% - var(--lcars-title-height))) - var(--lcars-elbow-inner));
+    inset-block-end: calc(anchor(--lcars-card-title bottom, calc(100% - var(--lcars-title-height))) - var(--lcars-card-inner));
     block-size: auto;
   }
 }
@@ -97,27 +100,24 @@
    the elbow and a piece of ceiling stay left of it, as in the panel component;
    a longer title ends with an ellipsis (user wish 27.10.2026, "Drupal Events
    and User Groups" ran over the elbow). Its capitals fill the ceiling up to
-   --lcars-cap-inset with the rules of the page title (frame.css; user wish
+   --lcars-cap-inset with the rule of the cut capitals (frame.css; user wish
    27.10.2026, were 20px letters in the 25px ceiling). Positioned, so it lies
    above the ceiling. */
 .dashboard .layout .block > h2 {
+  --lcars-cut-height: var(--lcars-title-height);
+
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
   margin: 0 calc(var(--lcars-card-end) - var(--lcars-card-pad)) var(--lcars-card-pad) auto;
-  padding: var(--lcars-cap-inset) 0.3em;
+  padding-inline: 0.3em;
   white-space: nowrap;
   text-transform: uppercase;
   text-overflow: ellipsis;
   color: var(--lcars-card-frame);
   border-radius: 0;
-  background: var(--lcars-space);
   font-family: var(--lcars-font-label);
-  font-size: calc(var(--lcars-title-height) - 2 * var(--lcars-cap-inset));
   font-weight: bold;
-  font-size-adjust: cap-height 1;
-  line-height: var(--lcars-title-height);
-  text-box: trim-both cap alphabetic;
   inline-size: fit-content;
   /* The width of the card without the elbow and the pieces of ceiling left
      and right of the title. */
@@ -156,14 +156,10 @@
   margin-block-start: 0.5rem;
 }
 
-/* Phones: the elbow shrinks with the ceiling (18 instead of 25px), so the card
-   keeps the proportions of the desktop (#21, user decision 28.10.2026,
-   variant D; were 29px). */
+/* Phones: the elbow shrinks with the ceiling (18 instead of 25px, above), so
+   the card keeps the proportions of the desktop (#21, user decision
+   28.10.2026, variant D; were 29px). */
 @media (max-width: 39.9375rem) {
-  .dashboard {
-    --lcars-card-corner: 1.3125rem; /* 21px */
-  }
-
   .dashboard .layout .block {
     margin-inline-end: 0;
   }

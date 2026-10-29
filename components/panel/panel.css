@@ -6,12 +6,12 @@
 .lcars-panel {
   --lcars-panel-color: var(--lcars-frame);
   --lcars-panel-ceiling: 1.5625rem; /* 25px */
-  /* The elbow follows the ceiling: outer curve 1.16 times its height, the
-     piece right of the label a square, the inner curve about 0.8 times
-     (design guide, section 4, "Ellbogen"; user decision 28.10.2026). */
-  --lcars-panel-corner: 1.8125rem; /* 29px */
+  /* The elbow follows the ceiling by the rule of the elbows (tokens.css;
+     design guide, section 4): 29, 25 and 20px for 25px, 21, 18 and 14px for
+     18px. A place with another ceiling sets the ceiling only. */
+  --lcars-panel-corner: round(calc(var(--lcars-panel-ceiling) * var(--lcars-elbow-corner-ratio)), 1px);
   --lcars-panel-end: var(--lcars-panel-ceiling);
-  --lcars-panel-inner: var(--lcars-elbow-inner);
+  --lcars-panel-inner: round(calc(var(--lcars-panel-ceiling) * var(--lcars-elbow-inner-ratio)), 1px);
 
   display: grid;
   grid-template-rows: auto 1fr;
@@ -33,22 +33,19 @@
 }
 
 /* The label cuts the ceiling over its full height, as the dashboard cards;
-   its capitals fill it up to --lcars-cap-inset, as the page title
-   (frame.css). */
+   its capitals fill it up to --lcars-cap-inset, with the rule of the cut
+   capitals in frame.css. */
 .lcars-panel__label {
+  --lcars-cut-height: var(--lcars-panel-ceiling);
+
   overflow: hidden;
   margin: 0;
-  padding: var(--lcars-cap-inset) 0.3em;
+  padding-inline: 0.3em;
   white-space: nowrap;
   text-overflow: ellipsis;
   color: var(--lcars-panel-color);
-  background: var(--lcars-space);
-  font-size: calc(var(--lcars-panel-ceiling) - 2 * var(--lcars-cap-inset));
   font-weight: bold;
-  font-size-adjust: cap-height 1;
-  line-height: var(--lcars-panel-ceiling);
   min-inline-size: 0;
-  text-box: trim-both cap alphabetic;
 }
 
 /* The content keeps the distance from the left edge that the content of a

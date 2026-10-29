@@ -94,18 +94,36 @@
   background: var(--lcars-space);
 }
 
-/* The site name cuts into the bar over its full height; its capitals fill it
-   up to --lcars-cap-inset, as the page title (below). */
-.lcars-head__bar .site-name {
-  padding: var(--lcars-cap-inset) 0.15em;
-  text-transform: uppercase;
+/* Capitals cut into a bar: the text cuts the bar over its full height with
+   the dark of the page, its capitals fill it up to --lcars-cap-inset at the
+   top and bottom. font-size-adjust makes the cap height equal the font size
+   in any typeface, text-box trims the line box to the capitals. Each place
+   sets the height of its bar as --lcars-cut-height: the site name, the page
+   title, the label of the panel component, the titles of the dashboard cards
+   and of the Klaro panel (one rule since #30, 29.10.2026; was five). The
+   selectors keep the weight each had in its own file. */
+.lcars-head__bar .site-name,
+.lcars-title .page-title,
+.lcars-panel__label,
+.dashboard .layout .block > h2,
+.klaro.klaro-theme-lcars_ng:not(.hide-consent-dialog-title) .cookie-notice:not(.cookie-modal-notice) #id-cookie-title,
+.klaro.klaro-theme-lcars_ng .cookie-modal .cm-modal.cm-klaro .cm-header .title {
+  padding-block: var(--lcars-cap-inset);
   background: var(--lcars-space);
-  font-family: var(--lcars-font-label);
-  font-size: calc(var(--lcars-bar-top) - 2 * var(--lcars-cap-inset));
-  font-weight: bold;
+  font-size: calc(var(--lcars-cut-height) - 2 * var(--lcars-cap-inset));
   font-size-adjust: cap-height 1;
-  line-height: var(--lcars-bar-top);
+  line-height: var(--lcars-cut-height);
   text-box: trim-both cap alphabetic;
+}
+
+/* The site name cuts into the bar over its full height (above). */
+.lcars-head__bar .site-name {
+  --lcars-cut-height: var(--lcars-bar-top);
+
+  padding-inline: 0.15em;
+  text-transform: uppercase;
+  font-family: var(--lcars-font-label);
+  font-weight: bold;
 }
 
 .lcars-head__bar .site-name a {
@@ -165,15 +183,13 @@
 
 /* Blocks in the right sidebar are LCARS panels (block--sidebar-second.html.twig)
    with a lower ceiling, so their titles fit the narrow column in one line
-   (user decision 24.10.2026). The elbow shrinks with it (user decision
-   28.10.2026, variant C; were 29px outside, 25px end and 20px inside). The
+   (user decision 24.10.2026). The elbow shrinks with it to 21, 18 and 14px
+   (panel.css; user decision 28.10.2026, variant C; were 29, 25 and 20px). The
    inner frame has no right padding, as
    .innerframeTop in LCNG, and scrolls content wider than the column (tables)
    instead of pushing it out of the frame. */
 .lcars-aside .lcars-panel {
   --lcars-panel-ceiling: 1.125rem; /* 18px: capitals 14px */
-  --lcars-panel-corner: 1.3125rem; /* 21px */
-  --lcars-panel-inner: 0.875rem; /* 14px */
 }
 
 .lcars-aside .lcars-panel__inner {
@@ -249,10 +265,7 @@
 
 /* Page title: a bar with the title cut into it, as high as the title of the
    login panel and the titles of the dashboard cards (--lcars-title-height,
-   tokens.css). The cut runs through the whole bar; the
-   capitals fill it up to --lcars-cap-inset at the top and bottom.
-   font-size-adjust makes the cap height equal the font size in any typeface,
-   text-box trims the line box to the capitals. A long title stays on one line
+   tokens.css); the cut capitals as above. A long title stays on one line
    and ends in an ellipsis, so the end of the bar shows as wide as its start;
    the whole title stays in the markup (#15, user decision 26.10.2026). */
 
@@ -275,18 +288,15 @@
 
 /* The title takes the color of its bar, as the site name in the header bar. */
 .lcars-title .page-title {
+  --lcars-cut-height: var(--lcars-title-height);
+
   overflow: hidden;
   min-width: 0;
   margin: 0;
-  padding: var(--lcars-cap-inset) 0.3em;
+  padding-inline: 0.3em;
   white-space: nowrap;
   text-overflow: ellipsis;
   color: var(--lcars-accent);
-  background: var(--lcars-space);
-  font-size: calc(var(--lcars-title-height) - 2 * var(--lcars-cap-inset));
-  font-size-adjust: cap-height 1;
-  line-height: var(--lcars-title-height);
-  text-box: trim-both cap alphabetic;
 }
 
 /* Phones show the content only (user decision 24.10.2026): the menu moves out

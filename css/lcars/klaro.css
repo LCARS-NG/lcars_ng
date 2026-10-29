@@ -16,12 +16,12 @@
      (frame.css). */
   --lcars-notice-bottom: calc(1rem + var(--lcars-bar-bottom) + var(--lcars-curve) + 0.25rem);
   --lcars-notice-ceiling: 1.125rem; /* 18px: capitals 14px, as the sidebar panels */
-  /* The elbow of an 18px ceiling, as the sidebar panels (user decision
-     28.10.2026, variant C; were 29px outside, 25px end, --lcars-elbow-inner
-     inside). */
-  --lcars-notice-corner: 1.3125rem; /* 21px */
+  /* The elbow of an 18px ceiling, 21, 18 and 14px, as the sidebar panels, by
+     the rule of the elbows (tokens.css; user decision 28.10.2026, variant C;
+     were 29px outside, 25px end, --lcars-elbow-inner inside). */
+  --lcars-notice-corner: round(calc(var(--lcars-notice-ceiling) * var(--lcars-elbow-corner-ratio)), 1px);
   --lcars-notice-end: var(--lcars-notice-ceiling);
-  --lcars-notice-inner: 0.875rem; /* 14px */
+  --lcars-notice-inner: round(calc(var(--lcars-notice-ceiling) * var(--lcars-elbow-inner-ratio)), 1px);
 }
 
 /* Login panel: above the bottom bar (6ex) and the padding of the grid
@@ -146,28 +146,26 @@
 }
 
 /* The titles cut the ceiling at its end, as the label of the panel
-   (components/panel/panel.css); a long title ends with an ellipsis. The
-   notice title only with Klaro's setting "Show notice title". */
+   (components/panel/panel.css), with the rule of the cut capitals
+   (frame.css); a long title ends with an ellipsis. The notice title only
+   with Klaro's setting "Show notice title". */
 .klaro.klaro-theme-lcars_ng:not(.hide-consent-dialog-title) .cookie-notice:not(.cookie-modal-notice) #id-cookie-title,
 .klaro.klaro-theme-lcars_ng .cookie-modal .cm-modal.cm-klaro .cm-header .title {
+  --lcars-cut-height: var(--lcars-notice-ceiling);
+
   position: absolute;
   overflow: hidden;
   margin: 0;
-  padding: var(--lcars-cap-inset) 0.3em;
+  padding-inline: 0.3em;
   white-space: nowrap;
   text-transform: uppercase;
   text-overflow: ellipsis;
   color: var(--lcars-sidebar);
-  background: var(--lcars-space);
   font-family: var(--lcars-font-label);
-  font-size: calc(var(--lcars-notice-ceiling) - 2 * var(--lcars-cap-inset));
   font-weight: bold;
-  font-size-adjust: cap-height 1;
-  line-height: var(--lcars-notice-ceiling);
   inset-block-start: 0;
   inset-inline-end: var(--lcars-notice-end);
   max-inline-size: calc(100% - var(--lcars-notice-corner) - 2 * var(--lcars-notice-end)); /* elbow, a piece of ceiling, end */
-  text-box: trim-both cap alphabetic;
 }
 
 .klaro.klaro-theme-lcars_ng .cookie-notice:not(.cookie-modal-notice) .cn-learn-more {

@@ -52,6 +52,12 @@
   --lcars-seam: 4px; /* dark gap between frame segments */
   --lcars-elbow-outer: 2.4375rem; /* 39px */
   --lcars-elbow-inner: 1.25rem; /* 20px */
+  /* The rule of the elbows of panels, dashboard cards and the Klaro panel
+     (design guide, section 4): outer curve 1.16 times the ceiling, inner
+     curve 0.8 times, both rounded to whole pixels; the end right of the
+     label is as long as the ceiling is high (#30, 29.10.2026). */
+  --lcars-elbow-corner-ratio: 1.16;
+  --lcars-elbow-inner-ratio: 0.8;
   --lcars-bar-top: 2rem;
   --lcars-bar-bottom: 1.5625rem; /* 25px */
   --lcars-curve: 2.5rem; /* 40px, height of the inner curve */
