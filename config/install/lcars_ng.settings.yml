@@ -1,3 +1,4 @@
 front_page_login: false
 navigation_scheme: dark
 generated_user_pictures: true
+collapse_module_packages: true

@@ -18,3 +18,6 @@ lcars_ng.settings:
     generated_user_pictures:
       type: boolean
       label: 'Patterns made from the account for users without a picture'
+    collapse_module_packages:
+      type: boolean
+      label: 'Packages of modules on Extend start collapsed'

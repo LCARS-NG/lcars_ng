@@ -11,6 +11,7 @@ use Drupal\Core\File\FileUrlGeneratorInterface;
 use Drupal\Core\Form\FormBuilderInterface;
 use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\Core\Path\PathMatcherInterface;
+use Drupal\Core\Render\Element;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
@@ -346,6 +347,32 @@ class LcarsNgHooks {
       '#description' => $this->t('Users without a picture get a pattern made from their account, in the colors of the theme, instead of the default picture of the field.'),
       '#config_target' => 'lcars_ng.settings:generated_user_pictures',
     ];
+    $form['lcars_ng']['collapse_module_packages'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Collapsed packages on Extend'),
+      '#description' => $this->t('The packages of modules on Extend start collapsed instead of open. The filter opens the packages with matching modules while it is in use.'),
+      '#config_target' => 'lcars_ng.settings:collapse_module_packages',
+    ];
+  }
+
+  /**
+   * Implements hook_form_FORM_ID_alter() for system_modules.
+   *
+   * Core opens all packages on Extend (only Testing starts collapsed), a list
+   * of several screens. With the theme setting collapse_module_packages they
+   * start collapsed; core's filter (system.modules.js) opens the packages with
+   * matching modules while it is in use and closes them again when it is
+   * emptied. Core leaves this to the themes (#2018871).
+   */
+  #[Hook('form_system_modules_alter')]
+  public function formSystemModulesAlter(array &$form): void {
+    if (!isset($form['modules'])
+      || !($this->themeSettings->getSetting('collapse_module_packages') ?? TRUE)) {
+      return;
+    }
+    foreach (Element::children($form['modules']) as $package) {
+      $form['modules'][$package]['#open'] = FALSE;
+    }
   }
 
   /**

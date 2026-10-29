@@ -59,7 +59,7 @@ theme under *Appearance*.
 
 ## Configuration
 
-*Appearance > Settings > LCARS-NG* offers three settings besides the logo and
+*Appearance > Settings > LCARS-NG* offers four settings besides the logo and
 favicon:
 
 - **Login panel on the front page** (`front_page_login`, off by default):
@@ -75,6 +75,10 @@ favicon:
   one, as in Drupal CMS), as the identicons of GitHub: a grid of 5 by 5 cells, mirrored at its middle, in one of five
   colors of the theme. The pattern follows from the UUID of the account and
   stays the same; uploaded pictures are shown as they are.
+- **Collapsed packages on Extend** (`collapse_module_packages`, on by
+  default): the packages of modules on *Extend* start collapsed instead of
+  open, where LCARS-NG is the administration theme. The filter above the list
+  opens the packages with matching modules while it is in use.
 
 The theme chooses its layout per page:
 
