@@ -68,3 +68,16 @@
   display: inline-block;
   margin-bottom: 0;
 }
+
+/* Sections: the general information (h2) and the groups of the requirements
+   (h3, ids from core's status-report-grouped.html.twig) are one level, at the
+   size of all section headings (base.css), with room above; the groups were
+   16px and touched the card above (user decision 29.10.2026, variant B). */
+.system-status-report-counters + h2 {
+  margin-block-start: 0.75em;
+}
+
+h3:is(#error, #warning, #checked) {
+  margin-block-start: 1.25em;
+  font-size: 1.25em;
+}

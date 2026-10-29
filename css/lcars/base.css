@@ -34,16 +34,15 @@ h1 {
   font-weight: bold;
 }
 
+/* Section headings stay below the page title, whose capitals are 21px: 20px,
+   as the headings in formatted text since 26.10.2026 (user decision
+   29.10.2026, variant B; was 2em, as large as the page title). */
 h2 {
-  font-size: 2em;
-}
-
-/* Headings in formatted text (text fields, field--text.html.twig) stay below
-   the page title, with room above that sets each section apart (user
-   decision 26.10.2026; was 2em without room above). */
-.text-formatted h2 {
   font-size: 1.25em;
 }
+
+/* Headings in formatted text (text fields, field--text.html.twig) get room
+   above that sets each section apart (user decision 26.10.2026). */
 .text-formatted h2:not(:first-child) {
   margin-block-start: 1.25em;
 }
