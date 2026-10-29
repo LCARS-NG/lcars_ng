@@ -115,6 +115,93 @@
   background: rgb(0, 27, 51, 0.6); /* --lcars-space */
 }
 
+/* Loading, before the app starts (the initial loader right before it) and
+   while it fetches a list (in the overlay): three segments of an LCARS bar
+   that light up one after the other, in the blue of the buttons like the
+   progress bar (user decision 29.10.2026, variant C). Project Browser brings
+   Claro's white disc with a ring (sveltejs/css/seven.css), fixed in the middle
+   of the window and not of the content, and Gin's ajax.css, loaded on all
+   admin pages, removes the ring with its --gin-color-primary, which is not set
+   here. In the overlay it stands at the end, in the line of the results; as
+   the overlay grows with the list, it stays at the bottom of the window while
+   the end is out of view, on a pill of the page color that covers the cards
+   below. Without the left: 50% of seven.css, which held it at the middle of
+   narrow and right-to-left windows, and the float of core's
+   ajax-progress.module.css in right-to-left. While it loads, the list is
+   still empty, and "No projects found" (ProjectGrid.svelte, a div without a
+   class) hides. */
+:is(.ajax-progress--fullscreen:has(+ [data-project-browser-instance-id]), .pb-projects__loading-overlay .ajax-progress--fullscreen) {
+  position: static;
+  inset: auto;
+  display: flex;
+  float: none;
+  justify-content: center;
+  gap: var(--lcars-seam);
+  width: auto;
+  height: auto;
+  margin: 2rem auto;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+
+.pb-projects__loading-overlay .ajax-progress--fullscreen {
+  position: sticky;
+  inset-block-end: 1.5rem;
+  align-self: flex-end;
+  margin: 0 auto;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--lcars-pill);
+  background: var(--lcars-space);
+}
+
+[data-project-browser-instance-id]:has(.pb-projects__loading-overlay) .pb-layout__main > div:first-child:not([class]) {
+  visibility: hidden;
+}
+
+:is(.ajax-progress--fullscreen:has(+ [data-project-browser-instance-id]), .pb-projects__loading-overlay .ajax-progress--fullscreen)::before,
+:is(.ajax-progress--fullscreen:has(+ [data-project-browser-instance-id]), .pb-projects__loading-overlay .ajax-progress--fullscreen)::after,
+:is(.ajax-progress--fullscreen:has(+ [data-project-browser-instance-id]), .pb-projects__loading-overlay .ajax-progress--fullscreen) .ajax-progress__throbber {
+  position: static;
+  box-sizing: border-box;
+  width: 1.75rem;
+  height: 0.875rem;
+  margin: 0;
+  content: "";
+  animation: lcars-loading 0.9s linear infinite;
+  border: 0;
+  border-radius: 0;
+  background: var(--lcars-button);
+  font-size: 0;
+}
+
+:is(.ajax-progress--fullscreen:has(+ [data-project-browser-instance-id]), .pb-projects__loading-overlay .ajax-progress--fullscreen)::before {
+  border-start-start-radius: var(--lcars-pill);
+  border-end-start-radius: var(--lcars-pill);
+}
+
+:is(.ajax-progress--fullscreen:has(+ [data-project-browser-instance-id]), .pb-projects__loading-overlay .ajax-progress--fullscreen) .ajax-progress__throbber {
+  animation-delay: -0.6s;
+}
+
+:is(.ajax-progress--fullscreen:has(+ [data-project-browser-instance-id]), .pb-projects__loading-overlay .ajax-progress--fullscreen)::after {
+  animation-delay: -0.3s;
+  border-start-end-radius: var(--lcars-pill);
+  border-end-end-radius: var(--lcars-pill);
+}
+
+@keyframes lcars-loading {
+  0%,
+  66%,
+  100% {
+    opacity: 0.25;
+  }
+  33% {
+    opacity: 1;
+  }
+}
+
 /* Detail dialog: pb.css gives the sidebar a light gray in light mode. */
 .pb-detail-modal__sidebar {
   border-radius: var(--lcars-box-radius);
