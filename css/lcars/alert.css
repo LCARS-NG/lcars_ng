@@ -4,14 +4,23 @@
  * in LCNG.
  */
 
+/* Tokens declared on :root as var(--lcars-frame) and the like keep the value
+   they resolved there, so each one is set here again. Links and the hover of
+   buttons and links turn red as well, the hover lighter, as the button
+   component (user decision 29.10.2026, variant C, #27; were blue). The lines
+   and backgrounds mixed from --lcars-blue (fields, boxes, cards) stay blue:
+   error pages hold no fields or boxes. */
 .lcars-alert {
   --lcars-frame: var(--lcars-alert);
   --lcars-sidebar: var(--lcars-alert);
   --lcars-bar: var(--lcars-alert);
   --lcars-button: var(--lcars-alert);
   --lcars-button-sub: var(--lcars-alert);
+  --lcars-button-hover: color-mix(in sRGB, var(--lcars-alert), #fff 35%);
   --lcars-accent: var(--lcars-alert);
   --lcars-heading: var(--lcars-alert);
+  --lcars-link: var(--lcars-alert);
+  --lcars-link-hover: color-mix(in sRGB, var(--lcars-alert), #fff 35%);
 }
 
 .lcars-alert .lcars-main {
