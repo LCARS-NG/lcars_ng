@@ -59,7 +59,7 @@ theme under *Appearance*.
 
 ## Configuration
 
-*Appearance > Settings > LCARS-NG* offers two settings besides the logo and
+*Appearance > Settings > LCARS-NG* offers three settings besides the logo and
 favicon:
 
 - **Login panel on the front page** (`front_page_login`, off by default):
@@ -69,6 +69,12 @@ favicon:
   the Navigation module on the left and at the top in the colors of the
   theme (*Dark*), in the colors of core (*Light*), or after the light or dark
   setting of the system of each user (*As the system*).
+- **Generated user pictures** (`generated_user_pictures`, on by default):
+  users without a picture of their own get a pattern made from their
+  account in place of the default picture of the field (where the field has
+  one, as in Drupal CMS), as the identicons of GitHub: a grid of 5 by 5 cells, mirrored at its middle, in one of five
+  colors of the theme. The pattern follows from the UUID of the account and
+  stays the same; uploaded pictures are shown as they are.
 
 The theme chooses its layout per page:
 

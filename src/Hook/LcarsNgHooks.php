@@ -16,6 +16,7 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Url;
 use Drupal\lcars_ng\StatusLine;
 use Drupal\user\Form\UserLoginForm;
+use Drupal\user\UserInterface;
 
 /**
  * Hook implementations for lcars_ng.
@@ -48,6 +49,17 @@ class LcarsNgHooks {
     'system.401',
     'system.403',
     'system.404',
+  ];
+
+  /**
+   * Colors of the generated user pictures (user-picture.css).
+   */
+  private const USER_PICTURE_COLORS = [
+    'link',
+    'frame',
+    'button',
+    'blue',
+    'accent',
   ];
 
   public function __construct(
@@ -171,6 +183,41 @@ class LcarsNgHooks {
   }
 
   /**
+   * Implements hook_preprocess_field().
+   *
+   * A user without a picture gets the default picture of the field, in Drupal
+   * CMS the same avatar for everyone. With the theme setting
+   * generated_user_pictures, a pattern made from the UUID of the account takes
+   * its place, as the identicons of GitHub: a grid of 5 by 5 cells mirrored at
+   * its middle, 15 cells and one of five colors of the theme from a SHA-256
+   * hash, on a card (user decision 29.10.2026, variant A). Each account keeps
+   * its pattern; pictures that users upload stay as they are.
+   */
+  #[Hook('preprocess_field')]
+  public function preprocessField(array &$variables): void {
+    $element = $variables['element'];
+    $account = $element['#object'] ?? NULL;
+    if ($element['#field_name'] !== 'user_picture' || !$account instanceof UserInterface
+      || !$element['#items']->isEmpty() || empty($variables['items'])
+      || !($this->themeSettings->getSetting('generated_user_pictures') ?? TRUE)) {
+      return;
+    }
+    foreach ($variables['items'] as &$item) {
+      $picture = $this->userPicture($account);
+      // The default picture links to the account where its formatter does.
+      if (isset($item['content']['#url'])) {
+        $picture = [
+          '#type' => 'link',
+          '#url' => $item['content']['#url'],
+          '#title' => $picture,
+        ];
+      }
+      CacheableMetadata::createFromRenderArray($item['content'])->applyTo($picture);
+      $item['content'] = $picture;
+    }
+  }
+
+  /**
    * Implements hook_preprocess_image_widget().
    */
   #[Hook('preprocess_image_widget')]
@@ -182,6 +229,22 @@ class LcarsNgHooks {
     // @todo revisit in https://drupal.org/node/3114318
     if (isset($data['preview']['#access']) && $data['preview']['#access'] === FALSE) {
       unset($data['preview']);
+      return;
+    }
+    // Without an upload, the widget previews the default picture. With
+    // generated user pictures (preprocessField()), the form of an account
+    // shows its pattern instead; before there is an account, no picture.
+    $element = $variables['element'];
+    if (isset($data['preview']) && empty($element['#files'])
+      && ($element['#entity_type'] ?? NULL) === 'user' && ($element['#field_name'] ?? NULL) === 'user_picture'
+      && ($this->themeSettings->getSetting('generated_user_pictures') ?? TRUE)) {
+      $account = $this->routeMatch->getParameter('user');
+      if ($account instanceof UserInterface) {
+        $data['preview'] = ['#weight' => $data['preview']['#weight'] ?? -10] + $this->userPicture($account);
+      }
+      else {
+        unset($data['preview']);
+      }
       return;
     }
     // An SVG drawn in currentColor (the default user picture of Drupal CMS)
@@ -244,6 +307,44 @@ class LcarsNgHooks {
         'auto' => $this->t('As the system'),
       ],
       '#config_target' => 'lcars_ng.settings:navigation_scheme',
+    ];
+    $form['lcars_ng']['generated_user_pictures'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Generated user pictures'),
+      '#description' => $this->t('Users without a picture get a pattern made from their account, in the colors of the theme, instead of the default picture of the field.'),
+      '#config_target' => 'lcars_ng.settings:generated_user_pictures',
+    ];
+  }
+
+  /**
+   * Builds the generated picture of an account (preprocessField()).
+   *
+   * Nibble i of the hash fills cell i of the left three columns when even,
+   * column by column; the right two mirror them. Byte 20 picks the color. The
+   * cells form one path, so that adjacent cells show no seam between them.
+   */
+  private function userPicture(UserInterface $account): array {
+    $hash = hash('sha256', $account->uuid(), TRUE);
+    $path = '';
+    for ($column = 0; $column < 3; $column++) {
+      for ($row = 0; $row < 5; $row++) {
+        $i = $column * 5 + $row;
+        if (((ord($hash[$i >> 1]) >> ($i & 1 ? 0 : 4)) & 15) % 2 === 0) {
+          foreach (array_unique([$column, 4 - $column]) as $x) {
+            $path .= sprintf('M%.1F %.1Fh11.2v11.2h-11.2z', 8 + $x * 11.2, 8 + $row * 11.2);
+          }
+        }
+      }
+    }
+    return [
+      '#type' => 'inline_template',
+      '#template' => '<svg class="lcars-user-picture lcars-user-picture--{{ color }}" xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 72 72" role="img" aria-label="{{ label }}"><rect class="lcars-user-picture__card" width="72" height="72" rx="6"/><path d="{{ path }}"/></svg>',
+      '#context' => [
+        'color' => self::USER_PICTURE_COLORS[ord($hash[20]) % count(self::USER_PICTURE_COLORS)],
+        'label' => $account->getDisplayName(),
+        'path' => $path,
+      ],
+      '#attached' => ['library' => ['lcars_ng/user-picture']],
     ];
   }
 

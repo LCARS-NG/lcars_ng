@@ -15,3 +15,6 @@ lcars_ng.settings:
           - dark
           - light
           - auto
+    generated_user_pictures:
+      type: boolean
+      label: 'Patterns made from the account for users without a picture'

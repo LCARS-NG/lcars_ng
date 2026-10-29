@@ -1,0 +1,35 @@
+/**
+ * @file
+ * The picture of a user without one of their own, made from the account
+ * (LcarsNgHooks::preprocessField()): the cells in one of five colors of the
+ * theme on a card a little lighter than the page, as the identicons of GitHub
+ * (user decision 29.10.2026, variant A).
+ */
+
+.lcars-user-picture {
+  fill: var(--lcars-user-picture-color);
+}
+
+.lcars-user-picture__card {
+  fill: var(--lcars-card-bg);
+}
+
+.lcars-user-picture--link {
+  --lcars-user-picture-color: var(--lcars-link);
+}
+
+.lcars-user-picture--frame {
+  --lcars-user-picture-color: var(--lcars-frame);
+}
+
+.lcars-user-picture--button {
+  --lcars-user-picture-color: var(--lcars-button);
+}
+
+.lcars-user-picture--blue {
+  --lcars-user-picture-color: var(--lcars-blue);
+}
+
+.lcars-user-picture--accent {
+  --lcars-user-picture-color: var(--lcars-accent);
+}
