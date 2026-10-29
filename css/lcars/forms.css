@@ -4,7 +4,6 @@
  */
 
 label,
-.form-item label,
 fieldset legend {
   text-transform: uppercase;
   color: var(--lcars-frame);

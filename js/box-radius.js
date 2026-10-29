@@ -9,9 +9,14 @@
  * CSS alone cannot round an element by its own width without containing its
  * size, which would change the width of the login panel and the columns of
  * tables. Without the script the width of the window decides (tokens.css).
+ *
+ * A plain script, without Drupal's behaviors: it starts once at the end of
+ * the page, and a MutationObserver catches the boxes added later (dialogs,
+ * Project Browser, AJAX). Content pages of anonymous visitors thus load no
+ * other JavaScript of Drupal for it (#33).
  */
 
-((Drupal, once) => {
+(() => {
   /**
    * The boxes and cards that take their corners from --lcars-box-radius.
    *
@@ -90,21 +95,8 @@
       .forEach(watch);
   });
 
-  /**
-   * Marks boxes and cards as wide or narrow by their width.
-   *
-   * @type {Drupal~behavior}
-   *
-   * @prop {Drupal~behaviorAttach} attach
-   *   Observes the boxes of the page and the boxes added later.
-   */
-  Drupal.behaviors.lcarsBoxRadius = {
-    attach(context) {
-      once('lcars-box-radius', 'body', context).forEach((body) => {
-        wideFrom = readWideFrom();
-        watch(body);
-        additions.observe(body, { childList: true, subtree: true });
-      });
-    },
-  };
-})(Drupal, once);
+  // Observe the boxes of the page and the boxes added later.
+  wideFrom = readWideFrom();
+  watch(document.body);
+  additions.observe(document.body, { childList: true, subtree: true });
+})();

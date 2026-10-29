@@ -30,7 +30,7 @@ pages scroll.
 
 ## Requirements
 
-This theme requires no modules outside of Drupal core (11.3 or later).
+This theme requires no modules outside of Drupal core (11.4 or later).
 
 
 ## Recommended modules
@@ -115,6 +115,14 @@ The module Gin Toolbar attaches the dialog styles of Gin and Claro to every
 dialog in every theme. They rely on Gin's CSS variables and leave dialogs
 transparent in other themes, so LCARS-NG removes them (`libraries-override`)
 and styles dialogs in `css/components/dialog.css`.
+
+**Why do some texts have less contrast than WCAG AA asks for?**
+The slogan, the date of the status line and the texts of the login card are
+set in the blue of the frame, `--lcars-sidebar` (#3469aa), for a monochrome
+look: 3.11:1 on the page background, below the 4.5:1 that WCAG 2.2 AA asks
+for normal text. A sub-theme that needs more can set `--lcars-sidebar`
+lighter, for example to #579df9 (6.31:1); the frame, the panels and the
+dashboard cards take that color as well.
 
 **Can the login panel replace the "Access denied" page?**
 Set the default 403 page to `/user/login` under *Configuration > System >

@@ -132,9 +132,6 @@ global:
 box-radius:
   js:
     js/box-radius.js: {  }
-  dependencies:
-    - core/drupal
-    - core/once
 admin:
   css:
     theme:

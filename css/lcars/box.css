@@ -14,7 +14,8 @@
 
 /* Boxes and cards wider than --lcars-box-wide-from take the larger corners:
    js/box-radius.js marks every box by its own width (user decision
-   25.10.2026). A box inside a box sets its own corners; the title bar and the
+   25.10.2026). The script lists the boxes it marks; a new kind of box with
+   --lcars-box-radius goes into that list as well. A box inside a box sets its own corners; the title bar and the
    button pane of a dialog take those of the dialog. */
 [data-lcars-box="wide"] {
   --lcars-box-radius: var(--lcars-box-radius-wide);

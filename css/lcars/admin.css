@@ -37,12 +37,14 @@
   color: var(--lcars-text-dim);
 }
 
+/* Requirements in the list of modules: in the colors of the messages
+   (#33; were #6fcf6f and #ff7a7a). */
 .admin-enabled {
-  color: #6fcf6f;
+  color: var(--lcars-message-status);
 }
 
 .admin-missing {
-  color: #ff7a7a;
+  color: var(--lcars-message-error);
 }
 
 /* Appearance: list headers as the headings in formatted text (base.css),
