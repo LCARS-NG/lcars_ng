@@ -58,6 +58,7 @@
   --lcars-button-height: 2.125rem; /* 34px, a sidebar menu button without its seam (navigation.css) */
   --lcars-button-large-height: 2.75rem; /* 44px, LCARS button component and login buttons */
   --lcars-button-large-width: 8rem; /* their minimum width */
+  --lcars-target: 1.5rem; /* 24px: the smallest pointer target, as WCAG 2.2 (2.5.8) asks (#20, 29.10.2026) */
   --lcars-pill: 9999px; /* pill: a radius larger than any element */
   --lcars-cap-inset: 2px; /* capitals cut into a bar stop this short of its top and bottom edge (user decision 23.10.2026) */
   --lcars-title-height: 1.5625rem; /* 25px: the title bar of the page (frame.css) and the titles of the dashboard cards (dashboard.css), capitals 21px, smaller than the site name (28px); was --lcars-button-height, 34px */

@@ -49,3 +49,10 @@ html:root {
   --ck-color-tooltip-background: var(--lcars-frame);
   --ck-color-tooltip-text: var(--lcars-on-color);
 }
+
+/* The arrow of split buttons (bulleted and numbered list) as wide as the
+   smallest pointer target (#20; it was 17px). "html" outweighs the rules
+   CKEditor adds after the theme. */
+html .ck.ck-splitbutton > .ck-splitbutton__arrow {
+  min-inline-size: var(--lcars-target);
+}

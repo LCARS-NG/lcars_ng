@@ -55,9 +55,72 @@ select optgroup {
   }
 }
 
-/* The black eye of view_password, made light for the dark fields. */
+/* The black eye of view_password, made light for the dark fields; as high
+   as the smallest pointer target, the icon (24 × 16px) centred in it as
+   before (#20; the module makes the button 16px high). */
 button.shwpd {
+  block-size: var(--lcars-target);
   filter: invert(1);
+}
+
+/* Buttons drawn as links (Show row weights) reach the smallest pointer
+   target as the links of base.css, without moving their line (#20). */
+button.link {
+  --lcars-target-pad: max(0px, round(up, (var(--lcars-target) - 1lh) / 2, 0.5px));
+
+  padding-block: var(--lcars-target-pad);
+  margin-block: calc(-1 * var(--lcars-target-pad));
+}
+
+/* Checkboxes and radios of the theme's own, as large as the smallest pointer
+   target: the line of the fields, checked in the color of the buttons with a
+   black mark (user decision 29.10.2026, variant C, #20; were the 13px of the
+   browser). :where() leaves the rules of modules with switches of their own
+   (Klaro) above these. */
+:where(input[type="checkbox"], input[type="radio"]) {
+  appearance: none;
+  box-sizing: border-box;
+  inline-size: var(--lcars-target);
+  block-size: var(--lcars-target);
+  flex-shrink: 0;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 2px solid var(--lcars-field-border);
+  border-radius: 0.25rem;
+  background: none;
+}
+
+:where(input[type="radio"]) {
+  border-radius: 50%;
+}
+
+:where(input[type="checkbox"], input[type="radio"]):is(:checked, :indeterminate) {
+  border-color: var(--lcars-button);
+}
+
+:where(input[type="checkbox"]):checked {
+  background: var(--lcars-button) url(../../images/icons/checkbox-check.svg) center / 80% no-repeat;
+}
+
+:where(input[type="checkbox"]):indeterminate {
+  background: linear-gradient(var(--lcars-button) 0 0) center / 60% 2px no-repeat;
+}
+
+:where(input[type="radio"]):checked {
+  background: radial-gradient(var(--lcars-button) 0 40%, transparent 46%);
+}
+
+:where(input[type="checkbox"], input[type="radio"]):disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+/* High contrast modes drop backgrounds, and with them the mark: there the
+   browser draws its own boxes again, in the size of the target. */
+@media (forced-colors: active) {
+  :where(input[type="checkbox"], input[type="radio"]) {
+    appearance: auto;
+  }
 }
 
 /* An SVG preview of an image field drawn in currentColor (the default user

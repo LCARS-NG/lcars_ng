@@ -63,6 +63,24 @@ a:hover {
   color: var(--lcars-link-hover);
 }
 
+/* Links standing on their own (breadcrumb, menus of the footer and the
+   panels, lists, tables, status line) reach the smallest pointer target:
+   padding above and below grows the area a finger hits, the negative margin
+   keeps every line where it was (user decision 29.10.2026, #20). Measured in
+   lh, the line height, not in the metrics of the system font, and rounded up
+   to half pixels, as layout rounds a little down. Links in running text keep
+   their size; WCAG 2.5.8 leaves them out. */
+:is(.breadcrumb, .region-footer .menu, .lcars-panel__inner .menu, .more-link,
+  .list-group__link, .compact-link, .system-status-report-counters__item,
+  .lcars-login__links, .lcars-status) a:not(.button),
+:is(td, th) > a:not(.button) {
+  --lcars-target-pad: max(0px, round(up, (var(--lcars-target) - 1lh) / 2, 0.5px));
+
+  display: inline-block;
+  padding-block: var(--lcars-target-pad);
+  margin-block: calc(-1 * var(--lcars-target-pad));
+}
+
 /* LCNG removed all outlines; keyboard focus stays visible here. */
 :focus-visible {
   outline: 2px solid var(--lcars-accent);
