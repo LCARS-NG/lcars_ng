@@ -9,8 +9,10 @@
   margin-block-end: 1.5rem;
 }
 
+/* Text in the color of the bar (bar) or of the chosen color (plain). */
 .lcars-heading__text {
   margin: 0;
+  color: var(--lcars-heading-color);
   font-size: 1.5rem;
 }
 
@@ -20,11 +22,6 @@
   padding-inline-start: 1.5em;
   border-radius: var(--lcars-pill);
   background: var(--lcars-heading-color);
-}
-
-/* Text in the color of the bar (bar) or of the chosen color (plain). */
-.lcars-heading__text {
-  color: var(--lcars-heading-color);
 }
 
 .lcars-heading--bar .lcars-heading__text {

@@ -2,6 +2,11 @@
 /**
  * @file
  * LCARS button: a link when href is set, otherwise a plain label.
+ *
+ * "uri-reference" in the schema allows any scheme, javascript: too, and Twig
+ * escapes HTML, not schemes: href becomes a link only without a scheme (a
+ * path, a fragment, a query) or with http, https, mailto or tel, otherwise
+ * the button is a plain label (#29, 29.10.2026).
  */
 #}
 {% set classes = [
@@ -9,7 +14,18 @@
   'lcars-button--' ~ color|default('button'),
   'lcars-button--' ~ shape|default('pill'),
 ] %}
-{% if href %}
+{% set url = href|default('')|trim|lower %}
+{% set safe_href = href and (
+  ':' not in url
+  or url starts with '/'
+  or url starts with '#'
+  or url starts with '?'
+  or url starts with 'http://'
+  or url starts with 'https://'
+  or url starts with 'mailto:'
+  or url starts with 'tel:'
+) %}
+{% if safe_href %}
   <a{{ attributes.addClass(classes).setAttribute('href', href) }}>{{ label }}</a>
 {% else %}
   <span{{ attributes.addClass(classes) }}>{{ label }}</span>
