@@ -103,7 +103,9 @@ Colors and frame sizes are custom properties in `css/lcars/tokens.css`
 (`--lcars-*`). A sub-theme can override them in its own stylesheet.
 
 The theme provides four single-directory components to embed in templates:
-button, heading, text and panel (`components/`).
+button, heading, text and panel (`components/`). Button, heading and text
+are deprecated and will be removed in 2.0.0: no template of the theme uses
+them, so they are no longer tested on a site.
 
 
 ## Troubleshooting & FAQ

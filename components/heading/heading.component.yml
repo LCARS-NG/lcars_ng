@@ -1,8 +1,8 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: LCARS heading
-description: A heading cut into a colored bar, like the page title, or plain.
+description: "A heading cut into a colored bar, like the page title, or plain. Deprecated in 1.0.8, removed in 2.0.0: no template of the theme uses it since Canvas left lcars-ng.org."
 group: LCARS
-status: stable
+status: deprecated
 props:
   type: object
   required:
