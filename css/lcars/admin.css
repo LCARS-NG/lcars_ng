@@ -34,6 +34,13 @@
   border-top: 0;
 }
 
+/* Block layout: the regions with their blocks, without the lines of all
+   tables, which made the list restless; the rows keep their room, as the
+   Drupal events (user wish 30.10.2026; table.css). */
+#blocks :is(th, td) {
+  border-top: 0;
+}
+
 /* Phones: the descriptions hide (table.css), and core's 25% for the names
    then made the column of checkboxes 46 to 61px wide, different in each
    package. With the names taking the rest, the checkboxes line up as on
