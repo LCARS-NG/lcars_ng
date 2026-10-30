@@ -36,6 +36,7 @@
     '.pb-detail-modal__sidebar',
     '.pb-project',
     '.layout-builder',
+    '.text-formatted pre',
   ].join(', ');
 
   /**

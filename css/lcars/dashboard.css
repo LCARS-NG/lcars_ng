@@ -111,12 +111,12 @@
    and User Groups" ran over the elbow). Its capitals fill the ceiling up to
    --lcars-cap-inset with the rule of the cut capitals (frame.css; user wish
    27.10.2026, were 20px letters in the 25px ceiling). Positioned, so it lies
-   above the ceiling. */
+   above the ceiling; clipped at its sides only, as the page title. */
 .dashboard .layout .block > h2 {
   --lcars-cut-height: var(--lcars-title-height);
 
   position: relative;
-  overflow: hidden;
+  overflow: clip visible;
   box-sizing: border-box;
   margin-block: 0 var(--lcars-card-pad);
   margin-inline: auto calc(var(--lcars-card-end) - var(--lcars-card-pad));

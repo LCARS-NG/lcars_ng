@@ -14,10 +14,25 @@
  * - options: Flags indicating how the summary should be displayed.
  *   This contains:
  *   - count: A flag indicating whether the count should be displayed.
+ * - tabs: The summary shows as tabs, with the counts inside them
+ *   (LcarsNgHooks::preprocessViewsViewSummary()).
  *
  * @see template_preprocess_views_view_summary()
  */
 #}
+{% if tabs %}
+  <ul class="tabs lcars-summary-tabs__list">
+  {% for row in rows %}
+    {% set link_attributes = row.attributes.addClass(row.active ? 'is-active') %}
+    {% if row.active %}
+      {% set link_attributes = link_attributes.setAttribute('aria-current', 'page') %}
+    {% endif %}
+    <li><a href="{{ row.url }}"{{ link_attributes|without('href') }}>{{ row.link }}
+      {%- if options.count %} <span class="lcars-summary-tabs__count">{{ row.count }}</span>{% endif -%}
+    </a></li>
+  {% endfor %}
+  </ul>
+{% else %}
 <div class="item-list">
   <ul class="views-summary">
   {% for row in rows %}
@@ -29,3 +44,4 @@
   {% endfor %}
   </ul>
 </div>
+{% endif %}

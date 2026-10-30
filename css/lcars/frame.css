@@ -274,7 +274,10 @@
    login panel and the titles of the dashboard cards (--lcars-title-height,
    tokens.css); the cut capitals as above. A long title stays on one line
    and ends in an ellipsis, so the end of the bar shows as wide as its start;
-   the whole title stays in the markup (#15, user decision 26.10.2026). */
+   the whole title stays in the markup (#15, user decision 26.10.2026). It is
+   clipped at its sides only: the line box ends at the capitals, and marks
+   above and below them, the dots of Ü or an underscore, stand out of the bar
+   (#35, 30.10.2026; were cut off). */
 
 .lcars-title {
   display: flex;
@@ -297,7 +300,7 @@
 .lcars-title .page-title {
   --lcars-cut-height: var(--lcars-title-height);
 
-  overflow: hidden;
+  overflow: clip visible;
   min-width: 0;
   margin: 0;
   padding-inline: 0.3em;

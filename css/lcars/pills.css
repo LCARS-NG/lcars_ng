@@ -1,0 +1,78 @@
+/**
+ * @file
+ * Links of entity reference fields as pills (LcarsNgHooks::referencePills()),
+ * such as Tags and Related below a blog post: outlined in the sidebar blue
+ * with a light label, as the tags of a Tagify field (tagify.css), in a row
+ * beside the label of the field; outlined, as they navigate and do not act
+ * (#35, user decision 30.10.2026, variant B).
+ */
+
+/* The label in a column of its own, at least as wide as Related, so that
+   the pills of fields one below the other start at the same line. */
+.lcars-pills.field--label-inline {
+  display: grid;
+  grid-template-columns: minmax(5.5rem, max-content) minmax(0, 1fr);
+  align-items: start;
+  column-gap: 1rem;
+}
+
+.lcars-pills {
+  margin-block: 0.5rem;
+}
+
+/* Apart from the text above them. */
+:not(.lcars-pills) + .lcars-pills {
+  margin-block-start: 2rem;
+}
+
+.lcars-pills > .field__label,
+.lcars-pills > .field__items {
+  float: none;
+  padding: 0;
+}
+
+.lcars-pills > .field__label {
+  text-transform: uppercase;
+  color: var(--lcars-heading);
+  font-size: 0.8125rem;
+  line-height: var(--lcars-target);
+}
+
+/* No colon after the label; no clearfix in the grid, where it would take a
+   cell of its own. */
+.lcars-pills.field--label-inline > .field__label::after,
+.lcars-pills.clearfix::after {
+  content: none;
+}
+
+.lcars-pills .field__items,
+.lcars-pills.field__items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* Each pill without the line box of its item around it, which would set it
+   on the baseline, lower than the label. */
+.lcars-pills .field__item,
+.lcars-pills.field__item {
+  display: flex;
+}
+
+/* As high as the smallest pointer target (base.css, #20). */
+.lcars-pills a {
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  color: var(--lcars-text);
+  border: 1px solid var(--lcars-sidebar);
+  border-radius: var(--lcars-pill);
+  font-size: 0.8125rem;
+  min-block-size: var(--lcars-target);
+  padding-inline: 0.75em;
+}
+
+.lcars-pills a:hover {
+  color: var(--lcars-text);
+  background: var(--lcars-row-highlight);
+}

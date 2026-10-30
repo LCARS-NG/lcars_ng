@@ -51,6 +51,12 @@ p {
   margin: 0 0 0.75em;
 }
 
+/* Long words and addresses in formatted text break at the edge instead of
+   running past it on phones (#35). */
+.text-formatted {
+  overflow-wrap: break-word;
+}
+
 /* LCNG set every link in capitals. */
 a {
   text-decoration: none;

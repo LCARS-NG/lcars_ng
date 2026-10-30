@@ -1,0 +1,125 @@
+/**
+ * @file
+ * Code in formatted text (text fields, field--text.html.twig): a block of code
+ * as a plain box, in the thin line of .lcars-box (box.css), with its language
+ * set into the line above, as the legend of a fieldset; code within a line on
+ * a quiet face (#35, user decision 30.10.2026, variant B).
+ */
+
+.text-formatted pre {
+  --lcars-code-language: none;
+
+  position: relative;
+  padding: 1rem;
+  margin-block: 1.25rem 1rem;
+  border: var(--lcars-box-border-width) solid var(--lcars-box-border-color);
+  border-radius: var(--lcars-box-radius);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.text-formatted :is(pre, code) {
+  font-family: var(--lcars-font-code);
+}
+
+/* Long lines scroll inside the block instead of widening the page. Where a
+   code element holds them, it scrolls and the block keeps its overflow
+   visible, so the language in the line stays whole; blocks without one (from
+   Drupal 6) scroll themselves and have no language. Code reads from left to
+   right on right-to-left pages as well; the line and the language follow the
+   page (#32). */
+.text-formatted pre > code,
+.text-formatted pre:not(:has(> code)) {
+  display: block;
+  overflow-x: auto;
+  direction: ltr;
+}
+
+/* The language of the code block plugin of CKEditor 5 (language-* on the
+   code element), named as in its list (editor.editor.content_format); plain
+   text has none. */
+.text-formatted pre:has(> .language-php) {
+  --lcars-code-language: "PHP";
+}
+
+.text-formatted pre:has(> .language-twig) {
+  --lcars-code-language: "Twig";
+}
+
+.text-formatted pre:has(> .language-yaml) {
+  --lcars-code-language: "YAML";
+}
+
+.text-formatted pre:has(> .language-json) {
+  --lcars-code-language: "JSON";
+}
+
+.text-formatted pre:has(> .language-javascript) {
+  --lcars-code-language: "JavaScript";
+}
+
+.text-formatted pre:has(> .language-css) {
+  --lcars-code-language: "CSS";
+}
+
+.text-formatted pre:has(> .language-html) {
+  --lcars-code-language: "HTML";
+}
+
+.text-formatted pre:has(> .language-xml) {
+  --lcars-code-language: "XML";
+}
+
+.text-formatted pre:has(> .language-sql) {
+  --lcars-code-language: "SQL";
+}
+
+.text-formatted pre:has(> .language-bash) {
+  --lcars-code-language: "Bash";
+}
+
+.text-formatted pre:has(> .language-apache) {
+  --lcars-code-language: "Apache";
+}
+
+.text-formatted pre:has(> .language-diff) {
+  --lcars-code-language: "Diff";
+}
+
+.text-formatted pre:has(> .language-actionscript) {
+  --lcars-code-language: "ActionScript";
+}
+
+.text-formatted pre:has(> .language-python) {
+  --lcars-code-language: "Python";
+}
+
+/* The language in the line, its background breaking it. */
+.text-formatted pre::before {
+  position: absolute;
+  inset-block-start: -0.5rem;
+  inset-inline-start: 0.75rem;
+  padding-inline: 0.375rem;
+  content: var(--lcars-code-language);
+  text-transform: uppercase;
+  color: var(--lcars-heading);
+  background: var(--lcars-space);
+  font-family: var(--lcars-font-label);
+  font-size: 0.6875rem;
+  font-weight: bold;
+  line-height: 1rem;
+}
+
+/* Isolated from the text around it, so that it reads from left to right on
+   right-to-left pages. A transparent line around the face shows only where
+   the system forces its colors (forced-colors) and drops the face. */
+.text-formatted :not(pre) > code {
+  padding: 0.125em 0.375em;
+  direction: ltr;
+  unicode-bidi: isolate;
+  border-radius: 0.375rem;
+  outline: 1px solid transparent;
+  outline-offset: -1px;
+  background: var(--lcars-row-highlight);
+  font-size: 0.875em;
+}

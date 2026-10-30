@@ -212,6 +212,43 @@ class LcarsNgHooks {
   }
 
   /**
+   * Implements hook_preprocess_node().
+   *
+   * The submission information shows the day of the post only, as
+   * "7 June 2011": weekday and time stay in the title of the time element
+   * (node.html.twig, node.css; #35, user decision 30.10.2026, variant A). The
+   * created field of nodes has no display settings, so its format is set here.
+   */
+  #[Hook('preprocess_node')]
+  public function preprocessNode(array &$variables): void {
+    if (empty($variables['display_submitted']) || empty($variables['date'])) {
+      return;
+    }
+    $variables['date'] = $variables['node']->get('created')->view([
+      'label' => 'hidden',
+      'type' => 'timestamp',
+      'settings' => [
+        'date_format' => 'custom',
+        'custom_date_format' => 'j F Y',
+      ],
+    ]);
+  }
+
+  /**
+   * Implements hook_preprocess_views_view_summary().
+   *
+   * A summary of a contextual filter in a display with the CSS class
+   * lcars-summary-tabs shows as tabs, its counts inside them, as the years
+   * above the posts of the blog (views-view-summary.html.twig, archive.css;
+   * #35, user decision 30.10.2026, variant D).
+   */
+  #[Hook('preprocess_views_view_summary')]
+  public function preprocessViewsViewSummary(array &$variables): void {
+    $classes = explode(' ', (string) $variables['view']->display_handler->getOption('css_class'));
+    $variables['tabs'] = in_array('lcars-summary-tabs', $classes, TRUE);
+  }
+
+  /**
    * Implements hook_preprocess_field().
    *
    * A user without a picture gets the default picture of the field, in Drupal
@@ -221,10 +258,17 @@ class LcarsNgHooks {
    * its middle, 15 cells and one of five colors of the theme from a SHA-256
    * hash, on a card (user decision 29.10.2026, variant A). Each account keeps
    * its pattern; pictures that users upload stay as they are.
+   *
+   * Entity references shown as links to their labels (Tags, Related) become
+   * pills: referencePills().
    */
   #[Hook('preprocess_field')]
   public function preprocessField(array &$variables): void {
     $element = $variables['element'];
+    if ($element['#formatter'] === 'entity_reference_label') {
+      $this->referencePills($variables);
+      return;
+    }
     $account = $element['#object'] ?? NULL;
     if ($element['#field_name'] !== 'user_picture' || !$account instanceof UserInterface
       || !$element['#items']->isEmpty() || empty($variables['items'])
@@ -483,6 +527,27 @@ class LcarsNgHooks {
       }
     }
     unset($row);
+  }
+
+  /**
+   * Shows the links of an entity reference field as pills (preprocessField()).
+   *
+   * The label formatter puts each link on a line of its own. As pills outlined
+   * in the sidebar blue, as the tags of a Tagify field, they stand in a row
+   * beside the label of the field (pills.css; #35, user decision 30.10.2026,
+   * variant B). Only where every item is a link: a pill promises one.
+   */
+  private function referencePills(array &$variables): void {
+    if (empty($variables['items'])) {
+      return;
+    }
+    foreach ($variables['items'] as $item) {
+      if (($item['content']['#type'] ?? NULL) !== 'link') {
+        return;
+      }
+    }
+    $variables['attributes']['class'][] = 'lcars-pills';
+    $variables['#attached']['library'][] = 'lcars_ng/pills';
   }
 
   /**

@@ -7,3 +7,30 @@
  * (css/lcars/moderation.css) and the top bar of Navigation show the state
  * (user decision 25.10.2026).
  */
+
+/* Submission information in one line of small capitals, as the labels of
+   fields (pills.css): the day of the post, a dot, its author. Without the
+   picture of the author: the theme setting "User pictures in posts"
+   (features.node_user_picture) is off by default (#35, user decision
+   30.10.2026, variant A). */
+.node__submitted {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-block-end: 1.5rem;
+  text-transform: uppercase;
+  color: var(--lcars-heading);
+  font-size: 0.8125rem;
+}
+
+/* The date takes the direction of its own words, so that its day stays in
+   front on right-to-left pages as well (#32). */
+.node__date {
+  unicode-bidi: plaintext;
+}
+
+.node__author::before {
+  margin-inline-end: 0.5rem;
+  content: "·" / "";
+}

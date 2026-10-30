@@ -127,6 +127,8 @@ global:
       css/lcars/forms.css: {  }
       css/lcars/table.css: {  }
       css/lcars/box.css: {  }
+      css/lcars/code.css: {  }
+      css/lcars/archive.css: {  }
     theme:
       css/lcars/alert.css: {  }
       css/lcars/forced-colors.css: {  }
@@ -185,3 +187,7 @@ user-picture:
   css:
     theme:
       css/lcars/user-picture.css: {  }
+pills:
+  css:
+    theme:
+      css/lcars/pills.css: {  }

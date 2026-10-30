@@ -147,14 +147,15 @@
 
 /* The titles cut the ceiling at its end, as the label of the panel
    (components/panel/panel.css), with the rule of the cut capitals
-   (frame.css); a long title ends with an ellipsis. The notice title only
+   (frame.css); a long title ends with an ellipsis, clipped at its sides only
+   as the page title. The notice title only
    with Klaro's setting "Show notice title". */
 .klaro.klaro-theme-lcars_ng:not(.hide-consent-dialog-title) .cookie-notice:not(.cookie-modal-notice) #id-cookie-title,
 .klaro.klaro-theme-lcars_ng .cookie-modal .cm-modal.cm-klaro .cm-header .title {
   --lcars-cut-height: var(--lcars-notice-ceiling);
 
   position: absolute;
-  overflow: hidden;
+  overflow: clip visible;
   margin: 0;
   padding-inline: 0.3em;
   white-space: nowrap;
