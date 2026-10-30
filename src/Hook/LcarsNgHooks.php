@@ -406,9 +406,10 @@ class LcarsNgHooks {
    * row. Here the button moves to the column Operations, below the operations
    * of the blocks (user wish 30.10.2026). The name and the message "No blocks
    * in this region" span the first three columns, the column of the weights
-   * gets an empty cell of its own: tabledrag widens every cell across that
-   * column by one when the weights show at page load, without having
-   * narrowed it before, which pushed the last cell into a sixth column.
+   * gets an empty cell of its own: a cell that spans that column but not the
+   * whole row, tabledrag widens by one when the weights show at page load,
+   * without having narrowed it before (core #2902300); a name across four
+   * columns pushed the button into a sixth column.
    */
   #[Hook('form_block_admin_display_form_alter')]
   public function formBlockAdminDisplayFormAlter(array &$form): void {
