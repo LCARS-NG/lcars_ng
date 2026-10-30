@@ -37,6 +37,12 @@
 .messages + .messages {
   margin-top: 1.538em;
 }
+
+/* Above the content the last message keeps from the page title the space
+   between two messages (user decision 30.10.2026, variant C; was 0.5em). */
+.lcars-main [data-drupal-messages] > .messages:last-child {
+  margin-block-end: 1.5rem;
+}
 .messages__list {
   margin: 0;
   padding: 0;
