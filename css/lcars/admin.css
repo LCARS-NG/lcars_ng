@@ -48,11 +48,19 @@
   font-size: 1.15em;
 }
 
-/* A dark line across the table below the name of each region, in the tone
+/* A dark line across the table above the name of each region, in the tone
    of "Place block", the same in every contrast level (user decision
-   30.10.2026, variant B). */
+   30.10.2026, variant B). The groups of regions keep 1.5rem above the line,
+   as between two messages, and as much below it: the name and "Place block"
+   start at the top of their row (user decision 30.10.2026, variant B). */
+#blocks tbody tr:has(+ tr.region-title) > td {
+  padding-bottom: 1.5rem;
+}
+
 #blocks tr.region-title td {
-  border-bottom: 1px solid var(--lcars-row-highlight);
+  padding-top: 1.5rem;
+  vertical-align: top;
+  border-top: 1px solid var(--lcars-row-highlight);
 }
 
 /* "Place block" in the column Operations, at its start like the operations
