@@ -4,6 +4,7 @@ DejaVu
 drupical
 Giang
 gpanel
+identicons
 indenter
 innerframe
 klaro

@@ -10,8 +10,7 @@
  * own colors, with the tokens set to system colors: the frame and its labels
  * in the text color of the system, buttons in its button colors, title bar,
  * focus, hover, the active button and the active tab in its highlight color
- * (#34, user decision 30.10.2026, variant C of
- * docs/theme/2026-10-30_forced-colors-varianten-*.png).
+ * (#34, user decision 30.10.2026, variant C).
  *
  * Only here, not on :root: the browser keeps a background in a system color
  * everywhere and forces the text over it, so active tabs and the buttons of

@@ -96,11 +96,11 @@
    sets data-lcars-contrast on <html> (LcarsNgHooks::preprocessHtml()); the
    frame keeps one color with its texts. Medium: the frame in the former
    sidebar blue, 6.31:1, the lines of boxes and fields one step lighter
-   (matrix docs/theme/2026-10-30_kontrast-stufen-varianten-*.png, variant C).
+   (variant C).
    High: the frame in the light blue of the labels, 11.21:1, the buttons one
    step lighter still, the gold of LCNG as accent; every text 7:1 at least,
-   but the red of red alert, 4.97:1 (2026-10-30_kontrast-hoch-varianten-*.png,
-   variant D2). Contrast themes of the system: forced-colors.css. */
+   but the red of red alert, 4.97:1 (variant D2). Contrast themes of the
+   system: forced-colors.css. */
 :root[data-lcars-contrast="medium"] {
   --lcars-sidebar: var(--lcars-blue);
   --lcars-box-border-color: color-mix(in sRGB, var(--lcars-blue) 60%, var(--lcars-space)); /* 3.11:1 */
@@ -110,7 +110,7 @@
 :root[data-lcars-contrast="high"] {
   --lcars-sidebar: var(--lcars-frame);
   --lcars-button: #d3e9ff; /* black labels at 16.87:1 */
-  --lcars-button-active: var(--lcars-blue); /* darker than the buttons, 2.22:1 to them, black labels at 7.6:1; white stood out of them at 1.24:1 only (2026-10-30_kontrast-hoch-aktiv-varianten.png, variant C) */
+  --lcars-button-active: var(--lcars-blue); /* darker than the buttons, 2.22:1 to them, black labels at 7.6:1; white stood out of them at 1.24:1 only (user decision 30.10.2026, variant C) */
   --lcars-box-border-color: var(--lcars-blue);
   --lcars-field-border: var(--lcars-frame);
   --lcars-accent: #ffd068; /* 12.02:1, as the warnings */
