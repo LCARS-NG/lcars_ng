@@ -16,8 +16,8 @@ pages scroll. It follows the settings of the system for more contrast,
 contrast themes and reduced motion.
 
 <p>
-  <a href="images/screenshots/front-page.png"><img src="images/screenshots/front-page.png" width="49%" alt="LCARS-NG front page for signed-in users, with the collapsed Navigation of Drupal on the left and its top bar: upper panel with site name, slogan and logo, status line with date and user, menu buttons on the left, content and panels below"></a>
-  <a href="images/screenshots/dashboard.png"><img src="images/screenshots/dashboard.png" width="49%" alt="The dashboard in LCARS-NG: cards for recent content and top tasks, below them the Drupal events as an agenda"></a>
+  <a href="images/screenshots/front-page.png"><img src="images/screenshots/front-page.png" width="49%" alt="LCARS-NG front page for signed-in users with the contrast setting High, with the collapsed Navigation of Drupal on the left and its top bar: upper panel with site name, slogan and logo, status line with date and user, menu buttons on the left, content and panels below"></a>
+  <a href="images/screenshots/dashboard.png"><img src="images/screenshots/dashboard.png" width="49%" alt="The dashboard in LCARS-NG with the contrast setting High: cards for recent content and top tasks, below them the Drupal events as an agenda"></a>
 </p>
 
 - To see the theme on a live site, visit the
