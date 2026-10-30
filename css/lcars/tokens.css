@@ -110,6 +110,7 @@
 :root[data-lcars-contrast="high"] {
   --lcars-sidebar: var(--lcars-frame);
   --lcars-button: #d3e9ff; /* black labels at 16.87:1 */
+  --lcars-button-active: var(--lcars-blue); /* darker than the buttons, 2.22:1 to them, black labels at 7.6:1; white stood out of them at 1.24:1 only (2026-10-30_kontrast-hoch-aktiv-varianten.png, variant C) */
   --lcars-box-border-color: var(--lcars-blue);
   --lcars-field-border: var(--lcars-frame);
   --lcars-accent: #ffd068; /* 12.02:1, as the warnings */
@@ -122,6 +123,7 @@
   :root:not([data-lcars-contrast]) {
     --lcars-sidebar: var(--lcars-frame);
     --lcars-button: #d3e9ff;
+    --lcars-button-active: var(--lcars-blue);
     --lcars-box-border-color: var(--lcars-blue);
     --lcars-field-border: var(--lcars-frame);
     --lcars-accent: #ffd068;
