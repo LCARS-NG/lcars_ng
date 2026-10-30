@@ -22,7 +22,7 @@
   --lcars-alert: #ff3b4f; /* red alert: error pages; lighter than #9e0e26 for black labels at 5.99:1 and text at 4.97:1 (user decision 25.10.2026) */
   /* Status messages (messages.css), light tones for black text (user decision 24.10.2026) */
   --lcars-message-status: #99d98c;
-  --lcars-message-warning: #ffd068; /* the light gold of --lcars-accent until 27.10.2026, fixed for black text (red alert swaps the accent) */
+  --lcars-message-warning: #ffb366; /* apricot, apart from the gold of the title bar, which is #ffd068 in High; black text at 11.89:1 (user decision 30.10.2026, variant A; was #ffd068, the light gold of --lcars-accent until 27.10.2026) */
   --lcars-message-error: #ff7a6b;
   --lcars-text: #fefefe;
   /* Secondary text in the same white as all text (user decision 21.10.2026;
@@ -113,7 +113,7 @@
   --lcars-button-active: var(--lcars-blue); /* darker than the buttons, 2.22:1 to them, black labels at 7.6:1; white stood out of them at 1.24:1 only (user decision 30.10.2026, variant C) */
   --lcars-box-border-color: var(--lcars-blue);
   --lcars-field-border: var(--lcars-frame);
-  --lcars-accent: #ffd068; /* 12.02:1, as the warnings */
+  --lcars-accent: #ffd068; /* 12.02:1, the gold of LCNG */
   --lcars-placeholder: color-mix(in sRGB, var(--lcars-text) 65%, transparent); /* 7.79:1 */
 }
 
