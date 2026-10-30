@@ -41,6 +41,13 @@
   border-top: 0;
 }
 
+/* "Place block" in the column Operations, at its start like the operations
+   of the blocks (LcarsNgHooks::formBlockAdminDisplayFormAlter(), user wish
+   30.10.2026); core's block.admin.css keeps it 1em from the name. */
+#blocks .region-title__action {
+  margin-inline: 0;
+}
+
 /* Phones: the descriptions hide (table.css), and core's 25% for the names
    then made the column of checkboxes 46 to 61px wide, different in each
    package. With the names taking the rest, the checkboxes line up as on

@@ -399,6 +399,46 @@ class LcarsNgHooks {
   }
 
   /**
+   * Implements hook_form_FORM_ID_alter() for block_admin_display_form.
+   *
+   * Core puts "Place block" right after the name of each region, in one cell
+   * across all columns, so the buttons stand at a different place in each
+   * row. Here the button moves to the column Operations, below the operations
+   * of the blocks (user wish 30.10.2026). The name and the message "No blocks
+   * in this region" span the first three columns, the column of the weights
+   * gets an empty cell of its own: tabledrag widens every cell across that
+   * column by one when the weights show at page load, without having
+   * narrowed it before, which pushed the last cell into a sixth column.
+   */
+  #[Hook('form_block_admin_display_form_alter')]
+  public function formBlockAdminDisplayFormAlter(array &$form): void {
+    if (!isset($form['blocks'])) {
+      return;
+    }
+    foreach (Element::children($form['blocks']) as $key) {
+      $row = &$form['blocks'][$key];
+      $classes = $row['#attributes']['class'] ?? [];
+      if (in_array('region-title', $classes, TRUE) && isset($row['title']['#prefix'])) {
+        $button = $row['title'];
+        $name = $button['#prefix'];
+        unset($button['#prefix'], $button['#wrapper_attributes']);
+        $row['title'] = [
+          '#markup' => $name,
+          '#wrapper_attributes' => ['colspan' => 3],
+        ];
+        $row['weight'] = ['#markup' => ''];
+        $row['operations'] = $button;
+      }
+      elseif (in_array('region-message', $classes, TRUE) && isset($row['message'])) {
+        $row['message']['#wrapper_attributes']['colspan'] = 3;
+        $row['weight'] = ['#markup' => ''];
+        $row['operations'] = ['#markup' => ''];
+      }
+    }
+    unset($row);
+  }
+
+  /**
    * Builds the generated picture of an account (preprocessField()).
    *
    * Nibble i of the hash fills cell i of the left three columns when even,
