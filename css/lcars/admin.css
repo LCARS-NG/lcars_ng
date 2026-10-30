@@ -41,6 +41,13 @@
   border-top: 0;
 }
 
+/* The names of the regions in capitals, 1.15em as the names of the modules
+   on Extend, bold as core has them (user decision 30.10.2026, variant B). */
+#blocks tr.region-title td:first-child {
+  text-transform: uppercase;
+  font-size: 1.15em;
+}
+
 /* "Place block" in the column Operations, at its start like the operations
    of the blocks (LcarsNgHooks::formBlockAdminDisplayFormAlter(), user wish
    30.10.2026); core's block.admin.css keeps it 1em from the name. */
