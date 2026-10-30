@@ -118,6 +118,13 @@ button.link {
   opacity: 0.5;
 }
 
+/* Hints in empty fields in the white of the text at 60 % (tokens.css), as the
+   tag fields; browsers drew their own gray (#34). */
+::placeholder {
+  opacity: 1;
+  color: var(--lcars-placeholder);
+}
+
 /* High contrast modes drop backgrounds, and with them the mark: there the
    browser draws its own boxes again, in the size of the target. */
 @media (forced-colors: active) {

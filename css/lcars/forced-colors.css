@@ -1,0 +1,76 @@
+/**
+ * @file
+ * Contrast themes of the system (forced-colors): the frame keeps its forms.
+ *
+ * In a contrast theme the browser draws text, lines and backgrounds in the few
+ * colors of the system and drops every other background: the elbows, bars,
+ * panels and the faces of the buttons vanished, buttons stood as bare text,
+ * active tabs looked as the others, the required mark and the eye of
+ * view_password (masks over a color) were gone. The parts below keep their
+ * own colors, with the tokens set to system colors: the frame and its labels
+ * in the text color of the system, buttons in its button colors, title bar,
+ * focus, hover, the active button and the active tab in its highlight color
+ * (#34, user decision 30.10.2026, variant C of
+ * docs/theme/2026-10-30_forced-colors-varianten-*.png).
+ *
+ * Only here, not on :root: the browser keeps a background in a system color
+ * everywhere and forces the text over it, so active tabs and the buttons of
+ * the Navigation module lost their labels. The content inside panels and the
+ * Klaro panel keeps the colors the system forces. Aliases resolved on :root
+ * (--lcars-bar, --lcars-button-sub, --lcars-heading and others) are set again.
+ */
+
+@media (forced-colors: active) {
+  .lcars-head,
+  .lcars-sidebar,
+  .lcars-title,
+  .lcars-foot,
+  .lcars-panel-side,
+  .lcars-login__bar,
+  .lcars-panel,
+  .dashboard .layout .block::before,
+  .klaro.klaro-theme-lcars_ng .cookie-notice:not(.cookie-modal-notice),
+  .klaro.klaro-theme-lcars_ng .cookie-modal .cm-modal.cm-klaro,
+  .button,
+  .form-submit,
+  input:where([type="submit"], [type="button"], [type="reset"]),
+  [data-vertical-tabs-panes] > .token-dialog,
+  .theme-selector .operations a,
+  .js .dropbutton-widget,
+  .select_button,
+  .lcars-button,
+  .tabs a,
+  html .vertical-tabs__menu-item,
+  .form-required::after,
+  button.shwpd:is(.eye-open, .eye-close) {
+    --lcars-space: Canvas;
+    --lcars-frame: CanvasText;
+    --lcars-sidebar: CanvasText;
+    --lcars-bar: CanvasText;
+    --lcars-card-frame: CanvasText;
+    --lcars-heading: CanvasText;
+    --lcars-text: CanvasText;
+    --lcars-text-muted: CanvasText;
+    --lcars-text-soft: CanvasText;
+    --lcars-text-dim: CanvasText;
+    --lcars-link: LinkText;
+    --lcars-link-hover: LinkText;
+    --lcars-button: ButtonText;
+    --lcars-button-sub: ButtonText;
+    --lcars-button-hover: Highlight;
+    --lcars-button-active: Highlight;
+    --lcars-on-color: ButtonFace;
+    --lcars-accent: Highlight;
+    --lcars-field-border: CanvasText;
+    --lcars-box-border-color: CanvasText;
+
+    forced-color-adjust: none;
+  }
+
+  .lcars-panel__inner,
+  .klaro.klaro-theme-lcars_ng .cookie-notice:not(.cookie-modal-notice) .cn-body,
+  .klaro.klaro-theme-lcars_ng .cookie-modal .cm-modal.cm-klaro :is(.cm-header, .cm-body, .cm-footer),
+  :is(.button, .form-submit, input:where([type="submit"], [type="button"], [type="reset"]), .select_button):is(:disabled, .is-disabled) {
+    forced-color-adjust: auto;
+  }
+}

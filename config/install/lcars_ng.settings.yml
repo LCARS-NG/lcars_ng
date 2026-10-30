@@ -1,4 +1,5 @@
 front_page_login: false
 navigation_scheme: dark
+contrast: system
 generated_user_pictures: true
 collapse_module_packages: true

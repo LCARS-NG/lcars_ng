@@ -202,6 +202,26 @@
   }
 }
 
+/* Reduced motion: the three segments fade in and out together and slowly,
+   no light runs along them (#34, user decision 30.10.2026, variant B). */
+@media (prefers-reduced-motion: reduce) {
+  :is(.ajax-progress--fullscreen:has(+ [data-project-browser-instance-id]), .pb-projects__loading-overlay .ajax-progress--fullscreen)::before,
+  :is(.ajax-progress--fullscreen:has(+ [data-project-browser-instance-id]), .pb-projects__loading-overlay .ajax-progress--fullscreen)::after,
+  :is(.ajax-progress--fullscreen:has(+ [data-project-browser-instance-id]), .pb-projects__loading-overlay .ajax-progress--fullscreen) .ajax-progress__throbber {
+    animation: lcars-loading-together 2s ease-in-out infinite;
+  }
+}
+
+@keyframes lcars-loading-together {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
 /* Detail dialog: pb.css gives the sidebar a light gray in light mode. */
 .pb-detail-modal__sidebar {
   border-radius: var(--lcars-box-radius);

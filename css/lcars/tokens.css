@@ -38,6 +38,7 @@
   --lcars-field-border: color-mix(in sRGB, var(--lcars-blue) 60%, var(--lcars-space)); /* form fields (forms.css): 3.11:1, as WCAG 1.4.11 asks (user decision 25.10.2026; was --lcars-line-subtle) */
   --lcars-row-highlight: color-mix(in sRGB, var(--lcars-blue) 20%, var(--lcars-space)); /* selected and dragged table rows, the category under the pointer in Project Browser (tableselect.css, tabledrag.css, project-browser.css; user decision 25.10.2026) */
   --lcars-card-bg: color-mix(in sRGB, var(--lcars-blue) 8%, var(--lcars-space)); /* cards a little lighter than the page: general information of the status report, title bar and button pane of dialogs, filter panel of Project Browser (status-report.css, dialog.css, project-browser.css; user decision 25.10.2026) */
+  --lcars-placeholder: color-mix(in sRGB, var(--lcars-text) 60%, transparent); /* hints in empty fields, 6.79:1, as the tag fields had it alone (forms.css, tagify.css; #34, user decision 30.10.2026, variant B; browsers drew their own gray, Chrome #757575, 3.78:1) */
 
   /* Typography: the typeface is not chosen yet. LCNG used Droid Sans. */
   --lcars-font: system-ui, sans-serif;
@@ -88,5 +89,42 @@
     --lcars-bar-top: 1.5rem; /* 24px as the title bar, so the site name fits (user decision 24.10.2026) */
     --lcars-title-height: 1.125rem; /* 18px: capitals 14px, as the panels of the right sidebar (#15, user decision 26.10.2026; was 24px with long titles in two lines); the dashboard cards too (#21, user wish 28.10.2026) */
     --lcars-box-radius: var(--lcars-box-radius-small); /* boxes are narrower than 400px here */
+  }
+}
+
+/* More contrast (#34, user decisions 30.10.2026): the theme setting "Contrast"
+   sets data-lcars-contrast on <html> (LcarsNgHooks::preprocessHtml()); the
+   frame keeps one color with its texts. Medium: the frame in the former
+   sidebar blue, 6.31:1, the lines of boxes and fields one step lighter
+   (matrix docs/theme/2026-10-30_kontrast-stufen-varianten-*.png, variant C).
+   High: the frame in the light blue of the labels, 11.21:1, the buttons one
+   step lighter still, the gold of LCNG as accent; every text 7:1 at least,
+   but the red of red alert, 4.97:1 (2026-10-30_kontrast-hoch-varianten-*.png,
+   variant D2). Contrast themes of the system: forced-colors.css. */
+:root[data-lcars-contrast="medium"] {
+  --lcars-sidebar: var(--lcars-blue);
+  --lcars-box-border-color: color-mix(in sRGB, var(--lcars-blue) 60%, var(--lcars-space)); /* 3.11:1 */
+  --lcars-field-border: var(--lcars-blue);
+}
+
+:root[data-lcars-contrast="high"] {
+  --lcars-sidebar: var(--lcars-frame);
+  --lcars-button: #d3e9ff; /* black labels at 16.87:1 */
+  --lcars-box-border-color: var(--lcars-blue);
+  --lcars-field-border: var(--lcars-frame);
+  --lcars-accent: #ffd068; /* 12.02:1, as the warnings */
+  --lcars-placeholder: color-mix(in sRGB, var(--lcars-text) 65%, transparent); /* 7.79:1 */
+}
+
+/* "As the system" (no attribute): High where the system of a visitor asks for
+   more contrast; browsers report no levels (user decision 30.10.2026). */
+@media (prefers-contrast: more) {
+  :root:not([data-lcars-contrast]) {
+    --lcars-sidebar: var(--lcars-frame);
+    --lcars-button: #d3e9ff;
+    --lcars-box-border-color: var(--lcars-blue);
+    --lcars-field-border: var(--lcars-frame);
+    --lcars-accent: #ffd068;
+    --lcars-placeholder: color-mix(in sRGB, var(--lcars-text) 65%, transparent);
   }
 }

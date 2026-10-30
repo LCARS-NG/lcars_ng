@@ -13,7 +13,7 @@
   --tags-hover-border-color: var(--lcars-sidebar);
   --tags-focus-border-color: var(--lcars-accent);
   --input-color: var(--lcars-text);
-  --placeholder-color: color-mix(in sRGB, var(--lcars-text) 60%, transparent);
+  --placeholder-color: var(--lcars-placeholder);
   --placeholder-color-focus: color-mix(in sRGB, var(--lcars-text) 45%, transparent);
   --tag-bg: var(--lcars-space);
   --tag-hover: var(--lcars-row-highlight);

@@ -59,7 +59,7 @@ theme under *Appearance*.
 
 ## Configuration
 
-*Appearance > Settings > LCARS-NG* offers four settings besides the logo and
+*Appearance > Settings > LCARS-NG* offers five settings besides the logo and
 favicon:
 
 - **Login panel on the front page** (`front_page_login`, off by default):
@@ -69,6 +69,13 @@ favicon:
   the Navigation module on the left and at the top in the colors of the
   theme (*Dark*), in the colors of core (*Light*), or after the light or dark
   setting of the system of each user (*As the system*).
+- **Contrast** (`contrast`, *As the system* by default): the frame, the texts
+  in its color and the lines of boxes and fields in a quiet steel blue
+  (*Standard*), lighter (*Medium*), or in light blue with lighter buttons and
+  gold title bars (*High*). *As the system* shows Standard, and High to
+  visitors whose system asks for more contrast (for example *Increase
+  contrast* on macOS). In the contrast themes of Windows the frame, the
+  buttons and the tabs keep their forms in the colors of the system.
 - **Generated user pictures** (`generated_user_pictures`, on by default):
   users without a picture of their own get a pattern made from their
   account in place of the default picture of the field (where the field has
@@ -129,9 +136,12 @@ and styles dialogs in `css/components/dialog.css`.
 **How do I get more contrast?**
 The frame, the slogan, the date of the status line and the texts of the
 login card share one steel blue, `--lcars-sidebar` (#3469aa, 3.11:1 on the
-page background), so that the interface stays in the background. A sub-theme
-can set it lighter, for example to #579df9 (6.31:1); the frame, the panels
-and the dashboard cards take that color as well.
+page background), so that the interface stays in the background. The setting
+**Contrast** under *Appearance > Settings > LCARS-NG* sets it lighter for all
+visitors: #579df9 (6.31:1) with *Medium*, #a7d4ff (11.21:1) with *High*. With
+*As the system*, the default, each visitor gets High by turning on more
+contrast in the settings of their system. A sub-theme can still set the
+tokens in `css/lcars/tokens.css` to colors of its own.
 
 **Can the login panel replace the "Access denied" page?**
 Set the default 403 page to `/user/login` under *Configuration > System >

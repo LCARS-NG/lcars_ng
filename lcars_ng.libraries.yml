@@ -129,6 +129,7 @@ global:
       css/lcars/box.css: {  }
     theme:
       css/lcars/alert.css: {  }
+      css/lcars/forced-colors.css: {  }
 box-radius:
   js:
     js/box-radius.js: {  }

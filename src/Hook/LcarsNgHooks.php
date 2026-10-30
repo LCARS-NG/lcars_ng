@@ -130,6 +130,13 @@ class LcarsNgHooks {
     if ($scheme !== 'light') {
       $variables['html_attributes']->setAttribute('data-lcars-navigation', $scheme);
     }
+    // Contrast (css/lcars/tokens.css, #34): Medium and High for all visitors,
+    // Standard never more. As the system sets nothing: there High follows
+    // the setting for more contrast of each visitor's system.
+    $contrast = $this->themeSettings->getSetting('contrast') ?? 'system';
+    if ($contrast !== 'system') {
+      $variables['html_attributes']->setAttribute('data-lcars-contrast', $contrast);
+    }
   }
 
   /**
@@ -340,6 +347,22 @@ class LcarsNgHooks {
         'auto' => $this->t('As the system'),
       ],
       '#config_target' => 'lcars_ng.settings:navigation_scheme',
+    ];
+    $form['lcars_ng']['contrast'] = [
+      '#type' => 'radios',
+      '#title' => $this->t('Contrast'),
+      '#description' => $this->t('Contrast of the frame, of the texts in its color and of the lines of boxes and fields: for all visitors, or after the setting of the system of each visitor.'),
+      '#options' => [
+        'system' => $this->t('As the system'),
+        'standard' => $this->t('Standard'),
+        'medium' => $this->t('Medium'),
+        'high' => $this->t('High'),
+      ],
+      'system' => ['#description' => $this->t('Standard, or High for visitors whose system asks for more contrast.')],
+      'standard' => ['#description' => $this->t('The frame and its texts in a quiet steel blue.')],
+      'medium' => ['#description' => $this->t('The frame and its texts in a lighter blue, the lines of boxes and fields lighter.')],
+      'high' => ['#description' => $this->t('The frame and its texts in light blue, the buttons lighter still, the title bars in gold.')],
+      '#config_target' => 'lcars_ng.settings:contrast',
     ];
     $form['lcars_ng']['generated_user_pictures'] = [
       '#type' => 'checkbox',

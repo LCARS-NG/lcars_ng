@@ -15,6 +15,15 @@ lcars_ng.settings:
           - dark
           - light
           - auto
+    contrast:
+      type: string
+      label: 'Contrast: as the system, standard, medium or high'
+      constraints:
+        Choice:
+          - system
+          - standard
+          - medium
+          - high
     generated_user_pictures:
       type: boolean
       label: 'Patterns made from the account for users without a picture'
