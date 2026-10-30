@@ -48,6 +48,13 @@
   font-size: 1.15em;
 }
 
+/* A dark line across the table below the name of each region, in the tone
+   of "Place block", the same in every contrast level (user decision
+   30.10.2026, variant B). */
+#blocks tr.region-title td {
+  border-bottom: 1px solid var(--lcars-row-highlight);
+}
+
 /* "Place block" in the column Operations, at its start like the operations
    of the blocks (LcarsNgHooks::formBlockAdminDisplayFormAlter(), user wish
    30.10.2026); core's block.admin.css keeps it 1em from the name. */
