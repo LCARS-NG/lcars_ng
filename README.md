@@ -12,7 +12,8 @@ corners of boxes by their width; without JavaScript everything stays usable.
 The theme works as front-end theme and as administration theme. Its frame
 adapts to the width and height of the screen, from phones to wide desktop
 screens, for mouse and touch: it fills the window on short pages, and longer
-pages scroll.
+pages scroll. It follows the settings of the system for more contrast,
+contrast themes and reduced motion.
 
 <p>
   <a href="images/screenshots/front-page.png"><img src="images/screenshots/front-page.png" width="49%" alt="LCARS-NG front page for signed-in users, with the collapsed Navigation of Drupal on the left and its top bar: upper panel with site name, slogan and logo, status line with date and user, menu buttons on the left, content and panels below"></a>
@@ -75,13 +76,17 @@ favicon:
   gold title bars (*High*). *As the system* shows Standard, and High to
   visitors whose system asks for more contrast (for example *Increase
   contrast* on macOS). In the contrast themes of Windows the frame, the
-  buttons and the tabs keep their forms in the colors of the system.
+  buttons and the tabs keep their forms in the colors of the system. Where
+  the system asks for reduced motion, the loading indicator of Project
+  Browser pulses slowly instead of running, and the bar of the password
+  strength changes without transition.
 - **Generated user pictures** (`generated_user_pictures`, on by default):
   users without a picture of their own get a pattern made from their
   account in place of the default picture of the field (where the field has
-  one, as in Drupal CMS), as the identicons of GitHub: a grid of 5 by 5 cells, mirrored at its middle, in one of five
-  colors of the theme. The pattern follows from the UUID of the account and
-  stays the same; uploaded pictures are shown as they are.
+  one, as in Drupal CMS), as the identicons of GitHub: a grid of 5 by 5
+  cells, mirrored at its middle, in one of five colors of the theme. The
+  pattern follows from the UUID of the account and stays the same; uploaded
+  pictures are shown as they are.
 - **Collapsed packages on Extend** (`collapse_module_packages`, on by
   default): the packages of modules on *Extend* start collapsed instead of
   open, where LCARS-NG is the administration theme. The filter above the list
