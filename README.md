@@ -87,10 +87,15 @@ favicon:
   cells, mirrored at its middle, in one of five colors of the theme. The
   pattern follows from the UUID of the account and stays the same; uploaded
   pictures are shown as they are.
-- **Collapsed packages on Extend** (`collapse_module_packages`, on by
-  default): the packages of modules on *Extend* start collapsed instead of
-  open, where LCARS-NG is the administration theme. The filter above the list
-  opens the packages with matching modules while it is in use.
+- **Collapsed sections** (`collapse_module_packages`, on by default): the
+  packages of modules on *Extend*, the sections of the theme settings (*Page
+  element display*, *Logo image*, *Favicon* and those of each theme), of the
+  basic site settings (*Site details*, *Front page*, *Error pages*) and of the
+  Mail System module, and the groups of the defaults of the Metatag module
+  (*Basic tags*, *Advanced*, *Open Graph* …) start collapsed instead of open,
+  where LCARS-NG is the administration theme. The filter above the list on
+  *Extend* opens the packages with matching modules while it is in use. The
+  key keeps its name from 1.0.9, when the setting covered *Extend* only.
 
 The theme chooses its layout per page:
 
@@ -137,6 +142,13 @@ The module Gin Toolbar attaches the dialog styles of Gin and Claro to every
 dialog in every theme. They rely on Gin's CSS variables and leave dialogs
 transparent in other themes, so LCARS-NG removes them (`libraries-override`)
 and styles dialogs in `css/components/dialog.css`.
+
+**Why does the top bar of the Navigation module show only on some pages?**
+The top bar holds the title, the status and the actions of the page of an
+entity (Edit, Delete, Revisions), so core shows it only there. The module
+Gin Toolbar replaces its template with Gin's, also where Gin is not the
+administration theme; that template prints an empty bar on every other page,
+which moves the page down by 64 pixels. LCARS-NG restores core's template.
 
 **How do I get more contrast?**
 The frame, the slogan, the date of the status line and the texts of the

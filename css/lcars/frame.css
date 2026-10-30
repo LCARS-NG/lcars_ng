@@ -27,13 +27,16 @@
   row-gap: var(--lcars-seam);
 }
 
-/* The top bar of the Navigation module (entity title, Edit) is fixed and does
-   not take part in Drupal.displace; navigation/css/components/top-bar.css
-   moves the page down by its height instead, from 64rem and only when it has
-   content. The frame then ends at the bottom of the window too; longer pages
-   scroll as before (user decision 24.10.2026). */
+/* The top bar of the Navigation module (entity title, Edit) is fixed;
+   navigation/css/components/top-bar.css moves the page down by its height,
+   from 64rem and only when it has content. Core's template takes part in
+   Drupal.displace (data-offset-top), so the offset above counts its height.
+   A top bar without (Gin's template, which LcarsNgHooks::themeRegistryAlter()
+   replaces where gin_toolbar sets it) counts here instead. The frame then
+   ends at the bottom of the window too; longer pages scroll as before (user
+   decision 24.10.2026). */
 @media (min-width: 64rem) {
-  .top-bar:has(.top-bar__tools:not(:empty), .top-bar__context:not(:empty), .top-bar__actions:not(:empty)) ~ .dialog-off-canvas-main-canvas .lcars-frame {
+  .top-bar:not([data-offset-top]):has(.top-bar__tools:not(:empty), .top-bar__context:not(:empty), .top-bar__actions:not(:empty)) ~ .dialog-off-canvas-main-canvas .lcars-frame {
     --lcars-frame-offset: var(--admin-toolbar-top-bar-height, 0px);
   }
 }

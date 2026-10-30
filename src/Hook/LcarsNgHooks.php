@@ -6,6 +6,7 @@ use Drupal\block\BlockInterface;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Extension\ModuleExtensionList;
 use Drupal\Core\Extension\ThemeSettingsProvider;
 use Drupal\Core\File\FileUrlGeneratorInterface;
 use Drupal\Core\Form\FormBuilderInterface;
@@ -72,7 +73,26 @@ class LcarsNgHooks {
     private readonly ThemeSettingsProvider $themeSettings,
     private readonly EntityTypeManagerInterface $entityTypeManager,
     private readonly FileUrlGeneratorInterface $fileUrlGenerator,
+    private readonly ModuleExtensionList $moduleList,
   ) {}
+
+  /**
+   * Implements hook_theme_registry_alter().
+   *
+   * The module gin_toolbar (part of Drupal CMS) replaces the template of the
+   * top bar of the Navigation module with Gin's, also where Gin is not the
+   * administration theme. Gin's template prints the bar on every page and
+   * leaves whitespace in its regions, so core's top-bar.css (:empty) shows it
+   * empty and moves the page down by its height. Core's template prints the
+   * bar only where it has content (title, status and Edit on the page of an
+   * entity). Runs after the alter hooks of the modules.
+   */
+  #[Hook('theme_registry_alter')]
+  public function themeRegistryAlter(array &$theme_registry): void {
+    if (str_ends_with($theme_registry['top_bar']['path'] ?? '', '/gin_toolbar/templates')) {
+      $theme_registry['top_bar']['path'] = $this->moduleList->getPath('navigation') . '/templates';
+    }
+  }
 
   /**
    * Implements hook_theme_suggestions_block_alter().
@@ -320,16 +340,25 @@ class LcarsNgHooks {
    * this theme, but loads the file only on this theme's settings page. Where
    * LCARS-NG is also the administration theme, the settings pages of all other
    * themes would call the missing function.
+   *
+   * Core opens the sections of the global settings and of the settings of each
+   * theme (Page element display, Logo image, Favicon, those of the theme).
+   * With the theme setting collapse_module_packages they start collapsed, as
+   * the packages on Extend; a section with an error opens (Details).
    */
   #[Hook('form_system_theme_settings_alter')]
   public function formSystemThemeSettingsAlter(array &$form): void {
+    $collapse = $this->collapsesSections();
+    if ($collapse) {
+      $this->collapseDetails($form);
+    }
     if (($form['config_key']['#value'] ?? NULL) !== 'lcars_ng.settings') {
       return;
     }
     $form['lcars_ng'] = [
       '#type' => 'details',
       '#title' => $this->t('LCARS-NG'),
-      '#open' => TRUE,
+      '#open' => !$collapse,
     ];
     $form['lcars_ng']['front_page_login'] = [
       '#type' => 'checkbox',
@@ -372,8 +401,8 @@ class LcarsNgHooks {
     ];
     $form['lcars_ng']['collapse_module_packages'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('Collapsed packages on Extend'),
-      '#description' => $this->t('The packages of modules on Extend start collapsed instead of open. The filter opens the packages with matching modules while it is in use.'),
+      '#title' => $this->t('Collapsed sections'),
+      '#description' => $this->t('The packages of modules on Extend, the sections of the theme settings, of the basic site settings and of Mail System, and the groups of the defaults of meta tags start collapsed instead of open. The filter on Extend opens the packages with matching modules while it is in use.'),
       '#config_target' => 'lcars_ng.settings:collapse_module_packages',
     ];
   }
@@ -389,12 +418,29 @@ class LcarsNgHooks {
    */
   #[Hook('form_system_modules_alter')]
   public function formSystemModulesAlter(array &$form): void {
-    if (!isset($form['modules'])
-      || !($this->themeSettings->getSetting('collapse_module_packages') ?? TRUE)) {
-      return;
+    if (isset($form['modules']) && $this->collapsesSections()) {
+      $this->collapseDetails($form['modules']);
     }
-    foreach (Element::children($form['modules']) as $package) {
-      $form['modules'][$package]['#open'] = FALSE;
+  }
+
+  /**
+   * Implements hook_form_alter() for forms whose sections start collapsed.
+   *
+   * Basic site settings (system_site_information_settings): core opens Site
+   * details, Front page and Error pages. Defaults of meta tags
+   * (metatag_defaults_form, a base form ID): the Metatag module opens each
+   * group with a value (Basic tags, Advanced, Open Graph, Twitter Cards), so
+   * on the global defaults all of them. Mail System (mailsystem_admin_form):
+   * the module opens Default Mail System and Module-specific configuration.
+   * With the theme setting collapse_module_packages they start collapsed, as
+   * the packages on Extend.
+   */
+  #[Hook('form_system_site_information_settings_alter')]
+  #[Hook('form_metatag_defaults_form_alter')]
+  #[Hook('form_mailsystem_admin_form_alter')]
+  public function formCollapseSectionsAlter(array &$form): void {
+    if ($this->collapsesSections()) {
+      $this->collapseDetails($form);
     }
   }
 
@@ -494,6 +540,27 @@ class LcarsNgHooks {
     return $this->currentUser->isAnonymous()
       && $this->pathMatcher->isFrontPage()
       && $this->themeSettings->getSetting('front_page_login');
+  }
+
+  /**
+   * Whether lists of sections start collapsed.
+   *
+   * The key names the packages on Extend, where the setting began in 1.0.9;
+   * as part of the interface it keeps its name until 2.0.0.
+   */
+  private function collapsesSections(): bool {
+    return (bool) ($this->themeSettings->getSetting('collapse_module_packages') ?? TRUE);
+  }
+
+  /**
+   * Collapses the sections (details) among the children of an element.
+   */
+  private function collapseDetails(array &$element): void {
+    foreach (Element::children($element) as $key) {
+      if (($element[$key]['#type'] ?? NULL) === 'details') {
+        $element[$key]['#open'] = FALSE;
+      }
+    }
   }
 
 }

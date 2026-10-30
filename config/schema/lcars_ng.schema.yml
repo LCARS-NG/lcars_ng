@@ -29,4 +29,4 @@ lcars_ng.settings:
       label: 'Patterns made from the account for users without a picture'
     collapse_module_packages:
       type: boolean
-      label: 'Packages of modules on Extend start collapsed'
+      label: 'Packages on Extend, sections of theme settings, basic site settings and Mail System, groups of meta tags start collapsed'
