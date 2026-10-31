@@ -39,6 +39,23 @@
   background: transparent;
 }
 
+/* jQuery UI's theme sets Arial (.ui-widget and its form elements) and dark
+   links (.ui-widget-content a, #333333, 1.38:1) in dialogs: the font and the
+   links of the theme instead, as "Remove" in the dialogs of Views
+   (31.10.2026; the token dialog had its own fix since 25.10.2026). */
+.ui-dialog.ui-widget,
+.ui-dialog.ui-widget :is(input, select, textarea, button) {
+  font-family: var(--lcars-font);
+}
+
+.ui-dialog .ui-widget-content a:not(.button) {
+  color: var(--lcars-link);
+}
+
+.ui-dialog .ui-widget-content a:not(.button):hover {
+  color: var(--lcars-link-hover);
+}
+
 @media all and (max-width: 48em) {
   /* 768px */
   .ui-dialog {

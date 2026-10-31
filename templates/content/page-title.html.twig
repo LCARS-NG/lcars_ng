@@ -12,13 +12,16 @@
  *   displayed after the main title tag that appears in the template.
  * - title_hidden: Whether the title and its bar are visually hidden
  *   (LcarsNgHooks::preprocessPageTitle(), the log in page).
+ * - title_tag: The element of the title, h1 unless the bar names the type of
+ *   the content whose title is the heading of the page (node.html.twig).
  */
 #}
+{% set tag = title_tag|default('h1') %}
 {{ title_prefix }}
 {% if title %}
   {# The title cuts into a bar, as #page-title in the Drupal 6 theme LCNG. #}
   <div{{ create_attribute({'class': ['lcars-title', title_hidden ? 'visually-hidden']}) }}>
-    <h1{{ title_attributes.addClass('page-title') }}>{{ title }}</h1>
+    <{{ tag }}{{ title_attributes.addClass('page-title') }}>{{ title }}</{{ tag }}>
   </div>
 {% endif %}
 {{ title_suffix }}

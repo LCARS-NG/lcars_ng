@@ -60,7 +60,7 @@ theme under *Appearance*.
 
 ## Configuration
 
-*Appearance > Settings > LCARS-NG* offers five settings besides the logo and
+*Appearance > Settings > LCARS-NG* offers six settings besides the logo and
 favicon:
 
 - **Login panel on the front page** (`front_page_login`, off by default):
@@ -96,6 +96,12 @@ favicon:
   where LCARS-NG is the administration theme. The filter above the list on
   *Extend* opens the packages with matching modules while it is in use. The
   key keeps its name from 1.0.9, when the setting covered *Extend* only.
+- **Content type in the title bar** (`content_type_in_title_bar`, none by
+  default): on the page of content of the checked types, the title bar names
+  the type (*Blog post*), and the title stands as the main heading above the
+  content, below the date and author, large and as written. Suits dated posts,
+  whose titles are long and whose type sets them apart from the pages of a
+  site.
 
 The theme chooses its layout per page:
 

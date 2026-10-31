@@ -1,0 +1,190 @@
+/**
+ * @file
+ * The edit screen of Views and its dialogs, extending views_ui/admin.styling.
+ * Its stylesheet views_ui.admin.theme.css, made for light themes, gives the
+ * bars of the displays, of the buttons and of the preview a light gray, every
+ * second setting a light green-gray behind the light text, and the tabs of
+ * the displays white and gray. Here: the columns and the sections of the
+ * display as boxes, a line below each heading and fine lines between the
+ * settings, the bars without a background, the tabs as the other tabs of the
+ * theme (user decision 31.10.2026, variant A).
+ */
+
+/* The frame of the displays and of the preview as a box, the bars inside it
+   without a background, set apart by a line. */
+.views-displays,
+.views-preview-wrapper {
+  border-color: var(--lcars-box-border-color);
+  border-radius: var(--lcars-box-radius-small);
+}
+
+.views-display-top,
+.view-preview-form__title {
+  border-color: var(--lcars-box-border-color);
+  background: none;
+}
+
+.form-edit .form-actions {
+  border: 0;
+  border-top: 1px solid var(--lcars-box-border-color);
+  background: none;
+}
+
+/* Columns and the section with the name of the display as boxes. */
+.views-display-column,
+.edit-display-settings-top.views-ui-display-tab-bucket {
+  overflow: hidden;
+  border-color: var(--lcars-box-border-color);
+  border-radius: var(--lcars-box-radius-small);
+}
+
+.views-ui-display-tab-bucket {
+  border-color: var(--lcars-box-border-color);
+}
+
+/* The heading of each section in the color of headings, a line below it; as
+   high as the buttons of the theme (29px), which stand at its end and would
+   otherwise reach into the first setting. Overridden sections stay italic
+   (core). */
+.views-ui-display-tab-bucket__title {
+  display: flex;
+  align-items: center;
+  min-height: 1.8125rem;
+  color: var(--lcars-heading);
+  border-bottom: 1px solid var(--lcars-box-border-color);
+}
+
+/* The settings in the color of text, divided by a fine line instead of the
+   light background of every second one. */
+.views-ui-display-tab-bucket .views-display-setting {
+  color: var(--lcars-text);
+}
+
+.views-ui-display-tab-bucket .views-display-setting:nth-of-type(even) {
+  background: none;
+}
+
+.views-ui-display-tab-bucket .views-display-setting + .views-display-setting {
+  border-top: 1px solid var(--lcars-line-subtle);
+}
+
+/* A disabled view: the boxes on a dark red instead of light pink and white. */
+.views-edit-view.disabled .views-displays {
+  background: color-mix(in sRGB, var(--lcars-alert) 10%, var(--lcars-space));
+}
+
+.views-edit-view.disabled .views-display-column {
+  background: none;
+}
+
+/* Tabs of the displays as the tabs of the theme (forms.css): outlines in the
+   quiet line of the fields, labels in the link color, the active one white
+   with a black label. A display with an error keeps core's red outline. */
+.views-displays .tabs.secondary a,
+.views-displays .tabs.secondary li a {
+  color: var(--lcars-link);
+  border-color: var(--lcars-field-border);
+  border-radius: 0.625rem; /* 10px, as .tabs a */
+  background: none;
+  font-weight: bold;
+}
+
+.views-displays .tabs li a:hover,
+.views-displays .tabs .open > a,
+.views-displays .tabs .open > a:hover {
+  color: var(--lcars-link-hover);
+  border-color: var(--lcars-frame);
+  background: none;
+}
+
+.views-displays .tabs li.is-active a,
+.views-displays .tabs li.is-active a.is-active {
+  color: var(--lcars-on-color);
+  border-color: var(--lcars-button-active);
+  background: var(--lcars-button-active);
+}
+
+.views-displays .tabs .error,
+.views-displays .tabs li.is-active a.is-active.error {
+  border-color: var(--lcars-message-error);
+}
+
+/* The list of types below "Add" (Attachment, Block, Page …): dark, divided by
+   the quiet line, the type under the pointer in the dark of selected rows. */
+.views-displays .tabs .action-list li {
+  border-color: var(--lcars-field-border);
+  background: var(--lcars-space);
+}
+
+.views-displays .tabs .action-list li:hover {
+  background: var(--lcars-row-highlight);
+}
+
+.views-displays .tabs .action-list input.form-submit {
+  color: var(--lcars-link);
+}
+
+/* Preview: titles of its sections as headings, sections and the table of the
+   query in the line of the boxes. */
+.views-live-preview .section-title {
+  color: var(--lcars-heading);
+}
+
+.views-live-preview .preview-section {
+  border-color: var(--lcars-box-border-color);
+}
+
+.views-query-info table {
+  border-color: var(--lcars-box-border-color);
+}
+
+.views-query-info table tr {
+  background: none;
+}
+
+.views-query-info table td {
+  color: var(--lcars-text);
+  border-color: var(--lcars-box-border-color);
+}
+
+/* Dialogs: the choice of displays ("For: All displays") without the light
+   background, the lines of the lists in the line of the boxes. */
+.views-ui-dialog .views-override:not(:empty) {
+  background: none;
+}
+
+.views-filterable-options,
+.views-ui-dialog .views-offset-top,
+.views-ui-dialog .views-offset-bottom {
+  border-color: var(--lcars-box-border-color);
+}
+
+/* Rearranging filters: rows without the light background of every second
+   one, groups in the line of the boxes. */
+.views-ui-rearrange-filter-form tr td[rowspan],
+.views-ui-rearrange-filter-form tr[id^="views-row"],
+.views-ui-rearrange-filter-form .views-group-title,
+.views-ui-rearrange-filter-form .group-empty {
+  border-color: var(--lcars-box-border-color);
+}
+
+.views-ui-rearrange-filter-form .even td {
+  background: none;
+}
+
+/* Phones: core places the actions of the view and of the display at the end
+   of their bars, over the first tab and the name of the display. Here they
+   stand in the flow above them. */
+@media (max-width: 39.9375rem) {
+  .views-display-top .dropbutton-wrapper,
+  .edit-display-settings-top .dropbutton-wrapper {
+    position: relative;
+    inset: auto;
+    margin-block-end: 0.5rem;
+  }
+
+  .views-display-top .tabs,
+  [dir="rtl"] .views-display-top .tabs {
+    margin-inline: 0;
+  }
+}

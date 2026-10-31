@@ -53,6 +53,9 @@
  * - title_suffix: Additional output populated by modules, intended to be
  *   displayed after the main title tag that appears in the template.
  * - view_mode: View mode; for example, "teaser" or "full".
+ * - title_tag: In the full view mode, the heading of the title above the
+ *   content, where the title bar names the type: h1 on the page of the
+ *   content, h2 elsewhere (LcarsNgHooks::preprocessNode()).
  * - teaser: Flag for the teaser state. Will be true if view_mode is 'teaser'.
  *
  * @see \Drupal\node\Hook\NodeThemeHooks::preprocessNode()
@@ -89,6 +92,10 @@
         {{ metadata }}
       </div>
     </footer>
+  {% endif %}
+
+  {% if title_tag %}
+    <{{ title_tag }}{{ title_attributes.addClass('node__title') }}>{{ label }}</{{ title_tag }}>
   {% endif %}
 
   <div{{ content_attributes.addClass('node__content') }}>

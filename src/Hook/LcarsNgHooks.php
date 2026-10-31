@@ -9,7 +9,9 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Extension\ModuleExtensionList;
 use Drupal\Core\Extension\ThemeSettingsProvider;
 use Drupal\Core\File\FileUrlGeneratorInterface;
+use Drupal\Core\Form\ConfigTarget;
 use Drupal\Core\Form\FormBuilderInterface;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\Core\Path\PathMatcherInterface;
 use Drupal\Core\Render\Element;
@@ -18,6 +20,7 @@ use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Url;
 use Drupal\lcars_ng\StatusLine;
+use Drupal\node\NodeInterface;
 use Drupal\user\Form\UserLoginForm;
 use Drupal\user\UserInterface;
 
@@ -205,14 +208,35 @@ class LcarsNgHooks {
    * The log in page shows no title bar, as the login panel on the front page:
    * the button below the form says the same (user decision 28.10.2026). The
    * heading stays for screen readers (page-title.html.twig).
+   *
+   * On the page of content of a type chosen in the theme setting
+   * content_type_in_title_bar, the bar names the type, and the title stands
+   * as the heading above the content (preprocessNode(); user decision
+   * 31.10.2026, variant D).
    */
   #[Hook('preprocess_page_title')]
   public function preprocessPageTitle(array &$variables): void {
     $variables['title_hidden'] = $this->routeMatch->getRouteName() === 'user.login';
+    $cacheability = (new CacheableMetadata())->addCacheTags(['config:lcars_ng.settings']);
+    $node = $this->pageNode();
+    if ($node && $this->showsTypeInTitleBar($node)) {
+      $type = $node->type->entity;
+      $variables['title'] = $type->label();
+      $variables['title_tag'] = 'div';
+      $cacheability->addCacheableDependency($type);
+    }
+    CacheableMetadata::createFromRenderArray($variables)
+      ->merge($cacheability)
+      ->applyTo($variables);
   }
 
   /**
    * Implements hook_preprocess_node().
+   *
+   * Content of a type chosen in the theme setting content_type_in_title_bar
+   * shows its title as the heading above the content, below the submission
+   * information (node.html.twig, node.css): on its own page as the main
+   * heading, as its title bar names the type (preprocessPageTitle()).
    *
    * The submission information shows the day of the post only, as
    * "7 June 2011": weekday and time stay in the title of the time element
@@ -221,6 +245,17 @@ class LcarsNgHooks {
    */
   #[Hook('preprocess_node')]
   public function preprocessNode(array &$variables): void {
+    if ($variables['view_mode'] === 'full') {
+      $node = $variables['node'];
+      $cacheability = (new CacheableMetadata())->addCacheTags(['config:lcars_ng.settings']);
+      if ($this->showsTypeInTitleBar($node)) {
+        $variables['title_tag'] = $this->pageNode()?->uuid() === $node->uuid() ? 'h1' : 'h2';
+        $cacheability->addCacheContexts(['route']);
+      }
+      CacheableMetadata::createFromRenderArray($variables)
+        ->merge($cacheability)
+        ->applyTo($variables);
+    }
     if (empty($variables['display_submitted']) || empty($variables['date'])) {
       return;
     }
@@ -449,6 +484,26 @@ class LcarsNgHooks {
       '#description' => $this->t('The packages of modules on Extend, the sections of the theme settings, of the basic site settings and of Mail System, and the groups of the defaults of meta tags start collapsed instead of open. The filter on Extend opens the packages with matching modules while it is in use.'),
       '#config_target' => 'lcars_ng.settings:collapse_module_packages',
     ];
+    if ($this->entityTypeManager->hasDefinition('node_type')) {
+      $types = $this->entityTypeManager->getStorage('node_type')->loadMultiple();
+      $form['lcars_ng']['content_type_in_title_bar'] = [
+        '#type' => 'checkboxes',
+        '#title' => $this->t('Content type in the title bar'),
+        '#description' => $this->t('On the page of content of these types, the title bar names the type, and the title stands as the heading above the content, below the date and author.'),
+        '#options' => array_map(fn ($type) => $type->label(), $types),
+        '#config_target' => new ConfigTarget('lcars_ng.settings', 'content_type_in_title_bar', fromConfig: fn (?array $types): array => $types ?? []),
+        // Core's submit handler of theme settings stores the values of the
+        // form as they are, after the config target: a list of the types.
+        '#element_validate' => [[self::class, 'validateCheckedList']],
+      ];
+    }
+  }
+
+  /**
+   * Element validation: the checked options of checkboxes as a list.
+   */
+  public static function validateCheckedList(array $element, FormStateInterface $form_state): void {
+    $form_state->setValueForElement($element, array_values(array_filter($element['#value'])));
   }
 
   /**
@@ -615,6 +670,25 @@ class LcarsNgHooks {
    */
   private function collapsesSections(): bool {
     return (bool) ($this->themeSettings->getSetting('collapse_module_packages') ?? TRUE);
+  }
+
+  /**
+   * The content the current page shows: its page or its preview.
+   */
+  private function pageNode(): ?NodeInterface {
+    $node = match ($this->routeMatch->getRouteName()) {
+      'entity.node.canonical' => $this->routeMatch->getParameter('node'),
+      'entity.node.preview' => $this->routeMatch->getParameter('node_preview'),
+      default => NULL,
+    };
+    return $node instanceof NodeInterface ? $node : NULL;
+  }
+
+  /**
+   * Whether the title bar names the type of the content on its page.
+   */
+  private function showsTypeInTitleBar(NodeInterface $node): bool {
+    return in_array($node->bundle(), $this->themeSettings->getSetting('content_type_in_title_bar') ?? [], TRUE);
   }
 
   /**

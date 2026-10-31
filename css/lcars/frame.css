@@ -296,7 +296,10 @@
   border-end-end-radius: 0;
 }
 
-/* The title takes the color of its bar, as the site name in the header bar. */
+/* The title takes the color of its bar, as the site name in the header bar.
+   Capitals in bold as the main heading (base.css) also where the bar names
+   the type of the content and the title is no heading (page-title.html.twig;
+   user decision 31.10.2026). */
 .lcars-title .page-title {
   --lcars-cut-height: var(--lcars-title-height);
 
@@ -305,8 +308,11 @@
   margin: 0;
   padding-inline: 0.3em;
   white-space: nowrap;
+  text-transform: uppercase;
   text-overflow: ellipsis;
   color: var(--lcars-accent);
+  font-family: var(--lcars-font-label);
+  font-weight: bold;
 }
 
 /* Phones show the content only (user decision 24.10.2026): the menu moves out

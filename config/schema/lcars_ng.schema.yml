@@ -30,3 +30,9 @@ lcars_ng.settings:
     collapse_module_packages:
       type: boolean
       label: 'Packages on Extend, sections of theme settings, basic site settings and Mail System, groups of meta tags start collapsed'
+    content_type_in_title_bar:
+      type: sequence
+      label: 'Content types whose page shows the type in the title bar and the title above the content'
+      sequence:
+        type: string
+        label: 'Content type'

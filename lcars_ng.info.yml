@@ -46,6 +46,8 @@ libraries-extend:
     - lcars_ng/tagify
   token/jquery.treeTable:
     - lcars_ng/token
+  views_ui/admin.styling:
+    - lcars_ng/views-ui
 # gin_toolbar attaches the dialog styles of Gin and Claro to every dialog in
 # every theme (gin_toolbar_library_info_alter()). They rely on Gin's CSS
 # variables and leave dialogs transparent here; css/components/dialog.css

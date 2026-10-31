@@ -183,6 +183,10 @@ token:
   css:
     theme:
       css/lcars/token.css: {  }
+views-ui:
+  css:
+    theme:
+      css/lcars/views-ui.css: {  }
 user-picture:
   css:
     theme:
