@@ -70,18 +70,11 @@
   margin-inline: 0;
 }
 
-/* "Place block" as a tonal button, quieter than the filled operations of the
-   blocks below it: the dark of selected rows with a label in the frame color,
-   8.02:1; on hover as every button (user decision 30.10.2026, variant B). */
-#blocks .region-title__action .button {
-  color: var(--lcars-frame);
-  background: var(--lcars-row-highlight);
-}
-
-#blocks .region-title__action .button:hover {
-  color: var(--lcars-on-color);
-  background: var(--lcars-button-hover);
-}
+/* "Place block" looks like the operations of the blocks below it and like
+   "Place block" in the dialog of the block library (forms.css, dropbutton.css;
+   user decision 31.10.2026). From 30.10.2026 it was a tonal button, the dark
+   of selected rows with a label in the frame color (variant B), which the
+   user found too dark. */
 
 /* Phones: the descriptions hide (table.css), and core's 25% for the names
    then made the column of checkboxes 46 to 61px wide, different in each

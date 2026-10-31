@@ -314,6 +314,19 @@
   font-weight: bold;
 }
 
+/* The content ends in a bar without a text, as wide and as high as the title
+   bar and in its color and shape: the closing counterpart of the title bar
+   (user wish 31.10.2026). It follows the main content block in the page
+   frame; the login panel has no title bar and no closing bar. */
+.lcars-main .block-system-main-block::after {
+  display: block;
+  block-size: var(--lcars-title-height);
+  margin-block-start: 2rem;
+  content: "";
+  border-radius: var(--lcars-pill);
+  background: var(--lcars-title-bar);
+}
+
 /* Phones show the content only (user decision 24.10.2026): the menu moves out
    of the sidebar above the content, as a grid of buttons (navigation.css). The
    sidebar filler stays as an edge (--lcars-sidebar-width), drawn by the frame

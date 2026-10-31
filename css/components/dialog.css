@@ -42,17 +42,21 @@
 /* jQuery UI's theme sets Arial (.ui-widget and its form elements) and dark
    links (.ui-widget-content a, #333333, 1.38:1) in dialogs: the font and the
    links of the theme instead, as "Remove" in the dialogs of Views
-   (31.10.2026; the token dialog had its own fix since 25.10.2026). */
+   (31.10.2026; the token dialog had its own fix since 25.10.2026). Not the
+   links of dropbuttons ("Place block" in the block library): they keep the
+   colors of the buttons (dropbutton.css); with the link colors their label
+   stood in link blue, and on hover in the hover color of the links, which is
+   the hover color of the buttons too, so it vanished (31.10.2026). */
 .ui-dialog.ui-widget,
 .ui-dialog.ui-widget :is(input, select, textarea, button) {
   font-family: var(--lcars-font);
 }
 
-.ui-dialog .ui-widget-content a:not(.button) {
+.ui-dialog .ui-widget-content a:not(.button, .dropbutton a) {
   color: var(--lcars-link);
 }
 
-.ui-dialog .ui-widget-content a:not(.button):hover {
+.ui-dialog .ui-widget-content a:not(.button, .dropbutton a):hover {
   color: var(--lcars-link-hover);
 }
 
