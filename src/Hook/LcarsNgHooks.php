@@ -206,8 +206,10 @@ class LcarsNgHooks {
    * Implements hook_preprocess_page_title().
    *
    * The log in page shows no title bar, as the login panel on the front page:
-   * the button below the form says the same (user decision 28.10.2026). The
-   * heading stays for screen readers (page-title.html.twig).
+   * the button below the form says the same (user decision 28.10.2026). Nor
+   * does the page to reset the password, where the active tab says the same
+   * (user decision 31.10.2026). The heading stays for screen readers
+   * (page-title.html.twig).
    *
    * On the page of content of a type chosen in the theme setting
    * content_type_in_title_bar, the bar names the type, and the title stands
@@ -216,7 +218,7 @@ class LcarsNgHooks {
    */
   #[Hook('preprocess_page_title')]
   public function preprocessPageTitle(array &$variables): void {
-    $variables['title_hidden'] = $this->routeMatch->getRouteName() === 'user.login';
+    $variables['title_hidden'] = in_array($this->routeMatch->getRouteName(), ['user.login', 'user.pass'], TRUE);
     $cacheability = (new CacheableMetadata())->addCacheTags(['config:lcars_ng.settings']);
     $node = $this->pageNode();
     if ($node && $this->showsTypeInTitleBar($node)) {

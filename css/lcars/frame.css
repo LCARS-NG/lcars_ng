@@ -147,15 +147,15 @@
   font-size: 0.625rem;
 }
 
-/* Sidebar: the column of the menu in the lighter blue of its buttons, between
-   the elbows in the blue of the frame (user decision 27.10.2026; was
-   --lcars-sidebar). On phones the menu stands above the content without a
-   column (below). */
+/* Sidebar: the column of the menu in the blue of the frame, as the elbows
+   above and below it; the buttons keep their lighter blue (user decision
+   31.10.2026; from 27.10.2026 the column was in the blue of the buttons). On
+   phones the menu stands above the content without a column (below). */
 
 .lcars-sidebar {
   grid-area: side;
   padding-block-end: 2.1875rem; /* 35px */
-  background: var(--lcars-button);
+  background: var(--lcars-sidebar);
   line-height: 1;
 }
 
@@ -196,6 +196,11 @@
    instead of pushing it out of the frame. */
 .lcars-aside .lcars-panel {
   --lcars-panel-ceiling: 1.125rem; /* 18px: capitals 14px */
+  /* The floor as thin as the left edge, and its curve as well: the inner
+     curve is the outer one less the edge, both round the same center (user
+     wish 31.10.2026; from earlier that day as high as the ceiling). */
+  --lcars-panel-floor: var(--lcars-panel-edge);
+  --lcars-panel-floor-inner: calc(var(--lcars-panel-corner) - var(--lcars-panel-edge));
 }
 
 .lcars-aside .lcars-panel__inner {
@@ -287,7 +292,7 @@
   margin-block-end: 2rem;
   padding-inline: 1.5em;
   border-radius: var(--lcars-pill);
-  background: var(--lcars-accent);
+  background: var(--lcars-title-bar); /* light blue (user decision 31.10.2026, variant C; was the bronze of --lcars-accent) */
 }
 
 /* The title takes the color of its bar, as the site name in the header bar.
@@ -304,7 +309,7 @@
   white-space: nowrap;
   text-transform: uppercase;
   text-overflow: ellipsis;
-  color: var(--lcars-accent);
+  color: var(--lcars-title-bar);
   font-family: var(--lcars-font-label);
   font-weight: bold;
 }
@@ -423,6 +428,35 @@
   display: block;
   block-size: 5.5rem;
   inline-size: auto;
+}
+
+/* The logo of the theme in a ring, 2px in the blue of the right face of the
+   logo (--lcars-logo-ring), as high as the logo was, so the panel keeps its
+   height. The circle through the three corners of the triangle
+   (lcars-ng-logo-flat.svg, viewBox 77 x 72: apex 38.5|1.81, base 1.67|70.12
+   and 75.33|70.12; radius 44.08, center 9.89 below the middle of the image)
+   has the center of the ring, so all three corners keep the same gap to it
+   (user decisions 31.10.2026: gap 5px, variant B; ring 2px, variant B, was
+   the line of the boxes, 1px). Another logo keeps the rules above. */
+.lcars-panel-top .site-logo:has(> img[src*="lcars-ng-logo-flat.svg"]) {
+  --lcars-logo-gap: 0.3125rem; /* 5px */
+  --lcars-logo-ring-width: 2px;
+  --lcars-logo-unit: calc((2.75rem - var(--lcars-logo-ring-width) - var(--lcars-logo-gap)) / 44.08);
+
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+  margin-inline-end: 1rem;
+  padding: 0;
+  border: var(--lcars-logo-ring-width) solid var(--lcars-logo-ring);
+  border-radius: 50%;
+  inline-size: 5.5rem;
+  block-size: 5.5rem;
+}
+
+.lcars-panel-top .site-logo > img[src*="lcars-ng-logo-flat.svg"] {
+  translate: 0 calc(-9.89 * var(--lcars-logo-unit));
+  block-size: calc(72 * var(--lcars-logo-unit));
 }
 
 /* Status line in the curve below the upper panel: the user right beside the

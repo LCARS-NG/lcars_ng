@@ -18,11 +18,13 @@
   --lcars-button-sub: var(--lcars-button); /* second menu level, in the one blue of the buttons (user decision 27.10.2026; was #6e64ff, a violet lighter than LCNG's #6257fa) */
   --lcars-button-hover: var(--lcars-frame);
   --lcars-button-active: #fff;
-  --lcars-accent: #a6843f; /* page title bar, focus ring: a bronze, darker than the ochre #c89d41 of variant C, 4.98:1 (user decision 27.10.2026, variant D; was #ffd068) */
+  --lcars-accent: #a6843f; /* focus ring and marks (until 31.10.2026 also the page title bar): a bronze, darker than the ochre #c89d41 of variant C, 4.98:1 (user decision 27.10.2026, variant D; was #ffd068) */
+  --lcars-title-bar: var(--lcars-frame); /* page title bar and its title: the light blue of the labels, 11.21:1; the bronze stood out too much as the complement of the steel blue (user decision 31.10.2026, variant C; was --lcars-accent) */
+  --lcars-logo-ring: #3786ff; /* the ring round the logo in the upper panel: the strong blue of the right face of the logo, 4.99:1 on the page (user decision 31.10.2026, variant B) */
   --lcars-alert: #ff3b4f; /* red alert: error pages; lighter than #9e0e26 for black labels at 5.99:1 and text at 4.97:1 (user decision 25.10.2026) */
   /* Status messages (messages.css), light tones for black text (user decision 24.10.2026) */
   --lcars-message-status: #99d98c;
-  --lcars-message-warning: #ffb366; /* apricot, apart from the gold of the title bar, which is #ffd068 in High; black text at 11.89:1 (user decision 30.10.2026, variant A; was #ffd068, the light gold of --lcars-accent until 27.10.2026) */
+  --lcars-message-warning: #ffb366; /* apricot, apart from the gold of the focus ring, which is #ffd068 in High; black text at 11.89:1 (user decision 30.10.2026, variant A; was #ffd068, the light gold of --lcars-accent until 27.10.2026) */
   --lcars-message-error: #ff7a6b;
   --lcars-text: #fefefe;
   /* Secondary text in the same white as all text (user decision 21.10.2026;
@@ -114,6 +116,7 @@
   --lcars-box-border-color: var(--lcars-blue);
   --lcars-field-border: var(--lcars-frame);
   --lcars-accent: #ffd068; /* 12.02:1, the gold of LCNG */
+  --lcars-title-bar: var(--lcars-button); /* the light blue of the buttons, 14:1 (user decision 31.10.2026, variant C; was the gold) */
   --lcars-placeholder: color-mix(in sRGB, var(--lcars-text) 65%, transparent); /* 7.79:1 */
 }
 
@@ -127,6 +130,7 @@
     --lcars-box-border-color: var(--lcars-blue);
     --lcars-field-border: var(--lcars-frame);
     --lcars-accent: #ffd068;
+    --lcars-title-bar: var(--lcars-button);
     --lcars-placeholder: color-mix(in sRGB, var(--lcars-text) 65%, transparent);
   }
 }

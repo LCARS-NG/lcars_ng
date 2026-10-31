@@ -1,6 +1,8 @@
 /**
  * @file
- * LCARS panel.
+ * LCARS panel: a ceiling with the label, the left edge and a floor as high as
+ * the ceiling, a U on its side open to the right, as the dashboard cards
+ * (user decision 31.10.2026, variant B; until then an L without floor).
  */
 
 .lcars-panel {
@@ -12,14 +14,34 @@
   --lcars-panel-corner: round(calc(var(--lcars-panel-ceiling) * var(--lcars-elbow-corner-ratio)), 1px);
   --lcars-panel-end: var(--lcars-panel-ceiling);
   --lcars-panel-inner: round(calc(var(--lcars-panel-ceiling) * var(--lcars-elbow-inner-ratio)), 1px);
+  --lcars-panel-edge: 0.3125rem; /* 5px */
+  /* The floor: as high as the ceiling, with the same elbow. A place with
+     another floor sets its height and the inner curve. */
+  --lcars-panel-floor: var(--lcars-panel-ceiling);
+  --lcars-panel-floor-inner: var(--lcars-panel-inner);
 
+  position: relative;
   display: grid;
   grid-template-rows: auto 1fr;
   grid-template-columns: minmax(0, 1fr); /* not wider than the panel for a long label */
   margin-block-end: 1.5rem;
-  padding-inline-start: 0.3125rem; /* 5px */
+  padding-block-end: var(--lcars-panel-floor);
+  padding-inline-start: var(--lcars-panel-edge);
   background: var(--lcars-panel-color);
   border-start-start-radius: var(--lcars-panel-corner);
+  border-end-start-radius: var(--lcars-panel-corner);
+}
+
+/* The floor ends as the ceiling right of the label: a seam (--lcars-seam)
+   cuts a square of --lcars-panel-end from it. */
+.lcars-panel::after {
+  position: absolute;
+  inset-block-end: 0;
+  inset-inline-end: var(--lcars-panel-end);
+  inline-size: var(--lcars-seam);
+  block-size: var(--lcars-panel-floor);
+  content: "";
+  background: var(--lcars-space);
 }
 
 /* At least the elbow and a piece of ceiling as long as the end stays visible
@@ -54,6 +76,7 @@
   padding-block: 1.25rem 1rem; /* 20px 16px */
   padding-inline: var(--lcars-gutter, 1.25rem) 1rem; /* 20px 16px */
   border-start-start-radius: var(--lcars-panel-inner);
+  border-end-start-radius: var(--lcars-panel-floor-inner);
   background: var(--lcars-space);
 }
 

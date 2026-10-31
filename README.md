@@ -73,7 +73,7 @@ favicon:
 - **Contrast** (`contrast`, *As the system* by default): the frame, the texts
   in its color and the lines of boxes and fields in a quiet steel blue
   (*Standard*), lighter (*Medium*), or in light blue with lighter buttons and
-  gold title bars (*High*). *As the system* shows Standard, and High to
+  title bars (*High*). *As the system* shows Standard, and High to
   visitors whose system asks for more contrast (for example *Increase
   contrast* on macOS). In the contrast themes of Windows the frame, the
   buttons and the tabs keep their forms in the colors of the system. Where

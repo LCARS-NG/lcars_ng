@@ -28,6 +28,7 @@
   .lcars-login__bar,
   .lcars-panel,
   .dashboard .layout .block::before,
+  .dashboard .layout .block::after,
   .klaro.klaro-theme-lcars_ng .cookie-notice:not(.cookie-modal-notice),
   .klaro.klaro-theme-lcars_ng .cookie-modal .cm-modal.cm-klaro,
   .button,
@@ -60,6 +61,7 @@
     --lcars-button-active: Highlight;
     --lcars-on-color: ButtonFace;
     --lcars-accent: Highlight;
+    --lcars-title-bar: Highlight;
     --lcars-field-border: CanvasText;
     --lcars-box-border-color: CanvasText;
 

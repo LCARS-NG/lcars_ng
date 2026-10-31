@@ -50,6 +50,28 @@ th {
   padding-inline-end: 0;
 }
 
+/* In these narrow frames a dropbutton takes only the width of its button, as
+   in the revision tables on phones (below): core reserves 10em + 2em beside
+   it for the open menu, which made My Drafts in the right sidebar 34px wider
+   than the panel, with a scrollbar on its floor (user wish 31.10.2026). The
+   open menu pushes the row down instead of being cut by the frame. A table
+   still wider scrolls in its wrapper, with the scrollbar right below it. */
+.js :is(.lcars-aside .lcars-panel, .dashboard .layout .block) td .dropbutton-multiple {
+  width: auto;
+  margin-inline-end: 0;
+  padding-inline-end: 0;
+}
+
+.js :is(.lcars-aside .lcars-panel, .dashboard .layout .block) td .dropbutton-widget {
+  position: relative;
+  display: inline-block;
+}
+
+:is(.lcars-aside .lcars-panel, .dashboard .layout .block) .lcars-table {
+  position: relative;
+  overflow-x: auto;
+}
+
 /* Revision overviews: of nodes (.node-revision-table) and of other entities
    (VersionHistoryController, easy_email: tables without a class, recognized
    by the class revision-current on the row of the current revision, in

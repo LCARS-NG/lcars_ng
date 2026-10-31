@@ -18,6 +18,7 @@
   --lcars-button-sub: var(--lcars-alert);
   --lcars-button-hover: color-mix(in sRGB, var(--lcars-alert), #fff 35%);
   --lcars-accent: var(--lcars-alert);
+  --lcars-title-bar: var(--lcars-alert);
   --lcars-heading: var(--lcars-alert);
   --lcars-link: var(--lcars-alert);
   --lcars-link-hover: color-mix(in sRGB, var(--lcars-alert), #fff 35%);
