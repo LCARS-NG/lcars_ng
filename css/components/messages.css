@@ -6,8 +6,8 @@
  * --lcars-message-warning, --lcars-message-error in tokens.css), the text and
  * the icon are black like on bars and buttons (user decision 24.10.2026). The
  * icon is the Starterkit icon used as a mask, so it takes the text color.
- * Rounded at the start, cut straight at the end like the title bar of the
- * page (user decision 30.10.2026, variant C).
+ * Rounded at both ends (user decision 31.10.2026; from 30.10.2026 the end was
+ * cut straight like the title bar of the page).
  */
 
 .messages {
@@ -15,8 +15,7 @@
   margin-block-end: 0.5em;
   padding: 1em 1.5em 1em 2.9em; /* LTR */
   color: var(--lcars-on-color);
-  border-start-start-radius: 1.5rem;
-  border-end-start-radius: 1.5rem;
+  border-radius: 1.5rem;
   background: var(--lcars-message-status);
   overflow-wrap: break-word;
 }

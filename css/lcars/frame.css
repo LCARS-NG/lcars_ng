@@ -277,7 +277,9 @@
    the whole title stays in the markup (#15, user decision 26.10.2026). It is
    clipped at its sides only: the line box ends at the capitals, and marks
    above and below them, the dots of Ü or an underscore, stand out of the bar
-   (#35, 30.10.2026; were cut off). */
+   (#35, 30.10.2026; were cut off). The bar is a pill at both ends, in the
+   content area as in the login panel (user decision 31.10.2026; from
+   27.10.2026 it ended straight on the right in the content area). */
 
 .lcars-title {
   display: flex;
@@ -286,14 +288,6 @@
   padding-inline: 1.5em;
   border-radius: var(--lcars-pill);
   background: var(--lcars-accent);
-}
-
-/* In the content area the bar ends straight on the right, cut as the bars of
-   the elbows and panels; the login panel keeps the pill on both ends (user
-   decision 27.10.2026). */
-.lcars-main .lcars-title {
-  border-start-end-radius: 0;
-  border-end-end-radius: 0;
 }
 
 /* The title takes the color of its bar, as the site name in the header bar.
