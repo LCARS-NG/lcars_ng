@@ -16,6 +16,7 @@ use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\Core\Path\PathMatcherInterface;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Routing\RouteProviderInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Url;
@@ -77,6 +78,7 @@ class LcarsNgHooks {
     private readonly EntityTypeManagerInterface $entityTypeManager,
     private readonly FileUrlGeneratorInterface $fileUrlGenerator,
     private readonly ModuleExtensionList $moduleList,
+    private readonly RouteProviderInterface $routeProvider,
   ) {}
 
   /**
@@ -165,7 +167,9 @@ class LcarsNgHooks {
   /**
    * Implements hook_preprocess_page().
    *
-   * The login panel on the front page links to the password reset form only
+   * The login panel on the front page builds the form of the route user.login,
+   * which modules may replace: the core form would skip their steps, such as
+   * the second factor of TFA. It links to the password reset form only
    * where that form is available; a site may deny its route. The status line
    * of the two-part screen is for signed-in users: anonymous visitors see
    * profiles there only where a site grants them, and the page cache of
@@ -182,7 +186,8 @@ class LcarsNgHooks {
     $cacheability = (new CacheableMetadata())
       ->addCacheContexts(['user.roles:authenticated', 'url.path.is_front']);
     if ($this->isLoginFrontPage()) {
-      $variables['login_form'] = $this->formBuilder->getForm(UserLoginForm::class);
+      $form_class = $this->routeProvider->getRouteByName('user.login')->getDefault('_form') ?: UserLoginForm::class;
+      $variables['login_form'] = $this->formBuilder->getForm($form_class);
       $reset = Url::fromRoute('user.pass');
       $access = $reset->access(NULL, TRUE);
       $cacheability->addCacheableDependency($access);
