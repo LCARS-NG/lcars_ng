@@ -129,6 +129,7 @@ global:
       css/lcars/box.css: {  }
       css/lcars/code.css: {  }
       css/lcars/archive.css: {  }
+      css/lcars/search.css: {  }
     theme:
       css/lcars/alert.css: {  }
       css/lcars/forced-colors.css: {  }

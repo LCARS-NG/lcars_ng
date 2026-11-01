@@ -1,0 +1,25 @@
+/**
+ * @file
+ * Search page (view search with the CSS class lcars-search, Search API,
+ * user decision 01.11.2026): the form above the count of results, the
+ * results set apart from each other.
+ */
+
+/* The count is a header area of the view and stands above the exposed form
+   (views-view.html.twig); the form comes first. */
+.lcars-search {
+  display: flex;
+  flex-direction: column;
+}
+
+.lcars-search > .view-filters {
+  order: -1;
+}
+
+.lcars-search > .view-header {
+  margin-block-end: 1rem;
+}
+
+.lcars-search .views-row + .views-row {
+  margin-block-start: 1.5rem;
+}
