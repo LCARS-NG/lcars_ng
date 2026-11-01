@@ -166,6 +166,14 @@ visitors: #579df9 (6.31:1) with *Medium*, #a7d4ff (11.21:1) with *High*. With
 contrast in the settings of their system. A sub-theme can still set the
 tokens in `css/lcars/tokens.css` to colors of its own.
 
+**How do I get syntax highlighting in code blocks?**
+LCARS-NG colors the classes `hl-comment` and `hl-value` of the PHP library
+[tempest/highlight](https://github.com/tempestphp/highlight): comments
+recede, strings take the light blue of the labels, and every other part
+keeps the white of the code. The theme does not highlight code itself; a
+site adds a text filter that runs the library on the server over the code
+blocks of CKEditor 5 (`<pre><code class="language-…">`).
+
 **Can the login panel replace the "Access denied" page?**
 Set the default 403 page to `/user/login` under *Configuration > System >
 Basic site settings*. Anonymous visitors then get the login panel.

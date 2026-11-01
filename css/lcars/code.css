@@ -110,6 +110,18 @@
   line-height: 1rem;
 }
 
+/* Syntax highlighting: the classes of tempest/highlight, which a text filter
+   of the site sets on the server (#35, user decision 01.11.2026, variant B).
+   Only comments and strings stand apart; every other part keeps the white of
+   the code. Within a comment, all of it is comment. */
+.text-formatted pre .hl-value {
+  color: var(--lcars-code-string);
+}
+
+.text-formatted pre :is(.hl-comment, .hl-comment *) {
+  color: var(--lcars-code-comment);
+}
+
 /* Isolated from the text around it, so that it reads from left to right on
    right-to-left pages. A transparent line around the face shows only where
    the system forces its colors (forced-colors) and drops the face. */
