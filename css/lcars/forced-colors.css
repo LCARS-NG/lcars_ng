@@ -74,4 +74,15 @@
   :is(.button, .form-submit, input:where([type="submit"], [type="button"], [type="reset"]), .select_button):is(:disabled, .is-disabled) {
     forced-color-adjust: auto;
   }
+
+  /* The disc under the logo in the upper panel and in the login panel takes
+     the background of the system (Firefox drops it even with
+     forced-color-adjust: none, unless the whole panel keeps its colors), so
+     the image shows the colored logo again instead of its light blue
+     one-colored form: on a light system background that stood at 1.54:1
+     (01.11.2026). */
+  .lcars-panel-top .site-logo > img[src*="lcars-ng-logo-flat.svg"],
+  .lcars-login__panel .site-logo > img[src*="lcars-ng-logo-flat.svg"] {
+    content: normal;
+  }
 }

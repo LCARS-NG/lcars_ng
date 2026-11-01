@@ -50,6 +50,23 @@ th {
   padding-inline-end: 0;
 }
 
+/* Dates in the dashboard cards on one line, the time beside the date, where
+   the table has room for it; the title gives way (user wish 01.11.2026;
+   Updated of Recent content was 86px wide, in two lines). Recent content
+   needs 333px so; at 400px the title keeps about 150px. Narrower cards (640
+   to 800px wide screens) keep the date in lines instead of scrolling; on
+   phones the column hides (priority-low, below). The wrapper takes its width
+   from the card, so the containment changes nothing else. */
+.dashboard .layout .block .lcars-table {
+  container-type: inline-size;
+}
+
+@container (min-width: 25rem) {
+  .dashboard .layout .block td:is(.views-field-changed, .views-field-created) {
+    white-space: nowrap;
+  }
+}
+
 /* In these narrow frames a dropbutton takes only the width of its button, as
    in the revision tables on phones (below): core reserves 10em + 2em beside
    it for the open menu, which made My Drafts in the right sidebar 34px wider

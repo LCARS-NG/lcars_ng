@@ -292,7 +292,7 @@
   margin-block-end: 2rem;
   padding-inline: 1.5em;
   border-radius: var(--lcars-pill);
-  background: var(--lcars-title-bar); /* light blue (user decision 31.10.2026, variant C; was the bronze of --lcars-accent) */
+  background: var(--lcars-title-bar); /* the color of the frame (user wish 01.11.2026; was light blue from 31.10.2026, before that the bronze of --lcars-accent) */
 }
 
 /* The title takes the color of its bar, as the site name in the header bar.
@@ -443,26 +443,30 @@
   inline-size: auto;
 }
 
-/* The logo of the theme in a ring, 2px in the blue of the right face of the
-   logo (--lcars-logo-ring), as high as the logo was, so the panel keeps its
-   height. The circle through the three corners of the triangle
-   (lcars-ng-logo-flat.svg, viewBox 77 x 72: apex 38.5|1.81, base 1.67|70.12
-   and 75.33|70.12; radius 44.08, center 9.89 below the middle of the image)
-   has the center of the ring, so all three corners keep the same gap to it
-   (user decisions 31.10.2026: gap 5px, variant B; ring 2px, variant B, was
-   the line of the boxes, 1px). Another logo keeps the rules above. */
+/* The logo of the theme on a disc in the steel blue of the frame
+   (--lcars-logo-disc), as high as the logo was, so the panel keeps its
+   height; on it the image shows the one-colored form of the logo in the light
+   blue of the labels, same shape, the edges as gaps (user decision 01.11.2026,
+   variant B; the page showed through and looked like a hole). The circle
+   through the three corners of the triangle (lcars-ng-logo-flat.svg, viewBox
+   77 x 72: apex 38.5|1.81, base 1.67|70.12 and 75.33|70.12; radius 44.08,
+   center 9.89 below the middle of the image) has the center of the disc, so
+   all three corners keep the same gap to its edge (user decision 31.10.2026:
+   gap 5px, variant B). The disc has no line round it (user decision
+   01.11.2026; from 31.10.2026 a ring of 2px in #3786ff, with the page
+   inside). The login panel shows the same disc, larger (login.css), and so
+   does the favicon; the contrast themes of the system (forced-colors.css)
+   keep the colored logo. Another logo keeps the rules above. */
 .lcars-panel-top .site-logo:has(> img[src*="lcars-ng-logo-flat.svg"]) {
   --lcars-logo-gap: 0.3125rem; /* 5px */
-  --lcars-logo-ring-width: 2px;
-  --lcars-logo-unit: calc((2.75rem - var(--lcars-logo-ring-width) - var(--lcars-logo-gap)) / 44.08);
+  --lcars-logo-unit: calc((2.75rem - var(--lcars-logo-gap)) / 44.08);
 
   display: grid;
   place-items: center;
-  box-sizing: border-box;
   margin-inline-end: 1rem;
   padding: 0;
-  border: var(--lcars-logo-ring-width) solid var(--lcars-logo-ring);
   border-radius: 50%;
+  background: var(--lcars-logo-disc);
   inline-size: 5.5rem;
   block-size: 5.5rem;
 }
@@ -470,6 +474,7 @@
 .lcars-panel-top .site-logo > img[src*="lcars-ng-logo-flat.svg"] {
   translate: 0 calc(-9.89 * var(--lcars-logo-unit));
   block-size: calc(72 * var(--lcars-logo-unit));
+  content: url("../../lcars-ng-logo-flat-mono-lightblue.svg");
 }
 
 /* Status line in the curve below the upper panel: the user right beside the

@@ -298,8 +298,10 @@ class LcarsNgHooks {
    * generated_user_pictures, a pattern made from the UUID of the account takes
    * its place, as the identicons of GitHub: a grid of 5 by 5 cells mirrored at
    * its middle, 15 cells and one of five colors of the theme from a SHA-256
-   * hash, on a card (user decision 29.10.2026, variant A). Each account keeps
-   * its pattern; pictures that users upload stay as they are.
+   * hash (user decision 29.10.2026, variant A), on a disc in the same color,
+   * darker (user decision 01.11.2026, variant C; was a card in one color for
+   * all). Each account keeps its pattern; pictures that users upload stay as
+   * they are.
    *
    * Entity references shown as links to their labels (Tags, Related) become
    * pills: referencePills().
@@ -618,6 +620,8 @@ class LcarsNgHooks {
    * Nibble i of the hash fills cell i of the left three columns when even,
    * column by column; the right two mirror them. Byte 20 picks the color. The
    * cells form one path, so that adjacent cells show no seam between them.
+   * The grid, 45 of 72 units, sits in the middle of the disc, so that even its
+   * corners keep about 4 units to the edge (was 56 units on the card).
    */
   private function userPicture(UserInterface $account): array {
     $hash = hash('sha256', $account->uuid(), TRUE);
@@ -627,14 +631,14 @@ class LcarsNgHooks {
         $i = $column * 5 + $row;
         if (((ord($hash[$i >> 1]) >> ($i & 1 ? 0 : 4)) & 15) % 2 === 0) {
           foreach (array_unique([$column, 4 - $column]) as $x) {
-            $path .= sprintf('M%.1F %.1Fh11.2v11.2h-11.2z', 8 + $x * 11.2, 8 + $row * 11.2);
+            $path .= sprintf('M%.1F %.1Fh9v9h-9z', 13.5 + $x * 9, 13.5 + $row * 9);
           }
         }
       }
     }
     return [
       '#type' => 'inline_template',
-      '#template' => '<svg class="lcars-user-picture lcars-user-picture--{{ color }}" xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 72 72" role="img" aria-label="{{ label }}"><rect class="lcars-user-picture__card" width="72" height="72" rx="6"/><path d="{{ path }}"/></svg>',
+      '#template' => '<svg class="lcars-user-picture lcars-user-picture--{{ color }}" xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 72 72" role="img" aria-label="{{ label }}"><circle class="lcars-user-picture__disc" cx="36" cy="36" r="36"/><path d="{{ path }}"/></svg>',
       '#context' => [
         'color' => self::USER_PICTURE_COLORS[ord($hash[20]) % count(self::USER_PICTURE_COLORS)],
         'label' => $account->getDisplayName(),

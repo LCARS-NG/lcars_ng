@@ -192,8 +192,15 @@ Basic site settings*. Anonymous visitors then get the login panel.
   theme logo up to 1.0.6, shows the 19 inner faces as a cut gem with shaded,
   slightly translucent facets; `lcars-ng-logo-glow.svg`, the theme logo up to
   1.0.2, shows the edges only, with a soft glow.
-- `favicon.ico` (16, 32 and 48 px) shows the flat logo on a transparent
-  background.
+- `lcars-ng-logo-flat-mono-lightblue.svg` is the one-colored form of the flat
+  logo, the edges as gaps, in the light blue of the labels; the upper panel
+  and the login page show it on a steel blue disc in place of the theme
+  logo.
+- `favicon.ico` (16, 32 and 48 px) shows the one-colored logo on the disc,
+  with wider gaps, so the spokes and the cube stay visible at small sizes.
+- `logo.png` (512 x 512) is the logo of the project on drupal.org and in
+  Project Browser: the one-colored logo on the disc. The theme itself does
+  not use it.
 - The icons in `images/icons/` come from Drupal core (the Starterkit theme;
   `ex.svg`, `chevron-right.svg` and `chevron-down.svg` from `core/misc/icons`)
   and from the module View Password (`view-password-eye-*.svg`);

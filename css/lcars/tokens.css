@@ -19,8 +19,8 @@
   --lcars-button-hover: var(--lcars-frame);
   --lcars-button-active: #fff;
   --lcars-accent: #a6843f; /* focus ring and marks (until 31.10.2026 also the page title bar): a bronze, darker than the ochre #c89d41 of variant C, 4.98:1 (user decision 27.10.2026, variant D; was #ffd068) */
-  --lcars-title-bar: var(--lcars-frame); /* page title bar and its title: the light blue of the labels, 11.21:1; the bronze stood out too much as the complement of the steel blue (user decision 31.10.2026, variant C; was --lcars-accent) */
-  --lcars-logo-ring: #3786ff; /* the ring round the logo in the upper panel: the strong blue of the right face of the logo, 4.99:1 on the page (user decision 31.10.2026, variant B) */
+  --lcars-title-bar: var(--lcars-sidebar); /* page title bar, its title and the closing bar under the content: the color of the frame in every contrast level, 3.11:1 in Standard (user wish 01.11.2026; from 31.10.2026 the light blue of the labels, --lcars-frame, which stood out of the frame; before that --lcars-accent) */
+  --lcars-logo-disc: #3469aa; /* the disc under the logo in the upper panel and the login panel, which shows its one-colored form in the light blue of the labels there, 3.6:1: the steel blue of the frame in Standard, the same in every contrast level, 3.11:1 on the page (user decisions 01.11.2026: variant B, no ring round it; was --lcars-logo-ring, a ring of 2px in #3786ff with the page inside, from 31.10.2026) */
   --lcars-alert: #ff3b4f; /* red alert: error pages; lighter than #9e0e26 for black labels at 5.99:1 and text at 4.97:1 (user decision 25.10.2026) */
   /* Status messages (messages.css), light tones for black text (user decision 24.10.2026) */
   --lcars-message-status: #99d98c;
@@ -120,7 +120,6 @@
   --lcars-box-border-color: var(--lcars-blue);
   --lcars-field-border: var(--lcars-frame);
   --lcars-accent: #ffd068; /* 12.02:1, the gold of LCNG */
-  --lcars-title-bar: var(--lcars-button); /* the light blue of the buttons, 14:1 (user decision 31.10.2026, variant C; was the gold) */
   --lcars-placeholder: color-mix(in sRGB, var(--lcars-text) 65%, transparent); /* 7.79:1 */
   --lcars-code-comment: color-mix(in sRGB, var(--lcars-text) 70%, transparent); /* 8.87:1 */
 }
@@ -135,7 +134,6 @@
     --lcars-box-border-color: var(--lcars-blue);
     --lcars-field-border: var(--lcars-frame);
     --lcars-accent: #ffd068;
-    --lcars-title-bar: var(--lcars-button);
     --lcars-placeholder: color-mix(in sRGB, var(--lcars-text) 65%, transparent);
     --lcars-code-comment: color-mix(in sRGB, var(--lcars-text) 70%, transparent);
   }
