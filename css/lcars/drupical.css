@@ -70,8 +70,34 @@
   font-size: inherit;
 }
 
-.events-feed .event-info .event-title {
-  font-weight: bold;
+/* The titles in the color of links, in the weight of the text, as the titles
+   in Recent content beside them in the right sidebar (user decision
+   02.11.2026, variant D; were bold in Absolute Zero of Claro, #003ecc, 2.1:1
+   on the page). The second selector outweighs the link color of the
+   dashboard cards in drupical.css, a variable of Gin this theme does not
+   define. */
+.events-feed .event-info .event-title,
+.dashboard .layout .block .events-feed .event-info .event-title {
+  color: var(--lcars-link);
+  font-weight: normal;
+}
+
+.events-feed .event-info .event-title:hover,
+.dashboard .layout .block .events-feed .event-info .event-title:hover {
+  color: var(--lcars-link-hover);
+}
+
+/* The links below the list (DrupalCon, Camps, Drupical, Add your Event) in
+   the color of links too (user wish 02.11.2026; were the gray of Claro,
+   --color-gray-700); the dots between them keep their gray. */
+.events-feed .events-footer-links a.events-footer-link,
+.dashboard .layout .block .events-feed .events-footer-links a.events-footer-link {
+  color: var(--lcars-link);
+}
+
+.events-feed .events-footer-links a.events-footer-link:hover,
+.dashboard .layout .block .events-feed .events-footer-links a.events-footer-link:hover {
+  color: var(--lcars-link-hover);
 }
 
 /* DrupalCon: the module marks these events with a badge before the title and
