@@ -57,6 +57,14 @@ p {
   overflow-wrap: break-word;
 }
 
+/* Images in formatted text shrink to the width of the column and keep their
+   proportions; a figure 674px wide ran past the column on phones and beside
+   the right sidebar (user decision 02.11.2026). */
+.text-formatted img {
+  max-inline-size: 100%;
+  block-size: auto;
+}
+
 /* LCNG set every link in capitals. */
 a {
   text-decoration: none;
