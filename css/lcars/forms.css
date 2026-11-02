@@ -151,8 +151,10 @@ button.link {
   font-size: 0.875em;
 }
 
-/* One height for buttons and links drawn as buttons: 29px with the padding
-   at 0.85em (user decision 27.10.2026; inputs were 26px, links 29px). The
+/* One height for buttons and links drawn as buttons (user decision
+   27.10.2026; inputs were 26px, links 29px): since 02.11.2026 34px, as high
+   as the fields and the menu buttons, on every width (#43, variant B; was
+   29px). The padding fills the line (1.4em) up to that height. The
    operations of the themes on the Appearance page are links of core, drawn
    as buttons as well (admin.css lays them out). */
 .button,
@@ -164,7 +166,7 @@ input:where([type="submit"], [type="button"], [type="reset"]),
   box-sizing: border-box;
   margin-block: 0 1em;
   margin-inline: 0 0.5em;
-  padding: 0.3125rem 0.625rem; /* 5px 10px */
+  padding: calc((var(--lcars-button-height) - 1.4em) / 2) 0.625rem;
   cursor: pointer;
   text-transform: uppercase;
   color: var(--lcars-on-color);
@@ -191,6 +193,21 @@ input:where([type="submit"], [type="button"], [type="reset"]):hover,
 .theme-selector .operations a:hover {
   color: var(--lcars-on-color);
   background: var(--lcars-button-hover);
+}
+
+/* The buttons at the end of a form stand 12px apart (#43, 02.11.2026): a gap
+   instead of their margins. button.css took the margin from the first button
+   (.button:first-child), the rule above from the next one, so only the space
+   between the elements was left (4px). Wrapped lines keep the bottom margin. */
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  column-gap: 0.75rem;
+}
+
+.form-actions > :is(.button, .form-submit) {
+  margin-inline: 0;
 }
 
 fieldset {

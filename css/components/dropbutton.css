@@ -13,9 +13,16 @@
   border-radius: 0.625rem; /* 10px, as .button */
   background-color: var(--lcars-button);
 }
+/* 34px high as the buttons (forms.css): the padding fills the line (1.4em)
+   up to --lcars-button-height, also in tables, where core reserves only 2em
+   for a dropbutton (#43, variant D, 02.11.2026; was 30px). */
 .dropbutton .dropbutton-action > * {
-  padding: 0.3125rem 0.625rem; /* 5px 10px, as .button */
+  padding: calc((var(--lcars-button-height) - 1.4em) / 2) 0.625rem;
   white-space: nowrap;
+  line-height: 1.4;
+}
+.js td .dropbutton-wrapper {
+  min-height: var(--lcars-button-height);
 }
 .js .dropbutton a,
 .js .dropbutton .dropbutton-action :is(input, button),

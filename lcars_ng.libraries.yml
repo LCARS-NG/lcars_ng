@@ -168,6 +168,10 @@ login:
   css:
     layout:
       css/lcars/login.css: {  }
+node-preview:
+  css:
+    theme:
+      css/lcars/node-preview.css: {  }
 moderation:
   css:
     theme:

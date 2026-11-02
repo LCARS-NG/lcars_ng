@@ -204,7 +204,12 @@
 }
 
 /* Submit in the size of the LCARS button component (pill), centred without
-   the right margin of the form buttons (forms.css). */
+   the right margin of the form buttons (forms.css). The form actions are a
+   flex row there (#43): centred by justify-content, not by text-align. */
+.lcars-login__panel .form-actions {
+  justify-content: center;
+}
+
 .lcars-login__panel .form-actions .form-submit {
   min-inline-size: var(--lcars-button-large-width);
   min-block-size: var(--lcars-button-large-height);

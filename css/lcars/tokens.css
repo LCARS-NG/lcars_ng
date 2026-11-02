@@ -68,7 +68,7 @@
   --lcars-bar-top: 2rem;
   --lcars-bar-bottom: 1.5625rem; /* 25px */
   --lcars-curve: 2.5rem; /* 40px, height of the inner curve */
-  --lcars-button-height: 2.125rem; /* 34px, a sidebar menu button without its seam (navigation.css) */
+  --lcars-button-height: 2.125rem; /* 34px, a sidebar menu button without its seam (navigation.css); the form buttons since #43 (forms.css) */
   --lcars-button-large-height: 2.75rem; /* 44px, LCARS button component and login buttons */
   --lcars-button-large-width: 8rem; /* their minimum width */
   --lcars-target: 1.5rem; /* 24px: the smallest pointer target, as WCAG 2.2 (2.5.8) asks (#20, 29.10.2026) */

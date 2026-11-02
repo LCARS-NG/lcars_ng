@@ -40,6 +40,8 @@ libraries-extend:
     - lcars_ng/klaro
   content_moderation/content_moderation:
     - lcars_ng/moderation
+  node/drupal.node.preview:
+    - lcars_ng/node-preview
   system/status.report:
     - lcars_ng/status-report
   tagify/default:

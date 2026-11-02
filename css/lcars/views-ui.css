@@ -42,14 +42,16 @@
   border-color: var(--lcars-box-border-color);
 }
 
-/* The heading of each section in the color of headings, a line below it; as
-   high as the buttons of the theme (29px), which stand at its end and would
-   otherwise reach into the first setting. Overridden sections stay italic
+/* The heading of each section in the color of headings, a line below it.
+   Core puts the dropbutton "Add" (34px) at the top edge of the heading; with
+   core's padding (2px above, 4px below) a content 4px lower than the button
+   centres the label beside it, and the button does not reach into the first
+   setting (#43; was 29px with 30px buttons). Overridden sections stay italic
    (core). */
 .views-ui-display-tab-bucket__title {
   display: flex;
   align-items: center;
-  min-height: 1.8125rem;
+  min-height: calc(var(--lcars-button-height) - 0.25rem);
   color: var(--lcars-heading);
   border-bottom: 1px solid var(--lcars-box-border-color);
 }
@@ -66,6 +68,14 @@
 
 .views-ui-display-tab-bucket .views-display-setting + .views-display-setting {
   border-top: 1px solid var(--lcars-line-subtle);
+}
+
+/* The dropbuttons in the size of the other buttons (dropbutton.css, forms.css)
+   instead of the 10px of core, which also wins over its 12px for the actions
+   of a display (#43, variant D, 02.11.2026). The same selector as core's,
+   later in the cascade. */
+.js .views-edit-view .dropbutton-wrapper .dropbutton .dropbutton-action > * {
+  font-size: 0.85rem;
 }
 
 /* A disabled view: the boxes on a dark red instead of light pink and white. */

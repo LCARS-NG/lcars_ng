@@ -594,6 +594,27 @@ class LcarsNgHooks {
   }
 
   /**
+   * Implements hook_form_FORM_ID_alter() for node_preview_form_select.
+   *
+   * The bar above the preview of a node (css/lcars/node-preview.css) begins
+   * with a label that says that nothing is saved, and shows the link back to
+   * the form as a button (user decision 02.11.2026, variant D, #44).
+   */
+  #[Hook('form_node_preview_form_select_alter')]
+  public function formNodePreviewFormSelectAlter(array &$form): void {
+    $form['lcars_label'] = [
+      '#type' => 'html_tag',
+      '#tag' => 'span',
+      '#value' => $this->t('Preview – nothing is saved'),
+      '#attributes' => ['class' => ['node-preview-form-select__label']],
+      '#weight' => -10,
+    ];
+    if (isset($form['backlink'])) {
+      $form['backlink']['#options']['attributes']['class'][] = 'button';
+    }
+  }
+
+  /**
    * Shows the links of an entity reference field as pills (preprocessField()).
    *
    * The label formatter puts each link on a line of its own. As pills outlined
