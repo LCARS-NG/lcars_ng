@@ -155,3 +155,16 @@ html[dir] .theme-selector .operations li:nth-child(n) {
 .theme-selector .operations a {
   margin: 0;
 }
+
+/* Block layout: disabled blocks without the near-white row of core's
+   block.admin.css (#fcfcfa at 67 %, on which the light text vanished); their
+   name and category in the muted white of the placeholders, the region and
+   the Enable button in full (user decision 02.11.2026, variant B). */
+.block-disabled:not(:hover) {
+  background: none;
+  opacity: 1;
+}
+
+.block-disabled > td:nth-child(-n + 2) {
+  color: var(--lcars-placeholder);
+}
