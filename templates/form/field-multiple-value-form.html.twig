@@ -15,6 +15,12 @@
  *   - content: The description content of the form element.
  *   - attributes: HTML attributes to apply to the description container.
  * - button: "Add another item" button.
+ * - legend: The label of the field, from the head of the table, where it
+ *   stays for screen readers only (LcarsNgHooks::preprocessFieldMultipleValueForm()).
+ * - legend_attributes: HTML attributes for the label (the required marker).
+ *
+ * A fieldset instead of core's div, with the label as its legend: in node
+ * forms it stands in the upper line of the box (forms.css).
  *
  * @see \Drupal\Core\Field\FieldPreprocess::preprocessFieldMultipleValueForm()
  */
@@ -23,10 +29,14 @@
   {%
     set classes = [
       'js-form-item',
-      'form-item'
+      'form-item',
+      'lcars-multiple',
     ]
   %}
-  <div{{ attributes.addClass(classes) }}>
+  <fieldset{{ attributes.addClass(classes) }}>
+    {% if legend %}
+      <legend><span{{ legend_attributes }}>{{ legend }}</span></legend>
+    {% endif %}
     {{ table }}
     {% if description.content %}
       <div{{ description.attributes.addClass('description') }} >{{ description.content }}</div>
@@ -34,7 +44,7 @@
     {% if button %}
       <div class="clearfix">{{ button }}</div>
     {% endif %}
-  </div>
+  </fieldset>
 {% else %}
   {% for element in elements %}
     {{ element }}

@@ -19,6 +19,7 @@ use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Routing\RouteProviderInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
 use Drupal\lcars_ng\StatusLine;
 use Drupal\node\NodeInterface;
@@ -422,6 +423,31 @@ class LcarsNgHooks {
   }
 
   /**
+   * Implements hook_preprocess_field_multiple_value_form().
+   *
+   * Core names a field with several values in the head of its table. Here
+   * the name is the legend of a fieldset around the table
+   * (field-multiple-value-form.html.twig): in node forms, where each field is
+   * a box, it stands in the upper line like the other titles (forms.css),
+   * elsewhere above the table. A title moved there by CSS alone would be cut
+   * off on phones, where the table scrolls in a wrapper of its own
+   * (table.css). The head keeps the name for screen readers (user decision
+   * 04.11.2026).
+   */
+  #[Hook('preprocess_field_multiple_value_form')]
+  public function preprocessFieldMultipleValueForm(array &$variables): void {
+    if (empty($variables['multiple']) || ($variables['table']['#header'][0]['data']['#tag'] ?? NULL) !== 'h4') {
+      return;
+    }
+    $label = &$variables['table']['#header'][0]['data'];
+    $attributes = $label['#attributes'] instanceof Attribute ? $label['#attributes'] : new Attribute($label['#attributes'] ?? []);
+    $required = $attributes->hasClass('form-required') ? ['js-form-required', 'form-required'] : [];
+    $variables['legend'] = $label['#value'];
+    $variables['legend_attributes'] = new Attribute(['class' => $required]);
+    $label['#attributes'] = $attributes->addClass('visually-hidden');
+  }
+
+  /**
    * Implements hook_form_FORM_ID_alter() for system_theme_settings.
    *
    * Not in theme-settings.php: core registers a function there as a hook of
@@ -567,6 +593,25 @@ class LcarsNgHooks {
       $form['account']['#type'] = 'details';
       $form['account']['#title'] = $this->t('Account');
       $form['account']['#open'] = TRUE;
+    }
+  }
+
+  /**
+   * Implements hook_form_BASE_FORM_ID_alter() for node_form.
+   *
+   * In node forms each field is a box with its title in the upper line
+   * (forms.css). The moderation state of Content Moderation is a container
+   * without a title; as a fieldset it carries the label of its field,
+   * Moderation state, in the line like the other boxes (user decision
+   * 04.11.2026, variant C).
+   */
+  #[Hook('form_node_form_alter')]
+  public function formNodeFormAlter(array &$form): void {
+    if (($form['moderation_state']['widget'][0]['#type'] ?? NULL) === 'container') {
+      $form['moderation_state']['widget'][0]['#type'] = 'fieldset';
+      // The fieldset would show the description of the field, which the
+      // container never did ("The moderation state of this piece of content").
+      unset($form['moderation_state']['widget'][0]['#description']);
     }
   }
 

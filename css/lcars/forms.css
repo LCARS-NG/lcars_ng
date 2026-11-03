@@ -349,3 +349,62 @@ html .vertical-tabs__menu-item.is-selected .vertical-tabs__menu-item-summary {
 .lcars-format-help > summary:hover {
   color: var(--lcars-link-hover);
 }
+
+/* A field with several values: a fieldset with the label as its legend
+   instead of the head of the table (field-multiple-value-form.html.twig),
+   without the indent of fieldsets. The head keeps the label for screen
+   readers only, its row no height while the weights are hidden. */
+.lcars-multiple {
+  min-inline-size: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.lcars-multiple thead th:not(.tabledrag-hide) {
+  padding-block: 0;
+}
+
+/* Node forms: each field in a box with its title cut into the upper line, as
+   the account form (user.css) and the details (details.css) (user decision
+   04.11.2026, variant C; rejected: boxes for fields of several parts only,
+   and groups of fields, which would be configuration of each content type).
+   Fields in groups (details, vertical tabs) stay without. Fieldsets (media
+   library, fields with several values, the moderation state, made one by
+   LcarsNgHooks::formNodeFormAlter()) carry their legend in the line by
+   themselves; other fields move their first label there. Wrappers left
+   empty (the language, the URL alias in its vertical tab) get no box. */
+.node-form > [class*="field--widget-"]:has(> *):not(:has(> fieldset, > div > .lcars-multiple)),
+.node-form > [class*="field--widget-"] > fieldset,
+.node-form > [class*="field--widget-"] > div > .lcars-multiple,
+.node-form > .entity-content-form-footer > [class*="field--widget-"] > fieldset {
+  margin: 1.5em 0 1em;
+  padding: 0.5em 1.5em 0.75em;
+  border: var(--lcars-box-border-width) solid var(--lcars-box-border-color);
+  border-radius: var(--lcars-box-radius);
+}
+
+.node-form > [class*="field--widget-"] > fieldset > legend,
+.node-form > [class*="field--widget-"] > div > .lcars-multiple > legend,
+.node-form > .entity-content-form-footer > [class*="field--widget-"] > fieldset > legend {
+  margin-inline-start: -0.5em;
+  padding-inline: 0.5em;
+}
+
+.node-form > [class*="field--widget-"] > .form-item {
+  margin-block: 0;
+}
+
+.node-form > [class*="field--widget-"] > .form-item > label:first-child,
+.node-form > [class*="field--widget-"] > .text-format-wrapper > .form-item:first-child > label:first-child {
+  display: table;
+  margin-block: -1.25em 0.5em;
+  margin-inline-start: -0.5em;
+  padding-inline: 0.5em;
+  background: var(--lcars-space);
+}
+
+/* In the box the first row of a field with several values needs no line
+   above it: the line of the box is there already. */
+.node-form > [class*="field--widget-"] > div > .lcars-multiple tbody > tr:first-child > td {
+  border-block-start: 0;
+}
