@@ -228,7 +228,9 @@
    (panel.css; user decision 28.10.2026, variant C; were 29, 25 and 20px). The
    inner frame has no right padding, as
    .innerframeTop in LCNG, and scrolls content wider than the column (tables)
-   instead of pushing it out of the frame. */
+   instead of pushing it out of the frame, only sideways: a scrolling box
+   also scrolls down, and a pixel left over from rounding showed a vertical
+   scrollbar (user wish 03.11.2026). */
 .lcars-aside .lcars-panel {
   --lcars-panel-ceiling: 1.125rem; /* 18px: capitals 14px */
   /* The floor as thin as the left edge, and its curve as well: the inner
@@ -239,7 +241,7 @@
 }
 
 .lcars-aside .lcars-panel__inner {
-  overflow-x: auto;
+  overflow: auto hidden;
   padding-inline: 0.625rem 0; /* 10px: narrow column (user decision 24.10.2026) */
 }
 

@@ -207,18 +207,6 @@
   color: var(--lcars-text-soft);
 }
 
-/* Titles in the tables of the cards at most two lines, then an ellipsis: in
-   a card of half the width (both rows of the dashboard 50-50 since
-   02.11.2026, the first was 67-33) a quote as the title of a blog post took
-   three lines and more (user decision 02.11.2026, variant C). Screen readers
-   still read the whole title. */
-.dashboard .layout .block td.views-field-title a {
-  display: -webkit-box;
-  overflow: hidden;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-}
-
 /* Top tasks: links one below the other with some air. */
 .dashboard .block-menu li.menu-item + li.menu-item {
   margin-block-start: 0.5rem;

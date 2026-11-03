@@ -56,12 +56,35 @@ th {
    section beside the content; Updated of Recent content was 86px wide, in
    two lines). Recent content needs 333px so; at 400px the title keeps about
    150px. Narrower cards (640 to 800px wide screens) and the sidebar on
-   narrower desktops keep the date in lines instead of scrolling; on phones
-   the column hides (priority-low, below), as does the sidebar. The wrapper
-   takes its width from the card or panel, so the containment changes
-   nothing else. */
+   narrower desktops keep the date in two lines, the time below it (were
+   three and more), and the table scrolls (below); on phones the column hides
+   (priority-low, below), as does the sidebar. The wrapper takes its width
+   from the card or panel, so the containment changes nothing else. */
 :is(.lcars-aside .lcars-panel, .dashboard .layout .block) .lcars-table {
   container-type: inline-size;
+}
+
+:is(.lcars-aside .lcars-panel, .dashboard .layout .block) td:is(.views-field-changed, .views-field-created) {
+  min-inline-size: 6.25em; /* "27 Oct 2026 -" in one line */
+}
+
+/* Titles in these tables at most two lines, then an ellipsis, in a column at
+   least 20em wide (260px), so the two lines show about 50 characters; a
+   narrower card or panel scrolls the table sideways (user wish 03.11.2026,
+   variant D: in the sidebar of a 1080px window titles took up to nine lines
+   in a column of 150px). The cards had the two lines since 02.11.2026
+   (variant C), when a quote as the title of a blog post took three lines
+   and more in a card of half the width. Screen readers still read the whole
+   title. */
+:is(.lcars-aside .lcars-panel, .dashboard .layout .block) :is(th, td).views-field-title {
+  min-inline-size: 20em;
+}
+
+:is(.lcars-aside .lcars-panel, .dashboard .layout .block) td.views-field-title a {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 @container (min-width: 25rem) {
@@ -75,7 +98,10 @@ th {
    it for the open menu, which made My Drafts in the right sidebar 34px wider
    than the panel, with a scrollbar on its floor (user wish 31.10.2026). The
    open menu pushes the row down instead of being cut by the frame. A table
-   still wider scrolls in its wrapper, with the scrollbar right below it. */
+   still wider scrolls in its wrapper, with the scrollbar right below it,
+   only sideways: a scrolling box also scrolls down, and a pixel left over
+   from rounding showed a vertical scrollbar beside the table (user wish
+   03.11.2026). */
 .js :is(.lcars-aside .lcars-panel, .dashboard .layout .block) td .dropbutton-multiple {
   width: auto;
   margin-inline-end: 0;
@@ -89,7 +115,7 @@ th {
 
 :is(.lcars-aside .lcars-panel, .dashboard .layout .block) .lcars-table {
   position: relative;
-  overflow-x: auto;
+  overflow: auto hidden;
 }
 
 /* Revision overviews: of nodes (.node-revision-table) and of other entities
