@@ -9,16 +9,18 @@
    buttons and links turn red as well, the hover lighter, as the button
    component (user decision 29.10.2026, variant C, #27; were blue). The lines
    and backgrounds mixed from --lcars-blue (fields, boxes, cards) stay blue:
-   error pages hold no fields or boxes. */
+   error pages hold no fields or boxes. In steps as the blue (user decision
+   03.11.2026, variant D): the frame darker, the buttons a step lighter, text,
+   titles and links in the light red; in Medium and High all in the light red. */
 .lcars-alert {
   --lcars-frame: var(--lcars-alert);
-  --lcars-sidebar: var(--lcars-alert);
-  --lcars-bar: var(--lcars-alert);
-  --lcars-button: var(--lcars-alert);
-  --lcars-button-sub: var(--lcars-alert);
+  --lcars-sidebar: var(--lcars-alert-frame);
+  --lcars-bar: var(--lcars-alert-frame);
+  --lcars-button: var(--lcars-alert-button);
+  --lcars-button-sub: var(--lcars-alert-button);
   --lcars-button-hover: color-mix(in sRGB, var(--lcars-alert), #fff 35%);
   --lcars-accent: var(--lcars-alert);
-  --lcars-title-bar: var(--lcars-alert);
+  --lcars-title-bar: var(--lcars-alert-frame);
   --lcars-heading: var(--lcars-alert);
   --lcars-link: var(--lcars-alert);
   --lcars-link-hover: color-mix(in sRGB, var(--lcars-alert), #fff 35%);

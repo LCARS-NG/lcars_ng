@@ -21,7 +21,12 @@
   --lcars-accent: #a6843f; /* focus ring and marks (until 31.10.2026 also the page title bar): a bronze, darker than the ochre #c89d41 of variant C, 4.98:1 (user decision 27.10.2026, variant D; was #ffd068) */
   --lcars-title-bar: var(--lcars-sidebar); /* page title bar, its title and the closing bar under the content: the color of the frame in every contrast level, 3.11:1 in Standard (user wish 01.11.2026; from 31.10.2026 the light blue of the labels, --lcars-frame, which stood out of the frame; before that --lcars-accent) */
   --lcars-logo-disc: #3469aa; /* the disc under the logo in the upper panel and the login panel, which shows its one-colored form in the light blue of the labels there, 3.6:1: the steel blue of the frame in Standard, the same in every contrast level, 3.11:1 on the page (user decisions 01.11.2026: variant B, no ring round it; was --lcars-logo-ring, a ring of 2px in #3786ff with the page inside, from 31.10.2026) */
-  --lcars-alert: #ff3b4f; /* red alert: error pages; lighter than #9e0e26 for black labels at 5.99:1 and text at 4.97:1 (user decision 25.10.2026) */
+  --lcars-alert: #ff3b4f; /* red alert (alert.css): text, titles, labels and links of error pages; lighter than #9e0e26 for black labels at 5.99:1 and text at 4.97:1 (user decision 25.10.2026) */
+  /* Red alert in steps as the blue (user decision 03.11.2026, variant D): until
+     then --lcars-alert filled frame and buttons as well, at L* 57 and twice as
+     vivid as the steel blue, and glared. */
+  --lcars-alert-frame: #c82439; /* frame, bars and title bar: as light as the steel blue of the frame (L* 44), 3.13:1 */
+  --lcars-alert-button: #e5424d; /* menu and form buttons: as light as the blue buttons (L* 53), black labels at 5.22:1 */
   /* Type colors of status, warning and error, light tones (user decision 24.10.2026): text and marks in their color (status report, password strength, list of modules), black text on them (preview bar); until 03.11.2026 also the fill of the messages */
   --lcars-message-status: #99d98c;
   --lcars-message-warning: #ffb366; /* apricot, apart from the gold of the focus ring, which is #ffd068 in High; black text at 11.89:1 (user decision 30.10.2026, variant A; was #ffd068, the light gold of --lcars-accent until 27.10.2026) */
@@ -127,6 +132,8 @@
   --lcars-sidebar: var(--lcars-blue);
   --lcars-box-border-color: color-mix(in sRGB, var(--lcars-blue) 60%, var(--lcars-space)); /* 3.11:1 */
   --lcars-field-border: var(--lcars-blue);
+  --lcars-alert-frame: var(--lcars-alert); /* red alert in one red as before 03.11.2026, 4.97:1 */
+  --lcars-alert-button: var(--lcars-alert);
 }
 
 :root[data-lcars-contrast="high"] {
@@ -138,6 +145,8 @@
   --lcars-accent: #ffd068; /* 12.02:1, the gold of LCNG */
   --lcars-placeholder: color-mix(in sRGB, var(--lcars-text) 65%, transparent); /* 7.79:1 */
   --lcars-code-comment: color-mix(in sRGB, var(--lcars-text) 70%, transparent); /* 8.87:1 */
+  --lcars-alert-frame: var(--lcars-alert);
+  --lcars-alert-button: var(--lcars-alert);
 }
 
 /* "As the system" (no attribute): High where the system of a visitor asks for
@@ -152,5 +161,7 @@
     --lcars-accent: #ffd068;
     --lcars-placeholder: color-mix(in sRGB, var(--lcars-text) 65%, transparent);
     --lcars-code-comment: color-mix(in sRGB, var(--lcars-text) 70%, transparent);
+    --lcars-alert-frame: var(--lcars-alert);
+    --lcars-alert-button: var(--lcars-alert);
   }
 }
