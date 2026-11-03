@@ -5,11 +5,14 @@
  * Core fixes it transparent over the top of the page: the link "Back to
  * content editing" and the view mode lay on the upper elbow of the frame, and
  * on phones the bar of the navigation covered the link. Here it is a bar in
- * the apricot of the warning messages, says that nothing is saved
+ * the color of the warning messages, says that nothing is saved
  * (LcarsNgHooks::formNodePreviewFormSelectAlter()), shows the link as a dark
  * button and the view mode at its end. It stays at the top while the page
  * scrolls and pushes the frame down instead of covering it (user decision
- * 02.11.2026, variant D, #44).
+ * 02.11.2026, variant D, #44). Its fill is the glass of the warning messages
+ * (#49) with white text, mixed with the page instead of translucent, so the
+ * content does not show through it while it scrolls (user wish 03.11.2026:
+ * the warnings alike everywhere; until then apricot with black text).
  */
 
 .node-preview-container {
@@ -17,8 +20,8 @@
   top: var(--drupal-displace-offset-top, 0);
   padding-block: 0.5rem;
   padding-inline: calc(var(--drupal-displace-offset-left, 0px) + var(--lcars-gutter)) calc(var(--drupal-displace-offset-right, 0px) + var(--lcars-gutter));
-  color: var(--lcars-on-color);
-  background: var(--lcars-message-warning);
+  color: var(--lcars-text);
+  background: color-mix(in sRGB, var(--lcars-message-glow-warning) var(--lcars-message-tint-warning), var(--lcars-space));
 }
 
 [dir="rtl"] .node-preview-container {
@@ -59,7 +62,7 @@
 }
 
 .node-preview-container .form-type-select label {
-  color: var(--lcars-on-color);
+  color: var(--lcars-text);
 }
 
 /* Phones: the label in a line of its own, button and view mode below it; the
