@@ -2,21 +2,26 @@
  * @file
  * Styles for system messages.
  *
- * LCARS bars: the type colors the whole message (--lcars-message-status,
- * --lcars-message-warning, --lcars-message-error in tokens.css), the text and
- * the icon are black like on bars and buttons (user decision 24.10.2026). The
- * icon is the Starterkit icon used as a mask, so it takes the text color.
- * Rounded at both ends (user decision 31.10.2026; from 30.10.2026 the end was
- * cut straight like the title bar of the page).
+ * Colored glass: a vivid tone of the type, 35% over the page, so the page
+ * blue shows through (--lcars-message-glow-status, -warning, -error and
+ * --lcars-message-tint in tokens.css; 30% in High), the text and the icon
+ * white (#49, variant H with white icons, user decision 03.11.2026). Until
+ * then the light type colors filled the message with black text and icon
+ * (user decision 24.10.2026), which matched the frame too little. The icon is
+ * the Starterkit icon used as a mask, so it takes the text color. Rounded at
+ * both ends (user decision 31.10.2026; from 30.10.2026 the end was cut
+ * straight like the title bar of the page).
  */
 
 .messages {
+  --lcars-message-glow: var(--lcars-message-glow-status);
+
   position: relative;
   margin-block-end: 0.5em;
   padding: 1em 1.5em 1em 2.9em; /* LTR */
-  color: var(--lcars-on-color);
+  color: var(--lcars-text);
   border-radius: 1.5rem;
-  background: var(--lcars-message-status);
+  background: color-mix(in sRGB, var(--lcars-message-glow) var(--lcars-message-tint), transparent);
   overflow-wrap: break-word;
 }
 [dir="rtl"] .messages {
@@ -39,7 +44,7 @@
 
 /* Above the content the last message keeps from the page title the space
    between two messages (user decision 30.10.2026, variant C; was 0.5em). */
-.lcars-main [data-drupal-messages] > .messages:last-child {
+.lcars-main [data-drupal-messages] > .messages__wrapper > .messages:last-child {
   margin-block-end: 1.5rem;
 }
 .messages__list {
@@ -56,18 +61,15 @@
 }
 .messages--status {
   --lcars-message-icon: url(../../images/icons/check.svg);
-
-  background: var(--lcars-message-status);
+  --lcars-message-glow: var(--lcars-message-glow-status);
 }
 .messages--warning {
   --lcars-message-icon: url(../../images/icons/warning.svg);
-
-  background: var(--lcars-message-warning);
+  --lcars-message-glow: var(--lcars-message-glow-warning);
 }
 .messages--error {
   --lcars-message-icon: url(../../images/icons/error.svg);
-
-  background: var(--lcars-message-error);
+  --lcars-message-glow: var(--lcars-message-glow-error);
 }
 .messages--error p.error {
   color: inherit;

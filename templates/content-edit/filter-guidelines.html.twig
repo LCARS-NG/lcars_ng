@@ -14,6 +14,12 @@
  *   (only used when 'long' is TRUE) for each filter in one or more text
  *   formats.
  *
+ * The tips are collapsed below the text format, opened by a small link
+ * (#48, variant C, user decision 03.11.2026): the allowed tags of a format
+ * took a quarter of a phone screen in the middle of the form. filter.js hides
+ * the heading and shows the guidelines of the selected format only; the
+ * summary is no heading and stays.
+ *
  * @see \Drupal\filter\FilterThemeHooks::preprocessFilterGuidelines()
  */
 #}
@@ -23,7 +29,13 @@
     'filter-guidelines-' ~ format.id,
   ]
 %}
+{% set tips_markup = tips|render %}
 <div{{ attributes.addClass(classes) }}>
   <h4 class="label">{{ format.label }}</h4>
-  {{ tips }}
+  {% if tips_markup|trim is not empty %}
+    <details class="lcars-format-help">
+      <summary>{{ 'Formatting help'|t }}</summary>
+      {{ tips_markup }}
+    </details>
+  {% endif %}
 </div>

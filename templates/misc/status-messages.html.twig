@@ -17,9 +17,16 @@
  * - status_headings: List of all status types.
  * - attributes: HTML attributes for the element, including:
  *   - class: HTML classes.
+ *
+ * The messages stand in an inner wrapper as in Claro and Olivero: message.js
+ * of core puts messages added by JavaScript into the first child of
+ * [data-drupal-messages]. Without the wrapper of the Starterkit template that
+ * was the first message, and a message added next to one from the server
+ * stood inside it, its translucent fill doubled (#49, 03.11.2026).
  */
 #}
 <div data-drupal-messages>
+<div class="messages__wrapper">
 {% block messages %}
 {% for type, messages in message_list %}
   {%
@@ -52,4 +59,5 @@
   {% set attributes = attributes.removeClass(classes) %}
 {% endfor %}
 {% endblock messages %}
+</div>
 </div>

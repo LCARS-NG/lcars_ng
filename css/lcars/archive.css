@@ -13,17 +13,25 @@
   opacity: 0.75;
 }
 
+/* The date column as wide as the widest date of the list, 1rem beside the
+   titles, on every width (#47, variant C, user decision 03.11.2026). The rows
+   take the columns of the list (subgrid), so the titles stay flush. Before,
+   a fixed column of 4.5rem held dates of 46px (Noto Sans), and the titles
+   began 88px after the date instead of 62px. */
 .lcars-dated-list {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
   margin: 1.5rem 0 0;
   padding: 0;
+  column-gap: 1rem;
   list-style: none;
 }
 
 .lcars-dated-list > li {
   display: grid;
-  grid-template-columns: 4.5rem minmax(0, 1fr);
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
   align-items: baseline;
-  gap: 1rem;
   padding-block: 0.375rem;
 }
 

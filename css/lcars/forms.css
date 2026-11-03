@@ -23,6 +23,16 @@ select {
   max-inline-size: 100%;
 }
 
+/* In the tables of fields with several values (Related) a text field takes
+   the width of its cell. max-inline-size does not hold it there: the table
+   grew to the size of the field (60 characters, 618px) and was 793px wide,
+   with Order 832px, beside a content of 480px on a portrait screen; Remove
+   and Order were cut off (user wish 03.11.2026). Where there is room, the
+   table and the field keep their width, the field as wide as Title. */
+.field-multiple-table input:where([type="text"], [type="email"], [type="search"], [type="url"], [type="tel"]) {
+  inline-size: 100%;
+}
+
 /* Fields the browser fills in (saved logins) get a background of the browser
    that a stylesheet cannot replace (!important in the browser: an olive in
    Firefox, a gray blue in Chrome, both in dark mode). An inset shadow in the
@@ -312,4 +322,30 @@ html .vertical-tabs__menu-item.is-selected .vertical-tabs__menu-item-summary {
 
 [data-vertical-tabs-panes] > a {
   display: inline-block;
+}
+
+/* Formatting help below the text format (filter-guidelines.html.twig):
+   collapsed, a small link in the size of the descriptions instead of a box of
+   details.css (#48, variant C, user decision 03.11.2026). As high as the
+   smallest pointer target, as the links of base.css, without moving its
+   line (#20); only as wide as its text. */
+.lcars-format-help {
+  margin: 0.25em 0 0;
+  border: 0;
+}
+
+.lcars-format-help > summary {
+  /* stylelint-disable-next-line unit-allowed-list -- lh: the height of a link follows its line height, not the metrics of system-ui (#20). */
+  --lcars-target-pad: max(0px, round(up, (var(--lcars-target) - 1lh) / 2, 0.5px));
+
+  inline-size: fit-content;
+  padding-block: var(--lcars-target-pad);
+  padding-inline: 0;
+  margin-block: calc(-1 * var(--lcars-target-pad));
+  color: var(--lcars-link);
+  font-size: 0.85em;
+}
+
+.lcars-format-help > summary:hover {
+  color: var(--lcars-link-hover);
 }
