@@ -51,21 +51,14 @@ th {
 }
 
 /* Dates in the dashboard cards and in the panels of the right sidebar on one
-   line, the time beside the date, where the table has room for it; the title
-   gives way (user wishes 01.11.2026, the sidebar since it takes the golden
-   section beside the content; Updated of Recent content was 86px wide, in
-   two lines). Recent content needs 333px so; at 400px the title keeps about
-   150px. Narrower cards (640 to 800px wide screens) and the sidebar on
-   narrower desktops keep the date in two lines, the time below it (were
-   three and more), and the table scrolls (below); on phones the column hides
-   (priority-low, below), as does the sidebar. The wrapper takes its width
-   from the card or panel, so the containment changes nothing else. */
-:is(.lcars-aside .lcars-panel, .dashboard .layout .block) .lcars-table {
-  container-type: inline-size;
-}
-
-:is(.lcars-aside .lcars-panel, .dashboard .layout .block) td:is(.views-field-changed, .views-field-created) {
-  min-inline-size: 6.25em; /* "27 Oct 2026 -" in one line */
+   line, the time beside the date, and their headings too (Updated date of
+   My Drafts): a narrower card or panel scrolls the table sideways (below)
+   instead of breaking them (user wish 03.11.2026; from 01.11.2026 only where
+   the table had room, 25rem and more by container query, below in two lines
+   and more; Updated of Recent content was 86px wide, in two lines). On
+   phones the column hides (priority-low, below), as does the sidebar. */
+:is(.lcars-aside .lcars-panel, .dashboard .layout .block) :is(th, td):is(.views-field-changed, .views-field-created) {
+  white-space: nowrap;
 }
 
 /* Titles in these tables at most two lines, then an ellipsis, in a column at
@@ -85,12 +78,6 @@ th {
   overflow: hidden;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
-}
-
-@container (min-width: 25rem) {
-  :is(.lcars-aside .lcars-panel, .dashboard .layout .block) td:is(.views-field-changed, .views-field-created) {
-    white-space: nowrap;
-  }
 }
 
 /* In these narrow frames a dropbutton takes only the width of its button, as
