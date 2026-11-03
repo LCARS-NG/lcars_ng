@@ -179,10 +179,17 @@
    the full width). Never narrower than 40rem (about 70 characters a line).
    Administration pages without a node (tables, forms, the dashboard) keep
    the full width; beside the right sidebar, content and sidebar share the
-   golden section instead (below). */
+   golden section instead (below). Below 67.5rem the right sidebar is hidden,
+   so its pages count as pages without it. */
 @media (min-width: 64rem) {
-  .lcars-frame:not(:has(> .lcars-aside)) > .lcars-main:has(.block-system-main-block .node) {
+  .lcars-frame > .lcars-main:has(.block-system-main-block .node) {
     padding-inline-end: min((100% - var(--lcars-gutter)) * 0.382, max(0px, 100% - var(--lcars-gutter) - 40rem));
+  }
+}
+
+@media (min-width: 67.5rem) {
+  .lcars-frame:has(> .lcars-aside) > .lcars-main:has(.block-system-main-block .node) {
+    padding-inline-end: 0;
   }
 }
 
@@ -193,24 +200,24 @@
   font-size: 0.8125rem; /* 13px, more fits the narrow column (user decision 24.10.2026) */
 }
 
-/* With blocks in the right sidebar, its column takes a fifth of the frame,
-   between --lcars-aside-min and --lcars-aside-max for the blocks plus the
-   gutter (LCNG: fixed 180px). Phones hide the sidebar (below). */
-@media (min-width: 40rem) {
-  .lcars-frame:has(> .lcars-aside) {
-    grid-template-columns:
-      var(--lcars-sidebar-width) minmax(0, 1fr)
-      clamp(calc(var(--lcars-aside-min) + var(--lcars-gutter)), 20%, calc(var(--lcars-aside-max) + var(--lcars-gutter)));
+/* The right sidebar shows from 1080px only: below, its column squeezed the
+   content to about 500px beside it (user wish 04.11.2026, at 1080 device
+   pixels with a zoom of 110%; until then from 40rem, at a fifth of the
+   frame, between --lcars-aside-min and --lcars-aside-max for the blocks plus
+   the gutter). Phones hid it before already. */
+@media (max-width: 67.4375rem) {
+  .lcars-aside {
+    display: none;
   }
 }
 
-/* On desktop screens, content and right sidebar share the width beside the
-   menu in the golden section: the content 61.8%, the sidebar 38.2% with 3rem
-   of free space before its blocks (user decision 01.11.2026, variant C; was
-   a fifth of the frame, at most --lcars-aside-max, with the content in the
-   golden section of the rest, which left the free space between them wide),
-   its blocks never narrower than --lcars-aside-min. */
-@media (min-width: 64rem) {
+/* Content and right sidebar share the width beside the menu in the golden
+   section: the content 61.8%, the sidebar 38.2% with 3rem of free space
+   before its blocks (user decision 01.11.2026, variant C; was a fifth of the
+   frame, at most --lcars-aside-max, with the content in the golden section
+   of the rest, which left the free space between them wide), its blocks
+   never narrower than --lcars-aside-min. */
+@media (min-width: 67.5rem) {
   .lcars-frame:has(> .lcars-aside) {
     grid-template-columns:
       var(--lcars-sidebar-width) minmax(0, 1fr)
@@ -382,7 +389,7 @@
 /* Phones show the content only (user decision 24.10.2026): the menu moves out
    of the sidebar above the content, as a grid of buttons (navigation.css). The
    sidebar filler stays as an edge (--lcars-sidebar-width), drawn by the frame
-   itself; the right sidebar is hidden. */
+   itself; the right sidebar is hidden (above, below 67.5rem). */
 @media (max-width: 39.9375rem) {
   .lcars-frame {
     grid-template-areas:
@@ -406,10 +413,6 @@
     padding-block: 0;
     padding-inline: var(--lcars-gutter) 0;
     background: none;
-  }
-
-  .lcars-aside {
-    display: none;
   }
 }
 
