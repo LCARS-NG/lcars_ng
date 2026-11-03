@@ -80,3 +80,32 @@
   color: var(--lcars-message-error);
   font-weight: bold;
 }
+
+/* Roles and Picture of the account form as boxes like the details around
+   them (Account, Locale settings; details.css), the title cut into the upper
+   line (user decision 03.11.2026, variant D). Roles is a fieldset, whose
+   legend sits in the line by itself; fieldsets elsewhere stay without a
+   line (forms.css). The label of Picture moves into the line, on the
+   background of the page. */
+.user-form :is([data-drupal-selector="edit-roles"], .field--name-user-picture) {
+  margin-block: 1.5em 1em;
+  padding: 0.5em 1.5em 0.75em;
+  border: var(--lcars-box-border-width) solid var(--lcars-box-border-color);
+  border-radius: var(--lcars-box-radius);
+}
+
+.user-form [data-drupal-selector="edit-roles"] > legend {
+  padding-inline: 0.5em;
+}
+
+.user-form .field--name-user-picture .form-item {
+  margin-block: 0;
+}
+
+.user-form .field--name-user-picture label {
+  display: table;
+  margin-block: -1.25em 0.5em;
+  margin-inline-start: -0.5em;
+  padding-inline: 0.5em;
+  background: var(--lcars-space);
+}

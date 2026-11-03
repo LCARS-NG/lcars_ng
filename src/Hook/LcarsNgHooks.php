@@ -553,6 +553,24 @@ class LcarsNgHooks {
   }
 
   /**
+   * Implements hook_form_BASE_FORM_ID_alter() for user_form.
+   *
+   * Core keeps the account data (email address, username, password, status,
+   * roles) in a container without a title. Here it is a box of its own like
+   * Locale settings, open, with the title Account (user decision 03.11.2026,
+   * variant D); Roles and Picture are boxes as well (user.css). Also on the
+   * registration form, which uses the same base form.
+   */
+  #[Hook('form_user_form_alter')]
+  public function formUserFormAlter(array &$form): void {
+    if (isset($form['account'])) {
+      $form['account']['#type'] = 'details';
+      $form['account']['#title'] = $this->t('Account');
+      $form['account']['#open'] = TRUE;
+    }
+  }
+
+  /**
    * Implements hook_form_FORM_ID_alter() for block_admin_display_form.
    *
    * Core puts "Place block" right after the name of each region, in one cell

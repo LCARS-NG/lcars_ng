@@ -16,9 +16,31 @@ details {
 details > .details-wrapper {
   padding: 0.5em 1.5em;
 }
-/* Room above the title, which sat 5px below the line (user decision
-   25.10.2026). */
 summary {
   padding: 0.75em 1em;
   cursor: pointer;
+}
+
+/* Open, the title cuts into the upper line of the box, as the page titles
+   cut into their bars, on the background of the page (user decision
+   03.11.2026, variant D; from 25.10.2026 below the line, with room above
+   it). Closed, it stays inside the box, which has no content to hold the
+   line apart from the bottom one (variant A; in the line the closed box was
+   13px high). Not the boxes without a line: the descriptions of the modules
+   on Extend (system.admin.css), the panes of vertical tabs
+   (vertical-tabs.css) and the formatting help (forms.css). */
+details[open]:not(.lcars-format-help, .vertical-tabs__pane, td details) {
+  margin-top: 1.5em;
+}
+
+details[open]:not(.lcars-format-help, .vertical-tabs__pane, td details) > summary {
+  inline-size: fit-content;
+  margin-block-start: -0.8em;
+  margin-inline-start: 0.75em;
+  padding: 0 0.5em;
+  background: var(--lcars-space);
+}
+
+details[open]:not(.lcars-format-help, .vertical-tabs__pane, td details) > .details-wrapper {
+  padding-block-start: 0.75em;
 }
