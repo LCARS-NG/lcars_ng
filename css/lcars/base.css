@@ -151,6 +151,28 @@ a:hover {
     ::-webkit-scrollbar-corner {
       background: transparent;
     }
+
+    /* Horizontal bars keep 6px free above and below, apart from the last row
+       of a table and the link under it, only where a bar shows (user wish
+       03.11.2026, variant C; rejected: 4px and 8px). The bar stays 12px:
+       track and thumb get transparent borders, the seam of the thumb becomes
+       an inset shadow, and the radius is elliptical, so the ends stay
+       semicircles inside the borders. */
+    ::-webkit-scrollbar:horizontal {
+      height: 24px;
+    }
+
+    ::-webkit-scrollbar-track:horizontal,
+    ::-webkit-scrollbar-thumb:horizontal {
+      border: solid transparent;
+      border-width: 6px 0;
+      border-radius: 6px / 12px;
+      background-clip: padding-box;
+    }
+
+    ::-webkit-scrollbar-thumb:horizontal {
+      box-shadow: inset 0 0 0 2px var(--lcars-space);
+    }
   }
 }
 
