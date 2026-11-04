@@ -220,17 +220,29 @@ class LcarsNgHooks {
    * On the page of content of a type chosen in the theme setting
    * content_type_in_title_bar, the bar names the type, and the title stands
    * as the heading above the content (preprocessNode(); user decision
-   * 31.10.2026, variant D).
+   * 31.10.2026, variant D). On its edit form the bar says "Edit Blog", without
+   * the title, which the field below names, and upright: core gives
+   * "<em>Edit @type</em> @title" (NodeForm). The title of the document keeps
+   * the one of core (user wish 04.11.2026).
    */
   #[Hook('preprocess_page_title')]
   public function preprocessPageTitle(array &$variables): void {
-    $variables['title_hidden'] = in_array($this->routeMatch->getRouteName(), ['user.login', 'user.pass'], TRUE);
-    $cacheability = (new CacheableMetadata())->addCacheTags(['config:lcars_ng.settings']);
+    $route = $this->routeMatch->getRouteName();
+    $variables['title_hidden'] = in_array($route, ['user.login', 'user.pass'], TRUE);
+    $cacheability = (new CacheableMetadata())
+      ->addCacheTags(['config:lcars_ng.settings'])
+      ->addCacheContexts(['route']);
     $node = $this->pageNode();
     if ($node && $this->showsTypeInTitleBar($node)) {
       $type = $node->type->entity;
       $variables['title'] = $type->label();
       $variables['title_tag'] = 'div';
+      $cacheability->addCacheableDependency($type);
+    }
+    $edited = $route === 'entity.node.edit_form' ? $this->routeMatch->getParameter('node') : NULL;
+    if ($edited instanceof NodeInterface && $this->showsTypeInTitleBar($edited)) {
+      $type = $edited->type->entity;
+      $variables['title'] = $this->t('Edit @type', ['@type' => $type->label()]);
       $cacheability->addCacheableDependency($type);
     }
     CacheableMetadata::createFromRenderArray($variables)
