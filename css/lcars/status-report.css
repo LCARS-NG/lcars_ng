@@ -88,11 +88,21 @@ h3:is(#error, #warning, #checked) {
   font-size: 1.25em;
 }
 
+/* Core puts the icon of a warning or an error absolutely at the start of the
+   summary, where the title here stands in the line of the box: it fell below
+   the marker of the summary. It stands before the value instead (below). */
+.system-status-report__status-icon::before {
+  content: none;
+}
+
 /* The value of each requirement (LcarsNgHooks::preprocessStatusReportGrouped())
-   as a status item: bold capitals in the color of its group, as the counters,
-   behind a segment of that color, as the bar of the current revision; links
-   in it underlined in that color, as in messages (user decision 29.10.2026,
-   variant B; was plain text). */
+   as a status item: bold capitals in the color of its group, as the counters;
+   links in it underlined in that color, as in messages (user decision
+   29.10.2026, variant B; was plain text). Before a warning or an error its
+   icon in that color, as in the counters, without one before a checked value
+   (user wish 04.11.2026; until then a segment of the color before every
+   value, as the bar of the current revision, and the icon of core below the
+   marker of the summary). */
 .lcars-status-value {
   --lcars-status-color: var(--lcars-message-status);
 
@@ -107,15 +117,19 @@ h3:is(#error, #warning, #checked) {
 .lcars-status-value--error {
   --lcars-status-color: var(--lcars-message-error);
 }
-.lcars-status-value::before {
+.lcars-status-value--warning::before,
+.lcars-status-value--error::before {
   display: inline-block;
-  inline-size: 0.375em;
-  block-size: 1em;
+  inline-size: 1.1428em;
+  block-size: 1.1428em;
   margin-inline-end: 0.5em;
   content: "";
-  vertical-align: -0.125em;
-  border-radius: var(--lcars-pill);
+  vertical-align: -0.2em;
   background: currentColor;
+  mask: url(../../images/icons/warning.svg) no-repeat center / contain;
+}
+.lcars-status-value--error::before {
+  mask-image: url(../../images/icons/error.svg);
 }
 .lcars-status-value a {
   text-decoration: underline;
