@@ -543,9 +543,13 @@
    all three corners keep the same gap to its edge (user decision 31.10.2026:
    gap 5px, variant B). The disc has no line round it (user decision
    01.11.2026; from 31.10.2026 a ring of 2px in #3786ff, with the page
-   inside). The login panel shows the same disc, larger (login.css), and so
-   does the favicon; the contrast themes of the system (forced-colors.css)
-   keep the colored logo. Another logo keeps the rules above. */
+   inside). The logo stands on its head (user decision 04.11.2026, variant B;
+   the colored form too, its tones turned with it): turned 180 degrees about
+   the middle of its image, apex down, so the center of the circle lies 9.89
+   above the middle of the image and the image moves down by that much. The
+   login panel shows the same disc, larger (login.css), and so does the
+   favicon; the contrast themes of the system (forced-colors.css) keep the
+   colored logo. Another logo keeps the rules above. */
 .lcars-panel-top .site-logo:has(> img[src*="lcars-ng-logo-flat.svg"]) {
   --lcars-logo-gap: 0.3125rem; /* 5px */
   --lcars-logo-unit: calc((2.75rem - var(--lcars-logo-gap)) / 44.08);
@@ -560,7 +564,7 @@
 }
 
 .lcars-panel-top .site-logo > img[src*="lcars-ng-logo-flat.svg"] {
-  translate: 0 calc(-9.89 * var(--lcars-logo-unit));
+  translate: 0 calc(9.89 * var(--lcars-logo-unit));
   block-size: calc(72 * var(--lcars-logo-unit));
   content: url("../../lcars-ng-logo-flat-mono-lightblue.svg");
 }

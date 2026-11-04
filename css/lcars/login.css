@@ -68,7 +68,8 @@
    one-colored form in the light blue of the labels, the logo as high as
    before: the disc 9rem, the corners of the triangle as far inside its edge
    as there, 5px on 88px (user decision 01.11.2026, variant A; the colored
-   logo stood on the page). The contrast themes of the system
+   logo stood on the page). Like there the logo stands on its head
+   (04.11.2026), so the image moves down. The contrast themes of the system
    (forced-colors.css) keep the colored logo. Another logo keeps the rules
    above. */
 .lcars-login__panel .site-logo:has(> img[src*="lcars-ng-logo-flat.svg"]) {
@@ -85,7 +86,7 @@
 }
 
 .lcars-login__panel .site-logo > img[src*="lcars-ng-logo-flat.svg"] {
-  translate: 0 calc(-9.89 * var(--lcars-logo-unit));
+  translate: 0 calc(9.89 * var(--lcars-logo-unit));
   block-size: calc(72 * var(--lcars-logo-unit));
   content: url("../../lcars-ng-logo-flat-mono-lightblue.svg");
 }

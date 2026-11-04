@@ -1,14 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="77" height="72" viewBox="0 0 77 72" role="img" aria-labelledby="lcars-ng-logo-title">
   <title id="lcars-ng-logo-title">LCARS-NG</title>
-  <!-- Icosahedron, Schlegel diagram, flat: 7 areas, one color, edges as gaps, transparent background.
+  <!-- Icosahedron, Schlegel diagram, flat: 7 areas, one color, edges as gaps, turned 180 degrees (apex down), transparent background.
        Derived from lcars-ng-logo.svg. -->
   <g fill="#a7d4ff">
-    <path d="M37.7 3.294L2.584 68.425L27.225 49.778L27.365 38.347L37.7 31.78Z"/>
-    <path d="M2.996 70.12L74.004 70.12L48.914 51.134L38.5 56.967L28.086 51.134Z"/>
-    <path d="M39.3 3.294L39.3 31.78L49.635 38.347L49.775 49.778L74.416 68.425Z"/>
-    <path d="M29.845 38.667L35.171 41.05L41.829 41.05L47.155 38.667L38.5 33.168Z"/>
-    <path d="M28.945 40.018L28.826 49.714L37.7 54.685L37.7 47.054L34.473 42.491Z"/>
-    <path d="M48.174 49.714L48.055 40.018L42.527 42.491L39.3 47.054L39.3 54.685Z"/>
-    <path d="M40.455 42.65L36.545 42.65L38.5 45.414Z"/>
+    <path d="M39.3 68.706L74.416 3.575L49.775 22.222L49.635 33.653L39.3 40.22Z"/>
+    <path d="M74.004 1.88L2.996 1.88L28.086 20.866L38.5 15.033L48.914 20.866Z"/>
+    <path d="M37.7 68.706L37.7 40.22L27.365 33.653L27.225 22.222L2.584 3.575Z"/>
+    <path d="M47.155 33.333L41.829 30.95L35.171 30.95L29.845 33.333L38.5 38.832Z"/>
+    <path d="M48.055 31.982L48.174 22.286L39.3 17.315L39.3 24.946L42.527 29.509Z"/>
+    <path d="M28.826 22.286L28.945 31.982L34.473 29.509L37.7 24.946L37.7 17.315Z"/>
+    <path d="M36.545 29.35L40.455 29.35L38.5 26.586Z"/>
   </g>
 </svg>
