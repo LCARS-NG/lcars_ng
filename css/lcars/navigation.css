@@ -58,10 +58,11 @@
   background: var(--lcars-button-active);
 }
 
-/* Phones: each menu above the content as a grid of buttons (frame.css), the
-   menus one below the other. Gaps replace the seams; the buttons of a row are
-   equally high, their labels stay at the bottom right. */
-@media (max-width: 39.9375rem) {
+/* Up to a page of 1080px (frame.css; phones before 04.11.2026): each menu
+   above the content as a grid of buttons of at least 7rem, the menus one
+   below the other. Gaps replace the seams; the buttons of a row are equally
+   high, their labels stay at the bottom right. */
+@container lcars-page not (min-width: 67.5625rem) {
   .lcars-sidebar .region,
   .lcars-sidebar .block > .menu {
     display: grid;

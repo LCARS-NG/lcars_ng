@@ -1,0 +1,67 @@
+/**
+ * @file
+ * Forms of views as boxes: the exposed filters and the actions for the
+ * selected rows (bulk form) of lists such as People, Content and Media, each
+ * group in a plain box without a title, the labels above their fields, the
+ * fields and the button in a wrapping row (user wish 04.11.2026, variant B).
+ * Before, the floated fields of the inline form and the action
+ * stood loose above the table and broke their lines at random. The search
+ * page keeps its own box (search.css). The table of the list stands in a box
+ * as well (table.css), so the page is boxes from top to bottom.
+ */
+
+.view:not(.lcars-search) > .view-filters,
+.views-form > form > [data-drupal-selector="edit-header"] {
+  box-sizing: border-box;
+  margin-block: 1.5em;
+  padding: 1em 1.5em;
+  border: var(--lcars-box-border-width) solid var(--lcars-box-border-color);
+  border-radius: var(--lcars-box-radius);
+}
+
+/* A row of fields that wraps, the button at its end, all at the foot of the
+   fields. The bulk form puts its select and button into a wrapper of its
+   own inside the header. */
+.view:not(.lcars-search) > .view-filters .form--inline,
+.views-form > form > [data-drupal-selector="edit-header"] > .form-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1em 1.5em;
+}
+
+/* Floats and margins of the inline form (inline-form.css, forms.css) give
+   way to the gaps of the row; the clearfix would take a place in it. Never
+   wider than the box: on phones long options (Permission, Action) pushed the
+   selects out of it. */
+.view:not(.lcars-search) > .view-filters .form--inline::after {
+  display: none;
+}
+
+.view:not(.lcars-search) > .view-filters .form--inline > *,
+.views-form > form > [data-drupal-selector="edit-header"] > .form-wrapper > * {
+  float: none;
+  min-inline-size: 0;
+  max-inline-size: 100%;
+  margin: 0;
+}
+
+:is(.view:not(.lcars-search) > .view-filters, .views-form > form > [data-drupal-selector="edit-header"]) :is(select, input) {
+  max-inline-size: 100%;
+}
+
+:is(.view:not(.lcars-search) > .view-filters, .views-form > form > [data-drupal-selector="edit-header"]) .form-actions .button {
+  margin: 0;
+}
+
+/* The label above its field. */
+:is(.view:not(.lcars-search) > .view-filters .form--inline, .views-form > form > [data-drupal-selector="edit-header"] > .form-wrapper) > .form-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35em;
+}
+
+:is(.view:not(.lcars-search) > .view-filters .form--inline, .views-form > form > [data-drupal-selector="edit-header"] > .form-wrapper) > .form-item > label {
+  margin: 0;
+}

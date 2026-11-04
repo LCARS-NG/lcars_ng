@@ -130,6 +130,8 @@ global:
       css/lcars/code.css: {  }
       css/lcars/archive.css: {  }
       css/lcars/search.css: {  }
+      css/lcars/pager.css: {  }
+      css/lcars/view-forms.css: {  }
     theme:
       css/lcars/alert.css: {  }
       css/lcars/forced-colors.css: {  }

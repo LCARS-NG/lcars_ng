@@ -9,8 +9,9 @@
  * view_password (masks over a color) were gone. The parts below keep their
  * own colors, with the tokens set to system colors: the frame and its labels
  * in the text color of the system, buttons in its button colors, title bar,
- * focus, hover, the active button and the active tab in its highlight color
- * (#34, user decision 30.10.2026, variant C).
+ * focus, hover, the active button, the active tab and the current page of a
+ * pager (pager.css, 04.11.2026) in its highlight color (#34, user decision
+ * 30.10.2026, variant C).
  *
  * Only here, not on :root: the browser keeps a background in a system color
  * everywhere and forces the text over it, so active tabs and the buttons of
@@ -40,6 +41,8 @@
   .select_button,
   .lcars-button,
   .tabs a,
+  .pager__item a,
+  .pager__item.is-active:not(:has(a)),
   html .vertical-tabs__menu-item,
   .form-required::after,
   button.shwpd:is(.eye-open, .eye-close) {

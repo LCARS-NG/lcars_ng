@@ -39,6 +39,16 @@
     '.text-formatted pre',
     '.profile--view-mode-full',
     '.lcars-search > .view-filters',
+    '.view:not(.lcars-search) > .view-filters',
+    '.views-form > form > [data-drupal-selector="edit-header"]',
+    '.block-system-main-block > .lcars-table',
+    '.block-system-main-block > div > .lcars-table',
+    '.block-system-main-block > form > .lcars-table',
+    '.block-system-main-block > form > div:not(.form-item) > .lcars-table',
+    '.block-system-main-block .views-list-section > .lcars-table',
+    '.block-system-main-block > .views-element-container > .view > .view-content .lcars-table',
+    '.block-system-main-block .table-filter',
+    '.block-system-main-block > form:not(.node-form, .user-form) > :is(.form-item, fieldset):not(.form-type-vertical-tabs)',
   ].join(', ');
 
   /**

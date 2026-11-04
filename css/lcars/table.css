@@ -92,14 +92,16 @@ th {
    still wider scrolls in its wrapper, with the scrollbar right below it,
    only sideways: a scrolling box also scrolls down, and a pixel left over
    from rounding showed a vertical scrollbar beside the table (user wish
-   03.11.2026). */
-.js :is(.lcars-aside .lcars-panel, .dashboard .layout .block) td .dropbutton-multiple {
+   03.11.2026). The same in the boxes of the tables in the main content
+   (below): with the reserve, Content was 852px wide in a column of 786px at
+   a window of 1000px and stood out of its box (04.11.2026). */
+.js :is(.lcars-aside .lcars-panel, .dashboard .layout .block, .block-system-main-block > .lcars-table, .block-system-main-block > div > .lcars-table, .block-system-main-block > form > .lcars-table, .block-system-main-block > form > div:not(.form-item) > .lcars-table, .block-system-main-block .views-list-section > .lcars-table, .block-system-main-block > .views-element-container > .view > .view-content .lcars-table) td .dropbutton-multiple {
   width: auto;
   margin-inline-end: 0;
   padding-inline-end: 0;
 }
 
-.js :is(.lcars-aside .lcars-panel, .dashboard .layout .block) td .dropbutton-widget {
+.js :is(.lcars-aside .lcars-panel, .dashboard .layout .block, .block-system-main-block > .lcars-table, .block-system-main-block > div > .lcars-table, .block-system-main-block > form > .lcars-table, .block-system-main-block > form > div:not(.form-item) > .lcars-table, .block-system-main-block .views-list-section > .lcars-table, .block-system-main-block > .views-element-container > .view > .view-content .lcars-table) td .dropbutton-widget {
   position: relative;
   display: inline-block;
 }
@@ -107,6 +109,83 @@ th {
 :is(.lcars-aside .lcars-panel, .dashboard .layout .block) .lcars-table {
   position: relative;
   overflow: auto hidden;
+}
+
+/* Tables in the main content as boxes (design rule 15, user wish 04.11.2026;
+   first the lists of views and the roles that evening, then every table of
+   the administration): lists of views, of configuration (Content types,
+   Menus, Media types, Workflows, …), the tables of forms (Block layout, Text
+   formats, Permissions, terms, Uninstall, …) and of the Views UI. Tables
+   inside other boxes (details, fields, panels, dashboard cards) stay as they
+   are. The box holds 0.5em above and below, 0.75em at the sides, so with the
+   room of the cells the text stands 1em and 1.5em from the edge, as in the
+   boxes of forms; the lines between the rows end 0.75em before the box. A
+   table wider than its box scrolls inside it, only sideways; its dropbuttons
+   take no reserve (above). Buttons of the form (Save, Apply) stay below. */
+:is(.block-system-main-block > .lcars-table, .block-system-main-block > div > .lcars-table, .block-system-main-block > form > .lcars-table, .block-system-main-block > form > div:not(.form-item) > .lcars-table, .block-system-main-block .views-list-section > .lcars-table, .block-system-main-block > .views-element-container > .view > .view-content .lcars-table) {
+  overflow: auto hidden;
+  box-sizing: border-box;
+  max-width: 100%;
+  margin-block: var(--lcars-table-box-above, 1.5em) 1.5em;
+  padding: var(--lcars-table-box-top, 0.5em) 0.75em 0.5em;
+  border: var(--lcars-box-border-width) solid var(--lcars-box-border-color);
+  border-radius: var(--lcars-box-radius);
+}
+
+/* The table fills its box, so the lines between the rows reach both sides
+   (View modes: 609px in a box of 994px). A table without a head row needs
+   no line above its first row: the line of the box is there (Available
+   updates). */
+:is(.block-system-main-block > .lcars-table, .block-system-main-block > div > .lcars-table, .block-system-main-block > form > .lcars-table, .block-system-main-block > form > div:not(.form-item) > .lcars-table, .block-system-main-block .views-list-section > .lcars-table, .block-system-main-block > .views-element-container > .view > .view-content .lcars-table) > table {
+  width: 100%;
+}
+
+:is(.block-system-main-block > .lcars-table, .block-system-main-block > div > .lcars-table, .block-system-main-block > form > .lcars-table, .block-system-main-block > form > div:not(.form-item) > .lcars-table, .block-system-main-block .views-list-section > .lcars-table, .block-system-main-block > .views-element-container > .view > .view-content .lcars-table) > table:not(:has(> thead)) > tbody > tr:first-child > td {
+  border-top: 0;
+}
+
+/* A table that is the one group of its page (Roles, Content types, Menus,
+   Block layout, …) stands in a box as wide as the table; boxes that stack,
+   with a filter or with other tables, take the width of the column, so
+   their edges line up. */
+:is(.block-system-main-block > .lcars-table:first-child:not(:has(~ :not(.pager))), .block-system-main-block > form > .lcars-table:first-child:not(:has(~ :not(input, .form-actions, .pager)))) {
+  width: fit-content;
+}
+
+/* A heading right above such a box is its title and cuts into its upper
+   line, as the titles of details (design rule 14): View modes and Form
+   modes (one table for each type of entity), Available updates, Enabled
+   and Disabled in the Views UI. The box makes room for the lower half
+   (through custom properties: the rule of the box above is the more
+   specific one). */
+:is(.block-system-main-block > :is(h2, h3), .block-system-main-block > div > :is(h2, h3), .block-system-main-block .views-list-section > h2):has(+ .lcars-table) {
+  position: relative;
+  width: fit-content;
+  margin-block-end: -0.625em;
+  margin-inline-start: 0.75em;
+  padding-inline: 0.5em;
+  background: var(--lcars-space);
+  line-height: 1.25;
+}
+
+:is(.block-system-main-block > :is(h2, h3), .block-system-main-block > div > :is(h2, h3), .block-system-main-block .views-list-section > h2) + .lcars-table {
+  --lcars-table-box-above: 0;
+  --lcars-table-box-top: 1em;
+}
+
+/* The filters above a table (Permissions, Uninstall, Extend, the Views UI)
+   in a box of their own, as the filters of the lists of views
+   (view-forms.css). */
+.block-system-main-block .table-filter {
+  box-sizing: border-box;
+  margin-block: 1.5em;
+  padding: 1em 1.5em;
+  border: var(--lcars-box-border-width) solid var(--lcars-box-border-color);
+  border-radius: var(--lcars-box-radius);
+}
+
+.block-system-main-block .table-filter .form-item {
+  margin-block: 0;
 }
 
 /* Revision overviews: of nodes (.node-revision-table) and of other entities

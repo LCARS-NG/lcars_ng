@@ -184,36 +184,40 @@
    the full width). Never narrower than 40rem (about 70 characters a line).
    Administration pages without a node (tables, forms, the dashboard) keep
    the full width; beside the right sidebar, content and sidebar share the
-   golden section instead (below). Below 67.5rem the right sidebar is hidden,
-   so its pages count as pages without it. */
+   golden section instead (below). Where the right sidebar is hidden (below),
+   its pages count as pages without it. */
 @media (min-width: 64rem) {
   .lcars-frame > .lcars-main:has(.block-system-main-block .node) {
     padding-inline-end: min((100% - var(--lcars-gutter)) * 0.382, max(0px, 100% - var(--lcars-gutter) - 40rem));
   }
 }
 
-@media (min-width: 67.5rem) {
+@container lcars-page (min-width: 67.5625rem) {
   .lcars-frame:has(> .lcars-aside) > .lcars-main:has(.block-system-main-block .node) {
     padding-inline-end: 0;
   }
 }
 
+/* The right sidebar shows only where the page is wider than 1080px, measured
+   beside the Navigation of Drupal (72px, expanded 264px) and without the
+   scrollbar: the page wrapper of core is the container (user wish
+   04.11.2026). Below, its column squeezed the content to under 500px beside
+   it: at 1080 device pixels with a zoom of 110% (earlier that day, the window
+   width decided from 1080px), and at 100% beside the Navigation as well
+   (488px; 495px in a 1280px window with the Navigation expanded). Until
+   04.11.2026 from 40rem, at a fifth of the frame, between --lcars-aside-min
+   and --lcars-aside-max for the blocks plus the gutter. Hidden by default,
+   so no width between two queries leaves it half laid out. */
+.dialog-off-canvas-main-canvas {
+  container: lcars-page / inline-size;
+}
+
 .lcars-aside {
+  display: none;
   grid-area: aside;
   padding-block: 0 2rem;
   padding-inline: var(--lcars-gutter) 0;
   font-size: 0.8125rem; /* 13px, more fits the narrow column (user decision 24.10.2026) */
-}
-
-/* The right sidebar shows from 1080px only: below, its column squeezed the
-   content to about 500px beside it (user wish 04.11.2026, at 1080 device
-   pixels with a zoom of 110%; until then from 40rem, at a fifth of the
-   frame, between --lcars-aside-min and --lcars-aside-max for the blocks plus
-   the gutter). Phones hid it before already. */
-@media (max-width: 67.4375rem) {
-  .lcars-aside {
-    display: none;
-  }
 }
 
 /* Content and right sidebar share the width beside the menu in the golden
@@ -222,7 +226,7 @@
    frame, at most --lcars-aside-max, with the content in the golden section
    of the rest, which left the free space between them wide), its blocks
    never narrower than --lcars-aside-min. */
-@media (min-width: 67.5rem) {
+@container lcars-page (min-width: 67.5625rem) {
   .lcars-frame:has(> .lcars-aside) {
     grid-template-columns:
       var(--lcars-sidebar-width) minmax(0, 1fr)
@@ -230,6 +234,7 @@
   }
 
   .lcars-aside {
+    display: block;
     padding-inline-start: 3rem;
   }
 }
@@ -396,12 +401,19 @@
   content: "";
 }
 
-/* Phones show the content only (user decision 24.10.2026): the menu moves out
-   of the sidebar above the content, as a grid of buttons (navigation.css). The
-   sidebar filler stays as an edge (--lcars-sidebar-width), drawn by the frame
-   itself; the right sidebar is hidden (above, below 67.5rem). */
-@media (max-width: 39.9375rem) {
+/* Up to a page of 1080px the frame shows the content only, as on phones (user
+   decision 24.10.2026 for phones; from 04.11.2026 up to 1080px, variant A,
+   for a portrait screen of full HD; until then below 640px): the
+   menu moves out of the sidebar above the content, as a grid of buttons
+   (navigation.css). The sidebar filler stays as an edge of 16px, drawn by the
+   frame itself; the right sidebar is hidden as well (above). The page is
+   measured beside the Navigation of Drupal, as for the right sidebar; the
+   elbows, bars and the site name keep their size, only phones make them
+   smaller (tokens.css) and the frame closer to the window (below). */
+@container lcars-page not (min-width: 67.5625rem) {
   .lcars-frame {
+    --lcars-sidebar-width: 1rem;
+
     grid-template-areas:
       "head head"
       "edge side"
@@ -409,7 +421,6 @@
       "foot foot";
     grid-template-rows: auto auto 1fr auto;
     grid-template-columns: var(--lcars-sidebar-width) minmax(0, 1fr);
-    padding: 0.5rem;
   }
 
   .lcars-frame::before {
@@ -423,6 +434,12 @@
     padding-block: 0;
     padding-inline: var(--lcars-gutter) 0;
     background: none;
+  }
+}
+
+@media (max-width: 39.9375rem) {
+  .lcars-frame {
+    padding: 0.5rem;
   }
 }
 
@@ -584,9 +601,10 @@
   margin-block-start: var(--lcars-seam);
 }
 
-/* Phones: the menu above the content as on other pages; beside the upper
-   panel the edge remains without the blocks of the panel menu. */
-@media (max-width: 39.9375rem) {
+/* Up to a page of 1080px (phones before 04.11.2026): the menu above the
+   content as on other pages; beside the upper panel the edge remains without
+   the blocks of the panel menu. */
+@container lcars-page not (min-width: 67.5625rem) {
   .lcars-frame--panel {
     grid-template-areas:
       "pside ptop"

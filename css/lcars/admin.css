@@ -174,3 +174,36 @@ html[dir] .theme-selector .operations li:nth-child(n) {
 .block-disabled > td:nth-child(-n + 2) {
   color: var(--lcars-placeholder);
 }
+
+/* Forms of the configuration (Edit menu, content types, vocabularies, text
+   formats, blocks, image styles, settings, …): each field at the top level
+   of the form in a box with its label cut into the upper line, as the forms
+   of content (forms.css) (design rules 14 and 15, user decision 04.11.2026,
+   variant A; rejected: one box for all loose fields, labels above or beside
+   the fields). Before, they stood loose above the boxes of the form,
+   the label beside the field. Fieldsets (radios, checkboxes) carry their
+   legend in the line by themselves; vertical tabs, details and tables have
+   their own frames. Forms of content and of accounts keep their rules
+   (forms.css, user.css). */
+.block-system-main-block > form:not(.node-form, .user-form) > :is(.form-item, fieldset):not(.form-type-vertical-tabs) {
+  margin: 1.5em 0 1em;
+  padding: 0.5em 1.5em 0.75em;
+  border: var(--lcars-box-border-width) solid var(--lcars-box-border-color);
+  border-radius: var(--lcars-box-radius);
+}
+
+.block-system-main-block > form:not(.node-form, .user-form) > .form-item:not(.form-type-vertical-tabs) > label:first-child:not(.visually-hidden) {
+  display: table;
+  margin-block: -1.25em 0.5em;
+  margin-inline-start: -0.5em;
+  padding-inline: 0.5em;
+  background: var(--lcars-space);
+}
+
+/* The legend as the labels of the other boxes: at the same place, not bold
+   (form.css makes the legend of a composite element bold). */
+.block-system-main-block > form:not(.node-form, .user-form) > fieldset > legend {
+  margin-inline-start: -0.5em;
+  padding-inline: 0.5em;
+  font-weight: normal;
+}

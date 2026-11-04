@@ -1,0 +1,97 @@
+/**
+ * @file
+ * Pagers (full and mini) as tabs, as the years of the blog above its list:
+ * outlines in the quiet line of the fields, labels in the link color, the
+ * current page white with a black label (user decision 04.11.2026, variant
+ * A).
+ * Filled buttons stay for actions (forms.css). Until then the pager of the
+ * starterkit, centered text links (css/components/pager.css).
+ */
+
+.pager {
+  margin-block: 2rem 0;
+}
+
+/* A wrapping row at the start, 9px apart as the tabs (tabs.css). */
+.pager__items {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: start;
+  gap: 0.5625rem;
+}
+
+.pager__item {
+  display: block;
+  padding: 0;
+}
+
+/* The tabs of forms.css; the current page of the mini pager of Views is text,
+   not a link, and gets the face of the current tab. */
+.pager__item a,
+.pager__item.is-active:not(:has(a)) {
+  display: block;
+  padding: 0.35em 1.4em 0.5em;
+  text-transform: uppercase;
+  color: var(--lcars-link);
+  border: 1px solid var(--lcars-field-border);
+  border-radius: 0.625rem; /* 10px, as .button and .tabs a */
+  font-weight: bold;
+}
+
+.pager__item a:hover,
+.pager__item a:focus {
+  color: var(--lcars-link-hover);
+  border-color: var(--lcars-frame);
+}
+
+.pager__item.is-active a,
+.pager__item.is-active:not(:has(a)) {
+  color: var(--lcars-on-color);
+  border-color: var(--lcars-button-active);
+  background: var(--lcars-button-active);
+}
+
+.pager__item--ellipsis {
+  color: var(--lcars-text-muted);
+}
+
+/* First and last page only where the numbers leave pages out: with every
+   page in the row (the blog has at most eight of 50 posts), they repeated
+   the first and the last number. */
+.pager__items:not(:has(.pager__item--ellipsis)) :is(.pager__item--first, .pager__item--last) {
+  display: none;
+}
+
+/* Phones: arrows instead of the words, narrower tabs, so the row of a blog
+   year (arrows and four numbers) stays on one line at 375px; the hidden
+   words of core (visually-hidden) still name the links. */
+@media (max-width: 39.9375rem) {
+  .pager__item a,
+  .pager__item.is-active:not(:has(a)) {
+    padding-inline: 1em;
+  }
+
+  :is(.pager__item--first, .pager__item--previous, .pager__item--next, .pager__item--last) a > [aria-hidden="true"] {
+    display: none;
+  }
+
+  .pager__item--first a::after {
+    content: "«" / "";
+  }
+
+  .pager__item--previous a::after {
+    content: "‹" / "";
+  }
+
+  .pager__item--next a::after {
+    content: "›" / "";
+  }
+
+  .pager__item--last a::after {
+    content: "»" / "";
+  }
+}

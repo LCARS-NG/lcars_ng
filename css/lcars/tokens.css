@@ -109,7 +109,7 @@
 
 @media (max-width: 39.9375rem) {
   :root {
-    --lcars-sidebar-width: 1rem; /* 16px: only an edge, the menu moves above the content (user decision 24.10.2026) */
+    --lcars-sidebar-width: 1rem; /* 16px: only an edge, the menu moves above the content (user decision 24.10.2026); since 04.11.2026 up to a page of 1080px, set on .lcars-frame by a container query (frame.css) */
     --lcars-gutter: 0.75rem;
     --lcars-elbow-outer: 1.75rem;
     --lcars-elbow-inner: 0.875rem;
