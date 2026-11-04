@@ -394,6 +394,12 @@ html .vertical-tabs__menu-item.is-selected .vertical-tabs__menu-item-summary {
   margin-block: 0;
 }
 
+/* A formatted text puts its first item into the wrapper of the text format:
+   its margin above held the title 16px below the line (fixed 04.11.2026). */
+.node-form > [class*="field--widget-"] > .text-format-wrapper > .form-item:first-child {
+  margin-block-start: 0;
+}
+
 .node-form > [class*="field--widget-"] > .form-item > label:first-child,
 .node-form > [class*="field--widget-"] > .text-format-wrapper > .form-item:first-child > label:first-child {
   display: table;
