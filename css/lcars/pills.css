@@ -32,9 +32,12 @@
 }
 
 .lcars-pills > .field__label {
+  --lcars-italic: normal;
+
   text-transform: uppercase;
   color: var(--lcars-heading);
   font-size: 0.8125rem;
+  font-style: normal;
   line-height: var(--lcars-target);
 }
 

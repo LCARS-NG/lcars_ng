@@ -27,6 +27,8 @@
 .js .dropbutton a,
 .js .dropbutton .dropbutton-action :is(input, button),
 .dropbutton-toggle button {
+  --lcars-italic: normal;
+
   margin: 0;
   text-decoration: none;
   text-transform: uppercase;
@@ -37,6 +39,7 @@
   font-family: var(--lcars-font-label);
   font-size: 0.85em;
   font-weight: bold;
+  font-style: normal;
 }
 .js .dropbutton :is(a, input, button):is(:hover, :focus),
 .dropbutton-toggle button:is(:hover, :focus) {

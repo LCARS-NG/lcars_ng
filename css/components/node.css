@@ -14,6 +14,8 @@
    (features.node_user_picture) is off by default (#35, user decision
    30.10.2026, variant A). */
 .node__submitted {
+  --lcars-italic: normal;
+
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
@@ -22,6 +24,7 @@
   text-transform: uppercase;
   color: var(--lcars-heading);
   font-size: 0.8125rem;
+  font-style: normal;
 }
 
 /* The date takes the direction of its own words, so that its day stays in
@@ -44,6 +47,8 @@
 }
 
 .node__title {
+  --lcars-italic: italic;
+
   margin-block-end: 1.5rem;
   text-transform: none;
   font-size: 2rem;

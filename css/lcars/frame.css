@@ -123,11 +123,13 @@
 /* The site name cuts into the bar over its full height (above). */
 .lcars-head__bar .site-name {
   --lcars-cut-height: var(--lcars-bar-top);
+  --lcars-italic: normal;
 
   padding-inline: 0.15em;
   text-transform: uppercase;
   font-family: var(--lcars-font-label);
   font-weight: bold;
+  font-style: normal;
 }
 
 .lcars-head__bar .site-name a {
@@ -142,9 +144,12 @@
 /* Breadcrumb inside the curve */
 
 .lcars-head__inner .breadcrumb {
+  --lcars-italic: normal;
+
   padding: 0;
   text-transform: uppercase;
   font-size: 0.625rem;
+  font-style: normal;
 }
 
 /* Sidebar: the column of the menu in the blue of the frame, as the elbows
@@ -302,12 +307,15 @@
 }
 
 .region-footer .menu--footer a {
+  --lcars-italic: normal;
+
   text-decoration: none;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--lcars-link);
   font-family: var(--lcars-font-label);
   font-size: 0.8125rem;
+  font-style: normal;
 }
 
 .region-footer .menu--footer a.is-active {
@@ -345,6 +353,7 @@
    user decision 31.10.2026). */
 .lcars-title .page-title {
   --lcars-cut-height: var(--lcars-title-height);
+  --lcars-italic: normal;
 
   overflow: clip visible;
   min-width: 0;
@@ -356,12 +365,6 @@
   color: var(--lcars-title-bar);
   font-family: var(--lcars-font-label);
   font-weight: bold;
-}
-
-/* Core emphasizes parts of some titles ("<em>Edit @type</em> @title",
-   "Revisions for %title"): in the bar upright as the rest (user wish
-   04.11.2026). */
-.lcars-title .page-title :is(em, i) {
   font-style: normal;
 }
 
@@ -466,11 +469,14 @@
 }
 
 .lcars-panel-top .site-name {
+  --lcars-italic: normal;
+
   grid-area: name;
   text-transform: uppercase;
   font-family: var(--lcars-font-label);
   font-size: 2.5rem;
   font-weight: bold;
+  font-style: normal;
   line-height: 1;
 }
 
@@ -484,11 +490,14 @@
 /* The slogan in the blue of the name (user decision 28.10.2026; was
    --lcars-text-dim, white). */
 .lcars-panel-top .site-slogan {
+  --lcars-italic: normal;
+
   grid-area: slogan;
   padding-block-start: 0.25rem;
   text-transform: uppercase;
   color: var(--lcars-sidebar);
   font-size: 0.75rem;
+  font-style: normal;
 }
 
 /* The logo as high as the content of the panel, from the top of the name down
@@ -542,12 +551,15 @@
 /* Status line in the curve below the upper panel: the user right beside the
    date (user decision 25.10.2026, was at the right end). */
 .lcars-status {
+  --lcars-italic: normal;
+
   display: flex;
   flex-wrap: wrap;
   text-transform: uppercase;
   font-size: 0.875rem; /* 14px */
   font-weight: bold;
   gap: 0.25rem 1.25rem;
+  font-style: normal;
 }
 
 /* The date in the blue of the site name, as the slogan (user decision

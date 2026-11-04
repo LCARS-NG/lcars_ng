@@ -160,6 +160,7 @@
    above the ceiling; clipped at its sides only, as the page title. */
 .dashboard .layout .block > h2 {
   --lcars-cut-height: var(--lcars-title-height);
+  --lcars-italic: normal;
 
   position: relative;
   overflow: clip visible;
@@ -178,6 +179,7 @@
   /* The width of the card without the elbow and the pieces of ceiling left
      and right of the title. */
   max-inline-size: calc(100% + 2 * var(--lcars-card-pad) + var(--lcars-card-edge) - var(--lcars-card-corner) - 2 * var(--lcars-card-end));
+  font-style: normal;
 }
 
 /* Announcements: dashboard.css sets dark grays. */

@@ -38,9 +38,12 @@
 /* The date in small capitals, as the date of a post (node.css), in the
    direction of its own words on right-to-left pages as well. */
 .lcars-dated-list > li > :first-child {
+  --lcars-italic: normal;
+
   white-space: nowrap;
   text-transform: uppercase;
   unicode-bidi: plaintext;
   color: var(--lcars-heading);
   font-size: 0.8125rem;
+  font-style: normal;
 }

@@ -153,6 +153,7 @@
 .klaro.klaro-theme-lcars_ng:not(.hide-consent-dialog-title) .cookie-notice:not(.cookie-modal-notice) #id-cookie-title,
 .klaro.klaro-theme-lcars_ng .cookie-modal .cm-modal.cm-klaro .cm-header .title {
   --lcars-cut-height: var(--lcars-notice-ceiling);
+  --lcars-italic: normal;
 
   position: absolute;
   overflow: clip visible;
@@ -167,21 +168,28 @@
   inset-block-start: 0;
   inset-inline-end: var(--lcars-notice-end);
   max-inline-size: calc(100% - var(--lcars-notice-corner) - 2 * var(--lcars-notice-end)); /* elbow, a piece of ceiling, end */
+  font-style: normal;
 }
 
 .klaro.klaro-theme-lcars_ng .cookie-notice:not(.cookie-modal-notice) .cn-learn-more {
+  --lcars-italic: normal;
+
   text-decoration: none;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   font-family: var(--lcars-font-label);
+  font-style: normal;
 }
 
 /* Purposes and services as the headings of the theme. */
 .klaro.klaro-theme-lcars_ng .cookie-modal .cm-modal.cm-klaro .cm-list-title {
+  --lcars-italic: normal;
+
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--lcars-heading);
   font-weight: bold;
+  font-style: normal;
 }
 
 .klaro.klaro-theme-lcars_ng .cookie-modal .cm-modal.cm-klaro .cm-caret a {
@@ -195,8 +203,11 @@
 /* Buttons as the login button: pills with black bold capitals. */
 .klaro.klaro-theme-lcars_ng .cookie-notice:not(.cookie-modal-notice) .cm-btn,
 .klaro.klaro-theme-lcars_ng .cookie-modal .cm-btn {
+  --lcars-italic: normal;
+
   letter-spacing: 0.02em;
   text-transform: uppercase;
   font-family: var(--lcars-font-label);
   font-weight: bold;
+  font-style: normal;
 }

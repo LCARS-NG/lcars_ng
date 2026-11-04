@@ -44,8 +44,11 @@
 /* The names of the regions in capitals, 1.15em as the names of the modules
    on Extend, bold as core has them (user decision 30.10.2026, variant B). */
 #blocks tr.region-title td:first-child {
+  --lcars-italic: normal;
+
   text-transform: uppercase;
   font-size: 1.15em;
+  font-style: normal;
 }
 
 /* A dark line across the table above the name of each region, in the tone
@@ -88,9 +91,12 @@
 
 /* Package headings (Core, …) as the fieldset legends of LCNG */
 .system-modules details.package-listing > summary {
+  --lcars-italic: normal;
+
   text-transform: uppercase;
   color: var(--lcars-link);
   font-weight: bold;
+  font-style: normal;
 }
 
 .admin-requirements,

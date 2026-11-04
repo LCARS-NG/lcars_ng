@@ -67,6 +67,8 @@
   }
 }
 .ui-dialog .ui-dialog-titlebar {
+  --lcars-italic: normal;
+
   text-transform: uppercase;
   color: var(--lcars-frame);
   border-width: 0 0 1px 0;
@@ -75,6 +77,7 @@
   border-radius: 0;
   background: var(--lcars-card-bg);
   font-weight: bold;
+  font-style: normal;
 }
 .ui-dialog:not(.ui-dialog-off-canvas) .ui-dialog-titlebar {
   border-radius: calc(var(--lcars-box-radius) - 1px) calc(var(--lcars-box-radius) - 1px) 0 0;

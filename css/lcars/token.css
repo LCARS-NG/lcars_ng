@@ -18,10 +18,13 @@
   border-collapse: collapse;
 }
 .token-tree th {
+  --lcars-italic: normal;
+
   text-align: start;
   text-transform: uppercase;
   color: var(--lcars-frame);
   font-weight: normal;
+  font-style: normal;
 }
 .token-tree td,
 .token-tree th {
@@ -55,6 +58,8 @@ table.treetable tr.accept {
 
 /* The token as it is inserted: lower case, monospaced. */
 .token-tree td.token-key a {
+  --lcars-italic: italic;
+
   text-transform: none;
   color: var(--lcars-frame);
   font-family: var(--lcars-font-code);

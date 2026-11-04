@@ -15,6 +15,7 @@
 .system-status-report-counters__item {
   --lcars-message-glow: var(--lcars-message-glow-status);
   --lcars-message-tint: var(--lcars-message-tint-status);
+  --lcars-italic: normal;
 
   box-sizing: border-box;
   padding: 0.625em 1.25em;
@@ -24,6 +25,7 @@
   font-family: var(--lcars-font-label);
   font-size: 0.85em;
   font-weight: bold;
+  font-style: normal;
 }
 .system-status-report-counters__item:has(.system-status-counter__status-icon--warning) {
   --lcars-message-glow: var(--lcars-message-glow-warning);
@@ -105,11 +107,13 @@ h3:is(#error, #warning, #checked) {
    marker of the summary). */
 .lcars-status-value {
   --lcars-status-color: var(--lcars-message-status);
+  --lcars-italic: normal;
 
   text-transform: uppercase;
   color: var(--lcars-status-color);
   font-size: 0.875em;
   font-weight: bold;
+  font-style: normal;
 }
 .lcars-status-value--warning {
   --lcars-status-color: var(--lcars-message-warning);

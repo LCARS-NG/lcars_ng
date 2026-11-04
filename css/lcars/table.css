@@ -30,10 +30,13 @@ tbody td {
    white, bold, centered and not in capitals. Columns of checkboxes stay
    centered (tableselect.css). */
 th {
+  --lcars-italic: normal;
+
   text-align: start;
   text-transform: uppercase;
   color: var(--lcars-frame);
   font-weight: normal;
+  font-style: normal;
 }
 
 /* Tables in the panels of the right sidebar and in the dashboard cards start
@@ -191,9 +194,12 @@ th {
   }
 
   .tableresponsive-toggle {
+    --lcars-italic: normal;
+
     text-transform: uppercase;
     color: var(--lcars-link);
     font: inherit;
+    font-style: normal;
   }
 
   .tableresponsive-toggle:hover {

@@ -36,9 +36,12 @@
 }
 
 .node-preview-form-select__label {
+  --lcars-italic: normal;
+
   text-transform: uppercase;
   font-family: var(--lcars-font-label);
   font-weight: bold;
+  font-style: normal;
 }
 
 .node-preview-container .node-preview-backlink {

@@ -21,12 +21,15 @@ h3,
 h4,
 h5,
 h6 {
+  --lcars-italic: normal;
+
   margin: 0 0 0.5em;
   text-transform: uppercase;
   color: var(--lcars-heading);
   font-family: var(--lcars-font-label);
   font-size: 1em;
   font-weight: normal;
+  font-style: normal;
   line-height: 1.25;
 }
 
@@ -65,11 +68,24 @@ p {
   block-size: auto;
 }
 
+/* No italics in capitals (user rule 04.11.2026): every rule that sets
+   text-transform: uppercase sets font-style: normal and --lcars-italic:
+   normal, so the elements italic by default follow it inside, as core's
+   emphasis in the title bar ("<em>Edit @type</em> @title", "Revisions for
+   %title") or in a link; a rule that sets text-transform: none sets
+   --lcars-italic: italic again. */
+:is(em, i, cite, var, dfn, address) {
+  font-style: var(--lcars-italic, italic);
+}
+
 /* LCNG set every link in capitals. */
 a {
+  --lcars-italic: normal;
+
   text-decoration: none;
   text-transform: uppercase;
   color: var(--lcars-link);
+  font-style: normal;
 }
 
 a:hover {

@@ -5,9 +5,12 @@
 
 label,
 fieldset legend {
+  --lcars-italic: normal;
+
   text-transform: uppercase;
   color: var(--lcars-frame);
   font-family: var(--lcars-font-label);
+  font-style: normal;
 }
 
 /* Fields without a background: a quiet line around light text. */
@@ -172,6 +175,8 @@ button.link {
 input:where([type="submit"], [type="button"], [type="reset"]),
 [data-vertical-tabs-panes] > .token-dialog,
 .theme-selector .operations a {
+  --lcars-italic: normal;
+
   display: inline-block;
   box-sizing: border-box;
   margin-block: 0 1em;
@@ -186,6 +191,7 @@ input:where([type="submit"], [type="button"], [type="reset"]),
   font-family: var(--lcars-font-label);
   font-size: 0.85em;
   font-weight: bold;
+  font-style: normal;
   line-height: 1.4;
 }
 
@@ -281,8 +287,11 @@ html .vertical-tabs__menu-item a {
 }
 
 html .vertical-tabs__menu-item-title {
+  --lcars-italic: normal;
+
   text-transform: uppercase;
   color: var(--lcars-link);
+  font-style: normal;
 }
 
 html .vertical-tabs__menu-item-summary {

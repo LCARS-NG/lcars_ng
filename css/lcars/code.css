@@ -96,6 +96,8 @@
 
 /* The language in the line, its background breaking it. */
 .text-formatted pre::before {
+  --lcars-italic: normal;
+
   position: absolute;
   inset-block-start: -0.5rem;
   inset-inline-start: 0.75rem;
@@ -107,6 +109,7 @@
   font-family: var(--lcars-font-label);
   font-size: 0.6875rem;
   font-weight: bold;
+  font-style: normal;
   line-height: 1rem;
 }
 

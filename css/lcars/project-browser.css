@@ -89,6 +89,8 @@
 /* "Install" (select a project) as the form buttons (forms.css); pb.css draws
    it white with a blue outline. */
 .select_button {
+  --lcars-italic: normal;
+
   padding: 0.3125rem 0.625rem; /* 5px 10px */
   text-transform: uppercase;
   color: var(--lcars-on-color);
@@ -97,6 +99,7 @@
   background: var(--lcars-button);
   font-family: var(--lcars-font-label);
   font-size: 0.85em;
+  font-style: normal;
   line-height: 1.4;
 }
 

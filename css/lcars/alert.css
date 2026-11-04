@@ -27,6 +27,9 @@
 }
 
 .lcars-alert .lcars-main {
+  --lcars-italic: normal;
+
   text-transform: uppercase;
   color: var(--lcars-alert);
+  font-style: normal;
 }

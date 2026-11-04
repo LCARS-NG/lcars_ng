@@ -16,6 +16,8 @@
 
 .lcars-sidebar .menu a,
 .lcars-sidebar .block > h2 {
+  --lcars-italic: normal;
+
   display: block;
   margin: 0;
   padding-block: 0.9375rem 0.1875rem; /* 15px 3px */
@@ -27,6 +29,7 @@
   font-family: var(--lcars-font-label);
   font-size: 1rem;
   font-weight: bold;
+  font-style: normal;
   line-height: 1;
   overflow-wrap: anywhere;
 }
