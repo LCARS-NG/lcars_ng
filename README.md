@@ -106,8 +106,11 @@ favicon:
 The theme chooses its layout per page:
 
 - **Frame** on all pages: elbows at the top and the bottom, menu buttons on
-  the left, the content in between. On phones only the content remains, with
-  the menus as a grid of buttons above the title.
+  the left, the content in between, and a right sidebar with its blocks.
+  Where the page is 1080px wide or less (phones, tablets, a full HD screen in
+  portrait, measured beside the Navigation of Drupal) only the content
+  remains, with an edge of the frame on the left and the menus as a grid of
+  buttons above the title; the right sidebar shows on wider pages only.
 - **Login panel** on the account pages (log in, register, reset password).
 - **Two-part screen** on the front page for signed-in users and on user
   profiles: an upper panel with site name, logo and slogan, a status line with
