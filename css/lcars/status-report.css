@@ -1,16 +1,17 @@
 /**
  * @file
  * The status report of core (admin/reports/status), extending
- * system/status.report: the counters as pills of colored glass like the
- * messages (messages.css), labeled in bold capitals like the buttons, and the
- * general information as cards with the radius and line of the boxes and a
- * lighter background instead of #ccc (user decision 25.10.2026).
+ * system/status.report: the counters as square boxes of colored glass like
+ * the messages (messages.css), labeled in bold capitals like the buttons, and
+ * the general information as cards with the radius and line of the boxes and
+ * a lighter background instead of #ccc (user decision 25.10.2026).
  */
 
-/* Core marks only the icon with the severity: :has() takes it to the pill.
+/* Core marks only the icon with the severity: :has() takes it to the box.
    The fill and the white text and icon of the messages (#49; user wish
    03.11.2026: the warnings alike everywhere; until then the light type colors
-   with black text). */
+   with black text). Square like the messages (user decision 04.11.2026; until
+   then pills). */
 .system-status-report-counters__item {
   --lcars-message-glow: var(--lcars-message-glow-status);
   --lcars-message-tint: var(--lcars-message-tint-status);
@@ -19,7 +20,6 @@
   padding: 0.625em 1.25em;
   text-transform: uppercase;
   color: var(--lcars-text);
-  border-radius: var(--lcars-pill);
   background: color-mix(in sRGB, var(--lcars-message-glow) var(--lcars-message-tint), transparent);
   font-family: var(--lcars-font-label);
   font-size: 0.85em;
