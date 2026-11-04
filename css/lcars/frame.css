@@ -358,6 +358,13 @@
   font-weight: bold;
 }
 
+/* Core emphasizes parts of some titles ("<em>Edit @type</em> @title",
+   "Revisions for %title"): in the bar upright as the rest (user wish
+   04.11.2026). */
+.lcars-title .page-title :is(em, i) {
+  font-style: normal;
+}
+
 /* The content ends in a bar without a text, as wide and as high as the title
    bar and in its color and shape: the closing counterpart of the title bar
    (user wish 31.10.2026). It stands at the foot of the content column, 2rem
