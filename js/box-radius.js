@@ -37,6 +37,8 @@
     '.pb-project',
     '.layout-builder',
     '.text-formatted pre',
+    '.profile--view-mode-full',
+    '.lcars-search > .view-filters',
   ].join(', ');
 
   /**

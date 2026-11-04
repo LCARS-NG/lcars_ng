@@ -71,15 +71,16 @@ th {
    in a column of 150px). The cards had the two lines since 02.11.2026
    (variant C), when a quote as the title of a blog post took three lines
    and more in a card of half the width. Screen readers still read the whole
-   title. */
-:is(.lcars-aside .lcars-panel, .dashboard .layout .block) :is(th, td).views-field-title {
-  min-inline-size: 20em;
-}
-
+   title. The column is only as wide as its longest title up to the 20em: the
+   link takes the width of its title, at most 20em, and the table cannot make
+   it narrower (user wish 04.11.2026; titles of one or two words such as
+   Welcome or Imprint had a column of 268px, and Type broke into two lines). */
 :is(.lcars-aside .lcars-panel, .dashboard .layout .block) td.views-field-title a {
   display: -webkit-box;
   overflow: hidden;
   -webkit-box-orient: vertical;
+  inline-size: max-content;
+  max-inline-size: 20em;
   -webkit-line-clamp: 2;
 }
 

@@ -220,10 +220,12 @@ class LcarsNgHooks {
    * On the page of content of a type chosen in the theme setting
    * content_type_in_title_bar, the bar names the type, and the title stands
    * as the heading above the content (preprocessNode(); user decision
-   * 31.10.2026, variant D). On its edit form the bar says "Edit Blog", without
-   * the title, which the field below names, and upright: core gives
-   * "<em>Edit @type</em> @title" (NodeForm). The title of the document keeps
-   * the one of core (user wish 04.11.2026).
+   * 31.10.2026, variant D). On the edit form of content of any type the bar
+   * says "Edit Blog", "Edit Utility page", without the title, which the field
+   * below names, and upright: core gives "<em>Edit @type</em> @title"
+   * (NodeForm). The title of the document keeps the one of core (user wish
+   * 04.11.2026; for all types, not only those of the setting, user decision
+   * 04.11.2026). No other heading repeats the title on the edit form.
    */
   #[Hook('preprocess_page_title')]
   public function preprocessPageTitle(array &$variables): void {
@@ -240,7 +242,7 @@ class LcarsNgHooks {
       $cacheability->addCacheableDependency($type);
     }
     $edited = $route === 'entity.node.edit_form' ? $this->routeMatch->getParameter('node') : NULL;
-    if ($edited instanceof NodeInterface && $this->showsTypeInTitleBar($edited)) {
+    if ($edited instanceof NodeInterface) {
       $type = $edited->type->entity;
       $variables['title'] = $this->t('Edit @type', ['@type' => $type->label()]);
       $cacheability->addCacheableDependency($type);
@@ -353,9 +355,17 @@ class LcarsNgHooks {
    * Core prints the value of each requirement (Protected, Up to date, …) as
    * bare text before its description. Wrapped here, it stands as a status
    * item in the color of its group (status-report.css).
+   *
+   * Core opens every requirement; with the theme setting
+   * collapse_module_packages they start collapsed, as the packages on Extend
+   * (status-report-grouped.html.twig, user wish 04.11.2026).
    */
   #[Hook('preprocess_status_report_grouped')]
   public function preprocessStatusReportGrouped(array &$variables): void {
+    $variables['details_open'] = !$this->collapsesSections();
+    CacheableMetadata::createFromRenderArray($variables)
+      ->addCacheTags(['config:lcars_ng.settings'])
+      ->applyTo($variables);
     foreach ($variables['grouped_requirements'] as &$group) {
       foreach ($group['items'] as &$requirement) {
         $value = $requirement['value'] ?? NULL;
@@ -528,7 +538,7 @@ class LcarsNgHooks {
     $form['lcars_ng']['collapse_module_packages'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Collapsed sections'),
-      '#description' => $this->t('The packages of modules on Extend, the sections of the theme settings, of the basic site settings and of Mail System, and the groups of the defaults of meta tags start collapsed instead of open. The filter on Extend opens the packages with matching modules while it is in use.'),
+      '#description' => $this->t('The packages of modules on Extend, the sections of the theme settings, of the basic site settings and of Mail System, the groups of the defaults of meta tags and the entries of the status report start collapsed instead of open. The filter on Extend opens the packages with matching modules while it is in use.'),
       '#config_target' => 'lcars_ng.settings:collapse_module_packages',
     ];
     if ($this->entityTypeManager->hasDefinition('node_type')) {

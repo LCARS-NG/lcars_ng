@@ -13,10 +13,20 @@
  * - attributes: HTML attributes for the container element.
  * - user: A Drupal User entity.
  *
+ * The page of the account itself (view mode full) shows picture and "Member
+ * for" in a box (profile.css). Other view modes, such as compact for the
+ * picture of the author of a comment, keep no box.
+ *
  * @see \Drupal\user\UserThemeHooks::preprocessUser()
  */
 #}
-<article{{ attributes.addClass('profile') }}>
+{%
+  set view_mode = elements['#view_mode']
+%}
+{% if view_mode == 'full' %}
+  {{ attach_library('lcars_ng/profile') }}
+{% endif %}
+<article{{ attributes.addClass('profile', view_mode ? 'profile--view-mode-' ~ view_mode|clean_class) }}>
   {% if content %}
     {{- content -}}
   {% endif %}

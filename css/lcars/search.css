@@ -1,8 +1,10 @@
 /**
  * @file
  * Search page (view search with the CSS class lcars-search, Search API,
- * user decision 01.11.2026): the form above the count of results, the
- * results set apart from each other.
+ * user decision 01.11.2026): the form above the count of results, in a box
+ * as wide as the field, at the start of the column as the box of the
+ * profile (profile.css; user wish 04.11.2026), the sorts as tabs below the
+ * count, the results set apart from each other.
  */
 
 /* The count is a header area of the view and stands above the exposed form
@@ -12,12 +14,40 @@
   flex-direction: column;
 }
 
+/* The box: the same space inside on every side. border-box, so that on
+   phones the field gets narrower instead of the box wider than the column.
+   The corners follow the width of the box (js/box-radius.js). */
 .lcars-search > .view-filters {
   order: -1;
+  box-sizing: border-box;
+  width: fit-content;
+  max-width: 100%;
+  margin-block-end: 1rem;
+  padding: 1.5rem 2rem;
+  border: var(--lcars-box-border-width) solid var(--lcars-box-border-color);
+  border-radius: var(--lcars-box-radius);
+}
+
+/* Without the margins of the inline form at the edges of the box: above the
+   field, after it and below the button. */
+.lcars-search > .view-filters .form-item {
+  margin-block-start: 0;
+  margin-inline-end: 0;
+}
+
+.lcars-search > .view-filters :is(.form-actions, .form-actions > .button) {
+  margin-block-end: 0;
 }
 
 .lcars-search > .view-header {
   margin-block-end: 1rem;
+}
+
+/* The sorts as tabs (.lcars-sort-tabs, ul.tabs), as the years of the blog
+   (archive.css): a header area of the view after the count (user decision
+   04.11.2026, variant C). The tabs keep their own space below. */
+.lcars-search .lcars-sort-tabs {
+  margin-block-start: 1rem;
 }
 
 .lcars-search .views-row + .views-row {

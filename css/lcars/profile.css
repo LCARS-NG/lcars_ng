@@ -1,0 +1,36 @@
+/**
+ * @file
+ * The page of a user account (user.html.twig, view mode full): picture and
+ * "Member for" centered in a box as wide as they are, the box at the start
+ * of the column (user decision 04.11.2026, variant D, the box at the start
+ * instead of centered). Fields a site adds to the
+ * account stay in the reading direction. The corners follow the width of the
+ * box (js/box-radius.js).
+ */
+
+.profile--view-mode-full {
+  width: fit-content;
+  min-width: 12rem;
+  max-width: 100%;
+  padding: 1.5rem 2rem 1.25rem;
+  border: var(--lcars-box-border-width) solid var(--lcars-box-border-color);
+  border-radius: var(--lcars-box-radius);
+}
+
+.profile--view-mode-full > :is(.field--name-user-picture, .form-type-item) {
+  text-align: center;
+}
+
+.profile--view-mode-full > .field--name-user-picture {
+  margin-block-end: 0.75rem;
+}
+
+/* No line height below the picture inside its link. */
+.profile--view-mode-full > .field--name-user-picture a {
+  display: inline-block;
+  line-height: 0;
+}
+
+.profile--view-mode-full > .form-type-item {
+  margin-block: 0;
+}
