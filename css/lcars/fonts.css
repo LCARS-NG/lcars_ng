@@ -3,8 +3,9 @@
  * LCARS-NG web fonts, both under the SIL Open Font License 1.1 (OFL.txt next
  * to each font; source and changes in README.md, Credits).
  *
- * Antonio by Vernon Adams (version 1.002) for labels, bars, titles, buttons,
- * the menu and the tabs: --lcars-font-label in tokens.css. One variable file,
+ * Antonio by Vernon Adams (version 1.002) for the controls and the frame:
+ * buttons, tabs, the pager, the bars with their titles and the menu;
+ * --lcars-font-label in tokens.css. One variable file,
  * weights 100 to 700, Latin and Latin Extended-A; other scripts take the next
  * font of the stack. The library global preloads it.
  *

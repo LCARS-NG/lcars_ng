@@ -42,11 +42,10 @@
 /* Where the title bar names the type of the content, the title stands below
    the submission information as a headline: large, light and as written,
    in the color of headings (theme setting content_type_in_title_bar; user
-   decision 31.10.2026, variant D). In the narrow font of the headings as
-   written, light (user decision 05.11.2026, variant D; in capitals and in
-   the regular weight were the others, the font of the text before): the one
-   place where the font of the labels stands in small letters, as a headline
-   of 2rem, where it reads well, unlike running and small text. */
+   decision 31.10.2026, variant D). In the font of the text, regular,
+   without the spacing of the capitals: Antonio is for the controls and the
+   frame (user decision 05.11.2026, variant B of "Antonio in the content";
+   from 17:35 that day Antonio light as written). */
 .node__meta:has(+ .node__title) .node__submitted {
   margin-block-end: 0.5rem;
 }
@@ -55,8 +54,9 @@
   --lcars-value: initial;
 
   margin-block-end: 1.5rem;
+  letter-spacing: normal;
   text-transform: none;
-  font-family: var(--lcars-font-label);
+  font-family: var(--lcars-font);
   font-size: 2rem;
-  font-weight: 300;
+  font-weight: normal;
 }

@@ -39,6 +39,7 @@
   --lcars-italic: normal;
   --lcars-value: currentColor;
 
+  letter-spacing: normal;
   text-transform: uppercase;
   font-family: var(--lcars-font-label);
   font-weight: bold;

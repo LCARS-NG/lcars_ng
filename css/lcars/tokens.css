@@ -70,8 +70,9 @@
   /* Typography (fonts.css): running text in Inter, drawn for screens (user
      decision 05.11.2026, variant C, after Noto Sans, Roboto and Atkinson
      Hyperlegible Next; until then the font of the system, LCNG used Droid
-     Sans); labels, bars, titles, buttons, the menu and the tabs in the
-     narrow Antonio (user decision 05.11.2026, variant B). */
+     Sans), also headings, labels and legends in capitals; the controls and
+     the frame in the narrow Antonio: buttons, tabs, the pager, the bars with
+     their titles and the menu (user decisions 05.11.2026, variant B each). */
   --lcars-font: "LCARS-NG Inter", system-ui, sans-serif;
   --lcars-font-label: "Antonio", var(--lcars-font);
   --lcars-font-code: ui-monospace, "DejaVu Sans Mono", monospace; /* tokens and other code, as typed (token.css; user decision 25.10.2026) */

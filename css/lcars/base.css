@@ -15,6 +15,13 @@ body {
   line-height: 1.5;
 }
 
+/* Headings in capitals, in the font of the text, semibold and slightly
+   spaced, as labels and legends (forms.css). The narrow Antonio is for the
+   controls and the frame only: buttons, tabs, the pager, the bars with their
+   titles and the menu (user decision 05.11.2026, variant B; Inter as
+   written, and Antonio as before, were the others). Headings in a bar take
+   it back in their own rules: the page title and the panel labels (cut
+   capitals in frame.css), the blocks of the sidebar (navigation.css). */
 h1,
 h2,
 h3,
@@ -25,17 +32,14 @@ h6 {
   --lcars-value: currentColor;
 
   margin: 0 0 0.5em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--lcars-heading);
-  font-family: var(--lcars-font-label);
+  font-family: var(--lcars-font);
   font-size: 1em;
-  font-weight: normal;
+  font-weight: 600;
   font-style: normal;
   line-height: 1.25;
-}
-
-h1 {
-  font-weight: bold;
 }
 
 /* Section headings stay below the page title, whose capitals are 21px: 20px,
@@ -56,10 +60,12 @@ h2 {
    variant B; Antonio as written, normal or light, were the others). Until
    then they took the capitals and the font of the labels from the rule
    above, which also turned a φ into a Φ. The headings of the interface
-   keep them. As in the text around them, emphasis in them is italic. */
+   keep the capitals. As in the text around them, emphasis in them is
+   italic. */
 :is(.text-formatted, .ck-content) :is(h1, h2, h3, h4, h5, h6) {
   --lcars-italic: italic;
 
+  letter-spacing: normal;
   text-transform: none;
   font-family: var(--lcars-font);
   font-weight: 600;

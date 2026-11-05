@@ -3,15 +3,26 @@
  * Form elements, buttons and tabs (messages: css/components/messages.css).
  */
 
+/* Labels and legends in capitals in the font of the text, medium and slightly
+   spaced; Antonio is for the controls and the frame (user decision
+   05.11.2026, variant B, as the headings in base.css). */
 label,
 fieldset legend {
   --lcars-italic: normal;
   --lcars-value: currentColor;
 
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--lcars-frame);
-  font-family: var(--lcars-font-label);
+  font-family: var(--lcars-font);
+  font-weight: 500;
   font-style: normal;
+}
+
+/* The labels of checkboxes and radios too (css/components/form.css, from the
+   starterkit, sets them in the normal weight). */
+label.option {
+  font-weight: 500;
 }
 
 /* Fields without a background: a quiet line around light text. */
@@ -276,7 +287,12 @@ input:where([type="submit"], [type="button"], [type="reset"]):hover,
   margin-inline: 0;
 }
 
+/* Fieldsets shrink with their column: browsers give them their min-content
+   as the least width, so a field of 40rem (above) pushed them out of the
+   golden section of the page (06.11.2026: Klaro texts by 279px, Autosave
+   by 77px in a window of 1280px). */
 fieldset {
+  min-inline-size: 0;
   border: 0;
   background: var(--lcars-space);
 }

@@ -44,6 +44,22 @@ class LcarsNgHooks {
   ];
 
   /**
+   * Routes of the tables of the most frequent log messages (dblog).
+   */
+  private const LOG_MESSAGE_ROUTES = [
+    'dblog.access_denied',
+    'dblog.page_not_found',
+    'dblog.search',
+  ];
+
+  /**
+   * Routes whose tables need more than the golden section of the page.
+   */
+  private const WIDE_TABLE_ROUTES = [
+    'metatag.reports_plugins',
+  ];
+
+  /**
    * Routes rendered in the two-part screen (page--panel.html.twig).
    */
   private const PANEL_ROUTES = [
@@ -322,11 +338,29 @@ class LcarsNgHooks {
    * details element of the render array; table.html.twig writes it around
    * the table, and table.css hides core's heading above it (#prefix of the
    * table), which the summary repeats.
+   *
+   * The tables of the most frequent log messages (Top "access denied" and
+   * "page not found" errors, Top search phrases) get the class
+   * lcars-log-messages: their messages name paths and classes without a
+   * space, which table.css lets break anywhere, so the table fits the golden
+   * section of the page (05.11.2026; the longest made it 947px wide). Core
+   * gives these tables no class of their own. Tables that need more room
+   * than the golden section (the plugins of Metatag, 1299px) get the class
+   * lcars-table-wide, which keeps their page at the full width (frame.css).
    */
   #[Hook('preprocess_table')]
   public function preprocessTable(array &$variables): void {
     $classes = $variables['attributes']['class'] ?? [];
     $classes = is_array($classes) ? $classes : explode(' ', (string) $classes);
+    $route = $this->routeMatch->getRouteName();
+    if (in_array($route, self::LOG_MESSAGE_ROUTES, TRUE)) {
+      $classes[] = 'lcars-log-messages';
+      $variables['attributes']['class'] = $classes;
+    }
+    elseif (in_array($route, self::WIDE_TABLE_ROUTES, TRUE)) {
+      $classes[] = 'lcars-table-wide';
+      $variables['attributes']['class'] = $classes;
+    }
     if (!in_array('display-mode-table', $classes, TRUE) || !isset($variables['rows']['_add_new']['cells'][0]['content'])) {
       return;
     }

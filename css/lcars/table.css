@@ -23,6 +23,14 @@ tbody td {
   border-top: 1px solid var(--lcars-field-border);
 }
 
+/* The most frequent log messages name paths and classes without a space:
+   they break anywhere, so the table fits the golden section of the page
+   (class from preprocess_table, 05.11.2026); so do the messages of the
+   log itself (view watchdog: 922px with its date on one line). */
+:is(.lcars-log-messages td, .block-system-main-block td.views-field-message) {
+  overflow-wrap: anywhere;
+}
+
 /* Column headings as labels: capitals in the frame color, not bold, at the
    start like the cells, as in the revision overviews, the token browser and
    the labels of forms (variant D, user decision 29.10.2026). Sortable
@@ -62,6 +70,16 @@ th {
    and more; Updated of Recent content was 86px wide, in two lines). On
    phones the column hides (priority-low, below), as does the sidebar. */
 :is(.lcars-aside .lcars-panel, .dashboard .layout .block) :is(th, td):is(.views-field-changed, .views-field-created) {
+  white-space: nowrap;
+}
+
+/* Dates and times in the tables of the main block on one line as well, with
+   their headings (user wish 06.11.2026: in the golden section of the page,
+   "4 Nov 2026 - 14:52" took three lines): updated, created and member for,
+   the log, deleted and scheduled. Spans of time ago (last access, "1 day 11
+   hours ago") may still break: on one line they made People 886px wide,
+   more than the golden section leaves at 1280px (frame.css, 56rem). */
+.block-system-main-block :is(th, td):is(.views-field-changed, .views-field-created, .views-field-timestamp, .views-field-deleted, .views-field-publish-on, .views-field-unpublish-on) {
   white-space: nowrap;
 }
 

@@ -58,7 +58,8 @@
 
 /* The label cuts the ceiling over its full height, as the dashboard cards;
    its capitals fill it up to --lcars-cap-inset, with the rule of the cut
-   capitals in frame.css. */
+   capitals in frame.css. A label of the frame, in Antonio (headings in
+   general take the font of the text since 05.11.2026). */
 .lcars-panel__label {
   --lcars-cut-height: var(--lcars-panel-ceiling);
 
@@ -68,6 +69,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   color: var(--lcars-panel-color);
+  font-family: var(--lcars-font-label);
   font-weight: bold;
   min-inline-size: 0;
 }

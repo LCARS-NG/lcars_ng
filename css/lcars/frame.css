@@ -105,7 +105,8 @@
    sets the height of its bar as --lcars-cut-height: the site name, the page
    title, the label of the panel component, the titles of the dashboard cards
    and of the Klaro panel (one rule since #30, 29.10.2026; was five). The
-   selectors keep the weight each had in its own file. */
+   selectors keep the weight each had in its own file. Antonio keeps its
+   normal spacing; the spacing of the headings in base.css is for Inter. */
 .lcars-head__bar .site-name,
 .lcars-title .page-title,
 .lcars-panel__label,
@@ -113,6 +114,7 @@
 .klaro.klaro-theme-lcars_ng:not(.hide-consent-dialog-title) .cookie-notice:not(.cookie-modal-notice) #id-cookie-title,
 .klaro.klaro-theme-lcars_ng .cookie-modal .cm-modal.cm-klaro .cm-header .title {
   padding-block: var(--lcars-cap-inset);
+  letter-spacing: normal;
   background: var(--lcars-space);
   font-size: calc(var(--lcars-cut-height) - 2 * var(--lcars-cap-inset));
   font-size-adjust: cap-height 1;
@@ -184,27 +186,67 @@
    content column, 61.8%, and the rest stays free on the right; the title bar
    and the closing bar go with it (user decision 01.11.2026, variant C; was
    the full width). Never narrower than 40rem (about 70 characters a line).
-   Administration pages without a node (tables, forms, the dashboard) keep
-   the full width; beside the right sidebar, content and sidebar share the
-   golden section instead (below). Where the right sidebar is hidden (below),
+   Administration pages without a node kept the full width until 05.11.2026
+   (forms and tables below; the dashboard still does); beside the right
+   sidebar, content and sidebar share the golden section instead (below). Where the right sidebar is hidden (below),
    its pages count as pages without it.
    Forms take the same width since 05.11.2026 (user decision, variant C; a
    form alone in the golden section under the long title bar, and boxes as
    wide as the fields were the others; until then the full width, 1454px in
    a window of 1920px): the forms of content and every form of the main block
    without a table (user, site information, theme settings, content types,
-   cron …). Forms with tables (Permissions, Block layout, Extend, menus,
-   field displays) and Layout Builder keep the full width, as do forms
-   nested deeper in the main block (Views UI, Metatag defaults). */
+   cron …). Pages with a table take the rule of the tables below; Layout
+   Builder keeps the full width. */
 @media (min-width: 64rem) {
   .lcars-frame > .lcars-main:has(.block-system-main-block .node, .block-system-main-block > form.node-form),
-  .lcars-frame > .lcars-main:has(.block-system-main-block > form):not(:has(.block-system-main-block > form table, .block-system-main-block .layout-builder)) {
+  .lcars-frame > .lcars-main:has(.block-system-main-block > form):not(:has(.block-system-main-block table, .block-system-main-block .layout-builder)) {
     padding-inline-end: min((100% - var(--lcars-gutter)) * 0.382, max(0px, 100% - var(--lcars-gutter) - 40rem));
   }
 }
 
+/* All other pages of the administration (body class path-admin) as well,
+   and the lists to choose what to add (/node/add, /media/add; a dl of types
+   in the main block): the overviews with their boxes of links (/admin,
+   Configuration and its sections, Structure, Reports, Tools), the status
+   report, forms deeper in the main block (Metatag, Add field, Bulk upload,
+   Flush cache …) and the display modes (user decision 06.11.2026, "all of
+   them"; until then the full width). Never narrower than 40rem, as the
+   forms; pages with a table take the rule below with 56rem, its stronger
+   selector wins. The same exceptions stay wide; Layout Builder also before
+   its editing mode is switched on (the form of the Navigation layout). */
+@media (min-width: 64rem) {
+  .path-admin .lcars-frame > .lcars-main:not(:has(:where(.block-system-main-block .dashboard, .block-system-main-block :is(.layout-builder, .layout-builder-form), .block-system-main-block .views-edit-view, .block-system-main-block .views-listing-table, .block-system-main-block .lcars-table-wide, .block-system-main-block .user-admin-permissions th:nth-child(4)))),
+  .lcars-frame > .lcars-main:has(.block-system-main-block > dl) {
+    padding-inline-end: min((100% - var(--lcars-gutter)) * 0.382, max(0px, 100% - var(--lcars-gutter) - 40rem));
+  }
+}
+
+/* Pages whose main block shows a table take the golden section as well (user
+   decision 05.11.2026: first the overview of the content, then all of them;
+   until then the full width, 1454px in a window of 1920px): lists of
+   content, media, people and the log, lists of configuration, forms with
+   tables (Block layout, Extend, field displays, text formats, roles, menus
+   …), also with the table in a collapsed section; and the grid of the media,
+   the tab beside their table (user wish 06.11.2026). Never narrower than 56rem:
+   the widest of these tables needs 879px with its box (the overview of the
+   content with its dates on one line, table.css; the tools of the MCP server
+   874px), the rest is a margin for longer words; below that the full
+   width.
+   Wide stay the permissions of all roles (948px), the list of views
+   (988px), tables marked as wide in preprocess_table (the plugins of
+   Metatag, 1299px), the dashboard, the Views UI and Layout Builder; nodes
+   and their forms keep the rule above. A form beside a table (URL aliases)
+   takes this rule, not the one of the forms: 40rem left its table 30px too
+   narrow. The exceptions stand in :where(), so the rule beside the right
+   sidebar (below) stays stronger. */
+@media (min-width: 64rem) {
+  .lcars-frame > .lcars-main:has(.block-system-main-block table, .block-system-main-block .view-id-media_library.view-display-id-page):not(:has(:where(.block-system-main-block .dashboard, .block-system-main-block :is(.layout-builder, .layout-builder-form), .block-system-main-block .views-edit-view, .block-system-main-block .views-listing-table, .block-system-main-block .lcars-table-wide, .block-system-main-block .user-admin-permissions th:nth-child(4)))) {
+    padding-inline-end: min((100% - var(--lcars-gutter)) * 0.382, max(0px, 100% - var(--lcars-gutter) - 56rem));
+  }
+}
+
 @container lcars-page (min-width: 67.5625rem) {
-  .lcars-frame:has(> .lcars-aside) > .lcars-main:has(.block-system-main-block .node, .block-system-main-block > form) {
+  .lcars-frame:has(> .lcars-aside) > .lcars-main:has(.block-system-main-block .node, .block-system-main-block > form, .block-system-main-block > dl, .block-system-main-block table, .block-system-main-block .view-id-media_library.view-display-id-page) {
     padding-inline-end: 0;
   }
 }

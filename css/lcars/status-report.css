@@ -11,7 +11,8 @@
    The fill and the white text and icon of the messages (#49; user wish
    03.11.2026: the warnings alike everywhere; until then the light type colors
    with black text). Square like the messages (user decision 04.11.2026; until
-   then pills). */
+   then pills). Capitals in the font of the text, slightly spaced, as the
+   headings (user decision 05.11.2026, variant B; Antonio until then). */
 .system-status-report-counters__item {
   --lcars-message-glow: var(--lcars-message-glow-status);
   --lcars-message-tint: var(--lcars-message-tint-status);
@@ -20,10 +21,11 @@
 
   box-sizing: border-box;
   padding: 0.625em 1.25em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--lcars-text);
   background: color-mix(in sRGB, var(--lcars-message-glow) var(--lcars-message-tint), transparent);
-  font-family: var(--lcars-font-label);
+  font-family: var(--lcars-font);
   font-size: 0.85em;
   font-weight: bold;
   font-style: normal;
