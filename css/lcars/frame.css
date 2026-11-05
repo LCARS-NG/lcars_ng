@@ -187,15 +187,24 @@
    Administration pages without a node (tables, forms, the dashboard) keep
    the full width; beside the right sidebar, content and sidebar share the
    golden section instead (below). Where the right sidebar is hidden (below),
-   its pages count as pages without it. */
+   its pages count as pages without it.
+   Forms take the same width since 05.11.2026 (user decision, variant C; a
+   form alone in the golden section under the long title bar, and boxes as
+   wide as the fields were the others; until then the full width, 1454px in
+   a window of 1920px): the forms of content and every form of the main block
+   without a table (user, site information, theme settings, content types,
+   cron …). Forms with tables (Permissions, Block layout, Extend, menus,
+   field displays) and Layout Builder keep the full width, as do forms
+   nested deeper in the main block (Views UI, Metatag defaults). */
 @media (min-width: 64rem) {
-  .lcars-frame > .lcars-main:has(.block-system-main-block .node) {
+  .lcars-frame > .lcars-main:has(.block-system-main-block .node, .block-system-main-block > form.node-form),
+  .lcars-frame > .lcars-main:has(.block-system-main-block > form):not(:has(.block-system-main-block > form table, .block-system-main-block .layout-builder)) {
     padding-inline-end: min((100% - var(--lcars-gutter)) * 0.382, max(0px, 100% - var(--lcars-gutter) - 40rem));
   }
 }
 
 @container lcars-page (min-width: 67.5625rem) {
-  .lcars-frame:has(> .lcars-aside) > .lcars-main:has(.block-system-main-block .node) {
+  .lcars-frame:has(> .lcars-aside) > .lcars-main:has(.block-system-main-block .node, .block-system-main-block > form) {
     padding-inline-end: 0;
   }
 }
