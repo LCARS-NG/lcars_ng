@@ -6,6 +6,7 @@
 label,
 fieldset legend {
   --lcars-italic: normal;
+  --lcars-value: currentcolor;
 
   text-transform: uppercase;
   color: var(--lcars-frame);
@@ -164,6 +165,54 @@ button.link {
   font-size: 0.875em;
 }
 
+/* Fields in sections (details, also the panes of vertical tabs): the label
+   above its field, all fields of text 40rem wide (640px, the width of the
+   text of posts) or as wide as the section, so they stand flush at the
+   left, one below the other, in one width (user decision 05.11.2026,
+   variant C; rejected: as wide as the section, the label in a column
+   beside the field). Before, the label stood beside its field and every
+   field began where its label ended, as wide as its size attribute (618px
+   at size 60, 434px at 40, 290px at 25). Short fields (sizes below 20 in
+   core and contributed modules: numbers, codes) and selects keep their
+   width; checkboxes and radios, whose label follows, fields in tables and
+   inline forms stay as they are. A prefix or suffix stays in the line of
+   its field, which is shorter by it. */
+details .form-item:has(> label:first-child:not(.visually-hidden)):not(.container-inline, .container-inline *, .form--inline *, td *) > label:first-child {
+  display: block;
+  margin-block-end: 0.35em;
+}
+
+details .form-item:has(> label:first-child:not(.visually-hidden)):not(.container-inline, .container-inline *, .form--inline *, td *) > input:is([type="text"], [type="email"], [type="url"], [type="tel"], [type="password"], [type="search"]):not([size="1"], [size="2"], [size="3"], [size="4"], [size="5"], [size="6"], [size="7"], [size="8"], [size="10"], [size="12"], [size="13"], [size="15"]) {
+  box-sizing: border-box;
+  inline-size: 40rem;
+  max-inline-size: 100%;
+}
+
+details .form-item:has(> label:first-child:not(.visually-hidden)):not(.container-inline, .container-inline *, .form--inline *, td *):has(> :is(.field-prefix, .field-suffix)):has(> input:is([type="text"], [type="email"], [type="url"], [type="tel"], [type="password"], [type="search"]):not([size="1"], [size="2"], [size="3"], [size="4"], [size="5"], [size="6"], [size="7"], [size="8"], [size="10"], [size="12"], [size="13"], [size="15"])) {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto max(0px, 100% - 40rem);
+  align-items: baseline;
+}
+
+details .form-item:has(> label:first-child:not(.visually-hidden)):not(.container-inline, .container-inline *, .form--inline *, td *):has(> :is(.field-prefix, .field-suffix)):has(> input:is([type="text"], [type="email"], [type="url"], [type="tel"], [type="password"], [type="search"]):not([size="1"], [size="2"], [size="3"], [size="4"], [size="5"], [size="6"], [size="7"], [size="8"], [size="10"], [size="12"], [size="13"], [size="15"])) > * {
+  grid-column: 1 / -1;
+}
+
+details .form-item:has(> label:first-child:not(.visually-hidden)):not(.container-inline, .container-inline *, .form--inline *, td *):has(> :is(.field-prefix, .field-suffix)):has(> input:is([type="text"], [type="email"], [type="url"], [type="tel"], [type="password"], [type="search"]):not([size="1"], [size="2"], [size="3"], [size="4"], [size="5"], [size="6"], [size="7"], [size="8"], [size="10"], [size="12"], [size="13"], [size="15"])) > .field-prefix {
+  grid-column: 1;
+  margin-inline-end: 0.5em;
+}
+
+details .form-item:has(> label:first-child:not(.visually-hidden)):not(.container-inline, .container-inline *, .form--inline *, td *):has(> :is(.field-prefix, .field-suffix)):has(> input:is([type="text"], [type="email"], [type="url"], [type="tel"], [type="password"], [type="search"]):not([size="1"], [size="2"], [size="3"], [size="4"], [size="5"], [size="6"], [size="7"], [size="8"], [size="10"], [size="12"], [size="13"], [size="15"])) > input {
+  grid-column: 2;
+  inline-size: 100%;
+}
+
+details .form-item:has(> label:first-child:not(.visually-hidden)):not(.container-inline, .container-inline *, .form--inline *, td *):has(> :is(.field-prefix, .field-suffix)):has(> input:is([type="text"], [type="email"], [type="url"], [type="tel"], [type="password"], [type="search"]):not([size="1"], [size="2"], [size="3"], [size="4"], [size="5"], [size="6"], [size="7"], [size="8"], [size="10"], [size="12"], [size="13"], [size="15"])) > .field-suffix {
+  grid-column: 3;
+  margin-inline-start: 0.5em;
+}
+
 /* One height for buttons and links drawn as buttons (user decision
    27.10.2026; inputs were 26px, links 29px): since 02.11.2026 34px, as high
    as the fields and the menu buttons, on every width (#43, variant B; was
@@ -176,6 +225,7 @@ input:where([type="submit"], [type="button"], [type="reset"]),
 [data-vertical-tabs-panes] > .token-dialog,
 .theme-selector .operations a {
   --lcars-italic: normal;
+  --lcars-value: currentcolor;
 
   display: inline-block;
   box-sizing: border-box;
@@ -288,6 +338,7 @@ html .vertical-tabs__menu-item a {
 
 html .vertical-tabs__menu-item-title {
   --lcars-italic: normal;
+  --lcars-value: currentcolor;
 
   text-transform: uppercase;
   color: var(--lcars-link);

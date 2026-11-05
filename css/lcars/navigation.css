@@ -17,6 +17,7 @@
 .lcars-sidebar .menu a,
 .lcars-sidebar .block > h2 {
   --lcars-italic: normal;
+  --lcars-value: currentcolor;
 
   display: block;
   margin: 0;

@@ -37,17 +37,22 @@
   background-color: var(--lcars-message-status);
 }
 
+/* The fields of a new password, its strength and the match as wide as the
+   other fields of text in a section, 40rem (forms.css, user decision
+   05.11.2026); starterkit had 55% of 33em, 290px, beside 618px wide fields
+   for email and username. */
 .password-confirm,
 .password-field,
 .password-strength,
 .password-confirm-match,
 .password-confirm-message {
-  width: 55%;
+  width: 100%;
 }
 
-/* A plain box like .lcars-box (box.css). */
+/* A plain box like .lcars-box (box.css), as wide as the fields. */
 .password-suggestions {
-  max-width: 34.7em;
+  box-sizing: border-box;
+  max-width: 40rem;
   margin: 0.7em 0;
   padding: 0.5em 1.25rem;
   border: var(--lcars-box-border-width) solid var(--lcars-box-border-color);
@@ -61,12 +66,19 @@
 .password-parent {
   clear: left; /* LTR */
   overflow: hidden;
-  max-width: 33em;
+  max-width: 40rem;
   margin: 0;
 }
 [dir="rtl"] .confirm-parent,
 [dir="rtl"] .password-parent {
   clear: right;
+}
+
+/* The second field stands apart from the strength of the first as fields do
+   from each other; starterkit set no margin, which with the label above its
+   field put it right below the line of the strength (05.11.2026). */
+.confirm-parent {
+  margin-block-start: 1em;
 }
 
 /* Styling for the status indicator of the passwords match test, in the colors

@@ -88,4 +88,17 @@
   .lcars-login__panel .site-logo > img[src*="lcars-ng-logo-flat.svg"] {
     content: normal;
   }
+
+  /* Sections and settings a display of Views overrides (views-ui.css): the
+     browser turned their bronze into the text color, so nothing set them
+     apart any more; their titles and labels in the highlight color of the
+     system, as the title bar (05.11.2026). The token as well, since
+     views-ui.css loads later and sets the color of the titles with it. */
+  .views-ui-display-tab-bucket.overridden .views-ui-display-tab-bucket__title,
+  .views-ui-display-tab-bucket .views-ui-display-tab-setting.overridden > .label {
+    --lcars-accent: Highlight;
+
+    color: Highlight;
+    forced-color-adjust: none;
+  }
 }

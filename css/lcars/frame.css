@@ -124,6 +124,7 @@
 .lcars-head__bar .site-name {
   --lcars-cut-height: var(--lcars-bar-top);
   --lcars-italic: normal;
+  --lcars-value: currentcolor;
 
   padding-inline: 0.15em;
   text-transform: uppercase;
@@ -145,6 +146,7 @@
 
 .lcars-head__inner .breadcrumb {
   --lcars-italic: normal;
+  --lcars-value: currentcolor;
 
   padding: 0;
   text-transform: uppercase;
@@ -313,6 +315,7 @@
 
 .region-footer .menu--footer a {
   --lcars-italic: normal;
+  --lcars-value: currentcolor;
 
   text-decoration: none;
   letter-spacing: 0.04em;
@@ -359,6 +362,7 @@
 .lcars-title .page-title {
   --lcars-cut-height: var(--lcars-title-height);
   --lcars-italic: normal;
+  --lcars-value: currentcolor;
 
   overflow: clip visible;
   min-width: 0;
@@ -487,6 +491,7 @@
 
 .lcars-panel-top .site-name {
   --lcars-italic: normal;
+  --lcars-value: currentcolor;
 
   grid-area: name;
   text-transform: uppercase;
@@ -508,6 +513,7 @@
    --lcars-text-dim, white). */
 .lcars-panel-top .site-slogan {
   --lcars-italic: normal;
+  --lcars-value: currentcolor;
 
   grid-area: slogan;
   padding-block-start: 0.25rem;
@@ -573,6 +579,7 @@
    date (user decision 25.10.2026, was at the right end). */
 .lcars-status {
   --lcars-italic: normal;
+  --lcars-value: currentcolor;
 
   display: flex;
   flex-wrap: wrap;

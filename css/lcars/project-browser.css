@@ -90,6 +90,7 @@
    it white with a blue outline. */
 .select_button {
   --lcars-italic: normal;
+  --lcars-value: currentcolor;
 
   padding: 0.3125rem 0.625rem; /* 5px 10px */
   text-transform: uppercase;

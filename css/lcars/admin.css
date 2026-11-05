@@ -45,6 +45,7 @@
    on Extend, bold as core has them (user decision 30.10.2026, variant B). */
 #blocks tr.region-title td:first-child {
   --lcars-italic: normal;
+  --lcars-value: currentcolor;
 
   text-transform: uppercase;
   font-size: 1.15em;
@@ -92,6 +93,7 @@
 /* Package headings (Core, …) as the fieldset legends of LCNG */
 .system-modules details.package-listing > summary {
   --lcars-italic: normal;
+  --lcars-value: currentcolor;
 
   text-transform: uppercase;
   color: var(--lcars-link);

@@ -31,6 +31,7 @@ tbody td {
    centered (tableselect.css). */
 th {
   --lcars-italic: normal;
+  --lcars-value: currentcolor;
 
   text-align: start;
   text-transform: uppercase;
@@ -275,6 +276,7 @@ th {
 
   .tableresponsive-toggle {
     --lcars-italic: normal;
+    --lcars-value: currentcolor;
 
     text-transform: uppercase;
     color: var(--lcars-link);

@@ -33,6 +33,9 @@
    not a link, and gets the face of the current tab. */
 .pager__item a,
 .pager__item.is-active:not(:has(a)) {
+  --lcars-italic: normal;
+  --lcars-value: currentcolor;
+
   display: block;
   padding: 0.35em 1.4em 0.5em;
   text-transform: uppercase;

@@ -15,6 +15,7 @@
    30.10.2026, variant A). */
 .node__submitted {
   --lcars-italic: normal;
+  --lcars-value: currentcolor;
 
   display: flex;
   flex-wrap: wrap;
@@ -47,7 +48,7 @@
 }
 
 .node__title {
-  --lcars-italic: italic;
+  --lcars-value: initial;
 
   margin-block-end: 1.5rem;
   text-transform: none;

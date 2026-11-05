@@ -16,9 +16,12 @@
  * title bar of the page).
  */
 
+/* Values in a message (em.placeholder, base.css) stay white like its text
+   and links, often a link themselves ("Blog %title has been updated."). */
 .messages {
   --lcars-message-glow: var(--lcars-message-glow-status);
   --lcars-message-tint: var(--lcars-message-tint-status);
+  --lcars-value: currentcolor;
 
   position: relative;
   margin-block-end: 0.5em;

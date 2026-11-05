@@ -68,6 +68,7 @@
 }
 .ui-dialog .ui-dialog-titlebar {
   --lcars-italic: normal;
+  --lcars-value: currentcolor;
 
   text-transform: uppercase;
   color: var(--lcars-frame);

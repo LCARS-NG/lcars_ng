@@ -97,6 +97,7 @@
 /* The language in the line, its background breaking it. */
 .text-formatted pre::before {
   --lcars-italic: normal;
+  --lcars-value: currentcolor;
 
   position: absolute;
   inset-block-start: -0.5rem;

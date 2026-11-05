@@ -22,6 +22,7 @@ h4,
 h5,
 h6 {
   --lcars-italic: normal;
+  --lcars-value: currentcolor;
 
   margin: 0 0 0.5em;
   text-transform: uppercase;
@@ -68,19 +69,55 @@ p {
   block-size: auto;
 }
 
-/* No italics in capitals (user rule 04.11.2026): every rule that sets
-   text-transform: uppercase sets font-style: normal and --lcars-italic:
-   normal, so the elements italic by default follow it inside, as core's
-   emphasis in the title bar ("<em>Edit @type</em> @title", "Revisions for
-   %title") or in a link; a rule that sets text-transform: none sets
-   --lcars-italic: italic again. */
+/* Italics only in the text of authors (user decision 05.11.2026): the
+   elements italic by default stand upright in the interface, as core's
+   emphasis in the administration ("Current revision", "No blocks in this
+   region", the warning of risky permissions, descriptions), and keep their
+   italics in formatted text (body of posts and blocks) and in the editor,
+   where an author set them. No italics in capitals (user rule 04.11.2026),
+   in formatted text as well: every rule that sets text-transform: uppercase
+   sets font-style: normal and --lcars-italic: normal (and --lcars-value,
+   below), so these elements follow it inside, as a link or a heading. */
 :is(em, i, cite, var, dfn, address) {
-  font-style: var(--lcars-italic, italic);
+  font-style: var(--lcars-italic, normal);
+}
+
+.text-formatted,
+.ck-content {
+  --lcars-italic: italic;
+}
+
+/* Core and contributed modules set italics on classes of their own:
+   upright as well (the message of an empty region in Manage display, the
+   AND/OR between filter groups of Views, "No match" among the suggestions
+   of tag fields, the details of the SEO checklist). */
+.field-ui-overview .region-message td,
+.views-operator-label,
+.tagify--dropdown-item-no-match,
+#checklistapi-checklist-form span.completion-details {
+  font-style: normal;
+}
+
+/* Values core inserts into its texts (em.placeholder: names, paths, classes
+   in log messages, descriptions, confirmations) are no emphasis: upright in
+   the light blue of the labels, as strings in code (user decision
+   05.11.2026, variant C; italic until then, bold, upright alone and the
+   typeface of code were the other variants). In capitals they keep the color
+   around them, as in the title bar ("Revisions for %title"), the breadcrumb
+   or a label: every rule that sets --lcars-italic: normal sets
+   --lcars-value: currentcolor, a rule that sets text-transform: none sets it
+   back to initial (the title of a post; not on a link, where it keeps the
+   color of the link). The fallback resolves here, so red alert turns it
+   red. */
+em.placeholder {
+  font-style: normal;
+  color: var(--lcars-value, var(--lcars-frame));
 }
 
 /* LCNG set every link in capitals. */
 a {
   --lcars-italic: normal;
+  --lcars-value: currentcolor;
 
   text-decoration: none;
   text-transform: uppercase;

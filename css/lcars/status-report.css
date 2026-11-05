@@ -16,6 +16,7 @@
   --lcars-message-glow: var(--lcars-message-glow-status);
   --lcars-message-tint: var(--lcars-message-tint-status);
   --lcars-italic: normal;
+  --lcars-value: currentcolor;
 
   box-sizing: border-box;
   padding: 0.625em 1.25em;
@@ -108,6 +109,7 @@ h3:is(#error, #warning, #checked) {
 .lcars-status-value {
   --lcars-status-color: var(--lcars-message-status);
   --lcars-italic: normal;
+  --lcars-value: currentcolor;
 
   text-transform: uppercase;
   color: var(--lcars-status-color);

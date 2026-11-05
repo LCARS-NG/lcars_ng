@@ -28,6 +28,7 @@
 
 .lcars-alert .lcars-main {
   --lcars-italic: normal;
+  --lcars-value: currentcolor;
 
   text-transform: uppercase;
   color: var(--lcars-alert);

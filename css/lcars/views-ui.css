@@ -46,8 +46,7 @@
    Core puts the dropbutton "Add" (34px) at the top edge of the heading; with
    core's padding (2px above, 4px below) a content 4px lower than the button
    centres the label beside it, and the button does not reach into the first
-   setting (#43; was 29px with 30px buttons). Overridden sections stay italic
-   (core). */
+   setting (#43; was 29px with 30px buttons). */
 .views-ui-display-tab-bucket__title {
   display: flex;
   align-items: center;
@@ -68,6 +67,17 @@
 
 .views-ui-display-tab-bucket .views-display-setting + .views-display-setting {
   border-top: 1px solid var(--lcars-line-subtle);
+}
+
+/* Sections and settings a display overrides stand upright in the bronze of
+   the marks instead of core's italics, which were their only sign (user
+   decision 05.11.2026, variant C; a gold bar before the line, as at the
+   current revision, and a bronze dot before the label were the others).
+   Links in them keep their color. */
+.views-ui-display-tab-bucket.overridden .views-ui-display-tab-bucket__title,
+.views-ui-display-tab-bucket .views-ui-display-tab-setting.overridden {
+  color: var(--lcars-accent);
+  font-style: normal;
 }
 
 /* The dropbuttons in the size of the other buttons (dropbutton.css, forms.css)

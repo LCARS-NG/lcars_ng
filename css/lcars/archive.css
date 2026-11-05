@@ -39,6 +39,7 @@
    direction of its own words on right-to-left pages as well. */
 .lcars-dated-list > li > :first-child {
   --lcars-italic: normal;
+  --lcars-value: currentcolor;
 
   white-space: nowrap;
   text-transform: uppercase;
