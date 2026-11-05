@@ -76,9 +76,13 @@ th {
    link takes the width of its title, at most 20em, and the table cannot make
    it narrower (user wish 04.11.2026; titles of one or two words such as
    Welcome or Imprint had a column of 268px, and Type broke into two lines). */
+/* Clipped at the edge of the text, not of the padding: the padding that
+   gives the link its pointer target (above) showed the top of the third
+   line, the dots of a capital Ü above the date (05.11.2026). */
 :is(.lcars-aside .lcars-panel, .dashboard .layout .block) td.views-field-title a {
   display: -webkit-box;
-  overflow: hidden;
+  overflow: clip;
+  overflow-clip-margin: content-box;
   -webkit-box-orient: vertical;
   inline-size: max-content;
   max-inline-size: 20em;
@@ -110,6 +114,62 @@ th {
 :is(.lcars-aside .lcars-panel, .dashboard .layout .block) .lcars-table {
   position: relative;
   overflow: auto hidden;
+}
+
+/* Lists in the panels of the right sidebar in two columns (user decision
+   05.11.2026, variant D; a list with the status and date below the title,
+   and a table without the status were the others): the title and below it
+   the date on the left, the other fields (status, operations) on the right,
+   beside both. In the 270-360px of the column a title, a status and a date
+   side by side did not fit: Recent pages scrolled sideways at every width
+   of a desktop, by 188px in a window of 1176px and 87px at 1440px. The head
+   row stays for screen readers only; the full lists behind "See all" keep
+   their columns to sort by. Tables without a title field stay tables. */
+.lcars-aside .lcars-panel table:has(td.views-field-title),
+.lcars-aside .lcars-panel table:has(td.views-field-title) > tbody {
+  display: block;
+}
+
+.lcars-aside .lcars-panel table:has(td.views-field-title) > thead {
+  position: absolute;
+  overflow: hidden;
+  inline-size: 1px;
+  block-size: 1px;
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+.lcars-aside .lcars-panel table:has(td.views-field-title) > tbody > tr {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-auto-columns: auto;
+  grid-auto-flow: column;
+  align-items: center;
+  column-gap: 0.75rem;
+  padding-block: 0.25rem;
+}
+
+.lcars-aside .lcars-panel table:has(td.views-field-title) > tbody > tr > td {
+  padding: 0;
+}
+
+.lcars-aside .lcars-panel table:has(td.views-field-title) > tbody > tr > td.views-field-title {
+  grid-area: 1 / 1;
+}
+
+.lcars-aside .lcars-panel table:has(td.views-field-title) > tbody > tr > td:is(.views-field-changed, .views-field-created) {
+  grid-area: 2 / 1;
+}
+
+.lcars-aside .lcars-panel table:has(td.views-field-title) > tbody > tr > td:not(.views-field-title, .views-field-changed, .views-field-created) {
+  grid-row: 1 / span 2;
+  justify-self: end;
+}
+
+/* The title takes the width of the left column, two lines at most. */
+.lcars-aside .lcars-panel table:has(td.views-field-title) td.views-field-title a {
+  inline-size: auto;
+  max-inline-size: none;
 }
 
 /* Tables in the main content as boxes (design rule 15, user wish 04.11.2026;
