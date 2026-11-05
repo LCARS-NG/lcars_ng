@@ -51,6 +51,20 @@ h2 {
   margin-block-start: 1.25em;
 }
 
+/* Headings in the text of authors, and in the editor, belong to the text:
+   as written, in the font of the text, semibold (user decision 05.11.2026,
+   variant B; Antonio as written, normal or light, were the others). Until
+   then they took the capitals and the font of the labels from the rule
+   above, which also turned a φ into a Φ. The headings of the interface
+   keep them. As in the text around them, emphasis in them is italic. */
+:is(.text-formatted, .ck-content) :is(h1, h2, h3, h4, h5, h6) {
+  --lcars-italic: italic;
+
+  text-transform: none;
+  font-family: var(--lcars-font);
+  font-weight: 600;
+}
+
 p {
   margin: 0 0 0.75em;
 }
