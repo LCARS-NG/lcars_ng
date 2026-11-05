@@ -215,6 +215,25 @@ Basic site settings*. Anonymous visitors then get the login panel.
   `checkbox-check.svg` is the theme's own. The base styles in
   `css/components/` and most templates are based on the Starterkit
   (GPL-2.0-or-later).
+- Labels, bars, titles, buttons and the menu are set in the font Antonio by
+  Vernon Adams, version 1.002, licensed under the SIL Open Font License 1.1
+  (OFL-1.1, full text in `fonts/antonio/OFL.txt`). Source:
+  [github.com/googlefonts/antonioFont](https://github.com/googlefonts/antonioFont),
+  taken as the variable font `ofl/antonio/Antonio[wght].ttf` from
+  [github.com/google/fonts](https://github.com/google/fonts) (commit
+  `1e47308`) and converted to WOFF2
+  (`fonts/antonio/Antonio-VariableFont_wght.woff2`) without other changes.
+- Running text is set in the font Inter by Rasmus Andersson, version 4.001,
+  licensed under the SIL Open Font License 1.1 (OFL-1.1, full text in
+  `fonts/inter/OFL.txt`). Source:
+  [github.com/rsms/inter](https://github.com/rsms/inter), taken as the
+  variable fonts `ofl/inter/Inter[opsz,wght].ttf` and
+  `ofl/inter/Inter-Italic[opsz,wght].ttf` from
+  [github.com/google/fonts](https://github.com/google/fonts) (commit
+  `e1d6480`). Changes: subset with fontTools into two parts each, Latin and
+  the extensions (Latin Extended, Vietnamese), with the Unicode ranges of
+  Google Fonts and the common OpenType features (the stylistic alternates are
+  left out), and converted to WOFF2 (`fonts/inter/InterVariable-*.woff2`).
 - LCARS-NG is a fan work. It is not affiliated with or endorsed by the owners
   of Star Trek.
 
@@ -223,7 +242,9 @@ Basic site settings*. Anonymous visitors then get the login panel.
 
 LCARS-NG is licensed under the GNU General Public License, version 2 or
 later (GPL-2.0-or-later), like Drupal core. The full text is in
-`LICENSE.txt`; drupal.org also adds it to every release package.
+`LICENSE.txt`; drupal.org also adds it to every release package. The fonts
+Antonio and Inter in `fonts/` keep their own license, the SIL Open Font
+License 1.1 (see Credits).
 
 
 ## Maintainers

@@ -71,10 +71,12 @@
 /* The links of the top tasks: dashboard.css of the module colors them with
    variables of Claro, which are set only while the layout is edited (Layout
    Builder); there the links turned dark, with arrows and lines between them.
-   They stay as on the dashboard. */
+   On the dashboard the variable is missing and they took the white of the
+   text. In the link color like every other link of the cards (user decision
+   05.11.2026; white from 27.10.2026). */
 .dashboard .layout .block.block-menu ul.menu li.menu-item a {
   padding-inline-start: 0;
-  color: inherit;
+  color: var(--lcars-link);
   border-block-end: 0;
 }
 

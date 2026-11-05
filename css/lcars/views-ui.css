@@ -88,6 +88,13 @@
   font-size: 0.85rem;
 }
 
+/* Core gives the actions of a display (View Page) the font of their parent;
+   in capitals they take the font of the labels like every other dropbutton
+   (dropbutton.css). */
+.views-ui-display-tab-actions .dropbutton-wrapper :is(li a, input) {
+  font-family: var(--lcars-font-label);
+}
+
 /* A disabled view: the boxes on a dark red instead of light pink and white. */
 .views-edit-view.disabled .views-displays {
   background: color-mix(in sRGB, var(--lcars-alert) 10%, var(--lcars-space));

@@ -67,9 +67,13 @@
   --lcars-code-comment: color-mix(in sRGB, var(--lcars-text) 60%, transparent); /* comments and the tags of PHP recede, 6.79:1 */
   --lcars-code-string: var(--lcars-frame); /* strings in the light blue of the labels, 11.21:1 */
 
-  /* Typography: the typeface is not chosen yet. LCNG used Droid Sans. */
-  --lcars-font: system-ui, sans-serif;
-  --lcars-font-label: var(--lcars-font);
+  /* Typography (fonts.css): running text in Inter, drawn for screens (user
+     decision 05.11.2026, variant C, after Noto Sans, Roboto and Atkinson
+     Hyperlegible Next; until then the font of the system, LCNG used Droid
+     Sans); labels, bars, titles, buttons, the menu and the tabs in the
+     narrow Antonio (user decision 05.11.2026, variant B). */
+  --lcars-font: "LCARS-NG Inter", system-ui, sans-serif;
+  --lcars-font-label: "Antonio", var(--lcars-font);
   --lcars-font-code: ui-monospace, "DejaVu Sans Mono", monospace; /* tokens and other code, as typed (token.css; user decision 25.10.2026) */
 
   /* Frame geometry */

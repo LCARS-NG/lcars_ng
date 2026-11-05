@@ -42,7 +42,8 @@
 /* Where the title bar names the type of the content, the title stands below
    the submission information as a headline: large, light and as written,
    in the color of headings (theme setting content_type_in_title_bar; user
-   decision 31.10.2026, variant D). */
+   decision 31.10.2026, variant D). As written it keeps the font of the text:
+   the narrow font of the labels stands in capitals only (05.11.2026). */
 .node__meta:has(+ .node__title) .node__submitted {
   margin-block-end: 0.5rem;
 }
@@ -52,6 +53,7 @@
 
   margin-block-end: 1.5rem;
   text-transform: none;
+  font-family: var(--lcars-font);
   font-size: 2rem;
   font-weight: normal;
 }

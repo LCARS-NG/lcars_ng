@@ -290,14 +290,16 @@ fieldset {
    in the link color, the frame color on hover; the active tab white with a
    black label. The buttons stay the only filled blue in the content, so they
    read as actions (user decision 27.10.2026, variant C; until then filled
-   like the buttons, user decision 25.10.2026). Corners as the form buttons.
-   The login panel keeps its own outlines (login.css). */
+   like the buttons, user decision 25.10.2026). Corners as the form buttons,
+   labels in their narrow font (user decision 05.11.2026). The login panel
+   keeps its own outlines (login.css). */
 .tabs a {
   padding: 0.35em 1.4em 0.5em;
   color: var(--lcars-link);
   border: 1px solid var(--lcars-field-border);
   border-radius: 0.625rem; /* 10px, as .button */
   background: none;
+  font-family: var(--lcars-font-label);
   font-weight: bold;
 }
 
@@ -317,8 +319,9 @@ fieldset {
 
 /* Vertical tabs (block visibility, node form): outlines like the tabs above,
    divided by the quiet line of the fields instead of the light gray of
-   core/misc/vertical-tabs.css; titles in the link color, summaries in the
-   text color; the selected tab white with black labels like the active tab
+   core/misc/vertical-tabs.css; titles in the link color and the narrow font
+   of the tabs (05.11.2026), summaries in the text color and font, as small
+   text; the selected tab white with black labels like the active tab
    above (user decision 27.10.2026, variant B; until then buttons divided by
    dark seams, user decisions 24.10. and 25.10.2026). "html" outweighs core,
    whose library may load after the theme. */
@@ -342,6 +345,7 @@ html .vertical-tabs__menu-item-title {
 
   text-transform: uppercase;
   color: var(--lcars-link);
+  font-family: var(--lcars-font-label);
   font-style: normal;
 }
 

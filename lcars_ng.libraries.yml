@@ -116,8 +116,14 @@ user:
       css/components/user.css:
         weight: -10
 global:
+  fonts:
+    fonts/antonio/Antonio-VariableFont_wght.woff2:
+      preload: true
+    fonts/inter/InterVariable-latin.woff2:
+      preload: true
   css:
     base:
+      css/lcars/fonts.css: {  }
       css/lcars/tokens.css: {  }
       css/lcars/base.css: {  }
     layout:

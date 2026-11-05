@@ -42,6 +42,7 @@
   color: var(--lcars-link);
   border: 1px solid var(--lcars-field-border);
   border-radius: 0.625rem; /* 10px, as .button and .tabs a */
+  font-family: var(--lcars-font-label);
   font-weight: bold;
 }
 
