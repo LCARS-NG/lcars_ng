@@ -10,6 +10,8 @@ libraries:
 libraries-extend:
   user/drupal.user:
     - lcars_ng/user
+  user/drupal.user.permissions:
+    - lcars_ng/permissions
   core/drupal.dropbutton:
     - lcars_ng/dropbutton
   core/drupal.dialog:

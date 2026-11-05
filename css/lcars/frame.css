@@ -124,7 +124,7 @@
 .lcars-head__bar .site-name {
   --lcars-cut-height: var(--lcars-bar-top);
   --lcars-italic: normal;
-  --lcars-value: currentcolor;
+  --lcars-value: currentColor;
 
   padding-inline: 0.15em;
   text-transform: uppercase;
@@ -146,7 +146,7 @@
 
 .lcars-head__inner .breadcrumb {
   --lcars-italic: normal;
-  --lcars-value: currentcolor;
+  --lcars-value: currentColor;
 
   padding: 0;
   text-transform: uppercase;
@@ -252,11 +252,6 @@
    scrollbar (user wish 03.11.2026). */
 .lcars-aside .lcars-panel {
   --lcars-panel-ceiling: 1.125rem; /* 18px: capitals 14px */
-  /* The floor as thin as the left edge, and its curve as well: the inner
-     curve is the outer one less the edge, both round the same center (user
-     wish 31.10.2026; from earlier that day as high as the ceiling). */
-  --lcars-panel-floor: var(--lcars-panel-edge);
-  --lcars-panel-floor-inner: calc(var(--lcars-panel-corner) - var(--lcars-panel-edge));
 }
 
 .lcars-aside .lcars-panel__inner {
@@ -315,7 +310,7 @@
 
 .region-footer .menu--footer a {
   --lcars-italic: normal;
-  --lcars-value: currentcolor;
+  --lcars-value: currentColor;
 
   text-decoration: none;
   letter-spacing: 0.04em;
@@ -362,7 +357,7 @@
 .lcars-title .page-title {
   --lcars-cut-height: var(--lcars-title-height);
   --lcars-italic: normal;
-  --lcars-value: currentcolor;
+  --lcars-value: currentColor;
 
   overflow: clip visible;
   min-width: 0;
@@ -491,7 +486,7 @@
 
 .lcars-panel-top .site-name {
   --lcars-italic: normal;
-  --lcars-value: currentcolor;
+  --lcars-value: currentColor;
 
   grid-area: name;
   text-transform: uppercase;
@@ -513,7 +508,7 @@
    --lcars-text-dim, white). */
 .lcars-panel-top .site-slogan {
   --lcars-italic: normal;
-  --lcars-value: currentcolor;
+  --lcars-value: currentColor;
 
   grid-area: slogan;
   padding-block-start: 0.25rem;
@@ -579,7 +574,7 @@
    date (user decision 25.10.2026, was at the right end). */
 .lcars-status {
   --lcars-italic: normal;
-  --lcars-value: currentcolor;
+  --lcars-value: currentColor;
 
   display: flex;
   flex-wrap: wrap;

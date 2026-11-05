@@ -1,8 +1,9 @@
 /**
  * @file
- * LCARS panel: a ceiling with the label, the left edge and a floor as high as
- * the ceiling, a U on its side open to the right, as the dashboard cards
- * (user decision 31.10.2026, variant B; until then an L without floor).
+ * LCARS panel: a ceiling with the label, the left edge and a floor as thin as
+ * the edge, a U on its side open to the right, as the dashboard cards (user
+ * wish 05.11.2026; until 31.10.2026 an L without floor, then a floor as high
+ * as the ceiling, variant B, in the right sidebar thin from the same day).
  */
 
 .lcars-panel {
@@ -15,10 +16,11 @@
   --lcars-panel-end: var(--lcars-panel-ceiling);
   --lcars-panel-inner: round(calc(var(--lcars-panel-ceiling) * var(--lcars-elbow-inner-ratio)), 1px);
   --lcars-panel-edge: 0.3125rem; /* 5px */
-  /* The floor: as high as the ceiling, with the same elbow. A place with
+  /* The floor as thin as the edge, and its curve as well: the inner curve is
+     the outer one less the edge, both round the same center. A place with
      another floor sets its height and the inner curve. */
-  --lcars-panel-floor: var(--lcars-panel-ceiling);
-  --lcars-panel-floor-inner: var(--lcars-panel-inner);
+  --lcars-panel-floor: var(--lcars-panel-edge);
+  --lcars-panel-floor-inner: calc(var(--lcars-panel-corner) - var(--lcars-panel-edge));
 
   position: relative;
   display: grid;

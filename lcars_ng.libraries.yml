@@ -206,3 +206,14 @@ pills:
   css:
     theme:
       css/lcars/pills.css: {  }
+permissions:
+  css:
+    theme:
+      css/lcars/permissions.css: {  }
+  js:
+    js/permissions.js: {  }
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+    - core/drupal.debounce
+    - core/once

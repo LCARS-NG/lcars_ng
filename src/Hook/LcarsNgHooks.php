@@ -306,6 +306,48 @@ class LcarsNgHooks {
   }
 
   /**
+   * Implements hook_preprocess_table().
+   *
+   * View modes and form modes (EntityDisplayModeListBuilder): core puts the
+   * button "Add … for …" of each type of entity into the last row of its
+   * table, so it stood in the box of the table. As the buttons of all other
+   * tables in boxes (Save on Roles, Block layout, Permissions, …), it moves
+   * below the table (table.html.twig, table.css; user wish 05.11.2026).
+   *
+   * Each table with its button becomes a collapsible section titled by its
+   * type of entity, as the packages on Extend; with the theme setting
+   * collapse_module_packages they start collapsed (user wish 05.11.2026).
+   * The type comes from the route of the button. The main content is
+   * rendered before the blocks, so a theme cannot wrap the tables in a
+   * details element of the render array; table.html.twig writes it around
+   * the table, and table.css hides core's heading above it (#prefix of the
+   * table), which the summary repeats.
+   */
+  #[Hook('preprocess_table')]
+  public function preprocessTable(array &$variables): void {
+    $classes = $variables['attributes']['class'] ?? [];
+    $classes = is_array($classes) ? $classes : explode(' ', (string) $classes);
+    if (!in_array('display-mode-table', $classes, TRUE) || !isset($variables['rows']['_add_new']['cells'][0]['content'])) {
+      return;
+    }
+    $button = $variables['rows']['_add_new']['cells'][0]['content'];
+    $variables['after'] = $button;
+    unset($variables['rows']['_add_new']);
+    $url = $button['#url'] ?? NULL;
+    $type = $url instanceof Url ? ($url->getRouteParameters()['entity_type_id'] ?? NULL) : NULL;
+    $definition = $type ? $this->entityTypeManager->getDefinition($type, FALSE) : NULL;
+    if ($definition) {
+      $variables['section'] = [
+        'title' => $definition->getLabel(),
+        'open' => !$this->collapsesSections(),
+      ];
+      CacheableMetadata::createFromRenderArray($variables)
+        ->addCacheTags(['config:lcars_ng.settings'])
+        ->applyTo($variables);
+    }
+  }
+
+  /**
    * Implements hook_preprocess_field().
    *
    * A user without a picture gets the default picture of the field, in Drupal
@@ -538,7 +580,7 @@ class LcarsNgHooks {
     $form['lcars_ng']['collapse_module_packages'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Collapsed sections'),
-      '#description' => $this->t('The packages of modules on Extend, the sections of the theme settings, of the basic site settings and of Mail System, the groups of the defaults of meta tags and the entries of the status report start collapsed instead of open. The filter on Extend opens the packages with matching modules while it is in use.'),
+      '#description' => $this->t('The packages of modules on Extend, the sections of the theme settings, of the basic site settings and of Mail System, the groups of the defaults of meta tags, the entries of the status report, the groups of permissions and the types on View modes and Form modes start collapsed instead of open. The filters on Extend and Permissions open the packages and groups with matches while they are in use.'),
       '#config_target' => 'lcars_ng.settings:collapse_module_packages',
     ];
     if ($this->entityTypeManager->hasDefinition('node_type')) {
@@ -598,6 +640,21 @@ class LcarsNgHooks {
     if ($this->collapsesSections()) {
       $this->collapseDetails($form);
     }
+  }
+
+  /**
+   * Implements hook_form_FORM_ID_alter() for user_admin_permissions.
+   *
+   * The groups of the permissions table open and close (permissions.js,
+   * library lcars_ng/permissions on user/drupal.user.permissions). With the
+   * theme setting collapse_module_packages they start collapsed, as the
+   * packages on Extend (user decision 05.11.2026). All pages of permissions
+   * share the form ID: all roles, one role, one module, one bundle.
+   */
+  #[Hook('form_user_admin_permissions_alter')]
+  public function formUserAdminPermissionsAlter(array &$form): void {
+    $form['#attached']['drupalSettings']['lcarsNg']['collapseSections'] = $this->collapsesSections();
+    $form['#cache']['tags'][] = 'config:lcars_ng.settings';
   }
 
   /**

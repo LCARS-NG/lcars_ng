@@ -45,7 +45,7 @@
    on Extend, bold as core has them (user decision 30.10.2026, variant B). */
 #blocks tr.region-title td:first-child {
   --lcars-italic: normal;
-  --lcars-value: currentcolor;
+  --lcars-value: currentColor;
 
   text-transform: uppercase;
   font-size: 1.15em;
@@ -93,7 +93,7 @@
 /* Package headings (Core, …) as the fieldset legends of LCNG */
 .system-modules details.package-listing > summary {
   --lcars-italic: normal;
-  --lcars-value: currentcolor;
+  --lcars-value: currentColor;
 
   text-transform: uppercase;
   color: var(--lcars-link);
@@ -142,6 +142,108 @@ h3:has(+ .lcars-table > table.update) {
   padding: 0;
   border: var(--lcars-box-border-width) solid var(--lcars-box-border-color);
   border-radius: var(--lcars-box-radius-small);
+}
+
+/* Each theme is a box (rule 15 of the design guide) with its name in the
+   upper line, as fields and details (user decision 05.11.2026, variant B of
+   four; rejected: A and C the name inside the box, C and D the screenshot
+   without its line). Its corners follow its width
+   (js/box-radius.js). The box is a column: the name first, then screenshot,
+   description and operations, which core keeps in .theme-info, here without
+   a box of its own. Core floats the screenshots and the uninstalled themes;
+   html[dir] body and :nth-child(n) outweigh its rules for both directions. */
+html[dir] body .system-themes-list .theme-selector:nth-child(n) {
+  display: flex;
+  float: none;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: auto;
+  padding: 0.5em 1.5em 0.75em;
+  border: var(--lcars-box-border-width) solid var(--lcars-box-border-color);
+  border-radius: var(--lcars-box-radius);
+  margin-block: 1.5em 0;
+}
+
+.system-themes-list .theme-selector::after {
+  content: none;
+}
+
+.system-themes-list .theme-selector > .theme-info {
+  display: contents;
+}
+
+/* The name cuts into the upper line on the background of the page, as the
+   labels of the boxes of node forms (forms.css). */
+.system-themes-list .theme-info__header {
+  display: table;
+  align-self: flex-start;
+  justify-self: start;
+  order: -1;
+  margin-inline-start: -0.5em;
+  background: var(--lcars-space);
+  margin-block: -1.25em 0.75em;
+  padding-inline: 0.5em;
+}
+
+/* Installed themes: a box across the column; from the width at which core
+   puts the screenshot beside the text, a grid of the name over both columns,
+   the screenshot left and the rest right of it. */
+@media screen and (min-width: 45em) {
+  html[dir] body .system-themes-list-installed .theme-selector:nth-child(n) {
+    display: grid;
+    grid-template-rows: auto auto auto auto 1fr;
+    grid-template-columns: 294px minmax(0, 1fr);
+    align-items: start;
+    column-gap: 20px;
+  }
+
+  html[dir] body .system-themes-list-installed .theme-selector > :is(.screenshot, .no-screenshot) {
+    grid-row: 2 / -1;
+    grid-column: 1;
+    width: 100%;
+    margin: 0;
+  }
+
+  .system-themes-list-installed .theme-info__header {
+    grid-row: 1;
+    grid-column: 1 / -1;
+  }
+
+  .system-themes-list-installed .theme-info > :not(.theme-info__header) {
+    grid-column: 2;
+  }
+}
+
+/* Uninstalled themes: cards in a grid instead of core's floats, as high as
+   the highest of their row, the operations at their foot. Without core's
+   light line (#cdcdcd) above the list: the room of 40px alone parts it from
+   the installed themes (user wish 05.11.2026). */
+.system-themes-list-uninstalled {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+  gap: 1.5em;
+  border-block-start: 0;
+}
+
+.system-themes-list-uninstalled::after {
+  content: none;
+}
+
+.system-themes-list-uninstalled > .system-themes-list__header {
+  grid-column: 1 / -1;
+}
+
+html[dir] body .system-themes-list-uninstalled .theme-selector:nth-child(n) {
+  margin: 0;
+}
+
+/* At their foot: the free space of the card goes above them, the 10px that
+   core keeps above them in every theme (as in the installed ones) stay as
+   the least, also in the highest card of a row (user wish 05.11.2026; were
+   0px under "Requires" of Mercury). */
+.system-themes-list-uninstalled .theme-info > .operations {
+  margin-block-start: auto;
+  padding-block-start: 10px;
 }
 
 /* The operations of each theme (Settings, Install, Uninstall, Set as default)

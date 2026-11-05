@@ -91,11 +91,16 @@ favicon:
   packages of modules on *Extend*, the sections of the theme settings (*Page
   element display*, *Logo image*, *Favicon* and those of each theme), of the
   basic site settings (*Site details*, *Front page*, *Error pages*) and of the
-  Mail System module, and the groups of the defaults of the Metatag module
-  (*Basic tags*, *Advanced*, *Open Graph* …) start collapsed instead of open,
-  where LCARS-NG is the administration theme. The filter above the list on
-  *Extend* opens the packages with matching modules while it is in use. The
-  key keeps its name from 1.0.9, when the setting covered *Extend* only.
+  Mail System module, the groups of the defaults of the Metatag module
+  (*Basic tags*, *Advanced*, *Open Graph* …), the entries of the status
+  report, the groups of modules on *Permissions* and the types of entities
+  on *View modes* and *Form modes* start collapsed instead of open, where
+  LCARS-NG is the administration theme. The filters above the lists on
+  *Extend* and *Permissions* open the packages and groups with
+  matches while they are in use. On *Permissions* each group opens and
+  closes in any case: its row counts, for each role, the permissions of the
+  group the role has, and *Expand all* opens them at once. The key keeps its
+  name from 1.0.9, when the setting covered *Extend* only.
 - **Content type in the title bar** (`content_type_in_title_bar`, none by
   default): on the page of content of the checked types, the title bar names
   the type (*Blog post*), and the title stands as the main heading above the

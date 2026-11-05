@@ -21,7 +21,7 @@
 .messages {
   --lcars-message-glow: var(--lcars-message-glow-status);
   --lcars-message-tint: var(--lcars-message-tint-status);
-  --lcars-value: currentcolor;
+  --lcars-value: currentColor;
 
   position: relative;
   margin-block-end: 0.5em;

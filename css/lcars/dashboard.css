@@ -8,8 +8,9 @@
  * ceiling bar with the title cut into it near the right end, a narrow left
  * edge and the inner curve between them. The ceiling is as high as the title
  * bar of the page (--lcars-title-height; #21, user wish 28.10.2026). A floor
- * as high as the ceiling closes the card at the bottom, so the frame is a U on
- * its side, open to the right (user decision 31.10.2026, variant B).
+ * as thin as the left edge closes the card at the bottom, as the panels of
+ * the right sidebar, so the frame is a U on its side, open to the right (user
+ * wish 05.11.2026; from 31.10.2026, variant B, as high as the ceiling).
  * Extends the library dashboard/dashboard (lcars_ng.info.yml).
  */
 
@@ -21,6 +22,10 @@
   --lcars-card-inner: round(calc(var(--lcars-title-height) * var(--lcars-elbow-inner-ratio)), 1px);
   --lcars-card-end: var(--lcars-title-height); /* the ceiling right of the title, a square */
   --lcars-card-edge: 0.3125rem; /* 5px */
+  /* The floor as thin as the edge, its inner curve the outer one less the
+     edge, both round the same center, as in the right sidebar (frame.css). */
+  --lcars-card-floor: var(--lcars-card-edge);
+  --lcars-card-floor-inner: calc(var(--lcars-card-corner) - var(--lcars-card-edge));
   --lcars-card-pad: 1.25rem;
   --lcars-card-gap: 1.5rem;
 }
@@ -30,7 +35,7 @@
   position: relative;
   margin-block: 0 var(--lcars-card-gap);
   margin-inline: 0 var(--lcars-card-gap);
-  padding: 0 var(--lcars-card-pad) calc(var(--lcars-card-pad) + var(--lcars-title-height));
+  padding: 0 var(--lcars-card-pad) calc(var(--lcars-card-pad) + var(--lcars-card-floor));
   border: 0;
   border-inline-start: var(--lcars-card-edge) solid var(--lcars-card-frame);
   border-radius: 0;
@@ -98,21 +103,21 @@
     linear-gradient(var(--lcars-card-frame), var(--lcars-card-frame)) top / 100% calc(100% - var(--lcars-card-inner)) no-repeat;
 }
 
-/* The floor mirrors the ceiling: as high, with the same elbow, under the
-   edge with the curve of the card. Instead of the title it has a seam
-   (--lcars-seam) and a square at its end, as the piece of ceiling right of
-   the title (user decision 31.10.2026, variant B). */
+/* The floor: as thin as the edge, under it with the curve of the card, as
+   the floor of the panels in the right sidebar. A seam (--lcars-seam) cuts a
+   piece as long as the square right of the title from its end (user wish
+   05.11.2026; from 31.10.2026 as high as the ceiling, variant B). */
 .dashboard .layout .block::after {
   position: absolute;
   inset-block-end: 0;
   inset-inline: calc(-1 * var(--lcars-card-edge)) 0;
-  block-size: calc(var(--lcars-title-height) + var(--lcars-card-inner));
+  block-size: calc(var(--lcars-card-floor) + var(--lcars-card-floor-inner));
   content: "";
   border-end-start-radius: var(--lcars-card-corner);
   background:
-    radial-gradient(circle at 100% 0, transparent calc(var(--lcars-card-inner) - 0.5px), var(--lcars-card-frame) var(--lcars-card-inner)) left var(--lcars-card-edge) top / var(--lcars-card-inner) var(--lcars-card-inner) no-repeat,
-    linear-gradient(var(--lcars-card-frame), var(--lcars-card-frame)) left bottom / calc(100% - var(--lcars-card-end) - var(--lcars-seam)) calc(100% - var(--lcars-card-inner)) no-repeat,
-    linear-gradient(var(--lcars-card-frame), var(--lcars-card-frame)) right bottom / var(--lcars-card-end) calc(100% - var(--lcars-card-inner)) no-repeat;
+    radial-gradient(circle at 100% 0, transparent calc(var(--lcars-card-floor-inner) - 0.5px), var(--lcars-card-frame) var(--lcars-card-floor-inner)) left var(--lcars-card-edge) top / var(--lcars-card-floor-inner) var(--lcars-card-floor-inner) no-repeat,
+    linear-gradient(var(--lcars-card-frame), var(--lcars-card-frame)) left bottom / calc(100% - var(--lcars-card-end) - var(--lcars-seam)) var(--lcars-card-floor) no-repeat,
+    linear-gradient(var(--lcars-card-frame), var(--lcars-card-frame)) right bottom / var(--lcars-card-end) var(--lcars-card-floor) no-repeat;
 }
 
 /* Right to left the edge and the corners move to the right (logical
@@ -126,16 +131,15 @@
 
 [dir="rtl"] .dashboard .layout .block::after {
   background:
-    radial-gradient(circle at 0 0, transparent calc(var(--lcars-card-inner) - 0.5px), var(--lcars-card-frame) var(--lcars-card-inner)) right var(--lcars-card-edge) top / var(--lcars-card-inner) var(--lcars-card-inner) no-repeat,
-    linear-gradient(var(--lcars-card-frame), var(--lcars-card-frame)) right bottom / calc(100% - var(--lcars-card-end) - var(--lcars-seam)) calc(100% - var(--lcars-card-inner)) no-repeat,
-    linear-gradient(var(--lcars-card-frame), var(--lcars-card-frame)) left bottom / var(--lcars-card-end) calc(100% - var(--lcars-card-inner)) no-repeat;
+    radial-gradient(circle at 0 0, transparent calc(var(--lcars-card-floor-inner) - 0.5px), var(--lcars-card-frame) var(--lcars-card-floor-inner)) right var(--lcars-card-edge) top / var(--lcars-card-floor-inner) var(--lcars-card-floor-inner) no-repeat,
+    linear-gradient(var(--lcars-card-frame), var(--lcars-card-frame)) right bottom / calc(100% - var(--lcars-card-end) - var(--lcars-seam)) var(--lcars-card-floor) no-repeat,
+    linear-gradient(var(--lcars-card-frame), var(--lcars-card-frame)) left bottom / var(--lcars-card-end) var(--lcars-card-floor) no-repeat;
 }
 
 /* The ceiling ends with the title, whose height comes from its capitals, as
    the title bar of the page: where the capitals come out larger than set (on
-   the phone of the user about 1.2 times), both grow alike (#21), and the
-   floor with them. A card without a title keeps a ceiling and a floor of
-   --lcars-title-height. */
+   the phone of the user about 1.2 times), both grow alike (#21). A card
+   without a title keeps a ceiling of --lcars-title-height. */
 @supports (anchor-name: --lcars-card-title) {
   .dashboard .layout .block > h2 {
     anchor-name: --lcars-card-title;
@@ -144,10 +148,6 @@
   .dashboard .layout .block::before {
     inset-block-end: calc(anchor(--lcars-card-title bottom, calc(100% - var(--lcars-title-height))) - var(--lcars-card-inner));
     block-size: auto;
-  }
-
-  .dashboard .layout .block::after {
-    block-size: calc(anchor-size(--lcars-card-title block, var(--lcars-title-height)) + var(--lcars-card-inner));
   }
 }
 
@@ -161,7 +161,7 @@
 .dashboard .layout .block > h2 {
   --lcars-cut-height: var(--lcars-title-height);
   --lcars-italic: normal;
-  --lcars-value: currentcolor;
+  --lcars-value: currentColor;
 
   position: relative;
   overflow: clip visible;

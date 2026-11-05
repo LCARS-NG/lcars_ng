@@ -37,7 +37,7 @@
 
 .node-preview-form-select__label {
   --lcars-italic: normal;
-  --lcars-value: currentcolor;
+  --lcars-value: currentColor;
 
   text-transform: uppercase;
   font-family: var(--lcars-font-label);

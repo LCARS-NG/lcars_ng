@@ -40,10 +40,21 @@
  *
  * The table is wrapped in .lcars-table, where a table wider than the content
  * scrolls on phones (css/lcars/table.css).
+ * - after: Content below the wrapper, outside the box of the table: the
+ *   button "Add … for …" of View modes and Form modes
+ *   (LcarsNgHooks::preprocessTable()).
+ * - section: A collapsible section around the table and after, with its
+ *   title and whether it starts open: the types of entities on View modes
+ *   and Form modes (LcarsNgHooks::preprocessTable()).
  *
  * @see \Drupal\Core\Theme\ThemePreprocess::preprocessTable()
  */
 #}
+{% if section %}
+<details class="lcars-display-modes"{{ section.open ? ' open' }}>
+  <summary>{{ section.title }}</summary>
+  <div class="details-wrapper">
+{% endif %}
 <div class="lcars-table">
 <table{{ attributes }}>
   {% if caption %}
@@ -118,3 +129,10 @@
   {% endif %}
 </table>
 </div>
+{% if after %}
+  <div class="lcars-table-after">{{ after }}</div>
+{% endif %}
+{% if section %}
+  </div>
+</details>
+{% endif %}

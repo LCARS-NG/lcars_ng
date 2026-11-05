@@ -31,7 +31,7 @@ tbody td {
    centered (tableselect.css). */
 th {
   --lcars-italic: normal;
-  --lcars-value: currentcolor;
+  --lcars-value: currentColor;
 
   text-align: start;
   text-transform: uppercase;
@@ -149,8 +149,41 @@ th {
    Block layout, …) stands in a box as wide as the table; boxes that stack,
    with a filter or with other tables, take the width of the column, so
    their edges line up. */
-:is(.block-system-main-block > .lcars-table:first-child:not(:has(~ :not(.pager))), .block-system-main-block > form > .lcars-table:first-child:not(:has(~ :not(input, .form-actions, .pager)))) {
+:is(.block-system-main-block > .lcars-table:first-child:not(:has(~ :not(.pager, .lcars-table-after))), .block-system-main-block > form > .lcars-table:first-child:not(:has(~ :not(input, .form-actions, .pager)))) {
   width: fit-content;
+}
+
+/* Below the box, as the buttons of forms: "Add … for …" of View modes and
+   Form modes, which core puts into the last row of the table
+   (table.html.twig, user wish 05.11.2026). The next box keeps the room
+   between boxes. */
+.lcars-table-after {
+  margin-block-end: 1.5em;
+}
+
+/* View modes and Form modes: each type of entity a collapsible section
+   (table.html.twig, user wish 05.11.2026). Its summary names the type, so
+   core's heading above it goes; the table stands without a box of its own
+   in the box of the section and fills it, as it filled its own box, its
+   button 1em below it at its foot (user wish 05.11.2026). */
+.block-system-main-block > h2:has(+ details.lcars-display-modes) {
+  display: none;
+}
+
+/* Rule 15: the box takes off the room the cells bring, 0.75em at the sides,
+   so the text stands 1.5em from the edge as in the boxes of tables; the
+   button lines up with it. */
+details.lcars-display-modes > .details-wrapper {
+  padding-inline: 0.75em;
+}
+
+details.lcars-display-modes .lcars-table > table {
+  width: 100%;
+}
+
+details.lcars-display-modes .lcars-table-after {
+  margin-block: 1em 0.5em;
+  margin-inline: 0.75em;
 }
 
 /* A heading right above such a box is its title and cuts into its upper
@@ -276,7 +309,7 @@ th {
 
   .tableresponsive-toggle {
     --lcars-italic: normal;
-    --lcars-value: currentcolor;
+    --lcars-value: currentColor;
 
     text-transform: uppercase;
     color: var(--lcars-link);

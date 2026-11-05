@@ -1,0 +1,102 @@
+/**
+ * @file
+ * Collapsible groups in the table of permissions (permissions.js).
+ *
+ * The row of each module is a toggle with the arrow of the collapsible
+ * sections, the number of its permissions and, in the column of each role,
+ * how many of them the role has; the rows of the groups are tinted as
+ * selected rows of a table (user decision 05.11.2026, variant D of four;
+ * A arrow and name, B with the number, C with the counts without tint).
+ * Extends the library user/drupal.user.permissions
+ * (lcars_ng.info.yml).
+ */
+
+/* Collapsed rows keep their part in the widths of the columns, so the table
+   does not jump when a group opens: visibility, not display, which core's
+   filter sets and clears on the rows. */
+table.permissions tr.lcars-permissions__hidden {
+  visibility: collapse;
+}
+
+/* The row of a group toggles as a whole. */
+table.permissions tr.lcars-permissions__group {
+  cursor: pointer;
+}
+
+table.permissions tr.lcars-permissions__group > td {
+  background: var(--lcars-row-highlight);
+}
+
+/* The name as a button: the arrow in a column of its own, so a name of two
+   lines stays clear of it; the arrow is the marker of summary, pointing the
+   other way right to left. */
+.lcars-permissions__toggle {
+  display: grid;
+  grid-template-columns: 1em minmax(0, 1fr);
+  align-items: baseline;
+  inline-size: 100%;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  text-align: start;
+  color: inherit;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-weight: bold;
+}
+
+.lcars-permissions__toggle::before {
+  content: counter(lcars-permissions, disclosure-closed);
+}
+
+.lcars-permissions__toggle[aria-expanded="true"]::before {
+  content: counter(lcars-permissions, disclosure-open);
+}
+
+.lcars-permissions__group:hover .lcars-permissions__toggle {
+  color: var(--lcars-link-hover);
+}
+
+.lcars-permissions__total {
+  opacity: 0.7;
+  font-weight: normal;
+}
+
+/* Per role: some of the permissions in the light blue of the labels, all of
+   them white and bold, none empty. */
+td.lcars-permissions__granted {
+  text-align: center;
+  color: var(--lcars-frame);
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+}
+
+td.lcars-permissions__granted.is-all {
+  color: var(--lcars-text);
+  font-weight: bold;
+}
+
+/* Expand all, collapse all: a link like "Hide descriptions" beside it. */
+.compact-link .lcars-permissions__all {
+  margin-inline-start: 1.5em;
+  text-transform: uppercase;
+  color: var(--lcars-link);
+  font: inherit;
+}
+
+/* In forced colors as well, where a button would take ButtonText. */
+@media (forced-colors: active) {
+  .compact-link .lcars-permissions__all {
+    color: LinkText;
+    forced-color-adjust: none;
+  }
+}
+
+.compact-link .lcars-permissions__all:first-child {
+  margin-inline-start: 0;
+}
+
+.compact-link .lcars-permissions__all:hover {
+  color: var(--lcars-link-hover);
+}

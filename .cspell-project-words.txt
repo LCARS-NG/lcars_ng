@@ -1,6 +1,7 @@
 actionscript
 blockrecent
 cdnjs
+checklistapi
 DejaVu
 drupical
 Giang
@@ -12,6 +13,7 @@ klaro
 lcng
 magicheight
 mailsystem
+nums
 Okuda
 Okuda's
 pside

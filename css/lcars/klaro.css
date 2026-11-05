@@ -154,7 +154,7 @@
 .klaro.klaro-theme-lcars_ng .cookie-modal .cm-modal.cm-klaro .cm-header .title {
   --lcars-cut-height: var(--lcars-notice-ceiling);
   --lcars-italic: normal;
-  --lcars-value: currentcolor;
+  --lcars-value: currentColor;
 
   position: absolute;
   overflow: clip visible;
@@ -174,7 +174,7 @@
 
 .klaro.klaro-theme-lcars_ng .cookie-notice:not(.cookie-modal-notice) .cn-learn-more {
   --lcars-italic: normal;
-  --lcars-value: currentcolor;
+  --lcars-value: currentColor;
 
   text-decoration: none;
   letter-spacing: 0.04em;
@@ -186,7 +186,7 @@
 /* Purposes and services as the headings of the theme. */
 .klaro.klaro-theme-lcars_ng .cookie-modal .cm-modal.cm-klaro .cm-list-title {
   --lcars-italic: normal;
-  --lcars-value: currentcolor;
+  --lcars-value: currentColor;
 
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -207,7 +207,7 @@
 .klaro.klaro-theme-lcars_ng .cookie-notice:not(.cookie-modal-notice) .cm-btn,
 .klaro.klaro-theme-lcars_ng .cookie-modal .cm-btn {
   --lcars-italic: normal;
-  --lcars-value: currentcolor;
+  --lcars-value: currentColor;
 
   letter-spacing: 0.02em;
   text-transform: uppercase;

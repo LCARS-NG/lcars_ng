@@ -49,6 +49,7 @@
     '.block-system-main-block > .views-element-container > .view > .view-content .lcars-table',
     '.block-system-main-block .table-filter',
     '.block-system-main-block > form:not(.node-form, .user-form) > :is(.form-item, fieldset):not(.form-type-vertical-tabs)',
+    '.system-themes-list .theme-selector',
   ].join(', ');
 
   /**

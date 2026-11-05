@@ -6,7 +6,7 @@
 label,
 fieldset legend {
   --lcars-italic: normal;
-  --lcars-value: currentcolor;
+  --lcars-value: currentColor;
 
   text-transform: uppercase;
   color: var(--lcars-frame);
@@ -225,7 +225,7 @@ input:where([type="submit"], [type="button"], [type="reset"]),
 [data-vertical-tabs-panes] > .token-dialog,
 .theme-selector .operations a {
   --lcars-italic: normal;
-  --lcars-value: currentcolor;
+  --lcars-value: currentColor;
 
   display: inline-block;
   box-sizing: border-box;
@@ -338,7 +338,7 @@ html .vertical-tabs__menu-item a {
 
 html .vertical-tabs__menu-item-title {
   --lcars-italic: normal;
-  --lcars-value: currentcolor;
+  --lcars-value: currentColor;
 
   text-transform: uppercase;
   color: var(--lcars-link);

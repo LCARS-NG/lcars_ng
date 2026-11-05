@@ -22,7 +22,7 @@ h4,
 h5,
 h6 {
   --lcars-italic: normal;
-  --lcars-value: currentcolor;
+  --lcars-value: currentColor;
 
   margin: 0 0 0.5em;
   text-transform: uppercase;
@@ -110,14 +110,14 @@ p {
    color of the link). The fallback resolves here, so red alert turns it
    red. */
 em.placeholder {
-  font-style: normal;
   color: var(--lcars-value, var(--lcars-frame));
+  font-style: normal;
 }
 
 /* LCNG set every link in capitals. */
 a {
   --lcars-italic: normal;
-  --lcars-value: currentcolor;
+  --lcars-value: currentColor;
 
   text-decoration: none;
   text-transform: uppercase;

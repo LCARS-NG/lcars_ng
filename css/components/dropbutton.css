@@ -28,7 +28,7 @@
 .js .dropbutton .dropbutton-action :is(input, button),
 .dropbutton-toggle button {
   --lcars-italic: normal;
-  --lcars-value: currentcolor;
+  --lcars-value: currentColor;
 
   margin: 0;
   text-decoration: none;

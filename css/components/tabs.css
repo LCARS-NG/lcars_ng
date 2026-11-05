@@ -29,3 +29,13 @@ ul.tabs {
 .tabs a:hover {
   background-color: #f5f5f5;
 }
+
+/* Room below the tabs: 1.5em to whatever follows, as between boxes (user
+   wish 05.11.2026). The 8px below the list alone left the room to the next
+   element, 8px above a heading (Appearance), "Hide descriptions" (Permissions)
+   or "Last checked" (Available updates), 16px above action links, 24px above
+   boxes; the margins collapse, so a larger one of the next element still
+   wins. Between the rows of primary and secondary tabs the 8px stay. */
+.block-local-tasks-block {
+  margin-block-end: 1.5em;
+}

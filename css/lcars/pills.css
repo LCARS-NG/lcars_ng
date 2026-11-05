@@ -33,7 +33,7 @@
 
 .lcars-pills > .field__label {
   --lcars-italic: normal;
-  --lcars-value: currentcolor;
+  --lcars-value: currentColor;
 
   text-transform: uppercase;
   color: var(--lcars-heading);
