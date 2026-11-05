@@ -13,7 +13,9 @@ The theme works as front-end theme and as administration theme. Its frame
 adapts to the width and height of the screen, from phones to wide desktop
 screens, for mouse and touch: it fills the window on short pages, and longer
 pages scroll. It follows the settings of the system for more contrast,
-contrast themes and reduced motion.
+contrast themes and reduced motion. It brings its own typefaces, the narrow
+Antonio for bars, titles, buttons, menus and tabs and Inter for the running
+text, so it looks the same in every browser and on every system.
 
 <p>
   <a href="images/screenshots/front-page.png"><img src="images/screenshots/front-page.png" width="49%" alt="LCARS-NG front page for signed-in users with the contrast setting Standard, with the collapsed Navigation of Drupal on the left and its top bar: upper panel with logo, site name and slogan, status line with date and user, menu buttons on the left, content and panels below"></a>
@@ -140,8 +142,10 @@ titles are cut into the ceiling of the panel (the notice title with Klaro's
 setting *Show notice title*); short titles such as "Privacy" and "Privacy
 settings" fit best.
 
-Colors and frame sizes are custom properties in `css/lcars/tokens.css`
-(`--lcars-*`). A sub-theme can override them in its own stylesheet.
+Colors, typefaces and frame sizes are custom properties in
+`css/lcars/tokens.css` (`--lcars-*`; the typefaces `--lcars-font`,
+`--lcars-font-label` and `--lcars-font-code`, their files in
+`css/lcars/fonts.css`). A sub-theme can override them in its own stylesheet.
 
 The theme provides four single-directory components to embed in templates:
 button, heading, text and panel (`components/`). Button, heading and text
