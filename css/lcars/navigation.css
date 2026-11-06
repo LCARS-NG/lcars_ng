@@ -21,8 +21,11 @@
 
   display: block;
   margin: 0;
-  padding-block: 0.9375rem 0.1875rem; /* 15px 3px */
-  padding-inline: 0 0.3125rem; /* 0 5px: the label at the end, by the content */
+  /* The label at the end, by the content, as far from the bottom as from the
+     end: 6px each (user wish 06.11.2026; was 3px and 5px). The button stays
+     34px high (--lcars-button-height), as the form buttons and fields. */
+  padding-block: 0.75rem 0.375rem; /* 12px 6px */
+  padding-inline: 0 0.375rem;
   text-align: end;
   letter-spacing: normal;
   text-transform: uppercase;

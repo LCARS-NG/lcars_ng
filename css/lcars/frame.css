@@ -303,7 +303,7 @@
    also scrolls down, and a pixel left over from rounding showed a vertical
    scrollbar (user wish 03.11.2026). */
 .lcars-aside .lcars-panel {
-  --lcars-panel-ceiling: 1.125rem; /* 18px: capitals 14px */
+  --lcars-panel-ceiling: 1.125rem; /* 18px: capitals 16px */
 }
 
 .lcars-aside .lcars-panel__inner {
@@ -460,10 +460,13 @@
    frame itself; the right sidebar is hidden as well (above). The page is
    measured beside the Navigation of Drupal, as for the right sidebar; the
    elbows, bars and the site name keep their size, only phones make them
-   smaller (tokens.css) and the frame closer to the window (below). */
+   smaller (tokens.css) and the frame closer to the window (below). The bar
+   of the bottom elbow is as high as the edge is wide, on every page, the
+   two-part screen included (user wish 06.11.2026; was 25px, there 15px). */
 @container lcars-page not (min-width: 67.5625rem) {
   .lcars-frame {
     --lcars-sidebar-width: 1rem;
+    --lcars-bar-bottom: var(--lcars-sidebar-width);
 
     grid-template-areas:
       "head head"
@@ -499,6 +502,10 @@
 .lcars-frame--panel {
   --lcars-bar-top: 0.9375rem; /* 15px */
   --lcars-bar-bottom: 0.9375rem;
+  /* The logo in the upper panel and its gap to name and slogan; the status
+     line below takes both as its indent (below). */
+  --lcars-panel-logo-size: 5.5rem;
+  --lcars-panel-brand-gap: 1rem;
 
   grid-template-areas:
     "pside ptop ptop"
@@ -533,7 +540,7 @@
   grid-template-columns: auto minmax(0, 1fr);
   align-items: start;
   margin-block-end: 1rem;
-  column-gap: 1rem;
+  column-gap: var(--lcars-panel-brand-gap);
 }
 
 .lcars-panel-top .site-name {
@@ -581,7 +588,7 @@
 
 .lcars-panel-top .site-logo img {
   display: block;
-  block-size: 5.5rem;
+  block-size: var(--lcars-panel-logo-size);
   inline-size: auto;
 }
 
@@ -612,8 +619,8 @@
   padding: 0;
   border-radius: 50%;
   background: var(--lcars-logo-disc);
-  inline-size: 5.5rem;
-  block-size: 5.5rem;
+  inline-size: var(--lcars-panel-logo-size);
+  block-size: var(--lcars-panel-logo-size);
 }
 
 .lcars-panel-top .site-logo > img[src*="lcars-ng-logo-flat.svg"] {
@@ -643,6 +650,14 @@
   color: var(--lcars-sidebar);
 }
 
+/* The status line starts where name and slogan do, beside the logo of the
+   theme on its disc (user wish 06.11.2026, after his draft; was at the edge
+   of the panel, below the logo). Another logo keeps its own width, so the
+   line stays at the edge there. */
+.lcars-frame--panel:has(.lcars-panel-top .site-logo > img[src*="lcars-ng-logo-flat.svg"]) .lcars-status {
+  margin-inline-start: calc(var(--lcars-panel-logo-size) + var(--lcars-panel-brand-gap));
+}
+
 /* Panel blocks side by side, as the four-column Gpanel of LCNG. */
 .lcars-panel-top .region-panel {
   display: grid;
@@ -661,9 +676,14 @@
 
 /* Up to a page of 1080px (phones before 04.11.2026): the menu above the
    content as on other pages; beside the upper panel the edge remains without
-   the blocks of the panel menu. */
+   the blocks of the panel menu. Both bottom bars as high as the edge is wide,
+   as on other pages (above), and the empty bar of the top elbow as well
+   (user wish 06.11.2026; was 15px, as on wide pages). */
 @container lcars-page not (min-width: 67.5625rem) {
   .lcars-frame--panel {
+    --lcars-bar-top: var(--lcars-sidebar-width);
+    --lcars-bar-bottom: var(--lcars-sidebar-width);
+
     grid-template-areas:
       "pside ptop"
       "split split"
@@ -676,5 +696,37 @@
 
   .lcars-panel-side .region {
     display: none;
+  }
+}
+
+/* Below 64rem the top bar of the Navigation module stands above the page and
+   ends in an L (top-bar.css). Here a reversed L closes the upper panel at the
+   top, so the bar and the head with logo and site name stay two areas (user
+   decision 06.11.2026, variant C): as high as the bottom elbow (64px), its
+   bar as high as the edge is wide, with the outer curve of the elbows. Only
+   while the bar is there: visitors without it see the panel as before. */
+@media (max-width: 63.9375rem) {
+  @container lcars-page not (min-width: 67.5625rem) {
+    .top-bar:has(.top-bar__tools:not(:empty), .top-bar__context:not(:empty), .top-bar__actions:not(:empty)) ~ .dialog-off-canvas-main-canvas .lcars-frame--panel {
+      grid-template-areas:
+        "pcap pcap"
+        "pside ptop"
+        "split split"
+        "head head"
+        "edge side"
+        "edge main"
+        "foot foot";
+      grid-template-rows: auto auto auto auto auto 1fr auto;
+    }
+
+    .top-bar:has(.top-bar__tools:not(:empty), .top-bar__context:not(:empty), .top-bar__actions:not(:empty)) ~ .dialog-off-canvas-main-canvas .lcars-frame--panel::after {
+      grid-area: pcap;
+      box-sizing: border-box;
+      block-size: 4rem;
+      content: "";
+      border-block-start: var(--lcars-sidebar-width) solid var(--lcars-sidebar);
+      border-inline-start: var(--lcars-sidebar-width) solid var(--lcars-sidebar);
+      border-start-start-radius: var(--lcars-elbow-outer);
+    }
   }
 }

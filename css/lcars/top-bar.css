@@ -16,7 +16,8 @@
  * Drupal.displace() (the page moves to the right instead of down) and sets
  * the gap before each segment, its height and the rest of the column as
  * custom properties. Without the script, below 64rem and with items of other
- * modules in the bar, the bar of core stays.
+ * modules in the bar, the bar of core stays; below 64rem it closes in an L
+ * as the bottom elbow of the frame (before the contrast themes below).
  *
  * Core counts an ID in its rules (#extra-specificity-hack); so do these. The
  * segments take physical sizes and margins: the labels turn with
@@ -126,11 +127,11 @@ html[data-lcars-top-bar="strip"] :is(#extra-specificity-hack, .top-bar) .toolbar
 
 html[data-lcars-top-bar="strip"] :is(#extra-specificity-hack, .top-bar) .toolbar-badge {
   order: 1;
-  background: var(--lcars-message-warning);
+  background: var(--lcars-message-warning-button);
 }
 
 html[data-lcars-top-bar="strip"] :is(#extra-specificity-hack, .top-bar) .toolbar-badge--success {
-  background: var(--lcars-message-status);
+  background: var(--lcars-message-status-button);
 }
 
 html[data-lcars-top-bar="strip"] :is(#extra-specificity-hack, .top-bar) :is(.toolbar-button, .toolbar-badge):hover {
@@ -150,14 +151,18 @@ html[data-lcars-top-bar="strip"] :is(#extra-specificity-hack, .top-bar) .toolbar
   outline: 2px solid var(--lcars-accent);
 }
 
-/* Labels only, as the buttons of the frame; "More actions" keeps its dots. */
-html[data-lcars-top-bar="strip"] :is(#extra-specificity-hack, .top-bar) .toolbar-button--primary .toolbar-button__icon {
+/* Labels only, as the buttons of the frame; "More actions" keeps its dots,
+   drawn here: three of 6px side by side, 4px apart (user decision
+   06.11.2026), the dots of the icon of core are about 2px across. */
+html[data-lcars-top-bar="strip"] :is(#extra-specificity-hack, .top-bar) :is(.toolbar-button--primary, .toolbar-button--icon--dots) .toolbar-button__icon {
   display: none;
 }
 
-html[data-lcars-top-bar="strip"] :is(#extra-specificity-hack, .top-bar) .toolbar-button--icon--dots .toolbar-button__icon {
-  color: currentColor;
-  fill: currentColor;
+html[data-lcars-top-bar="strip"] :is(#extra-specificity-hack, .top-bar) .toolbar-button--icon--dots::before {
+  width: 1.875rem;
+  height: 0.375rem;
+  content: "";
+  background: radial-gradient(circle closest-side, currentColor 85%, transparent) 0 0 / 0.625rem 100% repeat-x;
 }
 
 /* The rest of the column, down to the seam above the bottom elbow of the
@@ -181,6 +186,60 @@ html[data-lcars-top-bar="strip"] :is(#extra-specificity-hack, .top-bar) .top-bar
   background: var(--lcars-sidebar);
 }
 
+/* Below 64rem the bar of core stays above the page and closes in an L as the
+   bottom elbow of the frame: the edge and the floor as wide as the edge of
+   the frame there (frame.css: 16px; user wish 06.11.2026, first 5px as the
+   panels of the right sidebar) and with the outer curve of its elbows
+   (--lcars-elbow-outer; the inner curve is the outer one less the edge),
+   as far from the window as the frame (frame.css: 1rem, below 40rem 0.5rem),
+   without the shadow of core and with 8px of air above and below instead of
+   4px (user decision 06.11.2026, variant E). Only where the bars take the
+   colors of the theme (navigation-scheme.css): "Dark", and "Auto" on a dark
+   system; with the white bar of "Light" the L would frame a white box.
+   The L and the elbow of the frame below it face each other as the two
+   elbows below the upper panel of the two-part screen do (frame.css), two
+   seams apart, 8px (user wish 06.11.2026; was the padding of the frame,
+   16px from 40rem). */
+html {
+  --lcars-top-bar-inset: 1rem;
+}
+
+@media (max-width: 39.9375rem) {
+  html {
+    --lcars-top-bar-inset: 0.5rem;
+  }
+}
+
+@media (max-width: 63.9375rem) {
+  html[data-lcars-navigation="dark"] :is(#extra-specificity-hack, [data-drupal-admin-styles]).top-bar {
+    margin-inline: var(--lcars-top-bar-inset);
+    padding-block: 0.5rem;
+    border-block-end: 1rem solid var(--lcars-sidebar);
+    border-inline-start: 1rem solid var(--lcars-sidebar);
+    border-end-start-radius: var(--lcars-elbow-outer);
+    box-shadow: none;
+  }
+
+  html[data-lcars-navigation="dark"] .top-bar:has(.top-bar__tools:not(:empty), .top-bar__context:not(:empty), .top-bar__actions:not(:empty)) ~ .dialog-off-canvas-main-canvas .lcars-frame {
+    padding-block-start: calc(2 * var(--lcars-seam));
+  }
+}
+
+@media (max-width: 63.9375rem) and (prefers-color-scheme: dark) {
+  html[data-lcars-navigation="auto"] :is(#extra-specificity-hack, [data-drupal-admin-styles]).top-bar {
+    margin-inline: var(--lcars-top-bar-inset);
+    padding-block: 0.5rem;
+    border-block-end: 1rem solid var(--lcars-sidebar);
+    border-inline-start: 1rem solid var(--lcars-sidebar);
+    border-end-start-radius: var(--lcars-elbow-outer);
+    box-shadow: none;
+  }
+
+  html[data-lcars-navigation="auto"] .top-bar:has(.top-bar__tools:not(:empty), .top-bar__context:not(:empty), .top-bar__actions:not(:empty)) ~ .dialog-off-canvas-main-canvas .lcars-frame {
+    padding-block-start: calc(2 * var(--lcars-seam));
+  }
+}
+
 /* Contrast themes of the system: the column keeps its forms as the frame
    does (forced-colors.css). */
 @media (forced-colors: active) {
@@ -190,8 +249,8 @@ html[data-lcars-top-bar="strip"] :is(#extra-specificity-hack, .top-bar) .top-bar
     --lcars-button-hover: Highlight;
     --lcars-on-color: ButtonFace;
     --lcars-accent: Highlight;
-    --lcars-message-status: CanvasText;
-    --lcars-message-warning: CanvasText;
+    --lcars-message-status-button: CanvasText;
+    --lcars-message-warning-button: CanvasText;
 
     forced-color-adjust: none;
   }

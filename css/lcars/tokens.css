@@ -31,6 +31,12 @@
   --lcars-message-status: #99d98c;
   --lcars-message-warning: #ffb366; /* apricot, apart from the gold of the focus ring, which is #ffd068 in High; black text at 11.89:1 (user decision 30.10.2026, variant A; was #ffd068, the light gold of --lcars-accent until 27.10.2026) */
   --lcars-message-error: #ff7a6b;
+  /* The same types as segments of the column of the top bar (top-bar.css):
+     as light as the blue buttons beside them (L* 53), hue and chroma of the
+     light tones kept, as the buttons of red alert (user wish 06.11.2026: the
+     light tones, L* 81 and 79, were too light there). */
+  --lcars-message-status-button: #4f8d46; /* black labels at 5.23:1 */
+  --lcars-message-warning-button: #b17025; /* black labels at 5.21:1 */
   /* The messages themselves (messages.css): a vivid tone of the type over the
      page, so the page blue shows through, with white text and icon (#49,
      variant H with white icons, user decision 03.11.2026). Mixed with the
@@ -92,15 +98,15 @@
   --lcars-elbow-corner-ratio: 1.16;
   --lcars-elbow-inner-ratio: 0.8;
   --lcars-bar-top: 2rem;
-  --lcars-bar-bottom: 1.5625rem; /* 25px */
+  --lcars-bar-bottom: 1.5625rem; /* 25px; up to a page of 1080px as high as the edge is wide (frame.css) */
   --lcars-curve: 2.5rem; /* 40px, height of the inner curve */
   --lcars-button-height: 2.125rem; /* 34px, a sidebar menu button without its seam (navigation.css); the form buttons since #43 (forms.css) */
   --lcars-button-large-height: 2.75rem; /* 44px, LCARS button component and login buttons */
   --lcars-button-large-width: 8rem; /* their minimum width */
   --lcars-target: 1.5rem; /* 24px: the smallest pointer target, as WCAG 2.2 (2.5.8) asks (#20, 29.10.2026) */
   --lcars-pill: 9999px; /* pill: a radius larger than any element */
-  --lcars-cap-inset: 2px; /* capitals cut into a bar stop this short of its top and bottom edge (user decision 23.10.2026) */
-  --lcars-title-height: 1.5625rem; /* 25px: the title bar of the page (frame.css) and the titles of the dashboard cards (dashboard.css), capitals 21px, smaller than the site name (28px); was --lcars-button-height, 34px */
+  --lcars-cap-inset: 1px; /* capitals cut into a bar stop this short of its top and bottom edge (user decision 06.11.2026, variant B, with Antonio; was 2px from 23.10.2026) */
+  --lcars-title-height: 1.5625rem; /* 25px: the title bar of the page (frame.css) and the titles of the dashboard cards (dashboard.css), capitals 23px, smaller than the site name (30px); was --lcars-button-height, 34px */
 
   /* Plain box (box.css) */
   --lcars-box-border-width: 1px;
@@ -119,7 +125,7 @@
     --lcars-elbow-outer: 1.75rem;
     --lcars-elbow-inner: 0.875rem;
     --lcars-bar-top: 1.5rem; /* 24px as the title bar, so the site name fits (user decision 24.10.2026) */
-    --lcars-title-height: 1.125rem; /* 18px: capitals 14px, as the panels of the right sidebar (#15, user decision 26.10.2026; was 24px with long titles in two lines); the dashboard cards too (#21, user wish 28.10.2026) */
+    --lcars-title-height: 1.125rem; /* 18px: capitals 16px, as the panels of the right sidebar (#15, user decision 26.10.2026; was 24px with long titles in two lines); the dashboard cards too (#21, user wish 28.10.2026) */
     --lcars-box-radius: var(--lcars-box-radius-small); /* boxes are narrower than 400px here */
   }
 }
@@ -139,6 +145,8 @@
   --lcars-field-border: var(--lcars-blue);
   --lcars-alert-frame: var(--lcars-alert); /* red alert in one red as before 03.11.2026, 4.97:1 */
   --lcars-alert-button: var(--lcars-alert);
+  --lcars-message-status-button: var(--lcars-message-status);
+  --lcars-message-warning-button: var(--lcars-message-warning);
 }
 
 :root[data-lcars-contrast="high"] {
@@ -152,6 +160,8 @@
   --lcars-code-comment: color-mix(in sRGB, var(--lcars-text) 70%, transparent); /* 8.87:1 */
   --lcars-alert-frame: var(--lcars-alert);
   --lcars-alert-button: var(--lcars-alert);
+  --lcars-message-status-button: var(--lcars-message-status);
+  --lcars-message-warning-button: var(--lcars-message-warning);
 }
 
 /* "As the system" (no attribute): High where the system of a visitor asks for
@@ -168,5 +178,7 @@
     --lcars-code-comment: color-mix(in sRGB, var(--lcars-text) 70%, transparent);
     --lcars-alert-frame: var(--lcars-alert);
     --lcars-alert-button: var(--lcars-alert);
+    --lcars-message-status-button: var(--lcars-message-status);
+    --lcars-message-warning-button: var(--lcars-message-warning);
   }
 }
