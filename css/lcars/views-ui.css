@@ -71,8 +71,8 @@
 
 /* Sections and settings a display overrides stand upright in the bronze of
    the marks instead of core's italics, which were their only sign (user
-   decision 05.11.2026, variant C; a gold bar before the line, as at the
-   current revision, and a bronze dot before the label were the others).
+   decision 05.11.2026, variant C; a gold bar before the line, as then at
+   the current revision, and a bronze dot before the label were the others).
    Links in them keep their color. */
 .views-ui-display-tab-bucket.overridden .views-ui-display-tab-bucket__title,
 .views-ui-display-tab-bucket .views-ui-display-tab-setting.overridden {

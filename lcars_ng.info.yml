@@ -72,7 +72,7 @@ libraries-override:
       theme:
         css/content_moderation.theme.css: false
   # Only the light yellow #ffc behind the current revision, under light text;
-  # css/lcars/table.css marks it instead.
+  # "Current revision" in Operations names it (css/lcars/table.css).
   node/drupal.node.admin:
     css:
       theme:

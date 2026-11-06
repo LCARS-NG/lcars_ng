@@ -305,9 +305,10 @@ details.lcars-display-modes .lcars-table-after {
    by the class revision-current on the row of the current revision, in
    easy_email on its cells; so on later pages of a pager without these
    rules). Cells, lines and headings as in all tables (above), text at the
-   start and the top; the current revision is marked by a gold bar at its start
-   instead of core's light yellow, which lcars_ng.info.yml removes (#16,
-   variant C1, user decision 26.10.2026). */
+   start and the top. The current revision has no mark of its own: core's
+   light yellow is removed (lcars_ng.info.yml), and "Current revision" in
+   Operations names it (user wish 06.11.2026; from 26.10.2026 a gold bar at
+   its start, #16, variant C1). */
 :is(.node-revision-table, table:has(> tbody .revision-current)) :is(td, th) {
   text-align: start;
   vertical-align: top;
@@ -317,19 +318,6 @@ details.lcars-display-modes .lcars-table-after {
 }
 :is(.node-revision-table, table:has(> tbody .revision-current)) .revision-log:empty {
   display: none;
-}
-
-:is(tr.revision-current, tr:has(> td.revision-current)) > td:first-child {
-  position: relative;
-}
-:is(tr.revision-current, tr:has(> td.revision-current)) > td:first-child::before {
-  position: absolute;
-  inset-block: 0.5em;
-  inset-inline-start: 0;
-  width: 0.375em;
-  content: "";
-  border-radius: var(--lcars-pill);
-  background: var(--lcars-accent);
 }
 
 /* Phones: Operations only as wide as its content, the button not stretched.

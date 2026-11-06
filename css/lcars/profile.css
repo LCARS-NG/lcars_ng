@@ -3,15 +3,23 @@
  * The page of a user account (user.html.twig, view mode full): picture and
  * "Member for" centered in a box as wide as they are, the box at the start
  * of the column (user decision 04.11.2026, variant D, the box at the start
- * instead of centered). Fields a site adds to the
- * account stay in the reading direction. The corners follow the width of the
- * box (js/box-radius.js).
+ * instead of centered). The box is square, as high as it is wide, with its
+ * content centered in the height (user wish 06.11.2026); more content, such as
+ * fields a site adds to the account, makes it higher. Those fields stay in
+ * the reading direction. The corners follow the width of the box
+ * (js/box-radius.js).
  */
 
 .profile--view-mode-full {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* Square including padding and border, not just the content. */
+  box-sizing: border-box;
   width: fit-content;
   min-width: 12rem;
   max-width: 100%;
+  aspect-ratio: 1;
   padding: 1.5rem 2rem 1.25rem;
   border: var(--lcars-box-border-width) solid var(--lcars-box-border-color);
   border-radius: var(--lcars-box-radius);
