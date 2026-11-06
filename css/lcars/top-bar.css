@@ -1,0 +1,202 @@
+/**
+ * @file
+ * The top bar of the Navigation module as an LCARS column beside the sidebar.
+ *
+ * From 64rem the bar (title, status, Edit, "More actions") no longer lies
+ * across the top of the page but stands as a column of segments between the
+ * sidebar of the Navigation module and the frame: the status at the top
+ * (beside the round top elbow of the frame below a cap), below it "More
+ * actions", then Edit, the rest in the color of the frame and a last segment
+ * beside the bottom elbow, round at its end. The segments end at the seams
+ * of the column of the frame beside them; their labels stand upright like a
+ * spine, the title is left to the frame (user decision 06.11.2026).
+ *
+ * js/top-bar.js switches the column on: it sets data-lcars-top-bar="strip" on
+ * html, moves the bar from data-offset-top to data-offset-left for
+ * Drupal.displace() (the page moves to the right instead of down) and sets
+ * the gap before each segment, its height and the rest of the column as
+ * custom properties. Without the script, below 64rem and with items of other
+ * modules in the bar, the bar of core stays.
+ *
+ * Core counts an ID in its rules (#extra-specificity-hack); so do these. The
+ * segments take physical sizes and margins: the labels turn with
+ * writing-mode, and logical properties would turn with them.
+ */
+
+html[data-lcars-top-bar="strip"] {
+  /* The page no longer moves down for the bar (top-bar.css of core, the
+     offset of the frame in frame.css). */
+  --admin-toolbar-top-bar-height: 0px;
+}
+
+html[data-lcars-top-bar="strip"] :is(#extra-specificity-hack, [data-drupal-admin-styles]).top-bar {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: var(--admin-toolbar-sidebar-width);
+  display: block;
+  box-sizing: content-box;
+  inline-size: 3.5rem;
+  block-size: auto;
+  padding-block: 0;
+  padding-inline: 1rem 0; /* as far from the sidebar as the frame from the column */
+  border: 0;
+  background: none;
+  box-shadow: none;
+}
+
+[data-admin-toolbar-transitions][data-lcars-top-bar="strip"] :is(#extra-specificity-hack, [data-drupal-admin-styles]).top-bar {
+  transition: inset-inline-start var(--admin-toolbar-transition);
+}
+
+html[data-lcars-top-bar="strip"] :is(#extra-specificity-hack, .top-bar) .top-bar__content {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+}
+
+html[data-lcars-top-bar="strip"] :is(#extra-specificity-hack, .top-bar) :is(.top-bar__context, .top-bar__actions) {
+  display: contents;
+}
+
+/* The cap beside the round top elbow of the frame: the empty tools region
+   (js/top-bar.js keeps the bar of core when it has items), 0 high where the
+   frame starts with the upper panel. */
+html[data-lcars-top-bar="strip"] :is(#extra-specificity-hack, .top-bar) .top-bar__tools {
+  display: block;
+  order: 0;
+  height: var(--lcars-top-bar-size, 0);
+  margin-top: var(--lcars-top-bar-gap, 0);
+  border-start-start-radius: var(--lcars-pill);
+  border-start-end-radius: var(--lcars-pill);
+  background: var(--lcars-sidebar);
+}
+
+/* The frame names the page in its title bar already; screen readers keep
+   the title of the bar. */
+html[data-lcars-top-bar="strip"] :is(#extra-specificity-hack, .top-bar) .top-bar__title {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  inline-size: 1px;
+  block-size: 1px;
+  white-space: nowrap;
+}
+
+html[data-lcars-top-bar="strip"] :is(#extra-specificity-hack, .top-bar) :is(.toolbar-button, .toolbar-badge) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  height: var(--lcars-top-bar-size, auto);
+  min-height: 0;
+  margin: var(--lcars-top-bar-gap, var(--lcars-seam)) 0 0;
+  padding: 0.5rem 0;
+  letter-spacing: normal;
+  text-transform: uppercase;
+  color: var(--lcars-on-color);
+  border: 0;
+  border-radius: 0;
+  outline-offset: 2px;
+  background: var(--lcars-button);
+  font-family: var(--lcars-font-label);
+  font-size: 1rem;
+  font-weight: bold;
+  font-variation-settings: normal;
+  line-height: 1;
+  writing-mode: sideways-lr;
+}
+
+html[data-lcars-top-bar="strip"] :is(#extra-specificity-hack, .top-bar) .toolbar-button--primary {
+  order: 3;
+}
+
+/* Without a status Edit moves to the top. */
+html[data-lcars-top-bar="strip"] :is(#extra-specificity-hack, .top-bar):not(:has(.toolbar-badge)) .toolbar-button--primary {
+  order: 1;
+}
+
+html[data-lcars-top-bar="strip"] :is(#extra-specificity-hack, .top-bar) .toolbar-button--icon--dots {
+  order: 2;
+  padding: 0;
+  writing-mode: horizontal-tb;
+}
+
+html[data-lcars-top-bar="strip"] :is(#extra-specificity-hack, .top-bar) .toolbar-badge {
+  order: 1;
+  background: var(--lcars-message-warning);
+}
+
+html[data-lcars-top-bar="strip"] :is(#extra-specificity-hack, .top-bar) .toolbar-badge--success {
+  background: var(--lcars-message-status);
+}
+
+html[data-lcars-top-bar="strip"] :is(#extra-specificity-hack, .top-bar) :is(.toolbar-button, .toolbar-badge):hover {
+  color: var(--lcars-on-color);
+  outline: 0;
+}
+
+html[data-lcars-top-bar="strip"] :is(#extra-specificity-hack, .top-bar) .toolbar-button:is(:hover, [aria-expanded="true"]) {
+  background: var(--lcars-button-hover);
+}
+
+html[data-lcars-top-bar="strip"] :is(#extra-specificity-hack, .top-bar) .toolbar-button:focus {
+  outline: 0;
+}
+
+html[data-lcars-top-bar="strip"] :is(#extra-specificity-hack, .top-bar) .toolbar-button:focus-visible {
+  outline: 2px solid var(--lcars-accent);
+}
+
+/* Labels only, as the buttons of the frame; "More actions" keeps its dots. */
+html[data-lcars-top-bar="strip"] :is(#extra-specificity-hack, .top-bar) .toolbar-button--primary .toolbar-button__icon {
+  display: none;
+}
+
+html[data-lcars-top-bar="strip"] :is(#extra-specificity-hack, .top-bar) .toolbar-button--icon--dots .toolbar-button__icon {
+  color: currentColor;
+  fill: currentColor;
+}
+
+/* The rest of the column, down to the seam above the bottom elbow of the
+   frame, and a last segment beside the elbow, round at its bottom edge
+   (user decision 06.11.2026). */
+html[data-lcars-top-bar="strip"] :is(#extra-specificity-hack, .top-bar) .top-bar__content::after {
+  order: 4;
+  height: var(--lcars-top-bar-rest, 0);
+  margin-top: var(--lcars-top-bar-rest-gap, 0);
+  content: "";
+  background: var(--lcars-sidebar);
+}
+
+html[data-lcars-top-bar="strip"] :is(#extra-specificity-hack, .top-bar) .top-bar__content::before {
+  order: 5;
+  height: var(--lcars-top-bar-last, 0);
+  margin-top: var(--lcars-top-bar-last-gap, 0);
+  content: "";
+  border-end-start-radius: var(--lcars-pill);
+  border-end-end-radius: var(--lcars-pill);
+  background: var(--lcars-sidebar);
+}
+
+/* Contrast themes of the system: the column keeps its forms as the frame
+   does (forced-colors.css). */
+@media (forced-colors: active) {
+  html[data-lcars-top-bar="strip"] .top-bar {
+    --lcars-sidebar: CanvasText;
+    --lcars-button: ButtonText;
+    --lcars-button-hover: Highlight;
+    --lcars-on-color: ButtonFace;
+    --lcars-accent: Highlight;
+    --lcars-message-status: CanvasText;
+    --lcars-message-warning: CanvasText;
+
+    forced-color-adjust: none;
+  }
+
+  html[data-lcars-top-bar="strip"] :is(#extra-specificity-hack, .top-bar) .toolbar-badge {
+    color: Canvas;
+  }
+}

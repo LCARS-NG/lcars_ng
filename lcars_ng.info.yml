@@ -28,6 +28,7 @@ libraries-extend:
     - lcars_ng/admin
   navigation/internal.navigation:
     - lcars_ng/navigation-scheme
+    - lcars_ng/top-bar
   project_browser/app:
     - lcars_ng/project-browser
   dashboard/dashboard:

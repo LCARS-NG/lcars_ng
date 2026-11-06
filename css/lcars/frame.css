@@ -34,7 +34,8 @@
    A top bar without (Gin's template, which LcarsNgHooks::themeRegistryAlter()
    replaces where gin_toolbar sets it) counts here instead. The frame then
    ends at the bottom of the window too; longer pages scroll as before (user
-   decision 24.10.2026). */
+   decision 24.10.2026). As a column beside the sidebar (top-bar.css, since
+   06.11.2026) the bar sets its height to 0 and offsets nothing here. */
 @media (min-width: 64rem) {
   .top-bar:not([data-offset-top]):has(.top-bar__tools:not(:empty), .top-bar__context:not(:empty), .top-bar__actions:not(:empty)) ~ .dialog-off-canvas-main-canvas .lcars-frame {
     --lcars-frame-offset: var(--admin-toolbar-top-bar-height, 0px);

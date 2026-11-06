@@ -52,6 +52,16 @@ navigation-scheme:
   css:
     theme:
       css/lcars/navigation-scheme.css: {  }
+top-bar:
+  css:
+    theme:
+      css/lcars/top-bar.css: {  }
+  js:
+    js/top-bar.js: {  }
+  dependencies:
+    - core/drupal
+    - core/drupal.displace
+    - core/once
 dropbutton:
   version: VERSION
   css:
