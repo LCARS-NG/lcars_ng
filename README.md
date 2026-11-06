@@ -22,10 +22,10 @@ text, so it looks the same in every browser and on every system.
   <a href="images/screenshots/dashboard.png"><img src="images/screenshots/dashboard.png" width="49%" alt="The dashboard in LCARS-NG with the contrast setting Standard: cards for recent content and top tasks, below them announcements and the Drupal events as an agenda"></a>
 </p>
 
-<p>
-  <a href="images/screenshots/login.png"><img src="images/screenshots/login.png" width="62.5%" alt="The front page of LCARS-NG for visitors who are not signed in: between a bar at the top and one at the bottom, a box with the logo on its disc, site name and slogan, below it a box with the login form and the link Reset your password"></a>
-  <a href="images/screenshots/mobile-login.png"><img src="images/screenshots/mobile-login.png" width="17.5%" alt="The same login on a phone: both bars, the box with logo, site name and slogan and the box with the login form, narrower and one below the other"></a>
-  <a href="images/screenshots/mobile-front-page.png"><img src="images/screenshots/mobile-front-page.png" width="17.5%" alt="LCARS-NG front page on a phone for signed-in users: the top bar of Drupal closed by an elbow, below it the upper panel with logo, site name, slogan and status line between two elbows, the menu as a grid of buttons and the title bar of the page"></a>
+<p align="center">
+  <a href="images/screenshots/login-portrait.png"><img src="images/screenshots/login-portrait.png" width="45%" alt="The login page of the demo site in a portrait window: between a bar at the top and one at the bottom, a box with the logo on its disc, site name and slogan, below it a box with the login form, the guest account filled in"></a>
+  &emsp;
+  <a href="images/screenshots/front-page-portrait.png"><img src="images/screenshots/front-page-portrait.png" width="45%" alt="The front page of the demo site in a portrait window, signed in as guest: the top bar of Drupal closed by an elbow, below it the upper panel with logo, site name, slogan and status line between two elbows, the menu as a grid of buttons, the title bar of the page and the text"></a>
 </p>
 
 - To see the theme on a live site, visit the
