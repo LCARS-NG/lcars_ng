@@ -23,8 +23,9 @@ text, so it looks the same in every browser and on every system.
 </p>
 
 <p>
-  <a href="images/screenshots/login.png"><img src="images/screenshots/login.png" width="76%" alt="The login page of LCARS-NG: between a bar at the top and one at the bottom, a box with the logo on its disc, site name and slogan, below it a box with the tabs Log in and Reset your password and the login form"></a>
-  <a href="images/screenshots/mobile-front-page.png"><img src="images/screenshots/mobile-front-page.png" width="22%" alt="LCARS-NG front page on a phone for signed-in users: the top bar of Drupal closed by an elbow, below it the upper panel with logo, site name, slogan and status line between two elbows, the menu as a grid of buttons and the title bar of the page"></a>
+  <a href="images/screenshots/login.png"><img src="images/screenshots/login.png" width="62.5%" alt="The front page of LCARS-NG for visitors who are not signed in: between a bar at the top and one at the bottom, a box with the logo on its disc, site name and slogan, below it a box with the login form and the link Reset your password"></a>
+  <a href="images/screenshots/mobile-login.png"><img src="images/screenshots/mobile-login.png" width="17.5%" alt="The same login on a phone: both bars, the box with logo, site name and slogan and the box with the login form, narrower and one below the other"></a>
+  <a href="images/screenshots/mobile-front-page.png"><img src="images/screenshots/mobile-front-page.png" width="17.5%" alt="LCARS-NG front page on a phone for signed-in users: the top bar of Drupal closed by an elbow, below it the upper panel with logo, site name, slogan and status line between two elbows, the menu as a grid of buttons and the title bar of the page"></a>
 </p>
 
 - To see the theme on a live site, visit the
