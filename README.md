@@ -15,7 +15,7 @@ screens, for mouse and touch: it fills the window on short pages, and longer
 pages scroll. It follows the settings of the system for more contrast,
 contrast themes and reduced motion. It brings its own typefaces, the narrow
 Antonio for bars, titles, buttons, menus and tabs and Inter for the running
-text, so it looks the same in every browser and on every system.
+text, so it looks the same in every supported browser and on every system.
 
 <p>
   <a href="images/screenshots/front-page.png"><img src="images/screenshots/front-page.png" width="49%" alt="LCARS-NG front page for signed-in users with the contrast setting Standard, with the collapsed Navigation of Drupal on the left and its top bar as an LCARS column of segments (status, more actions, Edit): upper panel with logo, site name and slogan, status line with date and user, menu buttons on the left, content and panels below"></a>
@@ -40,6 +40,13 @@ text, so it looks the same in every browser and on every system.
 ## Requirements
 
 This theme requires no modules outside of Drupal core (11.4 or later).
+
+It supports the same browsers as Drupal core (the `browserslist` in
+`core/package.json`): the last two major versions of Chrome, Edge, Firefox,
+Safari, Opera and Safari on iOS, the latest Chrome for Android and Samsung
+Internet, and Firefox ESR. Firefox ESR and Samsung Internet do not support
+`text-box` yet: there the capitals cut into the bars sit a little lower, and
+in Samsung Internet, which also lacks `font-size-adjust`, they are smaller.
 
 
 ## Recommended modules
