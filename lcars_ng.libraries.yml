@@ -144,6 +144,7 @@ global:
       css/lcars/table.css: {  }
       css/lcars/box.css: {  }
       css/lcars/code.css: {  }
+      css/lcars/text.css: {  }
       css/lcars/archive.css: {  }
       css/lcars/search.css: {  }
       css/lcars/pager.css: {  }

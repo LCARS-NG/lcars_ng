@@ -4,7 +4,7 @@
  *
  * Colors and frame geometry are taken from the Drupal 6 theme LCNG (2011,
  * css/page.css and css/style.css). Every other file uses these properties;
- * alert.css swaps the colors for red alert.
+ * alert.css swaps the colors for red and yellow alert.
  */
 
 :root {
@@ -27,6 +27,13 @@
      vivid as the steel blue, and glared. */
   --lcars-alert-frame: #c82439; /* frame, bars and title bar: as light as the steel blue of the frame (L* 44), 3.13:1 */
   --lcars-alert-button: #e5424d; /* menu and form buttons: as light as the blue buttons (L* 53), black labels at 5.22:1 */
+  /* Yellow alert (alert.css): the page not found in the orange of warnings
+     (#54, user decisions 07.11.2026, variant 4 and B). One step lighter than
+     the steps of red alert: at the lightness of the frame (L* 44, #975a0b)
+     the orange turned brown, near the bronze of the focus ring. */
+  --lcars-yellow-alert: var(--lcars-message-warning); /* text, titles, labels and links: the apricot of warnings, 9.87:1 */
+  --lcars-yellow-alert-frame: var(--lcars-message-warning-button); /* frame, bars and title bar: the warning segment of the top bar, as light as the blue buttons (L* 53), 4.33:1 */
+  --lcars-yellow-alert-button: #e1891e; /* menu and form buttons: L* 65, the hue of the warning tones, black labels at 7.8:1 */
   /* Type colors of status, warning and error, light tones (user decision 24.10.2026): text and marks in their color (status report, password strength, list of modules), black text on them (preview bar); until 03.11.2026 also the fill of the messages */
   --lcars-message-status: #99d98c;
   --lcars-message-warning: #ffb366; /* apricot, apart from the gold of the focus ring, which is #ffd068 in High; black text at 11.89:1 (user decision 30.10.2026, variant A; was #ffd068, the light gold of --lcars-accent until 27.10.2026) */
@@ -145,6 +152,8 @@
   --lcars-field-border: var(--lcars-blue);
   --lcars-alert-frame: var(--lcars-alert); /* red alert in one red as before 03.11.2026, 4.97:1 */
   --lcars-alert-button: var(--lcars-alert);
+  --lcars-yellow-alert-frame: var(--lcars-yellow-alert); /* yellow alert likewise in one tone, 9.87:1 */
+  --lcars-yellow-alert-button: var(--lcars-yellow-alert);
   --lcars-message-status-button: var(--lcars-message-status);
   --lcars-message-warning-button: var(--lcars-message-warning);
 }
@@ -160,6 +169,8 @@
   --lcars-code-comment: color-mix(in sRGB, var(--lcars-text) 70%, transparent); /* 8.87:1 */
   --lcars-alert-frame: var(--lcars-alert);
   --lcars-alert-button: var(--lcars-alert);
+  --lcars-yellow-alert-frame: var(--lcars-yellow-alert);
+  --lcars-yellow-alert-button: var(--lcars-yellow-alert);
   --lcars-message-status-button: var(--lcars-message-status);
   --lcars-message-warning-button: var(--lcars-message-warning);
 }
@@ -178,6 +189,8 @@
     --lcars-code-comment: color-mix(in sRGB, var(--lcars-text) 70%, transparent);
     --lcars-alert-frame: var(--lcars-alert);
     --lcars-alert-button: var(--lcars-alert);
+    --lcars-yellow-alert-frame: var(--lcars-yellow-alert);
+    --lcars-yellow-alert-button: var(--lcars-yellow-alert);
     --lcars-message-status-button: var(--lcars-message-status);
     --lcars-message-warning-button: var(--lcars-message-warning);
   }

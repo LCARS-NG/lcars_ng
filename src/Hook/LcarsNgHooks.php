@@ -67,12 +67,15 @@ class LcarsNgHooks {
   ];
 
   /**
-   * Routes rendered in red alert (alert.css).
+   * Routes rendered in an alert (alert.css), with its color.
+   *
+   * A page not found is a warning, as core logs it, and shows in yellow
+   * alert; denied access in red alert (#54).
    */
   private const ALERT_ROUTES = [
-    'system.401',
-    'system.403',
-    'system.404',
+    'system.401' => 'red',
+    'system.403' => 'red',
+    'system.404' => 'yellow',
   ];
 
   /**
@@ -163,8 +166,13 @@ class LcarsNgHooks {
     if ($this->isLoginPage()) {
       $variables['attributes']['class'][] = 'lcars-login-page';
     }
-    if (in_array($this->routeMatch->getRouteName(), self::ALERT_ROUTES, TRUE)) {
+    // The route name can be NULL; PHP 8.5 deprecates NULL as an array key.
+    $alert = self::ALERT_ROUTES[(string) $this->routeMatch->getRouteName()] ?? NULL;
+    if ($alert !== NULL) {
       $variables['attributes']['class'][] = 'lcars-alert';
+      if ($alert === 'yellow') {
+        $variables['attributes']['class'][] = 'lcars-alert--yellow';
+      }
     }
     // Colors of the Navigation module (css/lcars/navigation-scheme.css): dark
     // unless a site chose light; sites from before the setting have none.

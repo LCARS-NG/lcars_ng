@@ -128,7 +128,8 @@ The theme chooses its layout per page:
 - **Two-part screen** on the front page for signed-in users and on user
   profiles: an upper panel with site name, logo and slogan, a status line with
   date, time and the signed-in user, the content below.
-- **Red alert** on the pages for 401, 403 and 404.
+- **Red alert** on the pages for 401 and 403, **yellow alert** (orange) on
+  the page not found (404).
 
 Regions:
 

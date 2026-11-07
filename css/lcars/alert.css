@@ -1,7 +1,7 @@
 /**
  * @file
- * Red alert: error pages (401, 403, 404) turn the frame red, as .page-error
- * in LCNG.
+ * Red alert: error pages (401, 403) turn the frame red, as .page-error in
+ * LCNG; yellow alert: the page not found (404) turns it orange.
  */
 
 /* Tokens declared on :root as var(--lcars-frame) and the like keep the value
@@ -24,6 +24,16 @@
   --lcars-heading: var(--lcars-alert);
   --lcars-link: var(--lcars-alert);
   --lcars-link-hover: color-mix(in sRGB, var(--lcars-alert), #fff 35%);
+}
+
+/* Yellow alert (#54, user decisions 07.11.2026, variant 4 and B): a page not
+   found is a warning, as core logs it, and takes the orange of warnings;
+   denied access stays in red alert. The rules of red alert take the orange
+   through its three tokens, set on the same element. */
+.lcars-alert--yellow {
+  --lcars-alert: var(--lcars-yellow-alert);
+  --lcars-alert-frame: var(--lcars-yellow-alert-frame);
+  --lcars-alert-button: var(--lcars-yellow-alert-button);
 }
 
 .lcars-alert .lcars-main {

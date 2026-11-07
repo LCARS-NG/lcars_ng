@@ -37,6 +37,7 @@
     '.pb-project',
     '.layout-builder',
     '.text-formatted pre',
+    '.text-formatted .footnotes',
     '.profile--view-mode-full',
     '.lcars-search > .view-filters',
     '.view:not(.lcars-search) > .view-filters',
