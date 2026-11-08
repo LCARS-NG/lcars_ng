@@ -4,6 +4,7 @@ namespace Drupal\lcars_ng\Hook;
 
 use Drupal\block\BlockInterface;
 use Drupal\Component\Render\MarkupInterface;
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Extension\ModuleExtensionList;
@@ -25,6 +26,7 @@ use Drupal\lcars_ng\StatusLine;
 use Drupal\node\NodeInterface;
 use Drupal\user\Form\UserLoginForm;
 use Drupal\user\UserInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Hook implementations for lcars_ng.
@@ -50,6 +52,13 @@ class LcarsNgHooks {
     'dblog.access_denied',
     'dblog.page_not_found',
     'dblog.search',
+  ];
+
+  /**
+   * Routes of the tables of violation reports (contrib Reporting API).
+   */
+  private const VIOLATION_REPORT_ROUTES = [
+    'reporting.dblog.overview',
   ];
 
   /**
@@ -99,6 +108,7 @@ class LcarsNgHooks {
     private readonly FileUrlGeneratorInterface $fileUrlGenerator,
     private readonly ModuleExtensionList $moduleList,
     private readonly RouteProviderInterface $routeProvider,
+    private readonly RequestStack $requestStack,
   ) {}
 
   /**
@@ -352,9 +362,20 @@ class LcarsNgHooks {
    * lcars-log-messages: their messages name paths and classes without a
    * space, which table.css lets break anywhere, so the table fits the golden
    * section of the page (05.11.2026; the longest made it 947px wide). Core
-   * gives these tables no class of their own. Tables that need more room
-   * than the golden section (the plugins of Metatag, 1299px) get the class
-   * lcars-table-wide, which keeps their page at the full width (frame.css).
+   * gives these tables no class of their own. The violation reports of the
+   * Reporting API module (Recent violation reports) get the class
+   * lcars-violation-reports: the date in two lines, the day above the time
+   * (the " - " of the date format between them drops), the location as a
+   * path without scheme and host when it is on this site, breaking anywhere,
+   * and columns with the same value in every row left out, so the table
+   * fits the golden section (08.11.2026; a URL with a reset token made it
+   * 1284px wide, Operations was cut off, and date and type took five and two
+   * lines; user wishes: the time in a second line, more room for the
+   * location, variant C of four: the path breaking anywhere, not the URL,
+   * and not on one line with an ellipsis; preprocessViolationReports()).
+   * Tables that need more room than the golden section (the plugins of
+   * Metatag, 1299px) get the class lcars-table-wide, which keeps their page
+   * at the full width (frame.css).
    */
   #[Hook('preprocess_table')]
   public function preprocessTable(array &$variables): void {
@@ -364,6 +385,11 @@ class LcarsNgHooks {
     if (in_array($route, self::LOG_MESSAGE_ROUTES, TRUE)) {
       $classes[] = 'lcars-log-messages';
       $variables['attributes']['class'] = $classes;
+    }
+    elseif (in_array($route, self::VIOLATION_REPORT_ROUTES, TRUE)) {
+      $classes[] = 'lcars-violation-reports';
+      $variables['attributes']['class'] = $classes;
+      $this->preprocessViolationReports($variables);
     }
     elseif (in_array($route, self::WIDE_TABLE_ROUTES, TRUE)) {
       $classes[] = 'lcars-table-wide';
@@ -387,6 +413,64 @@ class LcarsNgHooks {
         ->addCacheTags(['config:lcars_ng.settings'])
         ->applyTo($variables);
     }
+  }
+
+  /**
+   * Prepares the cells of the violation reports (Reporting API).
+   *
+   * The module gives its columns no classes: endpoint, date, type,
+   * disposition, location, operations. The date gets the class
+   * lcars-violation-reports__date and two spans, day and time (table.css sets
+   * them in two lines); the location the class
+   * lcars-violation-reports__location and, when it is on this site, only its
+   * path. Endpoint, type and disposition are left out when every row of the
+   * page has the same value in them (user wish 08.11.2026: with one endpoint
+   * and the report-only policy they read csp, csp-violation and report in
+   * every row); a column comes back on a page whose rows differ, as enforce
+   * beside report once the policy is enforced.
+   */
+  private function preprocessViolationReports(array &$variables): void {
+    $header = $variables['header'] ?? [];
+    $rows = $variables['rows'] ?? [];
+    // Only the six columns of the module, not the message of an empty table.
+    if (count($header) !== 6 || $rows === [] || array_filter($rows, static fn(array $row): bool => count($row['cells'] ?? []) !== 6)) {
+      return;
+    }
+    $host = $this->requestStack->getCurrentRequest()?->getSchemeAndHttpHost() ?? '';
+    foreach ($rows as &$row) {
+      $date = $row['cells'][1]['content'];
+      if (is_string($date) && str_contains($date, ' - ')) {
+        [$day, $time] = explode(' - ', $date, 2);
+        $row['cells'][1]['content'] = [
+          '#markup' => '<span>' . Html::escape($day) . '</span> <span>' . Html::escape($time) . '</span>',
+        ];
+      }
+      $row['cells'][1]['attributes']->addClass('lcars-violation-reports__date');
+      $location = $row['cells'][4]['content'];
+      if ($host !== '' && is_string($location) && str_starts_with($location, $host . '/')) {
+        $row['cells'][4]['content'] = substr($location, strlen($host));
+      }
+      $row['cells'][4]['attributes']->addClass('lcars-violation-reports__location');
+    }
+    unset($row);
+
+    foreach ([0, 2, 3] as $column) {
+      $values = array_column(array_column(array_column($rows, 'cells'), $column), 'content');
+      if (count(array_filter($values, 'is_scalar')) !== count($values) || count(array_unique(array_map('strval', $values))) !== 1) {
+        continue;
+      }
+      unset($header[$column]);
+      foreach ($rows as &$row) {
+        unset($row['cells'][$column]);
+      }
+      unset($row);
+    }
+    $variables['header'] = array_values($header);
+    $variables['header_columns'] = count($header);
+    $variables['rows'] = array_map(static function (array $row): array {
+      $row['cells'] = array_values($row['cells']);
+      return $row;
+    }, $rows);
   }
 
   /**

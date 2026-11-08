@@ -34,6 +34,22 @@ tbody td {
   overflow-wrap: anywhere;
 }
 
+/* Violation reports of the Reporting API module (Recent violation reports;
+   classes from preprocess_table, 08.11.2026; user wishes: the date in two
+   lines, day above time, for more room for the location; endpoint, type and
+   disposition only when their rows differ, the type then wrapping as it
+   comes). The location (a path on this site, preprocess_table drops scheme
+   and host) breaks anywhere, so the table fits the golden section with
+   Operations visible. */
+.lcars-violation-reports__date span {
+  display: block;
+  white-space: nowrap;
+}
+
+.lcars-violation-reports__location {
+  overflow-wrap: anywhere;
+}
+
 /* Column headings as labels: capitals in the frame color, not bold, at the
    start like the cells, as in the revision overviews, the token browser and
    the labels of forms (variant D, user decision 29.10.2026). Sortable
