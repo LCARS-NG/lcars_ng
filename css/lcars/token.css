@@ -5,7 +5,8 @@
  * token.treetable.theme.css, made for light themes, gives the rows of the
  * groups a light gray behind the light text, and core's jQuery UI theme sets
  * dark links and Arial in dialogs. Here: rows without a background, divided
- * by the line of the form fields, tokens as code in the frame color as they
+ * by the line of boxes as all tables (table.css; until 08.11.2026 the line
+ * of the form fields), tokens as code in the frame color as they
  * are typed, arrows as masks (user decision 25.10.2026). The stylesheet of
  * the module stays: its arrows and indents build the tree.
  */
@@ -38,7 +39,7 @@
   padding-inline-start: 1.5em;
 }
 .token-tree tbody td {
-  border-top: 1px solid var(--lcars-field-border);
+  border-top: 1px solid var(--lcars-box-border-color);
 }
 
 table.treetable tr.branch {

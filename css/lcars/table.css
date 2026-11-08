@@ -9,7 +9,10 @@
    the cells, as in the revision overviews and the token browser (variant D,
    user decision 29.10.2026). Before, the cells kept the 1px of the browser,
    and text touched the edge of a selected row. Tables with rules of their
-   own below and in token.css and drupical.css keep theirs. */
+   own below and in token.css and drupical.css keep theirs. The lines between
+   the rows take the color of the line around boxes, in which most tables
+   stand, in every contrast level (user wish 08.11.2026; until then the
+   lighter line of the form fields, --lcars-field-border). */
 table {
   border-collapse: collapse;
 }
@@ -20,7 +23,7 @@ td {
 }
 
 tbody td {
-  border-top: 1px solid var(--lcars-field-border);
+  border-top: 1px solid var(--lcars-box-border-color);
 }
 
 /* The most frequent log messages name paths and classes without a space:
