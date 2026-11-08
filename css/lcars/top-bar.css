@@ -17,7 +17,8 @@
  * the gap before each segment, its height and the rest of the column as
  * custom properties. Without the script, below 64rem and with items of other
  * modules in the bar, the bar of core stays; below 64rem it closes in an L
- * as the bottom elbow of the frame (before the contrast themes below).
+ * as the bottom elbow of the frame (before the contrast themes below). Its
+ * title is for screen readers only, as in the column.
  *
  * Core counts an ID in its rules (#extra-specificity-hack); so do these. The
  * segments take physical sizes and margins: the labels turn with
@@ -74,8 +75,10 @@ html[data-lcars-top-bar="strip"] :is(#extra-specificity-hack, .top-bar) .top-bar
 }
 
 /* The frame names the page in its title bar already; screen readers keep
-   the title of the bar. */
-html[data-lcars-top-bar="strip"] :is(#extra-specificity-hack, .top-bar) .top-bar__title {
+   the title of the bar. So in the bar of core too (below 64rem, with items
+   of other modules), where the title stood on one line, cut with "…" on
+   phones (user wish 08.11.2026). */
+html :is(#extra-specificity-hack, .top-bar) .top-bar__title {
   position: absolute;
   overflow: hidden;
   clip: rect(0 0 0 0);
