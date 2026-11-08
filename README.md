@@ -18,14 +18,34 @@ Antonio for bars, titles, buttons, menus and tabs and Inter for the running
 text, so it looks the same in every supported browser and on every system.
 
 <p>
-  <a href="images/screenshots/front-page.png"><img src="images/screenshots/front-page.png" width="49%" alt="LCARS-NG front page for signed-in users with the contrast setting Standard, with the collapsed Navigation of Drupal on the left and its top bar as an LCARS column of segments (status, more actions, Edit): upper panel with logo, site name and slogan, status line with date and user, menu buttons on the left, content and panels below"></a>
-  <a href="images/screenshots/dashboard.png"><img src="images/screenshots/dashboard.png" width="49%" alt="The dashboard in LCARS-NG with the contrast setting Standard: cards for recent content and top tasks, below them announcements and the Drupal events as an agenda"></a>
+  <a href="images/screenshots/front-page.png"><img
+    src="images/screenshots/front-page.png" width="49%"
+    alt="LCARS-NG front page for signed-in users with the contrast setting
+    Standard, with the collapsed Navigation of Drupal on the left and its top
+    bar as an LCARS column of segments (status, more actions, Edit): upper panel
+    with logo, site name and slogan, status line with date and user, menu
+    buttons on the left, content and panels below"></a>
+  <a href="images/screenshots/dashboard.png"><img
+    src="images/screenshots/dashboard.png" width="49%"
+    alt="The dashboard in LCARS-NG with the contrast setting Standard: cards for
+    recent content and top tasks, below them announcements and the Drupal events
+    as an agenda"></a>
 </p>
 
 <p align="center">
-  <a href="images/screenshots/login-portrait.png"><img src="images/screenshots/login-portrait.png" width="45%" alt="The login page of the demo site in a portrait window: between a bar at the top and one at the bottom, a box with the logo on its disc, site name and slogan, below it a box with the login form, the guest account filled in"></a>
+  <a href="images/screenshots/login-portrait.png"><img
+    src="images/screenshots/login-portrait.png" width="45%"
+    alt="The login page of the demo site in a portrait window: between a bar at
+    the top and one at the bottom, a box with the logo on its disc, site name
+    and slogan, below it a box with the login form, the guest account filled
+    in"></a>
   &emsp;
-  <a href="images/screenshots/front-page-portrait.png"><img src="images/screenshots/front-page-portrait.png" width="45%" alt="The front page of the demo site in a portrait window, signed in as guest: the top bar of Drupal closed by an elbow, below it the upper panel with logo, site name, slogan and status line between two elbows, the menu as a grid of buttons, the title bar of the page and the text"></a>
+  <a href="images/screenshots/front-page-portrait.png"><img
+    src="images/screenshots/front-page-portrait.png" width="45%"
+    alt="The front page of the demo site in a portrait window, signed in as
+    guest: the top bar of Drupal closed by an elbow, below it the upper panel
+    with logo, site name, slogan and status line between two elbows, the menu as
+    a grid of buttons, the title bar of the page and the text"></a>
 </p>
 
 - To see the theme on a live site, visit the
