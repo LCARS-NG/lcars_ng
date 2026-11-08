@@ -32,13 +32,13 @@
   background-color: var(--lcars-row-highlight);
 }
 
-/* Search field as the other fields (forms.css): pb.css gives the bar around
-   the field a white background, the light text vanished on it (27.10.2026).
-   The icons are dark images for light themes, made light as the eye of
-   view_password. */
+/* Search field as the other fields (forms.css), in the line of boxes since
+   08.11.2026: pb.css gives the bar around the field a white background, the
+   light text vanished on it (27.10.2026). The icons are dark images for
+   light themes, made light as the eye of view_password. */
 .search__search-bar,
 .search__search-bar:hover {
-  border-color: var(--lcars-field-border);
+  border-color: var(--lcars-box-border-color);
   border-radius: 0;
   background-color: transparent;
 }

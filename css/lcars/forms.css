@@ -25,14 +25,16 @@ label.option {
   font-weight: 500;
 }
 
-/* Fields without a background: a quiet line around light text. */
+/* Fields without a background: a quiet line around light text, the line of
+   the boxes they stand in, in every contrast level (user wish 08.11.2026;
+   until then the lighter --lcars-field-border, as Tagify and CKEditor). */
 input:where([type="text"], [type="email"], [type="password"], [type="search"], [type="url"], [type="tel"], [type="number"], [type="date"]),
 textarea,
 select {
   box-sizing: border-box;
   padding: 0.25em 0.5em;
   color: var(--lcars-text);
-  border: 1px solid var(--lcars-field-border);
+  border: 1px solid var(--lcars-box-border-color);
   background: none;
   font: inherit;
   max-inline-size: 100%;
@@ -101,16 +103,17 @@ button.link {
 }
 
 /* Checkboxes and radios of the theme's own, as large as the smallest pointer
-   target: the line of the fields, checked in the color of the buttons with a
-   black mark (user decision 29.10.2026, variant C, #20; were the 13px of the
-   browser). :where() leaves the rules of modules with switches of their own
+   target: the line of the fields, the line of boxes (user wish 08.11.2026;
+   until then --lcars-field-border), checked in the color of the buttons with
+   a black mark (user decision 29.10.2026, variant C, #20; were the 13px of
+   the browser). :where() leaves the rules of modules with switches of their own
    (Klaro) above these. */
 :where(input[type="checkbox"], input[type="radio"]) {
   flex-shrink: 0;
   box-sizing: border-box;
   cursor: pointer;
   vertical-align: middle;
-  border: 2px solid var(--lcars-field-border);
+  border: 2px solid var(--lcars-box-border-color);
   border-radius: 0.25rem;
   background: none;
   appearance: none;

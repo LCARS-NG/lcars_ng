@@ -3,13 +3,13 @@
  * The Tagify widget of the module tagify (tag fields such as Tags), extending
  * tagify/default. The library (Tagify 4, from cdnjs) comes with colors for
  * light themes, and the module adapts it only to Gin and Claro. Here: the line
- * of the other fields, gold when focused, tags outlined in the sidebar blue
+ * of the other fields (the line of boxes since 08.11.2026), gold when focused, tags outlined in the sidebar blue
  * with a light label and a dark cross in a light circle, and a dark list of
  * suggestions (user decision 25.10.2026).
  */
 
 .tagify {
-  --tags-border-color: var(--lcars-field-border);
+  --tags-border-color: var(--lcars-box-border-color);
   --tags-hover-border-color: var(--lcars-sidebar);
   --tags-focus-border-color: var(--lcars-accent);
   --input-color: var(--lcars-text);
