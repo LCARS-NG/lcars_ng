@@ -537,10 +537,36 @@
   grid-template-areas:
     "logo name"
     "logo slogan";
+  grid-template-rows: auto 1fr;
   grid-template-columns: auto minmax(0, 1fr);
   align-items: start;
   margin-block-end: 1rem;
   column-gap: var(--lcars-panel-brand-gap);
+}
+
+/* With a logo it reaches down to where the margin below the branding ended,
+   so the panel keeps its height (user decision 27.10.2026, variant B). */
+.lcars-panel-top .block-system-branding-block:has(.site-logo) {
+  margin-block-end: 0;
+}
+
+/* With the logo of the theme, the capitals of the name start at the upper
+   edge of its triangle, as on the landing page (user wish 08.11.2026; until
+   then the name started at the top of the disc, 21px higher on desktop
+   screens). The triangle lies at the middle of the disc less 24.23 units
+   (its base at y 1.88 of the viewBox, the image 72 units high, moved down by
+   9.89, see the disc below); the box of the name starts at the capitals
+   (text-box), where a browser lacks it (Firefox ESR, Samsung Internet), they
+   stand a few pixels lower. The units of the logo are set here, so the name
+   and the disc share them. */
+.lcars-panel-top .block-system-branding-block:has(.site-logo > img[src*="lcars-ng-logo-flat.svg"]) {
+  --lcars-logo-gap: 0.3125rem; /* 5px */
+  --lcars-logo-unit: calc((2.75rem - var(--lcars-logo-gap)) / 44.08);
+}
+
+.lcars-panel-top .block-system-branding-block:has(.site-logo > img[src*="lcars-ng-logo-flat.svg"]) .site-name {
+  margin-block-start: calc(var(--lcars-panel-logo-size) / 2 - 24.23 * var(--lcars-logo-unit));
+  text-box: trim-start cap alphabetic;
 }
 
 .lcars-panel-top .site-name {
@@ -577,13 +603,13 @@
   font-style: normal;
 }
 
-/* The logo as high as the content of the panel, from the top of the name down
-   into the margin below the branding (user decision 27.10.2026, variant B; was
-   its own size, 72px): the negative margin keeps the grid, and so the panel, at
-   its height. */
+/* The logo as high as the content of the panel, down to where the margin
+   below the branding ended (user decision 27.10.2026, variant B; was its own
+   size, 72px). Until 08.11.2026 a negative margin let it reach into that
+   margin; since the name moved down to its triangle, the branding drops the
+   margin instead (above). */
 .lcars-panel-top .site-logo {
   grid-area: logo;
-  margin-block-end: -1rem;
 }
 
 .lcars-panel-top .site-logo img {
@@ -609,11 +635,9 @@
    above the middle of the image and the image moves down by that much. The
    login panel shows the same disc, larger (login.css), and so does the
    favicon; the contrast themes of the system (forced-colors.css) keep the
-   colored logo. Another logo keeps the rules above. */
+   colored logo. Another logo keeps the rules above. Its units (gap and unit)
+   are set on the branding block, which the name shares (above). */
 .lcars-panel-top .site-logo:has(> img[src*="lcars-ng-logo-flat.svg"]) {
-  --lcars-logo-gap: 0.3125rem; /* 5px */
-  --lcars-logo-unit: calc((2.75rem - var(--lcars-logo-gap)) / 44.08);
-
   display: grid;
   place-items: center;
   padding: 0;
