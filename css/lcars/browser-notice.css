@@ -11,13 +11,15 @@
  * properties first, so old browsers draw it as current ones would.
  */
 
-/* Beside the Navigation of Drupal, as the page: displace.js of core keeps its
-   width (and that of the top bar beside it) in the offsets. */
+/* Not beside the Navigation of Drupal: its CSS (core) is written with CSS
+   nesting (Safari 16.5, Chrome 112, Firefox 117), which every browser that
+   shows the notice lacks. There the Navigation stands as a list above the
+   page, which is not indented, while displace.js still measures the list as
+   wide as the window: a margin after its offsets pushed the notice out of
+   the screen (iPad Air 2 with Safari 15.6, 09.11.2026). */
 .lcars-browser-notice {
   box-sizing: border-box;
   margin: 1rem 1rem 0;
-  margin-right: calc(1rem + var(--drupal-displace-offset-right, 0px));
-  margin-left: calc(1rem + var(--drupal-displace-offset-left, 0px));
   padding: 0.75rem 1.5rem;
   color: #000;
   border-radius: 1.5rem;
