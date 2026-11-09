@@ -151,6 +151,7 @@ global:
       css/lcars/view-forms.css: {  }
     theme:
       css/lcars/alert.css: {  }
+      css/lcars/browser-notice.css: {  }
       css/lcars/forced-colors.css: {  }
 box-radius:
   js:

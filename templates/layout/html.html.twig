@@ -47,6 +47,17 @@
     <a href="#main-content" class="visually-hidden focusable skip-link">
       {{ 'Skip to main content'|t }}
     </a>
+    {#
+      Notice for browsers too old for the theme (theme setting browser_notice):
+      shown only by browsers without container queries or color-mix(), on
+      which the frame depends (css/lcars/browser-notice.css).
+    #}
+    {% if lcars_browser_notice %}
+      <div class="lcars-browser-notice" role="note">
+        <p class="lcars-browser-notice__title">{{ 'Browser too old'|t }}</p>
+        <p>{{ 'Your browser is too old for this site, so the layout may look broken. Update it, or use a current Firefox, Chrome, Edge or Safari. On an iPhone or iPad, update iOS.'|t }}</p>
+      </div>
+    {% endif %}
     {{ page_top }}
     {{ page }}
     {{ page_bottom }}

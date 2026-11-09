@@ -197,6 +197,10 @@ class LcarsNgHooks {
     if ($contrast !== 'system') {
       $variables['html_attributes']->setAttribute('data-lcars-contrast', $contrast);
     }
+    // Notice for browsers too old for the theme (html.html.twig,
+    // css/lcars/browser-notice.css); on unless a site turned it off, also on
+    // sites from before the setting.
+    $variables['lcars_browser_notice'] = (bool) ($this->themeSettings->getSetting('browser_notice') ?? TRUE);
   }
 
   /**
@@ -708,6 +712,12 @@ class LcarsNgHooks {
       '#title' => $this->t('Collapsed sections'),
       '#description' => $this->t('The packages of modules on Extend, the sections of the theme settings, of the basic site settings and of Mail System, the groups of the defaults of meta tags, the entries of the status report, the groups of permissions and the types on View modes and Form modes start collapsed instead of open. The filters on Extend and Permissions open the packages and groups with matches while they are in use.'),
       '#config_target' => 'lcars_ng.settings:collapse_module_packages',
+    ];
+    $form['lcars_ng']['browser_notice'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Notice for old browsers'),
+      '#description' => $this->t('Browsers without container queries or color-mix(), on which the frame depends (Safari before 16.2, Chrome and Edge before 111, Firefox before 113), show a bar above the page that recommends a current browser. Current browsers never show it.'),
+      '#config_target' => 'lcars_ng.settings:browser_notice',
     ];
     if ($this->entityTypeManager->hasDefinition('node_type')) {
       $types = $this->entityTypeManager->getStorage('node_type')->loadMultiple();

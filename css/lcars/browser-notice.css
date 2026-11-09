@@ -1,0 +1,64 @@
+/**
+ * @file
+ * Notice for browsers too old for the theme (html.html.twig, theme setting
+ * browser_notice): a bar in the orange of yellow alert above the page (user
+ * decision 09.11.2026, variant A). Every browser shows it, except those with
+ * container queries and color-mix(), on which the frame (frame.css,
+ * navigation.css) and the lines of boxes and fields (tokens.css) depend:
+ * Safari before 16.2, Chrome and Edge before 111, Firefox before 113,
+ * Samsung Internet before 22. Browsers without @supports show it as well.
+ * The notice itself uses neither, and its colors stand without custom
+ * properties first, so old browsers draw it as current ones would.
+ */
+
+/* Beside the Navigation of Drupal, as the page: displace.js of core keeps its
+   width (and that of the top bar beside it) in the offsets. */
+.lcars-browser-notice {
+  box-sizing: border-box;
+  margin: 1rem 1rem 0;
+  margin-right: calc(1rem + var(--drupal-displace-offset-right, 0px));
+  margin-left: calc(1rem + var(--drupal-displace-offset-left, 0px));
+  padding: 0.75rem 1.5rem;
+  color: #000;
+  border-radius: 1.5rem;
+  background: #e1891e;
+  background: var(--lcars-yellow-alert-button, #e1891e);
+  font-family: sans-serif;
+  font-family: var(--lcars-font, sans-serif);
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.lcars-browser-notice p {
+  margin: 0;
+}
+
+/* The label in the narrow capitals of the bars. */
+.lcars-browser-notice__title {
+  text-transform: uppercase;
+  font-family: Antonio, sans-serif;
+  font-family: var(--lcars-font-label, Antonio, sans-serif);
+  font-size: 1.25rem;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+@supports (container-type: inline-size) and (color: color-mix(in srgb, red, blue)) {
+  .lcars-browser-notice {
+    display: none;
+  }
+}
+
+@media print {
+  .lcars-browser-notice {
+    display: none;
+  }
+}
+
+/* Contrast themes of the system replace the background: a line keeps the
+   bar apart from the page. */
+@media (forced-colors: active) {
+  .lcars-browser-notice {
+    border: 1px solid CanvasText;
+  }
+}

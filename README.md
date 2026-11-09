@@ -68,6 +68,13 @@ Internet, and Firefox ESR. Firefox ESR and Samsung Internet do not support
 `text-box` yet: there the capitals cut into the bars sit a little lower, and
 in Samsung Internet, which also lacks `font-size-adjust`, they are smaller.
 
+Older browsers without container queries or `color-mix()` (Safari before
+16.2, Chrome and Edge before 111, Firefox before 113) draw the frame and the
+lines of boxes and fields wrongly. They show a notice above the page that
+recommends a current browser (theme setting *Notice for old browsers*).
+On an iPhone or iPad every browser uses the engine of Safari, so there only
+an update of iOS helps.
+
 
 ## Recommended modules
 
@@ -95,7 +102,7 @@ theme under *Appearance*.
 
 ## Configuration
 
-*Appearance > Settings > LCARS-NG* offers six settings besides the logo and
+*Appearance > Settings > LCARS-NG* offers seven settings besides the logo and
 favicon:
 
 - **Login panel on the front page** (`front_page_login`, off by default):
@@ -136,6 +143,12 @@ favicon:
   closes in any case: its row counts, for each role, the permissions of the
   group the role has, and *Expand all* opens them at once. The key keeps its
   name from 1.0.9, when the setting covered *Extend* only.
+- **Notice for old browsers** (`browser_notice`, on by default): browsers
+  without container queries or `color-mix()`, on which the frame depends,
+  show a bar in the orange of the warnings above the page. It says that the
+  layout may look broken and recommends a current Firefox, Chrome, Edge or
+  Safari, or an update of iOS. Current browsers never show it; it needs no
+  JavaScript and does not read the user agent.
 - **Content type in the title bar** (`content_type_in_title_bar`, none by
   default): on the page of content of the checked types, the title bar names
   the type (*Blog post*), and the title stands as the main heading above the
