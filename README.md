@@ -69,11 +69,13 @@ Internet, and Firefox ESR. Firefox ESR and Samsung Internet do not support
 in Samsung Internet, which also lacks `font-size-adjust`, they are smaller.
 
 Older browsers without container queries or `color-mix()` (Safari before
-16.2, Chrome and Edge before 111, Firefox before 113) draw the frame and the
-lines of boxes and fields wrongly. They show a notice above the page that
-recommends a current browser (theme setting *Notice for old browsers*).
-On an iPhone or iPad every browser uses the engine of Safari, so there only
-an update of iOS helps.
+16.2, Chrome and Edge before 111, Firefox before 113) show the frame in its
+wide form only, also in narrow windows, and boxes and fields without lines.
+They show a notice above the page that recommends a current browser (theme
+setting *Notice for old browsers*). There the Navigation module of core,
+whose CSS uses CSS nesting, stands as a plain list above the page. On an
+iPhone or iPad every browser uses the engine of Safari, so there only an
+update of iOS helps.
 
 
 ## Recommended modules
