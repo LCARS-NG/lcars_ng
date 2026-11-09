@@ -170,13 +170,14 @@
   }
 }
 
-/* Phones held sideways: the branding card beside the content card instead of
-   above it (user decision 09.11.2026, first on the demo). A window wider than
-   high and at most 600px high, so tablets and desktops keep the cards one
-   above the other; at least 640px wide, so both cards have room. Messages
-   span both cards above them; the skip link target shares their row, the
-   hidden <h1> of the front page is positioned absolutely. */
-@media (orientation: landscape) and (max-height: 37.5rem) and (min-width: 40rem) {
+/* Windows wider than high: the branding card beside the content card instead
+   of above it, on phones held sideways, tablets and desktops alike (user
+   decisions 09.11.2026: first phones held sideways on the demo, then every
+   window in landscape; until then at most 600px high). At least 640px wide,
+   so both cards have room. Messages span both cards above them; the skip link
+   target shares their row, the hidden <h1> of the front page is positioned
+   absolutely. */
+@media (orientation: landscape) and (min-width: 40rem) {
   .lcars-login__panel {
     display: grid;
     grid-template-areas:

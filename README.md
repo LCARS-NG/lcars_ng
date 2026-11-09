@@ -152,7 +152,7 @@ The theme chooses its layout per page:
   remains, with an edge of the frame on the left and the menus as a grid of
   buttons above the title; the right sidebar shows on wider pages only.
 - **Login panel** on the account pages (log in, register, reset password);
-  on phones held sideways the card with the logo stands beside the form.
+  in windows wider than high the card with the logo stands beside the form.
 - **Two-part screen** on the front page for signed-in users and on user
   profiles: an upper panel with site name, logo and slogan, a status line with
   date, time and the signed-in user, the content below.
