@@ -2,32 +2,29 @@
  * @file
  * Styles for system messages.
  *
- * Colored glass: a vivid tone of the type over the page, so the page blue
- * shows through, each type as much of it that the three are equally light
- * (--lcars-message-glow-* and --lcars-message-tint-* in tokens.css), the
- * text and the icon white (#49, variant H with white icons, user decision
- * 03.11.2026). Until
- * then the light type colors filled the message with black text and icon
- * (user decision 24.10.2026), which matched the frame too little. The icon is
- * the Starterkit icon used as a mask, so it takes the text color. Square, a
- * box without rounded corners as a contrast to the rounded shapes of the
- * frame (user decision 04.11.2026, variant B; rounded at both ends from
+ * A light fill of the type with black text and icon, as light and as vivid
+ * as the orange of the notice for old browsers (--lcars-message-fill-* in
+ * tokens.css; user decision 09.11.2026, variant B). From 03.11.2026 colored
+ * glass, a vivid tone over the page with white text (#49, variant H); before
+ * that the light type colors with black text (user decision 24.10.2026). The
+ * icon is the Starterkit icon used as a mask, so it takes the text color.
+ * Square, a box without rounded corners as a contrast to the rounded shapes
+ * of the frame (user decision 04.11.2026, variant B; rounded at both ends from
  * 31.10.2026, before that from 30.10.2026 the end was cut straight like the
  * title bar of the page).
  */
 
-/* Values in a message (em.placeholder, base.css) stay white like its text
+/* Values in a message (em.placeholder, base.css) stay black like its text
    and links, often a link themselves ("Blog %title has been updated."). */
 .messages {
-  --lcars-message-glow: var(--lcars-message-glow-status);
-  --lcars-message-tint: var(--lcars-message-tint-status);
+  --lcars-message-fill: var(--lcars-message-fill-status);
   --lcars-value: currentColor;
 
   position: relative;
   margin-block-end: 0.5em;
   padding: 1em 1.5em 1em 2.9em; /* LTR */
-  color: var(--lcars-text);
-  background: color-mix(in sRGB, var(--lcars-message-glow) var(--lcars-message-tint), transparent);
+  color: var(--lcars-on-color);
+  background: var(--lcars-message-fill);
   overflow-wrap: break-word;
 }
 [dir="rtl"] .messages {
@@ -65,20 +62,23 @@
   text-decoration: underline;
   color: inherit;
 }
+
+/* The focus ring in the text color: the gold of the ring (base.css) stands
+   out too little on the light fills. */
+.messages :focus-visible {
+  outline-color: currentColor;
+}
 .messages--status {
   --lcars-message-icon: url(../../images/icons/check.svg);
-  --lcars-message-glow: var(--lcars-message-glow-status);
-  --lcars-message-tint: var(--lcars-message-tint-status);
+  --lcars-message-fill: var(--lcars-message-fill-status);
 }
 .messages--warning {
   --lcars-message-icon: url(../../images/icons/warning.svg);
-  --lcars-message-glow: var(--lcars-message-glow-warning);
-  --lcars-message-tint: var(--lcars-message-tint-warning);
+  --lcars-message-fill: var(--lcars-message-fill-warning);
 }
 .messages--error {
   --lcars-message-icon: url(../../images/icons/error.svg);
-  --lcars-message-glow: var(--lcars-message-glow-error);
-  --lcars-message-tint: var(--lcars-message-tint-error);
+  --lcars-message-fill: var(--lcars-message-fill-error);
 }
 .messages--error p.error {
   color: inherit;

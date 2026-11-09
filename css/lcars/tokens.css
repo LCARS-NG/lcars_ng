@@ -34,7 +34,7 @@
   --lcars-yellow-alert: var(--lcars-message-warning); /* text, titles, labels and links: the apricot of warnings, 9.87:1 */
   --lcars-yellow-alert-frame: var(--lcars-message-warning-button); /* frame, bars and title bar: the warning segment of the top bar, as light as the blue buttons (L* 53), 4.33:1 */
   --lcars-yellow-alert-button: #e1891e; /* menu and form buttons: L* 65, the hue of the warning tones, black labels at 7.8:1 */
-  /* Type colors of status, warning and error, light tones (user decision 24.10.2026): text and marks in their color (status report, password strength, list of modules), black text on them (preview bar); until 03.11.2026 also the fill of the messages */
+  /* Type colors of status, warning and error, light tones (user decision 24.10.2026): text and marks in their color (status report, password strength, list of modules), black text on them; in Medium and High the fill of the messages, as from 24.10. to 03.11.2026 in every level */
   --lcars-message-status: #99d98c;
   --lcars-message-warning: #ffb366; /* apricot, apart from the gold of the focus ring, which is #ffd068 in High; black text at 11.89:1 (user decision 30.10.2026, variant A; was #ffd068, the light gold of --lcars-accent until 27.10.2026) */
   --lcars-message-error: #ff7a6b;
@@ -44,22 +44,19 @@
      light tones, L* 81 and 79, were too light there). */
   --lcars-message-status-button: #4f8d46; /* black labels at 5.23:1 */
   --lcars-message-warning-button: #b17025; /* black labels at 5.21:1 */
-  /* The messages themselves (messages.css): a vivid tone of the type over the
-     page, so the page blue shows through, with white text and icon (#49,
-     variant H with white icons, user decision 03.11.2026). Mixed with the
-     page blue the light tones above turned turquoise and pink and showed
-     little of their type; these lean the other way (the green to yellow, the
-     red to orange), so the mix stays green, orange and red. Each type as much
-     of its tone that the three are equally light, L* 31 as the warning at
-     35%, near the lines of boxes (L* 33) and darker than the frame (L* 44)
-     (user wish 03.11.2026; at 35% each, status was L* 38 and error L* 23).
-     White text at 8.70:1, 8.82:1 and 8.92:1, so in every contrast level. */
-  --lcars-message-glow-status: #5cf03c;
-  --lcars-message-glow-warning: #ff9a1a;
-  --lcars-message-glow-error: #ff3b2a;
-  --lcars-message-tint-status: 27%; /* #195535 */
-  --lcars-message-tint-warning: 35%; /* #59472a */
-  --lcars-message-tint-error: 51%; /* #822b2e */
+  /* The fill of the messages (messages.css), of the counters of the status
+     report and of the bar above a preview, with black text and icon: as light
+     as the orange of the notice for old browsers (L* 65) and as vivid (chroma
+     70; the red as vivid as sRGB allows at that lightness, 63.6), the hues of
+     the light tones above; black text at 7.83:1, 7.80:1 and 7.79:1. In Medium
+     and High the light tones themselves, as the notice there (user decision
+     09.11.2026, variant B: light in every contrast level, all three types,
+     the warnings alike everywhere). From 03.11.2026 colored glass, a vivid
+     tone over the page with white text (#49, variant H); until then the light
+     tones in every level. */
+  --lcars-message-fill-status: #4bb343;
+  --lcars-message-fill-warning: #e1891e; /* as --lcars-yellow-alert-button */
+  --lcars-message-fill-error: #ff7163;
   --lcars-text: #fefefe;
   /* Secondary text in the same white as all text (user decision 21.10.2026;
      was #eee, #c2c9ce, #999). Kept as tokens to set them apart again. */
@@ -156,6 +153,9 @@
   --lcars-yellow-alert-button: var(--lcars-yellow-alert);
   --lcars-message-status-button: var(--lcars-message-status);
   --lcars-message-warning-button: var(--lcars-message-warning);
+  --lcars-message-fill-status: var(--lcars-message-status);
+  --lcars-message-fill-warning: var(--lcars-message-warning);
+  --lcars-message-fill-error: var(--lcars-message-error);
 }
 
 :root[data-lcars-contrast="high"] {
@@ -173,6 +173,9 @@
   --lcars-yellow-alert-button: var(--lcars-yellow-alert);
   --lcars-message-status-button: var(--lcars-message-status);
   --lcars-message-warning-button: var(--lcars-message-warning);
+  --lcars-message-fill-status: var(--lcars-message-status);
+  --lcars-message-fill-warning: var(--lcars-message-warning);
+  --lcars-message-fill-error: var(--lcars-message-error);
 }
 
 /* "As the system" (no attribute): High where the system of a visitor asks for
@@ -193,5 +196,8 @@
     --lcars-yellow-alert-button: var(--lcars-yellow-alert);
     --lcars-message-status-button: var(--lcars-message-status);
     --lcars-message-warning-button: var(--lcars-message-warning);
+    --lcars-message-fill-status: var(--lcars-message-status);
+    --lcars-message-fill-warning: var(--lcars-message-warning);
+    --lcars-message-fill-error: var(--lcars-message-error);
   }
 }

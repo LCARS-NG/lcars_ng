@@ -8,14 +8,14 @@
  */
 
 /* Core marks only the icon with the severity: :has() takes it to the box.
-   The fill and the white text and icon of the messages (#49; user wish
-   03.11.2026: the warnings alike everywhere; until then the light type colors
-   with black text). Square like the messages (user decision 04.11.2026; until
+   The fill and the black text and icon of the messages (user decision
+   09.11.2026, variant B; from 03.11.2026 their colored glass with white text,
+   #49, user wish: the warnings alike everywhere; before that the light type
+   colors with black text). Square like the messages (user decision 04.11.2026; until
    then pills). Capitals in the font of the text, slightly spaced, as the
    headings (user decision 05.11.2026, variant B; Antonio until then). */
 .system-status-report-counters__item {
-  --lcars-message-glow: var(--lcars-message-glow-status);
-  --lcars-message-tint: var(--lcars-message-tint-status);
+  --lcars-message-fill: var(--lcars-message-fill-status);
   --lcars-italic: normal;
   --lcars-value: currentColor;
 
@@ -23,24 +23,25 @@
   padding: 0.625em 1.25em;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--lcars-text);
-  background: color-mix(in sRGB, var(--lcars-message-glow) var(--lcars-message-tint), transparent);
+  color: var(--lcars-on-color);
+  background: var(--lcars-message-fill);
   font-family: var(--lcars-font);
   font-size: 0.85em;
   font-weight: bold;
   font-style: normal;
 }
 .system-status-report-counters__item:has(.system-status-counter__status-icon--warning) {
-  --lcars-message-glow: var(--lcars-message-glow-warning);
-  --lcars-message-tint: var(--lcars-message-tint-warning);
+  --lcars-message-fill: var(--lcars-message-fill-warning);
 }
 .system-status-report-counters__item:has(.system-status-counter__status-icon--error) {
-  --lcars-message-glow: var(--lcars-message-glow-error);
-  --lcars-message-tint: var(--lcars-message-tint-error);
+  --lcars-message-fill: var(--lcars-message-fill-error);
 }
 .system-status-report-counters__item a {
   text-decoration: underline;
   color: inherit;
+}
+.system-status-report-counters__item :focus-visible {
+  outline-color: currentColor;
 }
 
 /* The colored icons of core as masks in the text color, as in messages.css. */
