@@ -57,6 +57,16 @@
   --lcars-message-fill-status: #4bb343;
   --lcars-message-fill-warning: #e1891e; /* as --lcars-yellow-alert-button */
   --lcars-message-fill-error: #ff7163;
+  /* Deprecated in 1.0.18 and removed in 2.0.0: the colored glass of the
+     messages from 1.0.13 to 1.0.17, a vivid tone of the type mixed over the
+     page. No stylesheet of the theme uses them any more; they stay for
+     sub-themes that read or override them. */
+  --lcars-message-glow-status: #5cf03c;
+  --lcars-message-glow-warning: #ff9a1a;
+  --lcars-message-glow-error: #ff3b2a;
+  --lcars-message-tint-status: 27%;
+  --lcars-message-tint-warning: 35%;
+  --lcars-message-tint-error: 51%;
   --lcars-text: #fefefe;
   /* Secondary text in the same white as all text (user decision 21.10.2026;
      was #eee, #c2c9ce, #999). Kept as tokens to set them apart again. */

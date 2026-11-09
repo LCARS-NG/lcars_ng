@@ -196,6 +196,9 @@ Colors, typefaces and frame sizes are custom properties in
 `css/lcars/tokens.css` (`--lcars-*`; the typefaces `--lcars-font`,
 `--lcars-font-label` and `--lcars-font-code`, their files in
 `css/lcars/fonts.css`). A sub-theme can override them in its own stylesheet.
+The custom properties `--lcars-message-glow-*` and `--lcars-message-tint-*`
+(the fill of the messages up to 1.0.17) are deprecated and will be removed
+in 2.0.0; the messages take `--lcars-message-fill-*` since 1.0.18.
 
 The theme provides four single-directory components to embed in templates:
 button, heading, text and panel (`components/`). Button, heading and text
