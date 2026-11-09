@@ -2,9 +2,11 @@
  * @file
  * Notice for browsers too old for the theme (html.html.twig, theme setting
  * browser_notice): a bar in the orange of yellow alert above the page (user
- * decision 09.11.2026, variant A). Every browser shows it, except those with
- * container queries and color-mix(), on which the frame (frame.css,
- * navigation.css) and the lines of boxes and fields (tokens.css) depend:
+ * decision 09.11.2026, variant A), square as the messages and all other
+ * warnings (user decision 09.11.2026; first rounded at 1.5rem). Every browser
+ * shows it, except those with container queries and color-mix(), on which
+ * the frame (frame.css, navigation.css) and the lines of boxes and fields
+ * (tokens.css) depend:
  * Safari before 16.2, Chrome and Edge before 111, Firefox before 113,
  * Samsung Internet before 22. Browsers without @supports show it as well.
  * The notice itself uses neither, and its colors stand without custom
@@ -22,7 +24,6 @@
   margin: 1rem 1rem 0;
   padding: 0.75rem 1.5rem;
   color: #000;
-  border-radius: 1.5rem;
   background: #e1891e;
   background: var(--lcars-yellow-alert-button, #e1891e);
   font-family: sans-serif;
