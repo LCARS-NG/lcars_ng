@@ -151,7 +151,8 @@ The theme chooses its layout per page:
   portrait, measured beside the Navigation of Drupal) only the content
   remains, with an edge of the frame on the left and the menus as a grid of
   buttons above the title; the right sidebar shows on wider pages only.
-- **Login panel** on the account pages (log in, register, reset password).
+- **Login panel** on the account pages (log in, register, reset password);
+  on phones held sideways the card with the logo stands beside the form.
 - **Two-part screen** on the front page for signed-in users and on user
   profiles: an upper panel with site name, logo and slogan, a status line with
   date, time and the signed-in user, the content below.
@@ -166,8 +167,8 @@ Regions:
 - `breadcrumb`: in the upper curve
 - `sidebar`: menu buttons
 - `highlighted`, `help`, `content`, `sidebar_second`
-- `footer`: in the lower curve, blocks side by side; not shown in the login
-  panel
+- `footer`: in the lower curve, blocks side by side; in the login panel above
+  the bottom bar, at the end of the line (only with a block in it)
 
 With the [Klaro!](https://www.drupal.org/project/klaro) consent manager (part
 of Drupal CMS), the consent notice is an LCARS panel floating above the bottom

@@ -12,6 +12,24 @@
   gap: 1rem;
 }
 
+/* With a block in the footer region: a row for it above the bottom bar. A
+   menu block without links leaves the region empty; as menu blocks are
+   placeholders, only the finished page can tell (page--login.html.twig). */
+.lcars-login:has(> .lcars-login__foot .block) {
+  grid-template-rows: auto 1fr auto auto;
+}
+
+/* Footer region at the end of the line above the bottom bar, as the footer
+   menu of the frame (frame.css) above the bar of the bottom elbow. */
+.lcars-login__foot {
+  justify-self: end;
+  padding-inline-end: 1rem;
+}
+
+.lcars-login__foot:not(:has(.block)) {
+  display: none;
+}
+
 .lcars-login__bar {
   block-size: 6ex;
   border-radius: var(--lcars-pill);
@@ -149,6 +167,53 @@
 
   .lcars-login__panel .lcars-title {
     --lcars-title-height: 1.125rem; /* 18px: capitals 16px */
+  }
+}
+
+/* Phones held sideways: the branding card beside the content card instead of
+   above it (user decision 09.11.2026, first on the demo). A window wider than
+   high and at most 600px high, so tablets and desktops keep the cards one
+   above the other; at least 640px wide, so both cards have room. Messages
+   span both cards above them; the skip link target shares their row, the
+   hidden <h1> of the front page is positioned absolutely. */
+@media (orientation: landscape) and (max-height: 37.5rem) and (min-width: 40rem) {
+  .lcars-login__panel {
+    display: grid;
+    grid-template-areas:
+      "messages messages"
+      "branding form";
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    box-sizing: border-box;
+    inline-size: 100%;
+    max-inline-size: 50rem;
+    column-gap: 1.5rem;
+  }
+
+  .lcars-login__panel > :is(#main-content, .region-highlighted) {
+    grid-area: messages;
+  }
+
+  .lcars-login__panel > .region-header {
+    display: grid;
+    grid-area: branding;
+  }
+
+  .lcars-login__panel > :is(.lcars-login__form, .region-content) {
+    grid-area: form;
+  }
+
+  /* Both cards as high as the higher one, their content in the middle; the
+     branding card without the space it keeps above the form. */
+  .lcars-login__panel .block-system-branding-block {
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    margin-block-end: 0;
+  }
+
+  .lcars-login__panel > :is(.lcars-login__form, .region-content) {
+    display: grid;
+    align-content: center;
   }
 }
 

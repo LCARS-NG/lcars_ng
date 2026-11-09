@@ -30,10 +30,20 @@
   --lcars-notice-bottom: 5.25rem;
 }
 
+/* With a block in the footer region, above it as well: the gap of the grid
+   and the footer row (login.css). */
+.lcars-login-page:has(.lcars-login__foot .block) .klaro.klaro-theme-lcars_ng {
+  --lcars-notice-bottom: 7.5rem;
+}
+
 @media (max-width: 39.9375rem) {
   /* The footer menu wraps to two lines on phones. */
   .klaro.klaro-theme-lcars_ng {
     --lcars-notice-bottom: 7.5rem;
+  }
+
+  .lcars-login-page:has(.lcars-login__foot .block) .klaro.klaro-theme-lcars_ng {
+    --lcars-notice-bottom: 9rem;
   }
 }
 
