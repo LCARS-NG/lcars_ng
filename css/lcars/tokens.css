@@ -73,7 +73,13 @@
   --lcars-text-muted: var(--lcars-text); /* form descriptions */
   --lcars-text-soft: var(--lcars-text); /* secondary text, descriptions */
   --lcars-text-dim: var(--lcars-text); /* meta data; slogan and date of the status line in --lcars-sidebar since 28.10.2026 */
-  --lcars-heading: var(--lcars-frame);
+  /* Headings in the white of the text, so that the light blue of
+     --lcars-frame stays with labels and the hover of links and no title reads
+     as a link (user decision 12.11.2026, variant C of
+     2026-11-12_titelfarbe-varianten; rejected: B only the title of a post
+     white, D the hover of links white). Until then --lcars-frame. Labels of
+     fields, legends and table heads keep --lcars-frame. */
+  --lcars-heading: var(--lcars-text);
   --lcars-link: #4bb0ff;
   --lcars-link-hover: var(--lcars-frame);
   --lcars-on-color: #000; /* text on bars and buttons */
