@@ -39,6 +39,23 @@
   margin-block-end: 0;
 }
 
+/* The field without a line of its own: the box is its edge, its text starts
+   flush with the button below, and the focus ring of the theme stands at
+   the box (user decision 12.11.2026). */
+.lcars-search > .view-filters .form-text {
+  padding-inline: 0;
+  border: 0;
+}
+
+.lcars-search > .view-filters .form-text:focus-visible {
+  outline: none;
+}
+
+.lcars-search > .view-filters:has(.form-text:focus-visible) {
+  outline: 2px solid var(--lcars-accent);
+  outline-offset: 2px;
+}
+
 .lcars-search > .view-header {
   margin-block-end: 1rem;
 }

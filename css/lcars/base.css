@@ -149,6 +149,19 @@ a:hover {
   color: var(--lcars-link-hover);
 }
 
+/* The entries of the Navigation module that open a menu are buttons, not
+   links: the sections of the sidebar (Create, Tools, Structure,
+   Configuration, Reports), the name of the user at its foot and the entries
+   of their menus that open one more level. In capitals as the links beside
+   them (user wish 12.11.2026). */
+.admin-toolbar :is(button.toolbar-button, button.toolbar-menu__link) {
+  --lcars-italic: normal;
+  --lcars-value: currentColor;
+
+  text-transform: uppercase;
+  font-style: normal;
+}
+
 /* Links standing on their own (breadcrumb, menus of the footer and the
    panels, lists, tables, status line) reach the smallest pointer target:
    padding above and below grows the area a finger hits, the negative margin

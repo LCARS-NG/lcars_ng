@@ -39,6 +39,18 @@
   line-height: 0;
 }
 
+/* The picture as a square of 96px with the corners of buttons and cards
+   (10px): the generated pattern (square here, LcarsNgHooks::userPicture())
+   and an uploaded picture, cut to the square (user decision 12.11.2026,
+   variant B; A 72px, the size of the disc before, C 128px, D 160px). */
+.profile--view-mode-full > .field--name-user-picture :is(svg, img) {
+  overflow: hidden;
+  width: 6rem;
+  height: 6rem;
+  object-fit: cover;
+  border-radius: 0.625rem;
+}
+
 .profile--view-mode-full > .form-type-item {
   margin-block: 0;
 }

@@ -122,3 +122,15 @@
   padding-inline: 0.5em;
   background: var(--lcars-space);
 }
+
+/* The preview of the picture as on the page of the account (profile.css):
+   a square of 96px with the corners of buttons and cards (10px), the
+   generated pattern as well as an uploaded picture, cut to the square (user
+   wish 12.11.2026). */
+.user-form .field--name-user-picture .image-preview :is(svg, img) {
+  overflow: hidden;
+  width: 6rem;
+  height: 6rem;
+  object-fit: cover;
+  border-radius: 0.625rem;
+}

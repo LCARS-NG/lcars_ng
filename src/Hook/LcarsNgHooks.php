@@ -506,8 +506,11 @@ class LcarsNgHooks {
       || !($this->themeSettings->getSetting('generated_user_pictures') ?? TRUE)) {
       return;
     }
+    // On the page of the account (view mode full) a square, which profile.css
+    // rounds as buttons and cards; elsewhere the disc.
+    $square = ($element['#view_mode'] ?? NULL) === 'full';
     foreach ($variables['items'] as &$item) {
-      $picture = $this->userPicture($account);
+      $picture = $this->userPicture($account, $square);
       // The default picture links to the account where its formatter does.
       if (isset($item['content']['#url'])) {
         $picture = [
@@ -576,14 +579,15 @@ class LcarsNgHooks {
     }
     // Without an upload, the widget previews the default picture. With
     // generated user pictures (preprocessField()), the form of an account
-    // shows its pattern instead; before there is an account, no picture.
+    // shows its pattern instead, square as on the page of the account
+    // (user.css); before there is an account, no picture.
     $element = $variables['element'];
     if (isset($data['preview']) && empty($element['#files'])
       && ($element['#entity_type'] ?? NULL) === 'user' && ($element['#field_name'] ?? NULL) === 'user_picture'
       && ($this->themeSettings->getSetting('generated_user_pictures') ?? TRUE)) {
       $account = $this->routeMatch->getParameter('user');
       if ($account instanceof UserInterface) {
-        $data['preview'] = ['#weight' => $data['preview']['#weight'] ?? -10] + $this->userPicture($account);
+        $data['preview'] = ['#weight' => $data['preview']['#weight'] ?? -10] + $this->userPicture($account, TRUE);
       }
       else {
         unset($data['preview']);
@@ -920,9 +924,12 @@ class LcarsNgHooks {
    * column by column; the right two mirror them. Byte 20 picks the color. The
    * cells form one path, so that adjacent cells show no seam between them.
    * The grid, 45 of 72 units, sits in the middle of the disc, so that even its
-   * corners keep about 4 units to the edge (was 56 units on the card).
+   * corners keep about 4 units to the edge (was 56 units on the card). With
+   * $square, the ground fills the whole picture instead of the disc, for the
+   * page of the account and the preview in its form (user decision
+   * 12.11.2026, variant B).
    */
-  private function userPicture(UserInterface $account): array {
+  private function userPicture(UserInterface $account, bool $square = FALSE): array {
     $hash = hash('sha256', $account->uuid(), TRUE);
     $path = '';
     for ($column = 0; $column < 3; $column++) {
@@ -937,8 +944,9 @@ class LcarsNgHooks {
     }
     return [
       '#type' => 'inline_template',
-      '#template' => '<svg class="lcars-user-picture lcars-user-picture--{{ color }}" xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 72 72" role="img" aria-label="{{ label }}"><circle class="lcars-user-picture__disc" cx="36" cy="36" r="36"/><path d="{{ path }}"/></svg>',
+      '#template' => '<svg class="lcars-user-picture lcars-user-picture--{{ color }}" xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 72 72" role="img" aria-label="{{ label }}">{% if square %}<rect class="lcars-user-picture__disc" width="72" height="72"/>{% else %}<circle class="lcars-user-picture__disc" cx="36" cy="36" r="36"/>{% endif %}<path d="{{ path }}"/></svg>',
       '#context' => [
+        'square' => $square,
         'color' => self::USER_PICTURE_COLORS[ord($hash[20]) % count(self::USER_PICTURE_COLORS)],
         'label' => $account->getDisplayName(),
         'path' => $path,
