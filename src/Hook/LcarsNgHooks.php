@@ -16,6 +16,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\Core\Path\PathMatcherInterface;
 use Drupal\Core\Render\Element;
+use Drupal\Core\Render\Markup;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Routing\RouteProviderInterface;
 use Drupal\Core\Session\AccountInterface;
@@ -66,6 +67,21 @@ class LcarsNgHooks {
    */
   private const WIDE_TABLE_ROUTES = [
     'metatag.reports_plugins',
+  ];
+
+  /**
+   * Fields of Views tables in pages whose date shows in two lines.
+   *
+   * The same columns as the dates of the main block in table.css: updated,
+   * created, the log, deleted and scheduled.
+   */
+  private const TABLE_DATE_FIELDS = [
+    'changed',
+    'created',
+    'timestamp',
+    'deleted',
+    'publish_on',
+    'unpublish_on',
   ];
 
   /**
@@ -341,6 +357,56 @@ class LcarsNgHooks {
   public function preprocessViewsViewSummary(array &$variables): void {
     $classes = explode(' ', (string) $variables['view']->display_handler->getOption('css_class'));
     $variables['tabs'] = in_array('lcars-summary-tabs', $classes, TRUE);
+  }
+
+  /**
+   * Implements hook_preprocess_views_view_field().
+   *
+   * Dates in the tables of Views pages (Content, Media, Files, Comments, the
+   * log, Trash, …) in two lines, the day above the time, as the violation
+   * reports (preprocessViolationReports()): the " - " of the date format
+   * between them drops, each part becomes a span with the class
+   * lcars-date-line, which table.css sets as a line of its own (user wish
+   * 13.11.2026: "13 Nov 2026 - 00:30" on one line made Updated of Content so
+   * wide that Operations was cut off). Only the text changes, not the
+   * attributes: the time element keeps its datetime and its title (the long
+   * date as a tooltip). Dates in blocks (dashboard cards, panels of the right
+   * sidebar) stay on one line, as do spans of time ago (member for, last
+   * access), which have no " - ".
+   */
+  #[Hook('preprocess_views_view_field')]
+  public function preprocessViewsViewField(array &$variables): void {
+    $view = $variables['view'];
+    if (!in_array($variables['field']->options['id'] ?? NULL, self::TABLE_DATE_FIELDS, TRUE)
+      || $view->display_handler->getPluginId() !== 'page'
+      || $view->style_plugin?->getPluginId() !== 'table') {
+      return;
+    }
+    $output = (string) $variables['output'];
+    if (!str_contains($output, ' - ')) {
+      return;
+    }
+    // The text of the date, not the title of the time element, which reads
+    // " - " as well; one such text, or the output is not a single date.
+    $dom = Html::load($output);
+    $texts = (new \DOMXPath($dom))->query('//body//text()[contains(., " - ")]');
+    if ($texts === FALSE || $texts->length !== 1) {
+      return;
+    }
+    $text = $texts->item(0);
+    $parts = explode(' - ', trim($text->nodeValue), 2);
+    $lines = $dom->createDocumentFragment();
+    foreach ($parts as $i => $part) {
+      if ($i > 0) {
+        $lines->appendChild($dom->createTextNode(' '));
+      }
+      $line = $dom->createElement('span');
+      $line->setAttribute('class', 'lcars-date-line');
+      $line->appendChild($dom->createTextNode($part));
+      $lines->appendChild($line);
+    }
+    $text->parentNode->replaceChild($lines, $text);
+    $variables['output'] = Markup::create(Html::serialize($dom));
   }
 
   /**

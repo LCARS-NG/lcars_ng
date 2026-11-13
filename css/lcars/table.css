@@ -40,8 +40,10 @@ tbody td {
    disposition only when their rows differ, the type then wrapping as it
    comes). The location (a path on this site, preprocess_table drops scheme
    and host) breaks anywhere, so the table fits the golden section with
-   Operations visible. */
-.lcars-violation-reports__date span {
+   Operations visible. The dates in the tables of Views pages (Content,
+   Media, the log, …) as well, spans from preprocess_views_view_field (user
+   wish 13.11.2026: Updated of Content on one line cut off Operations). */
+:is(.lcars-violation-reports__date span, .lcars-date-line) {
   display: block;
   white-space: nowrap;
 }
@@ -92,12 +94,15 @@ th {
   white-space: nowrap;
 }
 
-/* Dates and times in the tables of the main block on one line as well, with
+/* Dates and times in the tables of the main block not broken at random, with
    their headings (user wish 06.11.2026: in the golden section of the page,
    "4 Nov 2026 - 14:52" took three lines): updated, created and member for,
-   the log, deleted and scheduled. Spans of time ago (last access, "1 day 11
-   hours ago") may still break: on one line they made People 886px wide,
-   more than the golden section leaves at 1280px (frame.css, 56rem). */
+   the log, deleted and scheduled. In Views pages the day stands above the
+   time (.lcars-date-line above, since 13.11.2026), each on one line; the
+   tables of core and other modules keep date and time on one line. Spans of
+   time ago (last access, "1 day 11 hours ago") may still break: on one line
+   they made People 886px wide, more than the golden section leaves at 1280px
+   (frame.css, 56rem). */
 .block-system-main-block :is(th, td):is(.views-field-changed, .views-field-created, .views-field-timestamp, .views-field-deleted, .views-field-publish-on, .views-field-unpublish-on) {
   white-space: nowrap;
 }
