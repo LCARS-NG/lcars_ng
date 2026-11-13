@@ -58,6 +58,17 @@
   flex-grow: 1;
 }
 
+/* A two-column section with only its first column filled: Layout Builder
+   leaves out the empty second one, the first is then the last region, and
+   dashboard.css drops the gap of its cards. They keep it, so they end where
+   the cards of the first column below end (section Monitoring, user decision
+   13.11.2026). Phones stack the columns and drop the gap anyway (below). */
+@media (min-width: 40rem) {
+  .dashboard .layout--twocol-section > .layout__region--first:last-child .block {
+    margin-inline-end: var(--lcars-card-gap);
+  }
+}
+
 /* The content of every card starts at its padding: lists, the announcements
    and the links of the top tasks lose their indent (user decision
    24.10.2026). The nested rules of dashboard.css are specific, hence the long
