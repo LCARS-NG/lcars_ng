@@ -48,9 +48,6 @@ text, so it looks the same in every supported browser and on every system.
     a grid of buttons, the title bar of the page and the text"></a>
 </p>
 
-- To see the theme on a live site, visit the
-  [demo](https://demo.lcars-ng.org). The login form shows the credentials of
-  a read-only guest account, which also opens the administration pages.
 - For a full description of the theme, visit the
   [project page](https://www.drupal.org/project/lcars_ng).
 - To submit bug reports and feature suggestions, or track changes, use the
