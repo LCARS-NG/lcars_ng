@@ -35,15 +35,14 @@ text, so it looks the same in every supported browser and on every system.
 <p align="center">
   <a href="images/screenshots/login-portrait.png"><img
     src="images/screenshots/login-portrait.png" width="45%"
-    alt="The login page of the demo site in a portrait window: between a bar at
-    the top and one at the bottom, a box with the logo on its disc, site name
-    and slogan, below it a box with the login form, the guest account filled
-    in"></a>
+    alt="The login page in a portrait window: between a bar at the top and one
+    at the bottom, a box with the logo on its disc, site name and slogan, below
+    it a box with the login form"></a>
   &emsp;
   <a href="images/screenshots/front-page-portrait.png"><img
     src="images/screenshots/front-page-portrait.png" width="45%"
-    alt="The front page of the demo site in a portrait window, signed in as
-    guest: the top bar of Drupal closed by an elbow, below it the upper panel
+    alt="The front page in a portrait window for a signed-in user: the top bar
+    of Drupal closed by an elbow, below it the upper panel
     with logo, site name, slogan and status line between two elbows, the menu as
     a grid of buttons, the title bar of the page and the text"></a>
 </p>
