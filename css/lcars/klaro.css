@@ -54,7 +54,7 @@
 .klaro.klaro-theme-lcars_ng .cookie-modal {
   --klaro-link-color: var(--lcars-link);
   --klaro-link-color-hover: var(--lcars-link-hover);
-  --klaro-button-bg: var(--lcars-button);
+  --klaro-button-bg: var(--lcars-form-button);
   --klaro-button-text-color: var(--lcars-on-color);
   --klaro-button-border: 0 solid transparent;
   --klaro-button-border-radius: var(--lcars-pill);

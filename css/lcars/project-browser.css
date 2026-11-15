@@ -97,7 +97,7 @@
   color: var(--lcars-on-color);
   border: 0;
   border-radius: 0.625rem; /* 10px */
-  background: var(--lcars-button);
+  background: var(--lcars-form-button);
   font-family: var(--lcars-font-label);
   font-size: 0.85em;
   font-style: normal;

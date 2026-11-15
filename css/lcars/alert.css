@@ -17,6 +17,7 @@
   --lcars-sidebar: var(--lcars-alert-frame);
   --lcars-bar: var(--lcars-alert-frame);
   --lcars-button: var(--lcars-alert-button);
+  --lcars-form-button: var(--lcars-alert-button);
   --lcars-button-sub: var(--lcars-alert-button);
   --lcars-button-hover: color-mix(in sRGB, var(--lcars-alert), #fff 35%);
   --lcars-accent: var(--lcars-alert);

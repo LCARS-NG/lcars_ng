@@ -399,7 +399,7 @@
   margin-block-end: 2rem;
   padding-inline: 1.5em;
   border-radius: var(--lcars-pill);
-  background: var(--lcars-title-bar); /* the color of the frame (user wish 01.11.2026; was light blue from 31.10.2026, before that the bronze of --lcars-accent) */
+  background: var(--lcars-title-bar); /* white since 15.11.2026 (user wish; the color of the frame from 01.11.2026, light blue from 31.10.2026, before that the bronze of --lcars-accent) */
 }
 
 /* The title takes the color of its bar, as the site name in the header bar.

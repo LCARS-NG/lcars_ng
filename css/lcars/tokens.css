@@ -14,12 +14,13 @@
   --lcars-sidebar: #3469aa; /* the frame: sidebar filler, elbows and bars, panels, dashboard cards; a quiet steel blue, 3.11:1 (user decision 27.10.2026, variant C; was #579df9 after LCNG css/1px.png) */
   --lcars-blue: #579df9; /* the former sidebar blue: base of the mixed lines and backgrounds below, which keep their values */
   --lcars-bar: var(--lcars-sidebar); /* bars outside the frame (login panel), the blue of the Klaro ceiling (user decision 25.10.2026) */
-  --lcars-button: #5280b7; /* menu and form buttons: the steel blue of the frame lightened by 15 % (color-mix with white), black labels at 5.1:1 (user decision 27.10.2026, variant D; was #3786ff) */
+  --lcars-button: #5280b7; /* menu buttons of the frame (until 15.11.2026 also the form buttons): the steel blue of the frame lightened by 15 % (color-mix with white), black labels at 5.1:1 (user decision 27.10.2026, variant D; was #3786ff) */
+  --lcars-form-button: var(--lcars-text); /* buttons in forms and dialogs, links drawn as buttons, dropbuttons: white in every contrast level, black labels at 20.82:1, as the page title bar (user wish 15.11.2026; until then --lcars-button). Hover --lcars-button-hover; red and yellow alert keep their button color (alert.css) */
   --lcars-button-sub: var(--lcars-button); /* second menu level, in the one blue of the buttons (user decision 27.10.2026; was #6e64ff, a violet lighter than LCNG's #6257fa) */
   --lcars-button-hover: var(--lcars-frame);
   --lcars-button-active: #fff;
   --lcars-accent: #a6843f; /* focus ring and marks (until 31.10.2026 also the page title bar): a bronze, darker than the ochre #c89d41 of variant C, 4.98:1 (user decision 27.10.2026, variant D; was #ffd068) */
-  --lcars-title-bar: var(--lcars-sidebar); /* page title bar, its title and the closing bar under the content: the color of the frame in every contrast level, 3.11:1 in Standard (user wish 01.11.2026; from 31.10.2026 the light blue of the labels, --lcars-frame, which stood out of the frame; before that --lcars-accent) */
+  --lcars-title-bar: var(--lcars-text); /* page title bar, its title and the closing bar under the content: the white of the text in every contrast level, 17.29:1 (user wish 15.11.2026; from 01.11.2026 the color of the frame, --lcars-sidebar, 3.11:1 in Standard; from 31.10.2026 the light blue of the labels, --lcars-frame; before that --lcars-accent). Red and yellow alert keep their frame color (alert.css) */
   --lcars-logo-disc: #3469aa; /* the disc under the logo in the upper panel and the login panel, which shows its one-colored form in the light blue of the labels there, 3.6:1: the steel blue of the frame in Standard, the same in every contrast level, 3.11:1 on the page (user decisions 01.11.2026: variant B, no ring round it; was --lcars-logo-ring, a ring of 2px in #3786ff with the page inside, from 31.10.2026) */
   --lcars-alert: #ff3b4f; /* red alert (alert.css): text, titles, labels and links of error pages; lighter than #9e0e26 for black labels at 5.99:1 and text at 4.97:1 (user decision 25.10.2026) */
   /* Red alert in steps as the blue (user decision 03.11.2026, variant D): until
@@ -69,8 +70,12 @@
   --lcars-message-tint-error: 51%;
   --lcars-text: #fefefe;
   /* Secondary text in the same white as all text (user decision 21.10.2026;
-     was #eee, #c2c9ce, #999). Kept as tokens to set them apart again. */
-  --lcars-text-muted: var(--lcars-text); /* form descriptions */
+     was #eee, #c2c9ce, #999). Kept as tokens to set them apart again. Hints
+     and help texts since 15.11.2026 in the white of the placeholders
+     (60 %, 6.79:1; high contrast 65 %, 7.79:1; user decision): descriptions
+     of fields, fieldsets and sections; custom modules can use the token for
+     their hints and meta lines. */
+  --lcars-text-muted: var(--lcars-placeholder); /* hints and help texts, form descriptions */
   --lcars-text-soft: var(--lcars-text); /* secondary text, descriptions */
   --lcars-text-dim: var(--lcars-text); /* meta data; slogan and date of the status line in --lcars-sidebar since 28.10.2026 */
   /* Headings in the white of the text, so that the light blue of

@@ -3,15 +3,15 @@
  * General styles for dropbuttons.
  *
  * LCARS-NG: a dropbutton (Configure, Edit … with the arrow for more) looks
- * like the other buttons (forms.css): button blue, rounded, black bold
- * capitals; the parts are divided by thin lines in the page color (user
+ * like the other buttons (forms.css): white since 15.11.2026 (was button
+ * blue), rounded, black bold capitals; the parts are divided by thin lines in the page color (user
  * decision 24.10.2026). The arrow of core takes the text color.
  */
 
 .js .dropbutton-widget {
   border: 0;
   border-radius: 0.625rem; /* 10px, as .button */
-  background-color: var(--lcars-button);
+  background-color: var(--lcars-form-button);
 }
 /* 34px high as the buttons (forms.css): the padding fills the line (1.4em)
    up to --lcars-button-height, also in tables, where core reserves only 2em

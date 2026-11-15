@@ -59,6 +59,7 @@
     --lcars-link: LinkText;
     --lcars-link-hover: LinkText;
     --lcars-button: ButtonText;
+    --lcars-form-button: ButtonText;
     --lcars-button-sub: ButtonText;
     --lcars-button-hover: Highlight;
     --lcars-button-active: Highlight;

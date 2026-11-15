@@ -179,6 +179,13 @@ button.link {
   font-size: 0.875em;
 }
 
+/* Descriptions of fieldsets and sections are help texts as well, in the
+   same color as those of fields (user decision 15.11.2026). */
+.fieldset-wrapper > .description,
+.details-description {
+  color: var(--lcars-text-muted);
+}
+
 /* Fields in sections (details, also the panes of vertical tabs): the label
    above its field, all fields of text 40rem wide (640px, the width of the
    text of posts) or as wide as the section, so they stand flush at the
@@ -251,7 +258,7 @@ input:where([type="submit"], [type="button"], [type="reset"]),
   color: var(--lcars-on-color);
   border: 0;
   border-radius: 0.625rem; /* 10px */
-  background: var(--lcars-button);
+  background: var(--lcars-form-button); /* white since 15.11.2026 (user wish), the menu buttons of the frame stay --lcars-button */
   font-family: var(--lcars-font-label);
   font-size: 0.85em;
   font-weight: bold;
