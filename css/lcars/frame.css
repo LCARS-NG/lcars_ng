@@ -197,10 +197,18 @@
    a window of 1920px): the forms of content and every form of the main block
    without a table (user, site information, theme settings, content types,
    cron …). Pages with a table take the rule of the tables below; Layout
-   Builder keeps the full width. */
+   Builder keeps the full width.
+   Formatted text outside a node as well (the class text-formatted of core's
+   text fields, also on text that modules render themselves), since
+   15.11.2026: without a table such a page kept the full width, with one it
+   took the rule of the tables below (the same kind of page 1474 or 919px
+   wide at 1920px). Pages with a table keep the rule of the tables, as nodes
+   with a table do (the selector of the tables is the stronger one); the
+   dashboard, Layout Builder and the Views UI stay wide. */
 @media (min-width: 64rem) {
   .lcars-frame > .lcars-main:has(.block-system-main-block .node, .block-system-main-block > form.node-form),
-  .lcars-frame > .lcars-main:has(.block-system-main-block > form):not(:has(.block-system-main-block table, .block-system-main-block .layout-builder)) {
+  .lcars-frame > .lcars-main:has(.block-system-main-block > form):not(:has(.block-system-main-block table, .block-system-main-block .layout-builder)),
+  .lcars-frame > .lcars-main:has(.block-system-main-block .text-formatted):not(:has(:where(.block-system-main-block :is(table, .dashboard, .layout-builder, .layout-builder-form, .views-edit-view)))) {
     padding-inline-end: min((100% - var(--lcars-gutter)) * 0.382, max(0px, 100% - var(--lcars-gutter) - 40rem));
   }
 }
@@ -247,7 +255,7 @@
 }
 
 @container lcars-page (min-width: 67.5625rem) {
-  .lcars-frame:has(> .lcars-aside) > .lcars-main:has(.block-system-main-block .node, .block-system-main-block > form, .block-system-main-block > dl, .block-system-main-block table, .block-system-main-block .view-id-media_library.view-display-id-page) {
+  .lcars-frame:has(> .lcars-aside) > .lcars-main:has(.block-system-main-block .node, .block-system-main-block > form, .block-system-main-block > dl, .block-system-main-block table, .block-system-main-block .view-id-media_library.view-display-id-page, .block-system-main-block .text-formatted) {
     padding-inline-end: 0;
   }
 }
