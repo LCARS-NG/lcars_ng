@@ -144,7 +144,7 @@
    title bar of the frame was larger than the site name, and long titles broke
    into two lines that hid the bar (user decision 25.10.2026). */
 .lcars-login__panel .lcars-title {
-  --lcars-title-height: 1.5625rem; /* 25px: capitals 23px */
+  --lcars-page-title-height: 1.5625rem; /* 25px: capitals 23px; the title bar of the frame is as high as the site name bar since 16.11.2026, the login panel keeps 25px */
 
   justify-content: center;
   padding-inline: 0;
@@ -166,7 +166,7 @@
   }
 
   .lcars-login__panel .lcars-title {
-    --lcars-title-height: 1.125rem; /* 18px: capitals 16px */
+    --lcars-page-title-height: 1.125rem; /* 18px: capitals 16px */
   }
 }
 

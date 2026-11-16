@@ -130,7 +130,8 @@
   --lcars-target: 1.5rem; /* 24px: the smallest pointer target, as WCAG 2.2 (2.5.8) asks (#20, 29.10.2026) */
   --lcars-pill: 9999px; /* pill: a radius larger than any element */
   --lcars-cap-inset: 1px; /* capitals cut into a bar stop this short of its top and bottom edge (user decision 06.11.2026, variant B, with Antonio; was 2px from 23.10.2026) */
-  --lcars-title-height: 1.5625rem; /* 25px: the title bar of the page (frame.css) and the titles of the dashboard cards (dashboard.css), capitals 23px, smaller than the site name (30px); was --lcars-button-height, 34px */
+  --lcars-title-height: 1.5625rem; /* 25px: the titles of the dashboard cards (dashboard.css) and of the login panel (login.css), capitals 23px, smaller than the site name (30px); until 16.11.2026 the title bar of the page as well; was --lcars-button-height, 34px */
+  --lcars-page-title-height: var(--lcars-bar-top); /* the title bar of the page and the closing bar under the content (frame.css): as high as the bar of the top elbow with the site name, 32px, on phones 24px, capitals as large as the site name (user wish 16.11.2026; was --lcars-title-height, 25 and 18px). Resolved here on :root, so the lower bar of the two-part screen (frame.css) does not change it */
 
   /* Plain box (box.css) */
   --lcars-box-border-width: 1px;

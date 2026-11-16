@@ -390,9 +390,11 @@
   color: var(--lcars-link-hover);
 }
 
-/* Page title: a bar with the title cut into it, as high as the title of the
-   login panel and the titles of the dashboard cards (--lcars-title-height,
-   tokens.css); the cut capitals as above. A long title stays on one line
+/* Page title: a bar with the title cut into it, as high as the bar of the
+   top elbow with the site name (--lcars-page-title-height, tokens.css; user
+   wish 16.11.2026, until then as high as the title of the login panel and
+   the titles of the dashboard cards, --lcars-title-height); the cut capitals
+   as above. A long title stays on one line
    and ends in an ellipsis, so the end of the bar shows as wide as its start;
    the whole title stays in the markup (#15, user decision 26.10.2026). It is
    clipped at its sides only: the line box ends at the capitals, and marks
@@ -415,7 +417,7 @@
    the type of the content and the title is no heading (page-title.html.twig;
    user decision 31.10.2026). */
 .lcars-title .page-title {
-  --lcars-cut-height: var(--lcars-title-height);
+  --lcars-cut-height: var(--lcars-page-title-height);
   --lcars-italic: normal;
   --lcars-value: currentColor;
 
@@ -443,7 +445,7 @@
    closing bar. */
 .lcars-main:has(.block-system-main-block)::after {
   display: block;
-  block-size: var(--lcars-title-height);
+  block-size: var(--lcars-page-title-height);
   margin-block-start: auto;
   content: "";
   border-radius: var(--lcars-pill);
