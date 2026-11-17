@@ -105,17 +105,6 @@ class LcarsNgHooks {
   ];
 
   /**
-   * Colors of the generated user pictures (user-picture.css).
-   */
-  private const USER_PICTURE_COLORS = [
-    'link',
-    'frame',
-    'button',
-    'blue',
-    'accent',
-  ];
-
-  /**
    * Version of favicon.ico and the icons beside it, as a query string.
    *
    * Browsers keep a favicon for weeks under its URL; a new icon gets a new
@@ -1041,8 +1030,9 @@ class LcarsNgHooks {
    * Builds the generated picture of an account (preprocessField()).
    *
    * Nibble i of the hash fills cell i of the left three columns when even,
-   * column by column; the right two mirror them. Byte 20 picks the color. The
-   * cells form one path, so that adjacent cells show no seam between them.
+   * column by column; the right two mirror them (byte 20 picked one of five
+   * colors until 17.11.2026; since then all are white on the disc of the
+   * logo, user-picture.css). The cells form one path, so that adjacent cells show no seam between them.
    * The grid, 45 of 72 units, sits in the middle of the disc, so that even its
    * corners keep about 4 units to the edge (was 56 units on the card). With
    * $square, the ground fills the whole picture instead of the disc, for the
@@ -1064,10 +1054,9 @@ class LcarsNgHooks {
     }
     return [
       '#type' => 'inline_template',
-      '#template' => '<svg class="lcars-user-picture lcars-user-picture--{{ color }}" xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 72 72" role="img" aria-label="{{ label }}">{% if square %}<rect class="lcars-user-picture__disc" width="72" height="72"/>{% else %}<circle class="lcars-user-picture__disc" cx="36" cy="36" r="36"/>{% endif %}<path d="{{ path }}"/></svg>',
+      '#template' => '<svg class="lcars-user-picture" xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 72 72" role="img" aria-label="{{ label }}">{% if square %}<rect class="lcars-user-picture__disc" width="72" height="72"/>{% else %}<circle class="lcars-user-picture__disc" cx="36" cy="36" r="36"/>{% endif %}<path d="{{ path }}"/></svg>',
       '#context' => [
         'square' => $square,
-        'color' => self::USER_PICTURE_COLORS[ord($hash[20]) % count(self::USER_PICTURE_COLORS)],
         'label' => $account->getDisplayName(),
         'path' => $path,
       ],

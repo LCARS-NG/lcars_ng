@@ -124,7 +124,8 @@ favicon:
   users without a picture of their own get a pattern made from their
   account in place of the default picture of the field (where the field has
   one, as in Drupal CMS), as the identicons of GitHub: a grid of 5 by 5
-  cells, mirrored at its middle, in one of five colors of the theme. The
+  cells, mirrored at its middle, in white on the steel blue disc of the
+  logo. The
   pattern follows from the UUID of the account and stays the same; uploaded
   pictures are shown as they are.
 - **Collapsed sections** (`collapse_module_packages`, on by default): the
