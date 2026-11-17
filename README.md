@@ -148,6 +148,11 @@ favicon:
   layout may look broken and recommends a current Firefox, Chrome, Edge or
   Safari, or an update of iOS. Current browsers never show it; it needs no
   JavaScript and does not read the user agent.
+- **Pencils on blocks and menus** (`contextual_links`, on by default): users
+  with the permission *Use contextual links* see the pencil of the Contextual
+  Links module on blocks, menus and views on hover. Off, pages in LCARS-NG
+  show no pencils; the module stays installed, and pages in the
+  administration theme keep them.
 - **Content type in the title bar** (`content_type_in_title_bar`, none by
   default): on the page of content of the checked types, the title bar names
   the type (*Blog post*), and the title stands as the main heading above the

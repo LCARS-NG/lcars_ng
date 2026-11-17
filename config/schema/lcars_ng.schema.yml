@@ -33,6 +33,9 @@ lcars_ng.settings:
     browser_notice:
       type: boolean
       label: 'Notice above the page for browsers too old for the theme'
+    contextual_links:
+      type: boolean
+      label: 'Pencils of the module Contextual Links on blocks, menus and views'
     content_type_in_title_bar:
       type: sequence
       label: 'Content types whose page shows the type in the title bar and the title above the content'

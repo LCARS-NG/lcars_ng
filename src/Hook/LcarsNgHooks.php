@@ -198,6 +198,7 @@ class LcarsNgHooks {
    */
   #[Hook('page_attachments_alter')]
   public function pageAttachmentsAlter(array &$attachments): void {
+    $this->removeContextualLinks($attachments);
     $favicon = $this->fileUrlGenerator->generateString($this->themeList->getPath('lcars_ng') . '/favicon.ico');
     foreach ($attachments['#attached']['html_head_link'] ?? [] as $key => $link) {
       if (($link[0]['rel'] ?? '') === 'icon' && ($link[0]['href'] ?? '') === $favicon) {
@@ -225,6 +226,29 @@ class LcarsNgHooks {
         return;
       }
     }
+  }
+
+  /**
+   * Without the theme setting contextual_links, no pencils on hover.
+   *
+   * The module Contextual Links prints a placeholder (hidden) on every block,
+   * menu and view for users with the permission, and its library turns them
+   * into the pencil with the links to configure them. Without the library,
+   * the placeholders stay hidden; the module stays installed, and pages in
+   * the administration theme keep the pencils. The setting is part of the
+   * cacheability of the page.
+   */
+  private function removeContextualLinks(array &$attachments): void {
+    CacheableMetadata::createFromRenderArray($attachments)
+      ->addCacheTags(['config:lcars_ng.settings'])
+      ->applyTo($attachments);
+    if ($this->themeSettings->getSetting('contextual_links') ?? TRUE) {
+      return;
+    }
+    $attachments['#attached']['library'] = array_values(array_diff(
+      $attachments['#attached']['library'] ?? [],
+      ['contextual/drupal.contextual-links'],
+    ));
   }
 
   /**
@@ -831,6 +855,12 @@ class LcarsNgHooks {
       '#title' => $this->t('Notice for old browsers'),
       '#description' => $this->t('Browsers without container queries or color-mix(), on which the frame depends (Safari before 16.2, Chrome and Edge before 111, Firefox before 113), show a bar above the page that recommends a current browser. Current browsers never show it.'),
       '#config_target' => 'lcars_ng.settings:browser_notice',
+    ];
+    $form['lcars_ng']['contextual_links'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Pencils on blocks and menus'),
+      '#description' => $this->t('Users with the permission Use contextual links see a pencil on blocks, menus and views on hover, with links to configure them. Off, the pages in this theme show no pencils; pages in the administration theme keep them.'),
+      '#config_target' => 'lcars_ng.settings:contextual_links',
     ];
     if ($this->entityTypeManager->hasDefinition('node_type')) {
       $types = $this->entityTypeManager->getStorage('node_type')->loadMultiple();

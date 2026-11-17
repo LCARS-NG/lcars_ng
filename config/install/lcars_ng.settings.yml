@@ -4,6 +4,7 @@ contrast: system
 generated_user_pictures: true
 collapse_module_packages: true
 browser_notice: true
+contextual_links: true
 content_type_in_title_bar: []
 features:
   node_user_picture: false
