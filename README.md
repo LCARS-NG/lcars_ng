@@ -264,8 +264,8 @@ Basic site settings*. Anonymous visitors then get the login panel.
   square, for iOS). The theme links them only while the site shows the
   favicon of the theme.
 - `logo.png` (512 x 512) is the logo of the project on drupal.org and in
-  Project Browser: the one-colored logo on the disc. The theme itself does
-  not use it.
+  Project Browser: the one-colored logo in white on the disc, as in the
+  upper panel. The theme itself does not use it.
 - The icons in `images/icons/` come from Drupal core (the Starterkit theme;
   `ex.svg`, `chevron-right.svg` and `chevron-down.svg` from `core/misc/icons`)
   and from the module View Password (`view-password-eye-*.svg`);
