@@ -8,6 +8,7 @@ use Drupal\Component\Utility\Html;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Extension\ModuleExtensionList;
+use Drupal\Core\Extension\ThemeExtensionList;
 use Drupal\Core\Extension\ThemeSettingsProvider;
 use Drupal\Core\File\FileUrlGeneratorInterface;
 use Drupal\Core\Form\ConfigTarget;
@@ -114,6 +115,14 @@ class LcarsNgHooks {
     'accent',
   ];
 
+  /**
+   * Version of favicon.ico and the icons beside it, as a query string.
+   *
+   * Browsers keep a favicon for weeks under its URL; a new icon gets a new
+   * value (17.11.2026: the white areas on the disc).
+   */
+  private const ICON_VERSION = '20261117';
+
   public function __construct(
     private readonly RouteMatchInterface $routeMatch,
     private readonly PathMatcherInterface $pathMatcher,
@@ -125,6 +134,7 @@ class LcarsNgHooks {
     private readonly ModuleExtensionList $moduleList,
     private readonly RouteProviderInterface $routeProvider,
     private readonly RequestStack $requestStack,
+    private readonly ThemeExtensionList $themeList,
   ) {}
 
   /**
@@ -181,6 +191,50 @@ class LcarsNgHooks {
     }
     elseif ($this->isPanelPage()) {
       $suggestions[] = 'page__panel';
+    }
+  }
+
+  /**
+   * Implements hook_page_attachments_alter().
+   *
+   * The favicon of the theme with a version, and the icons beside it for
+   * shortcuts on the desktop and the home screen (since 17.11.2026): the
+   * white areas of the logo on the disc, 192 and 512 px with transparent
+   * corners (rel icon, which Chrome and Edge take for a shortcut), and 180 px
+   * filling the square (apple-touch-icon: iOS rounds the corners itself and
+   * fills transparent pixels with black). Only while the site shows the
+   * favicon of this theme; a favicon of its own, or of a subtheme, stays
+   * alone. No web app manifest: its name would be this site's, not the
+   * theme's.
+   */
+  #[Hook('page_attachments_alter')]
+  public function pageAttachmentsAlter(array &$attachments): void {
+    $favicon = $this->fileUrlGenerator->generateString($this->themeList->getPath('lcars_ng') . '/favicon.ico');
+    foreach ($attachments['#attached']['html_head_link'] ?? [] as $key => $link) {
+      if (($link[0]['rel'] ?? '') === 'icon' && ($link[0]['href'] ?? '') === $favicon) {
+        // The favicon goes last, with its sizes: Firefox takes the last icon
+        // for the tab, Chrome the nearest size; both get the pixels of the
+        // ICO there and the PNGs only for shortcuts.
+        unset($attachments['#attached']['html_head_link'][$key]);
+        $link[0]['href'] .= '?v=' . self::ICON_VERSION;
+        $link[0]['sizes'] = '16x16 32x32 48x48';
+        $base = substr($favicon, 0, -strlen('favicon.ico')) . 'images/lcars-ng-';
+        foreach (['icon-192.png' => '192x192', 'icon-512.png' => '512x512'] as $file => $sizes) {
+          $attachments['#attached']['html_head_link'][] = [[
+            'rel' => 'icon',
+            'href' => $base . $file . '?v=' . self::ICON_VERSION,
+            'type' => 'image/png',
+            'sizes' => $sizes,
+          ]];
+        }
+        $attachments['#attached']['html_head_link'][] = [[
+          'rel' => 'apple-touch-icon',
+          'href' => $base . 'touch-icon-180.png?v=' . self::ICON_VERSION,
+          'sizes' => '180x180',
+        ]];
+        $attachments['#attached']['html_head_link'][] = $link;
+        return;
+      }
     }
   }
 

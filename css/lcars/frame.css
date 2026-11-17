@@ -634,9 +634,11 @@
 
 /* The logo of the theme on a disc in the steel blue of the frame
    (--lcars-logo-disc), as high as the logo was, so the panel keeps its
-   height; on it the image shows the one-colored form of the logo in the light
-   blue of the labels, same shape, the edges as gaps (user decision 01.11.2026,
-   variant B; the page showed through and looked like a hole). The circle
+   height; on it the image shows the one-colored form of the logo in white,
+   same shape, the edges as gaps of 2.4 units instead of 1.6, 5.6:1 (user
+   decision 17.11.2026, variant C of the white forms; from 01.11.2026 in the
+   light blue of the labels, 3.6:1, variant B; the page showed through the
+   ring before and looked like a hole). The circle
    through the three corners of the triangle (lcars-ng-logo-flat.svg, viewBox
    77 x 72: apex 38.5|1.81, base 1.67|70.12 and 75.33|70.12; radius 44.08,
    center 9.89 below the middle of the image) has the center of the disc, so
@@ -664,7 +666,7 @@
 .lcars-panel-top .site-logo > img[src*="lcars-ng-logo-flat.svg"] {
   translate: 0 calc(9.89 * var(--lcars-logo-unit));
   block-size: calc(72 * var(--lcars-logo-unit));
-  content: url("../../lcars-ng-logo-flat-mono-lightblue.svg");
+  content: url("../../lcars-ng-logo-flat-mono-white-gaps.svg");
 }
 
 /* Status line in the curve below the upper panel: the user right beside the

@@ -84,7 +84,8 @@
 }
 
 /* The logo of the theme on the disc of the upper panel (frame.css), with its
-   one-colored form in the light blue of the labels, the logo as high as
+   one-colored form in white with the wider gaps of 2.4 units (since
+   17.11.2026, as there; was the light blue of the labels), the logo as high as
    before: the disc 9rem, the corners of the triangle as far inside its edge
    as there, 5px on 88px (user decision 01.11.2026, variant A; the colored
    logo stood on the page). Like there the logo stands on its head
@@ -107,7 +108,7 @@
 .lcars-login__panel .site-logo > img[src*="lcars-ng-logo-flat.svg"] {
   translate: 0 calc(9.89 * var(--lcars-logo-unit));
   block-size: calc(72 * var(--lcars-logo-unit));
-  content: url("../../lcars-ng-logo-flat-mono-lightblue.svg");
+  content: url("../../lcars-ng-logo-flat-mono-white-gaps.svg");
 }
 
 /* The branding and the content as cards inside the panel, with the line and

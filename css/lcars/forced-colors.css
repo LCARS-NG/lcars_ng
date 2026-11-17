@@ -82,9 +82,9 @@
   /* The disc under the logo in the upper panel and in the login panel takes
      the background of the system (Firefox drops it even with
      forced-color-adjust: none, unless the whole panel keeps its colors), so
-     the image shows the colored logo again instead of its light blue
-     one-colored form: on a light system background that stood at 1.54:1
-     (01.11.2026). */
+     the image shows the colored logo again instead of its white
+     one-colored form, which would vanish on a light system background
+     (01.11.2026: the light blue form then stood at 1.54:1). */
   .lcars-panel-top .site-logo > img[src*="lcars-ng-logo-flat.svg"],
   .lcars-login__panel .site-logo > img[src*="lcars-ng-logo-flat.svg"] {
     content: normal;
