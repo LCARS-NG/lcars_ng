@@ -46,10 +46,16 @@
    links of dropbuttons ("Place block" in the block library): they keep the
    colors of the buttons (dropbutton.css); with the link colors their label
    stood in link blue, and on hover in the hover color of the links, which is
-   the hover color of the buttons too, so it vanished (31.10.2026). */
+   the hover color of the buttons too, so it vanished (31.10.2026). Buttons
+   take the label font of the form buttons (forms.css; 16.11.2026, before the
+   buttons of the button pane stood in the text font). */
 .ui-dialog.ui-widget,
 .ui-dialog.ui-widget :is(input, select, textarea, button) {
   font-family: var(--lcars-font);
+}
+
+.ui-dialog.ui-widget :is(.button, .form-submit, input:where([type="submit"], [type="button"], [type="reset"])) {
+  font-family: var(--lcars-font-label);
 }
 
 .ui-dialog .ui-widget-content a:not(.button, .dropbutton a) {
@@ -103,7 +109,7 @@
 }
 .ui-dialog .ui-dialog-buttonpane {
   margin-top: 0;
-  padding: 0.3em 1em;
+  padding: 0.5rem 1em; /* 8px above and below the buttons (16.11.2026, before 0.3em plus the margins of jQuery UI) */
   border-width: 1px 0 0 0;
   border-style: solid;
   border-color: var(--lcars-box-border-color);
@@ -118,6 +124,34 @@
 }
 .ui-dialog .ui-dialog-buttonpane .ui-button-text-only .ui-button-text {
   padding: 0;
+}
+
+/* The form actions Drupal moves into the button pane look like the form
+   buttons (forms.css), 12px apart as there (#43). jQuery UI gives them
+   .ui-widget and .ui-button, whose rules come after forms.css: Claro's reset
+   of .ui-widget took their white background (black labels on the dark pane,
+   finding of the user 16.11.2026), .ui-button made them 27 instead of 34px
+   high (padding, line-height), and its states drew a gray border, gray on
+   focus and blue while pressed. The focus ring of the theme (base.css)
+   stays. */
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.ui-dialog .ui-dialog-buttonpane .ui-button.button {
+  margin: 0;
+  padding: calc((var(--lcars-button-height) - 1.4em) / 2) 0.625rem;
+  color: var(--lcars-on-color);
+  border: 0;
+  background: var(--lcars-form-button);
+  line-height: 1.4;
+}
+
+.ui-dialog .ui-dialog-buttonpane .ui-button.button:is(:hover, :active) {
+  color: var(--lcars-on-color);
+  background: var(--lcars-button-hover);
 }
 
 /* Form action buttons are moved in dialogs. Remove empty space. */

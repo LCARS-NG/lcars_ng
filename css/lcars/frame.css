@@ -204,8 +204,12 @@
    took the rule of the tables below (the same kind of page 1474 or 919px
    wide at 1920px). Pages with a table keep the rule of the tables, as nodes
    with a table do (the selector of the tables is the stronger one); the
-   dashboard, Layout Builder and the Views UI stay wide. */
+   dashboard, Layout Builder and the Views UI stay wide.
+   Modules opt in with the class lcars-golden-section on an element of the
+   main block, for pages that are none of the above (since 17.11.2026, user
+   wish for the zoom roll of the blog; 899 instead of 1454px at 1920px). */
 @media (min-width: 64rem) {
+  .lcars-frame > .lcars-main:has(.block-system-main-block .lcars-golden-section),
   .lcars-frame > .lcars-main:has(.block-system-main-block .node, .block-system-main-block > form.node-form),
   .lcars-frame > .lcars-main:has(.block-system-main-block > form):not(:has(.block-system-main-block table, .block-system-main-block .layout-builder)),
   .lcars-frame > .lcars-main:has(.block-system-main-block .text-formatted):not(:has(:where(.block-system-main-block :is(table, .dashboard, .layout-builder, .layout-builder-form, .views-edit-view)))) {
@@ -255,7 +259,7 @@
 }
 
 @container lcars-page (min-width: 67.5625rem) {
-  .lcars-frame:has(> .lcars-aside) > .lcars-main:has(.block-system-main-block .node, .block-system-main-block > form, .block-system-main-block > dl, .block-system-main-block table, .block-system-main-block .view-id-media_library.view-display-id-page, .block-system-main-block .text-formatted) {
+  .lcars-frame:has(> .lcars-aside) > .lcars-main:has(.block-system-main-block .node, .block-system-main-block > form, .block-system-main-block > dl, .block-system-main-block table, .block-system-main-block .view-id-media_library.view-display-id-page, .block-system-main-block .text-formatted, .block-system-main-block .lcars-golden-section) {
     padding-inline-end: 0;
   }
 }
