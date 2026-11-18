@@ -347,6 +347,14 @@ class LcarsNgHooks {
    * (NodeForm). The title of the document keeps the one of core (user wish
    * 04.11.2026; for all types, not only those of the setting, user decision
    * 04.11.2026). No other heading repeats the title on the edit form.
+   *
+   * On the revisions of content of any type the bar says "Revisions" instead
+   * of core's "Revisions for @title", and the title of the content stands
+   * below it as the heading of the page, as on the page of the content
+   * (content_title in page-title.html.twig, node__title of node.css; user
+   * wish 18.11.2026). As core, the title of the latest revision, which may be
+   * a draft above the published one. The title of the document keeps the one
+   * of core.
    */
   #[Hook('preprocess_page_title')]
   public function preprocessPageTitle(array &$variables): void {
@@ -367,6 +375,16 @@ class LcarsNgHooks {
       $type = $edited->type->entity;
       $variables['title'] = $this->t('Edit @type', ['@type' => $type->label()]);
       $cacheability->addCacheableDependency($type);
+    }
+    $revised = $route === 'entity.node.version_history' ? $this->routeMatch->getParameter('node') : NULL;
+    if ($revised instanceof NodeInterface) {
+      /** @var \Drupal\Core\Entity\RevisionableStorageInterface $storage */
+      $storage = $this->entityTypeManager->getStorage('node');
+      $latest = $storage->loadRevision($storage->getLatestRevisionId($revised->id())) ?? $revised;
+      $variables['title'] = $this->t('Revisions');
+      $variables['title_tag'] = 'div';
+      $variables['content_title'] = $latest->label();
+      $cacheability->addCacheableDependency($revised);
     }
     CacheableMetadata::createFromRenderArray($variables)
       ->merge($cacheability)

@@ -14,7 +14,11 @@
  *   (LcarsNgHooks::preprocessPageTitle(), the pages to log in and to reset
  *   the password).
  * - title_tag: The element of the title, h1 unless the bar names the type of
- *   the content whose title is the heading of the page (node.html.twig).
+ *   the content whose title is the heading of the page (node.html.twig), or
+ *   unless the title of the content follows below (content_title).
+ * - content_title: The title of the content as the heading of the page below
+ *   the bar, styled as on the page of the content (the revisions of content;
+ *   LcarsNgHooks::preprocessPageTitle()).
  */
 #}
 {% set tag = title_tag|default('h1') %}
@@ -24,5 +28,9 @@
   <div{{ create_attribute({'class': ['lcars-title', title_hidden ? 'visually-hidden']}) }}>
     <{{ tag }}{{ title_attributes.addClass('page-title') }}>{{ title }}</{{ tag }}>
   </div>
+{% endif %}
+{% if content_title %}
+  {{ attach_library('lcars_ng/node') }}
+  <h1 class="node__title">{{ content_title }}</h1>
 {% endif %}
 {{ title_suffix }}
