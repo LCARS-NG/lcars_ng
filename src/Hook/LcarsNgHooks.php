@@ -212,18 +212,22 @@ class LcarsNgHooks {
         $link[0]['sizes'] = '16x16 32x32 48x48';
         $base = substr($favicon, 0, -strlen('favicon.ico')) . 'images/lcars-ng-';
         foreach (['icon-192.png' => '192x192', 'icon-512.png' => '512x512'] as $file => $sizes) {
-          $attachments['#attached']['html_head_link'][] = [[
-            'rel' => 'icon',
-            'href' => $base . $file . '?v=' . self::ICON_VERSION,
-            'type' => 'image/png',
-            'sizes' => $sizes,
-          ]];
+          $attachments['#attached']['html_head_link'][] = [
+            [
+              'rel' => 'icon',
+              'href' => $base . $file . '?v=' . self::ICON_VERSION,
+              'type' => 'image/png',
+              'sizes' => $sizes,
+            ],
+          ];
         }
-        $attachments['#attached']['html_head_link'][] = [[
-          'rel' => 'apple-touch-icon',
-          'href' => $base . 'touch-icon-180.png?v=' . self::ICON_VERSION,
-          'sizes' => '180x180',
-        ]];
+        $attachments['#attached']['html_head_link'][] = [
+          [
+            'rel' => 'apple-touch-icon',
+            'href' => $base . 'touch-icon-180.png?v=' . self::ICON_VERSION,
+            'sizes' => '180x180',
+          ],
+        ];
         $attachments['#attached']['html_head_link'][] = $link;
         return;
       }
