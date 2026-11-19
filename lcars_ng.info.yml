@@ -80,11 +80,13 @@ libraries-override:
 description: 'Inspired by the LCARS interface of Star Trek: The Next Generation. Rebuild of the Drupal 6 theme LCNG.'
 # 11.3: ThemeSettingsProvider and hook classes in themes (src/Hook).
 core_version_requirement: ^11.4
-# The logo of the Drupal 6 theme LCNG, redrawn as SVG (icosahedron), flat:
-# seven areas in solid blues of the palette, no gradients, on a transparent
-# background. Source: lcars-ng-logo.svg. A new logo gets a new file name:
-# browsers cache static files without a version.
-logo: lcars-ng-logo-flat.svg
+# The mark of the theme: the logo of the Drupal 6 theme LCNG, redrawn as SVG
+# (icosahedron), flat, in six areas, a V around the cube (since 18.11.2026;
+# before lcars-ng-logo-flat.svg, all seven areas), solid blues of the palette,
+# the edges as gaps, on a transparent background. Source: lcars-ng-logo.svg.
+# A new logo gets a new file name: browsers cache static files without a
+# version.
+logo: lcars-ng-logo-v.svg
 generator: 'starterkit_theme:11.4.10'
 regions:
   header: 'Header bar'

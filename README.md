@@ -251,11 +251,13 @@ Basic site settings*. Anonymous visitors then get the login panel.
 - Design after the Drupal 6 theme LCNG (2011) by the same author, source:
   [github.com/LCARS-NG/LCNG](https://github.com/LCARS-NG/LCNG).
 - `lcars-ng-logo.svg` is the logo of LCNG, redrawn as SVG: an icosahedron in
-  a Schlegel diagram with 12 vertices and 30 edges. The theme logo
-  `lcars-ng-logo-flat.svg` is derived from it as a flat mark: the faces
-  joined to seven areas (three outer wings, a cube in the hexagon, the table
-  in the middle), each in a solid blue of the palette, without gradients or
-  transparency, on a transparent background. `lcars-ng-logo-facets.svg`, the
+  a Schlegel diagram with 12 vertices and 30 edges. `lcars-ng-logo-flat.svg`
+  is derived from it as a flat mark: the faces joined to seven areas (three
+  outer wings, a cube in the hexagon, the table in the middle), each in a
+  solid blue of the palette, without gradients or transparency, on a
+  transparent background; the theme logo up to 18 November 2026. The theme
+  logo `lcars-ng-logo-v.svg` leaves out the wing opposite the apex: six
+  areas, a V around the cube, the edges as gaps. `lcars-ng-logo-facets.svg`, the
   theme logo up to 1.0.6, shows the 19 inner faces as a cut gem with shaded,
   slightly translucent facets; `lcars-ng-logo-glow.svg`, the theme logo up to
   1.0.2, shows the edges only, with a soft glow.

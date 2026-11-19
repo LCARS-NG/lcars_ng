@@ -91,9 +91,9 @@
    18.11.2026 the corners of the triangle, 5px on 88px; user decision
    01.11.2026, variant A; the colored logo stood on the page). Like there the
    logo stands on its head (04.11.2026), so the image moves down. The
-   contrast themes of the system (forced-colors.css) keep the colored logo
-   with the units of the triangle. Another logo keeps the rules above. */
-.lcars-login__panel .site-logo:has(> img[src*="lcars-ng-logo-flat.svg"]) {
+   contrast themes of the system (forced-colors.css) show the colored logo,
+   the V as well, in the same place. Another logo keeps the rules above. */
+.lcars-login__panel .site-logo:has(> img[src*="lcars-ng-logo-v.svg"]) {
   --lcars-logo-size: 9rem; /* 144px */
   --lcars-logo-gap: calc(var(--lcars-logo-size) * 2 / 88);
   --lcars-logo-radius: 41.67;
@@ -108,7 +108,7 @@
   block-size: var(--lcars-logo-size);
 }
 
-.lcars-login__panel .site-logo > img[src*="lcars-ng-logo-flat.svg"] {
+.lcars-login__panel .site-logo > img[src*="lcars-ng-logo-v.svg"] {
   translate: 0 calc(var(--lcars-logo-shift) * var(--lcars-logo-unit));
   block-size: calc(72 * var(--lcars-logo-unit));
   content: url("../../lcars-ng-logo-v-white-gaps.svg");

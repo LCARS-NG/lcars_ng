@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="77" height="72" viewBox="0 0 77 72" role="img" aria-labelledby="lcars-ng-logo-title">
+  <title id="lcars-ng-logo-title">LCARS-NG</title>
+  <!-- Icosahedron, Schlegel diagram, flat: 6 areas, flat tones, edges as gaps, turned 180 degrees (apex down), lit on the turned body, transparent background.
+       Derived from lcars-ng-logo.svg. -->
+  <g stroke="none">
+    <path d="M39.7 67.964L73.959 4.422L50.173 22.422L50.032 33.874L39.7 40.439Z" fill="#579df9"/>
+    <path d="M37.3 67.964L37.3 40.439L26.968 33.874L26.827 22.422L3.041 4.422Z" fill="#3786ff"/>
+    <path d="M46.313 33.394L41.744 31.35L35.256 31.35L30.687 33.394L38.5 38.358Z" fill="#1f5bc4"/>
+    <path d="M47.663 31.369L47.771 22.518L39.7 17.998L39.7 24.819L42.79 29.189Z" fill="#3786ff"/>
+    <path d="M29.229 22.518L29.337 31.369L34.21 29.189L37.3 24.819L37.3 17.998Z" fill="#579df9"/>
+    <path d="M37.318 28.95L39.682 28.95L38.5 27.279Z" fill="#a7d4ff"/>
+  </g>
+</svg>

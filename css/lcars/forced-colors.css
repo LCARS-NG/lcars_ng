@@ -84,30 +84,14 @@
      forced-color-adjust: none, unless the whole panel keeps its colors), so
      the image shows the colored logo again instead of its white
      one-colored form, which would vanish on a light system background
-     (01.11.2026: the light blue form then stood at 1.54:1). */
-  .lcars-panel-top .site-logo > img[src*="lcars-ng-logo-flat.svg"],
-  .lcars-login__panel .site-logo > img[src*="lcars-ng-logo-flat.svg"] {
+     (01.11.2026: the light blue form then stood at 1.54:1). Since 18.11.2026
+     both are the V in six areas with the same outlines, so the colored one
+     keeps the place and size of the white one. */
+  .lcars-panel-top .site-logo > img[src*="lcars-ng-logo-v.svg"],
+  .lcars-login__panel .site-logo > img[src*="lcars-ng-logo-v.svg"] {
     content: normal;
   }
 
-  /* The colored logo is the whole triangle, so it takes the units of the
-     triangle again, not those of the mark in six areas (frame.css,
-     login.css; since 18.11.2026): the circle through its corners, radius
-     44.08, 9.89 above the middle of the image, 5px inside the edge on 88px,
-     and the name of the upper panel starts at its base, 24.23 units above
-     the middle of the disc. */
-  .lcars-panel-top .block-system-branding-block:has(.site-logo > img[src*="lcars-ng-logo-flat.svg"]) {
-    --lcars-logo-gap: 0.3125rem; /* 5px */
-    --lcars-logo-radius: 44.08;
-    --lcars-logo-shift: 9.89;
-    --lcars-logo-top: 24.23;
-  }
-
-  .lcars-login__panel .site-logo:has(> img[src*="lcars-ng-logo-flat.svg"]) {
-    --lcars-logo-gap: calc(var(--lcars-logo-size) * 5 / 88);
-    --lcars-logo-radius: 44.08;
-    --lcars-logo-shift: 9.89;
-  }
 
   /* Sections and settings a display of Views overrides (views-ui.css): the
      browser turned their bronze into the text color, so nothing set them
