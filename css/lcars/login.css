@@ -83,19 +83,22 @@
   inline-size: auto;
 }
 
-/* The logo of the theme on the disc of the upper panel (frame.css), with its
-   one-colored form in white with the wider gaps of 2.4 units (since
-   17.11.2026, as there; was the light blue of the labels), the logo as high as
-   before: the disc 9rem, the corners of the triangle as far inside its edge
-   as there, 5px on 88px (user decision 01.11.2026, variant A; the colored
-   logo stood on the page). Like there the logo stands on its head
-   (04.11.2026), so the image moves down. The contrast themes of the system
-   (forced-colors.css) keep the colored logo. Another logo keeps the rules
-   above. */
+/* The logo of the theme on the disc of the upper panel (frame.css), in white
+   with the gaps of 2.4 units, since 18.11.2026 the mark in six areas as
+   there (lcars-ng-logo-v-white-gaps.svg; until then the whole flat logo,
+   since 17.11.2026 in white, before in the light blue of the labels): the
+   disc 9rem, the tips as far inside its edge as there, 2px on 88px (until
+   18.11.2026 the corners of the triangle, 5px on 88px; user decision
+   01.11.2026, variant A; the colored logo stood on the page). Like there the
+   logo stands on its head (04.11.2026), so the image moves down. The
+   contrast themes of the system (forced-colors.css) keep the colored logo
+   with the units of the triangle. Another logo keeps the rules above. */
 .lcars-login__panel .site-logo:has(> img[src*="lcars-ng-logo-flat.svg"]) {
   --lcars-logo-size: 9rem; /* 144px */
-  --lcars-logo-gap: calc(var(--lcars-logo-size) * 5 / 88);
-  --lcars-logo-unit: calc((var(--lcars-logo-size) / 2 - var(--lcars-logo-gap)) / 44.08);
+  --lcars-logo-gap: calc(var(--lcars-logo-size) * 2 / 88);
+  --lcars-logo-radius: 41.67;
+  --lcars-logo-shift: 9.69;
+  --lcars-logo-unit: calc((var(--lcars-logo-size) / 2 - var(--lcars-logo-gap)) / var(--lcars-logo-radius));
 
   display: inline-grid;
   place-items: center;
@@ -106,9 +109,9 @@
 }
 
 .lcars-login__panel .site-logo > img[src*="lcars-ng-logo-flat.svg"] {
-  translate: 0 calc(9.89 * var(--lcars-logo-unit));
+  translate: 0 calc(var(--lcars-logo-shift) * var(--lcars-logo-unit));
   block-size: calc(72 * var(--lcars-logo-unit));
-  content: url("../../lcars-ng-logo-flat-mono-white-gaps.svg");
+  content: url("../../lcars-ng-logo-v-white-gaps.svg");
 }
 
 /* The branding and the content as cards inside the panel, with the line and

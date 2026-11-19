@@ -565,21 +565,25 @@
 }
 
 /* With the logo of the theme, the capitals of the name start at the upper
-   edge of its triangle, as on the landing page (user wish 08.11.2026; until
+   edge of the mark, as on the landing page (user wish 08.11.2026; until
    then the name started at the top of the disc, 21px higher on desktop
-   screens). The triangle lies at the middle of the disc less 24.23 units
-   (its base at y 1.88 of the viewBox, the image 72 units high, moved down by
-   9.89, see the disc below); the box of the name starts at the capitals
-   (text-box), where a browser lacks it (Firefox ESR, Samsung Internet), they
-   stand a few pixels lower. The units of the logo are set here, so the name
-   and the disc share them. */
+   screens): since 18.11.2026 at the tips of its two wings, which lie
+   --lcars-logo-top units above the middle of the disc (see the disc below;
+   until then the base of the triangle, 24.23 units above it). The box of the
+   name starts at the capitals (text-box), where a browser lacks it (Firefox
+   ESR, Samsung Internet), they stand a few pixels lower. The units of the
+   logo are set here, so the name and the disc share them; the contrast
+   themes of the system set the ones of the triangle (forced-colors.css). */
 .lcars-panel-top .block-system-branding-block:has(.site-logo > img[src*="lcars-ng-logo-flat.svg"]) {
-  --lcars-logo-gap: 0.3125rem; /* 5px */
-  --lcars-logo-unit: calc((2.75rem - var(--lcars-logo-gap)) / 44.08);
+  --lcars-logo-gap: 0.125rem; /* 2px */
+  --lcars-logo-radius: 41.67;
+  --lcars-logo-shift: 9.69;
+  --lcars-logo-top: 21.89;
+  --lcars-logo-unit: calc((2.75rem - var(--lcars-logo-gap)) / var(--lcars-logo-radius));
 }
 
 .lcars-panel-top .block-system-branding-block:has(.site-logo > img[src*="lcars-ng-logo-flat.svg"]) .site-name {
-  margin-block-start: calc(var(--lcars-panel-logo-size) / 2 - 24.23 * var(--lcars-logo-unit));
+  margin-block-start: calc(var(--lcars-panel-logo-size) / 2 - var(--lcars-logo-top) * var(--lcars-logo-unit));
   text-box: trim-start cap alphabetic;
 }
 
@@ -634,11 +638,20 @@
 
 /* The logo of the theme on a disc in the steel blue of the frame
    (--lcars-logo-disc), as high as the logo was, so the panel keeps its
-   height; on it the image shows the one-colored form of the logo in white,
-   same shape, the edges as gaps of 2.4 units instead of 1.6, 5.6:1 (user
-   decision 17.11.2026, variant C of the white forms; from 01.11.2026 in the
-   light blue of the labels, 3.6:1, variant B; the page showed through the
-   ring before and looked like a hole). The circle
+   height; on it the image shows the mark in white, the edges as gaps of 2.4
+   units, 5.6:1: since 18.11.2026 in six areas, the wide wing opposite the
+   apex left out, a V with the cube between its wings
+   (lcars-ng-logo-v-white-gaps.svg, viewBox 77 x 72 as the flat logo; user
+   decision 18.11.2026). The circle through its three tips (the two wings at
+   y 4.42, the apex at y 67.96, which the gaps hold inside the corners of the
+   triangle; center 38.5|26.31, radius 41.67, so 9.69 above the middle of
+   the image) has the center of the disc, its tips 2px inside the edge on
+   88px (variant B of the matrices of gaps and widths of 18.11.2026; so the
+   mark is 14% larger than the triangle before). Until 18.11.2026 the image
+   showed the one-colored form of the whole flat logo, same shape, gaps of
+   2.4 units (user decision 17.11.2026, variant C of the white forms; from
+   01.11.2026 in the light blue of the labels, 3.6:1, variant B; the page
+   showed through the ring before and looked like a hole), and the circle
    through the three corners of the triangle (lcars-ng-logo-flat.svg, viewBox
    77 x 72: apex 38.5|1.81, base 1.67|70.12 and 75.33|70.12; radius 44.08,
    center 9.89 below the middle of the image) has the center of the disc, so
@@ -653,8 +666,9 @@
    above the middle of the image and the image moves down by that much. The
    login panel shows the same disc, larger (login.css), and so does the
    favicon; the contrast themes of the system (forced-colors.css) keep the
-   colored logo. Another logo keeps the rules above. Its units (gap and unit)
-   are set on the branding block, which the name shares (above). */
+   colored logo. Another logo keeps the rules above. Its units (gap, radius,
+   shift and unit) are set on the branding block, which the name shares
+   (above). */
 .lcars-panel-top .site-logo:has(> img[src*="lcars-ng-logo-flat.svg"]) {
   display: grid;
   place-items: center;
@@ -666,9 +680,9 @@
 }
 
 .lcars-panel-top .site-logo > img[src*="lcars-ng-logo-flat.svg"] {
-  translate: 0 calc(9.89 * var(--lcars-logo-unit));
+  translate: 0 calc(var(--lcars-logo-shift) * var(--lcars-logo-unit));
   block-size: calc(72 * var(--lcars-logo-unit));
-  content: url("../../lcars-ng-logo-flat-mono-white-gaps.svg");
+  content: url("../../lcars-ng-logo-v-white-gaps.svg");
 }
 
 /* Status line in the curve below the upper panel: the user right beside the
