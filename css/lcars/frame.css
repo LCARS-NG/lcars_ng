@@ -645,16 +645,16 @@
    themes of the system, which drop the white (forced-colors.css). Another
    logo keeps the rules above. */
 .lcars-panel-top .block-system-branding-block:has(.site-logo > img[src*="lcars-ng-logo-v.svg"]) {
-  inline-size: fit-content;
-  max-inline-size: 100%;
   box-sizing: border-box;
-  padding-block: calc(var(--lcars-brand-pad) - 4.422 * var(--lcars-brand-unit)) calc(var(--lcars-brand-pad) - 4.036 * var(--lcars-brand-unit));
-  padding-inline: calc(var(--lcars-brand-pad) - 3.041 * var(--lcars-brand-unit)) calc(var(--lcars-brand-pad) + 0.5rem);
+  color: var(--lcars-brand-ink);
   border-radius: var(--lcars-box-radius);
   outline: 1px solid transparent;
   outline-offset: -1px;
   background: var(--lcars-brand-card);
-  color: var(--lcars-brand-ink);
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  padding-block: calc(var(--lcars-brand-pad) - 4.422 * var(--lcars-brand-unit)) calc(var(--lcars-brand-pad) - 4.036 * var(--lcars-brand-unit));
+  padding-inline: calc(var(--lcars-brand-pad) - 3.041 * var(--lcars-brand-unit)) calc(var(--lcars-brand-pad) + 0.5rem);
 }
 
 .lcars-panel-top .site-logo > img[src*="lcars-ng-logo-v.svg"] {
