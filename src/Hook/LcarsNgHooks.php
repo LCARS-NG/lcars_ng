@@ -361,6 +361,12 @@ class LcarsNgHooks {
    * wish 18.11.2026). As core, the title of the latest revision, which may be
    * a draft above the published one. The title of the document keeps the one
    * of core.
+   *
+   * Likewise on the latest version of moderated content (Content Moderation,
+   * /node/{node}/latest): the bar says "Latest version", as its tab, instead
+   * of the title of the content, which stands below as the heading of the
+   * page (user wish 19.11.2026): through node.html.twig for a type of the
+   * setting content_type_in_title_bar, through content_title otherwise.
    */
   #[Hook('preprocess_page_title')]
   public function preprocessPageTitle(array &$variables): void {
@@ -391,6 +397,15 @@ class LcarsNgHooks {
       $variables['title_tag'] = 'div';
       $variables['content_title'] = $latest->label();
       $cacheability->addCacheableDependency($revised);
+    }
+    $latest = $route === 'entity.node.latest_version' ? $this->routeMatch->getParameter('node') : NULL;
+    if ($latest instanceof NodeInterface) {
+      $variables['title'] = $this->t('Latest version');
+      $variables['title_tag'] = 'div';
+      if (!$this->showsTypeInTitleBar($latest)) {
+        $variables['content_title'] = $latest->label();
+      }
+      $cacheability->addCacheableDependency($latest);
     }
     CacheableMetadata::createFromRenderArray($variables)
       ->merge($cacheability)
@@ -1155,11 +1170,12 @@ class LcarsNgHooks {
   }
 
   /**
-   * The content the current page shows: its page or its preview.
+   * The content the current page shows: its page, its latest version or its
+   * preview.
    */
   private function pageNode(): ?NodeInterface {
     $node = match ($this->routeMatch->getRouteName()) {
-      'entity.node.canonical' => $this->routeMatch->getParameter('node'),
+      'entity.node.canonical', 'entity.node.latest_version' => $this->routeMatch->getParameter('node'),
       'entity.node.preview' => $this->routeMatch->getParameter('node_preview'),
       default => NULL,
     };
