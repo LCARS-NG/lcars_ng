@@ -1082,7 +1082,8 @@ class LcarsNgHooks {
    * Nibble i of the hash fills cell i of the left three columns when even,
    * column by column; the right two mirror them (byte 20 picked one of five
    * colors until 17.11.2026; since then all alike, from 19.11.2026 in the
-   * blue of the cards of the logo on white, user-picture.css). The cells form one path, so that adjacent cells show no seam between them.
+   * blue of the cards of the logo on white, user-picture.css). The cells form
+   * one path, so that adjacent cells show no seam between them.
    * The grid, 45 of 72 units, sits in the middle of the disc, so that even its
    * corners keep about 4 units to the edge (was 56 units on the card). With
    * $square, the ground fills the whole picture instead of the disc, for the
