@@ -2,19 +2,36 @@
  * @file
  * The picture of a user without one of their own, made from the account
  * (LcarsNgHooks::preprocessField()): the cells as the identicons of GitHub
- * (user decision 29.10.2026, variant A) in white on the disc of the logo
- * (--lcars-logo-disc, since 19.11.2026 a deep blue, 10:1; until then the
- * steel blue of the frame, 5.6:1), as the logo on its disc (user decision
- * 17.11.2026, with the white logo; until then the cells in one of five colors of the theme, picked
- * by the account, on a disc of the same color, a quarter of it on the page
- * blue, user decision 01.11.2026, variant C; before that a card with rounded
- * corners in --lcars-card-bg). A site may set --lcars-user-picture-color.
+ * (user decision 29.10.2026, variant A) in the deep blue of the cards of the
+ * logo on white (--lcars-brand-ink on --lcars-brand-card, 10:1), as the logo
+ * on its card in the upper panel and on the login page (user wish
+ * 19.11.2026; from 17.11.2026 the other way round, white on the disc of the
+ * logo, --lcars-logo-disc, as the white logo on its disc, until 19.11.2026
+ * in the steel blue of the frame, 5.6:1; before that the cells in one of
+ * five colors of the theme, picked by the account, on a disc of the same
+ * color, a quarter of it on the page blue, user decision 01.11.2026,
+ * variant C; before that a card with rounded corners in --lcars-card-bg).
+ * A site may set --lcars-user-picture-color.
  */
 
 .lcars-user-picture {
-  fill: var(--lcars-user-picture-color, #ffffff);
+  fill: var(--lcars-user-picture-color, var(--lcars-brand-ink));
 }
 
 .lcars-user-picture__disc {
-  fill: var(--lcars-logo-disc);
+  fill: var(--lcars-brand-card);
+}
+
+/* The edge of the white ground as a transparent outline, which the contrast
+   themes of the system color (forced-colors.css): on a light system
+   background the white would merge with the page (19.11.2026). Round with
+   the disc; the square on the page of the account takes its corners from
+   profile.css. */
+.lcars-user-picture {
+  outline: 1px solid transparent;
+  outline-offset: -1px;
+}
+
+.lcars-user-picture:has(> circle.lcars-user-picture__disc) {
+  border-radius: 50%;
 }

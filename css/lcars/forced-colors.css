@@ -94,6 +94,16 @@
     content: normal;
   }
 
+  /* The generated user picture keeps its blue cells on white, an <svg> holds
+     its colors (preserve-parent-color), so its edge, the transparent outline
+     of user-picture.css, takes the text color of the system here: on a light
+     system background the white ground would merge with the page
+     (19.11.2026). With the element in the selector, as user-picture.css
+     loads later and would reset the color with its shorthand. */
+  svg.lcars-user-picture {
+    outline-color: CanvasText;
+  }
+
 
   /* Sections and settings a display of Views overrides (views-ui.css): the
      browser turned their bronze into the text color, so nothing set them
