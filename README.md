@@ -100,12 +100,16 @@ theme under *Appearance*.
 
 ## Configuration
 
-*Appearance > Settings > LCARS-NG* offers seven settings besides the logo and
+*Appearance > Settings > LCARS-NG* offers nine settings besides the logo and
 favicon:
 
 - **Login panel on the front page** (`front_page_login`, off by default):
   anonymous visitors see the login form in the LCARS login panel instead of
   the front page content, as in the Drupal 6 theme LCNG.
+- **Pages in the two-part screen** (`panel_pages`, none by default): further
+  pages in the two-part screen, one path per line as in the visibility of
+  blocks (`/about`, `/node/1`, `/blog/*`, `<front>`). The front page for
+  signed-in users and the user profiles always have it.
 - **Navigation colors** (`navigation_scheme`, dark by default): the bars of
   the Navigation module on the left and at the top in the colors of the
   theme (*Dark*), in the colors of core (*Light*), or after the light or dark
@@ -170,8 +174,9 @@ The theme chooses its layout per page:
   buttons above the title; the right sidebar shows on wider pages only.
 - **Login panel** on the account pages (log in, register, reset password);
   in windows wider than high the card with the logo stands beside the form.
-- **Two-part screen** on the front page for signed-in users and on user
-  profiles: an upper panel with logo, site name and slogan on a white card, a
+- **Two-part screen** on the front page for signed-in users, on user
+  profiles and on the pages of the setting *Pages in the two-part screen*: an
+  upper panel with logo, site name and slogan on a white card, a
   status line with date, time and the signed-in user, the content below.
 - **Red alert** on the pages for 401 and 403, **yellow alert** (orange) on
   the page not found (404).

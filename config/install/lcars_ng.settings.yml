@@ -1,4 +1,5 @@
 front_page_login: false
+panel_pages: ''
 navigation_scheme: dark
 contrast: system
 generated_user_pictures: true

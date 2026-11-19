@@ -15,6 +15,7 @@ use Drupal\Core\Form\ConfigTarget;
 use Drupal\Core\Form\FormBuilderInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Hook\Attribute\Hook;
+use Drupal\Core\Path\CurrentPathStack;
 use Drupal\Core\Path\PathMatcherInterface;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Render\Markup;
@@ -22,10 +23,12 @@ use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Routing\RouteProviderInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
 use Drupal\lcars_ng\StatusLine;
 use Drupal\node\NodeInterface;
+use Drupal\path_alias\AliasManagerInterface;
 use Drupal\user\Form\UserLoginForm;
 use Drupal\user\UserInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -87,6 +90,9 @@ class LcarsNgHooks {
 
   /**
    * Routes rendered in the two-part screen (page--panel.html.twig).
+   *
+   * Besides the front page for signed-in users; further pages by path with
+   * the theme setting panel_pages (isPanelPage()).
    */
   private const PANEL_ROUTES = [
     'entity.user.canonical',
@@ -126,6 +132,8 @@ class LcarsNgHooks {
     private readonly RouteProviderInterface $routeProvider,
     private readonly RequestStack $requestStack,
     private readonly ThemeExtensionList $themeList,
+    private readonly CurrentPathStack $currentPath,
+    private readonly AliasManagerInterface $aliasManager,
   ) {}
 
   /**
@@ -173,7 +181,8 @@ class LcarsNgHooks {
    * As in the Drupal 6 theme LCNG, the account pages use the login panel and
    * the front page uses the two-part screen for signed-in users (user profiles
    * share that one). With the theme setting front_page_login, the front page
-   * is a login panel for anonymous visitors as well.
+   * is a login panel for anonymous visitors as well. The theme setting
+   * panel_pages adds pages to the two-part screen by path (since 19.11.2026).
    */
   #[Hook('theme_suggestions_page_alter')]
   public function themeSuggestionsPageAlter(array &$suggestions): void {
@@ -304,15 +313,20 @@ class LcarsNgHooks {
    * anonymous visitors would keep its time (user decision 29.10.2026, #26).
    *
    * The type of the page (login panel, two-part screen, plain page) depends on
-   * whether the visitor is signed in and on the front page. The page caches
-   * vary by permissions only, which anonymous and signed-in users may share:
-   * the contexts set here reach the response and the page template
-   * suggestions alike (themeSuggestionsPageAlter(), preprocessHtml()).
+   * whether the visitor is signed in, on the front page and, with paths in
+   * the theme setting panel_pages, on the path. The page caches vary by
+   * permissions only, which anonymous and signed-in users may share: the
+   * contexts set here reach the response and the page template suggestions
+   * alike (themeSuggestionsPageAlter(), preprocessHtml()). Saving the theme
+   * settings clears the rendered pages (core's ConfigCacheTag).
    */
   #[Hook('preprocess_page')]
   public function preprocessPage(array &$variables): void {
     $cacheability = (new CacheableMetadata())
       ->addCacheContexts(['user.roles:authenticated', 'url.path.is_front']);
+    if ($this->panelPages() !== '') {
+      $cacheability->addCacheContexts(['url.path']);
+    }
     if ($this->isLoginFrontPage()) {
       $form_class = $this->routeProvider->getRouteByName('user.login')->getDefault('_form') ?: UserLoginForm::class;
       $variables['login_form'] = $this->formBuilder->getForm($form_class);
@@ -850,6 +864,18 @@ class LcarsNgHooks {
       '#description' => $this->t('Anonymous visitors see the login form in the LCARS login panel instead of the front page content, as in the Drupal 6 theme LCNG.'),
       '#config_target' => 'lcars_ng.settings:front_page_login',
     ];
+    $form['lcars_ng']['panel_pages'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Pages in the two-part screen'),
+      '#description' => $this->t('Further pages with the upper panel above the frame: logo, site name and slogan on a white card, for signed-in users with the status line. One path per line, as in the visibility of blocks, for example %about, %node or %wildcard. The front page for signed-in users and the user profiles always have it.', [
+        '%about' => '/about',
+        '%node' => '/node/1',
+        '%wildcard' => '/blog/*',
+      ]),
+      '#rows' => 3,
+      '#config_target' => 'lcars_ng.settings:panel_pages',
+      '#element_validate' => [[self::class, 'validatePaths']],
+    ];
     $form['lcars_ng']['navigation_scheme'] = [
       '#type' => 'select',
       '#title' => $this->t('Navigation colors'),
@@ -914,6 +940,23 @@ class LcarsNgHooks {
         '#element_validate' => [[self::class, 'validateCheckedList']],
       ];
     }
+  }
+
+  /**
+   * Element validation: a list of paths, one per line.
+   *
+   * Each path starts with a slash, or is <front>, as in the visibility of
+   * blocks (core's condition Request path). Stored without empty lines and
+   * with plain line breaks, whatever the browser sends.
+   */
+  public static function validatePaths(array $element, FormStateInterface $form_state): void {
+    $paths = array_values(array_filter(array_map('trim', preg_split('/\R/', (string) $element['#value']))));
+    foreach ($paths as $path) {
+      if ($path !== '<front>' && !str_starts_with($path, '/')) {
+        $form_state->setError($element, new TranslatableMarkup('The path %path requires a leading forward slash.', ['%path' => $path]));
+      }
+    }
+    $form_state->setValueForElement($element, implode("\n", $paths));
   }
 
   /**
@@ -1147,7 +1190,34 @@ class LcarsNgHooks {
    */
   private function isPanelPage(): bool {
     return ($this->currentUser->isAuthenticated() && $this->pathMatcher->isFrontPage())
-      || in_array($this->routeMatch->getRouteName(), self::PANEL_ROUTES, TRUE);
+      || in_array($this->routeMatch->getRouteName(), self::PANEL_ROUTES, TRUE)
+      || $this->matchesPanelPages();
+  }
+
+  /**
+   * Whether the current path is one of the theme setting panel_pages.
+   *
+   * As core's condition Request path in the visibility of blocks: the path
+   * and its alias in lower case, against the list of paths, one per line.
+   */
+  private function matchesPanelPages(): bool {
+    $pages = mb_strtolower($this->panelPages());
+    if ($pages === '') {
+      return FALSE;
+    }
+    $path = $this->currentPath->getPath();
+    // Not the slash that is the whole path of the front page.
+    $path = $path === '/' ? $path : rtrim($path, '/');
+    $alias = mb_strtolower($this->aliasManager->getAliasByPath($path));
+    return $this->pathMatcher->matchPath($alias, $pages)
+      || ($alias !== $path && $this->pathMatcher->matchPath($path, $pages));
+  }
+
+  /**
+   * The paths of the theme setting panel_pages, empty on sites before it.
+   */
+  private function panelPages(): string {
+    return trim((string) $this->themeSettings->getSetting('panel_pages'));
   }
 
   /**

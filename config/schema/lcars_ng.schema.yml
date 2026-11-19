@@ -7,6 +7,9 @@ lcars_ng.settings:
     front_page_login:
       type: boolean
       label: 'Login panel on the front page for anonymous visitors'
+    panel_pages:
+      type: string
+      label: 'Paths of further pages in the two-part screen, one per line'
     navigation_scheme:
       type: string
       label: 'Colors of the Navigation module: dark, light, or as the system'
