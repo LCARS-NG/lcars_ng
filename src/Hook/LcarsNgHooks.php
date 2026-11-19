@@ -1170,8 +1170,7 @@ class LcarsNgHooks {
   }
 
   /**
-   * The content the current page shows: its page, its latest version or its
-   * preview.
+   * The content of the page: its page, its latest version or its preview.
    */
   private function pageNode(): ?NodeInterface {
     $node = match ($this->routeMatch->getRouteName()) {
