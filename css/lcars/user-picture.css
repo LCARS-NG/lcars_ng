@@ -2,9 +2,10 @@
  * @file
  * The picture of a user without one of their own, made from the account
  * (LcarsNgHooks::preprocessField()): the cells as the identicons of GitHub
- * (user decision 29.10.2026, variant A) in white on the steel blue disc of the
- * logo, as the logo on its disc, 5.6:1 (user decision 17.11.2026, with the
- * white logo; until then the cells in one of five colors of the theme, picked
+ * (user decision 29.10.2026, variant A) in white on the disc of the logo
+ * (--lcars-logo-disc, since 19.11.2026 a deep blue, 10:1; until then the
+ * steel blue of the frame, 5.6:1), as the logo on its disc (user decision
+ * 17.11.2026, with the white logo; until then the cells in one of five colors of the theme, picked
  * by the account, on a disc of the same color, a quarter of it on the page
  * blue, user decision 01.11.2026, variant C; before that a card with rounded
  * corners in --lcars-card-bg). A site may set --lcars-user-picture-color.

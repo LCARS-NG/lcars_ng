@@ -124,7 +124,7 @@ favicon:
   users without a picture of their own get a pattern made from their
   account in place of the default picture of the field (where the field has
   one, as in Drupal CMS), as the identicons of GitHub: a grid of 5 by 5
-  cells, mirrored at its middle, in white on the steel blue disc of the
+  cells, mirrored at its middle, in white on the dark blue disc of the
   logo. The
   pattern follows from the UUID of the account and stays the same; uploaded
   pictures are shown as they are.
@@ -265,9 +265,9 @@ Basic site settings*. Anonymous visitors then get the login panel.
   one-colored form of the flat logo in white, the edges as slightly wider
   gaps, without the wing opposite the apex, so that the six remaining areas
   form a V around the cube. The upper panel and the login page show it on a
-  steel blue disc in place of the theme logo, its three tips just inside the
+  dark blue disc in place of the theme logo, its three tips just inside the
   edge of the disc.
-- `favicon.ico` (16, 32 and 48 px) shows the mark in white on the steel
+- `favicon.ico` (16, 32 and 48 px) shows the mark in white on the dark
   blue disc, with wider gaps, so the wings and the cube stay visible at small
   sizes. Beside it, for shortcuts on the desktop and the
   home screen, `images/lcars-ng-icon-192.png` and `-512.png` (the disc, with

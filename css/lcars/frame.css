@@ -635,10 +635,11 @@
   inline-size: auto;
 }
 
-/* The logo of the theme on a disc in the steel blue of the frame
-   (--lcars-logo-disc), as high as the logo was, so the panel keeps its
-   height; on it the image shows the mark in white, the edges as gaps of 2.4
-   units, 5.6:1: since 18.11.2026 in six areas, the wide wing opposite the
+/* The logo of the theme on a disc in a deep blue (--lcars-logo-disc,
+   since 19.11.2026; until then the steel blue of the frame), as high as
+   the logo was, so the panel keeps its height; on it the image shows the
+   mark in white, the edges as gaps of 2.4 units, 10:1 (5.6:1 on the steel
+   blue): since 18.11.2026 in six areas, the wide wing opposite the
    apex left out, a V with the cube between its wings
    (lcars-ng-logo-v-white-gaps.svg, the white form of the theme logo
    lcars-ng-logo-v.svg, same outlines, viewBox 77 x 72; user decision

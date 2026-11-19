@@ -109,9 +109,9 @@ class LcarsNgHooks {
    *
    * Browsers keep a favicon for weeks under its URL; a new icon gets a new
    * value (17.11.2026: the white areas on the disc; 18.11.2026: the mark in
-   * six areas).
+   * six areas; 19.11.2026: the darker disc).
    */
-  private const ICON_VERSION = '20261118';
+  private const ICON_VERSION = '20261119';
 
   public function __construct(
     private readonly RouteMatchInterface $routeMatch,
