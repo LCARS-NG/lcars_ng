@@ -521,6 +521,20 @@
   --lcars-panel-logo-size: 5.5rem;
   --lcars-panel-brand-gap: 1rem;
 
+  /* The logo of the theme in its card (below): the V from the tips of its
+     wings to its apex, the margin of the card round it, the site name and
+     the widest line of the slogan; the unit is one of the 72 units of the
+     image of the V. The V leads, 2.6 times the capitals of the name (user
+     decision 19.11.2026, variant C of the matrix of proportions; until then
+     the V 56px on its disc of 88px and the name 2.5rem, 1.6 times). The card
+     is 96px high, the panel 8px higher than with the disc. On phones the
+     slogan wraps into three lines, then the card grows below the apex. */
+  --lcars-brand-mark: 4.5rem; /* 72px */
+  --lcars-brand-pad: 0.75rem; /* 12px */
+  --lcars-brand-name: 2rem; /* 32px */
+  --lcars-brand-slogan: 16rem; /* two lines */
+  --lcars-brand-unit: calc(var(--lcars-brand-mark) / 63.542);
+
   grid-template-areas:
     "pside ptop ptop"
     "split split split"
@@ -562,28 +576,6 @@
    so the panel keeps its height (user decision 27.10.2026, variant B). */
 .lcars-panel-top .block-system-branding-block:has(.site-logo) {
   margin-block-end: 0;
-}
-
-/* With the logo of the theme, the capitals of the name start at the upper
-   edge of the mark, as on the landing page (user wish 08.11.2026; until
-   then the name started at the top of the disc, 21px higher on desktop
-   screens): since 18.11.2026 at the tips of its two wings, which lie
-   --lcars-logo-top units above the middle of the disc (see the disc below;
-   until then the base of the triangle, 24.23 units above it). The box of the
-   name starts at the capitals (text-box), where a browser lacks it (Firefox
-   ESR, Samsung Internet), they stand a few pixels lower. The units of the
-   logo are set here, so the name and the disc share them. */
-.lcars-panel-top .block-system-branding-block:has(.site-logo > img[src*="lcars-ng-logo-v.svg"]) {
-  --lcars-logo-gap: 0.125rem; /* 2px */
-  --lcars-logo-radius: 41.67;
-  --lcars-logo-shift: 9.69;
-  --lcars-logo-top: 21.89;
-  --lcars-logo-unit: calc((2.75rem - var(--lcars-logo-gap)) / var(--lcars-logo-radius));
-}
-
-.lcars-panel-top .block-system-branding-block:has(.site-logo > img[src*="lcars-ng-logo-v.svg"]) .site-name {
-  margin-block-start: calc(var(--lcars-panel-logo-size) / 2 - var(--lcars-logo-top) * var(--lcars-logo-unit));
-  text-box: trim-start cap alphabetic;
 }
 
 .lcars-panel-top .site-name {
@@ -635,56 +627,58 @@
   inline-size: auto;
 }
 
-/* The logo of the theme on a disc in a deep blue (--lcars-logo-disc,
-   since 19.11.2026; until then the steel blue of the frame), as high as
-   the logo was, so the panel keeps its height; on it the image shows the
-   mark in white, the edges as gaps of 2.4 units, 10:1 (5.6:1 on the steel
-   blue): since 18.11.2026 in six areas, the wide wing opposite the
-   apex left out, a V with the cube between its wings
-   (lcars-ng-logo-v-white-gaps.svg, the white form of the theme logo
-   lcars-ng-logo-v.svg, same outlines, viewBox 77 x 72; user decision
-   18.11.2026). The circle through its three tips (the two wings at
-   y 4.42, the apex at y 67.96, which the gaps hold inside the corners of the
-   triangle; center 38.5|26.31, radius 41.67, so 9.69 above the middle of
-   the image) has the center of the disc, its tips 2px inside the edge on
-   88px (variant B of the matrices of gaps and widths of 18.11.2026; so the
-   mark is 14% larger than the triangle before). Until 18.11.2026 the image
-   showed the one-colored form of the whole flat logo, same shape, gaps of
-   2.4 units (user decision 17.11.2026, variant C of the white forms; from
-   01.11.2026 in the light blue of the labels, 3.6:1, variant B; the page
-   showed through the ring before and looked like a hole), and the circle
-   through the three corners of the triangle (lcars-ng-logo-flat.svg, viewBox
-   77 x 72: apex 38.5|1.81, base 1.67|70.12 and 75.33|70.12; radius 44.08,
-   center 9.89 below the middle of the image) has the center of the disc, so
-   all three corners keep the same gap to its edge (user decision 31.10.2026:
-   gap 5px, variant B). The disc has no line round it (user decision
-   01.11.2026; from 31.10.2026 a ring of 2px in #3786ff, with the page
-   inside). The logo stands on its head (user decision 04.11.2026, variant B;
-   the colored form too, since 18.11.2026 with its tones lit on the turned
-   body, light from the upper left; from 04.11.2026 its tones turned with it,
-   light from the lower right): turned 180 degrees about
-   the middle of its image, apex down, so the center of the circle lies 9.89
-   above the middle of the image and the image moves down by that much. The
-   login panel shows the same disc, larger (login.css), and so does the
-   favicon; the contrast themes of the system (forced-colors.css) show the
-   colored logo, since 18.11.2026 the V too, so it takes the same units.
-   Another logo keeps the rules above. Its units (gap, radius,
-   shift and unit) are set on the branding block, which the name shares
-   (above). */
-.lcars-panel-top .site-logo:has(> img[src*="lcars-ng-logo-v.svg"]) {
-  display: grid;
-  place-items: center;
-  padding: 0;
-  border-radius: 50%;
-  background: var(--lcars-logo-disc);
-  inline-size: var(--lcars-panel-logo-size);
-  block-size: var(--lcars-panel-logo-size);
+/* The logo of the theme with name and slogan as a card (user decision
+   19.11.2026, variant D of the matrix of cards): white (--lcars-brand-card),
+   the V, the name and the slogan in the deep blue of the disc of the logo
+   (--lcars-brand-ink, 10:1), the corners of the boxes; the V without its disc
+   (lcars-ng-logo-v-blue-gaps.svg, the same outlines as the white form,
+   viewBox 77 x 72). Until 19.11.2026 the V stood in white on a disc of 88px
+   (--lcars-logo-disc), name and slogan in the steel blue of the frame on the
+   page beside it. The sizes are set on the panel (above): the V
+   --lcars-brand-mark high from the tips of its wings to its apex (63.54 of
+   the 72 units of its image), the card --lcars-brand-pad from its edge to
+   the tips and the apex. The capitals of the name start at the tips of the
+   wings and the last line of the slogan stands on the apex (text-box; where
+   a browser lacks it, Firefox ESR, Samsung Internet, they stand a few pixels
+   off); the slogan wraps into balanced lines no wider than
+   --lcars-brand-slogan. The transparent outline shows in the contrast
+   themes of the system, which drop the white (forced-colors.css). Another
+   logo keeps the rules above. */
+.lcars-panel-top .block-system-branding-block:has(.site-logo > img[src*="lcars-ng-logo-v.svg"]) {
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  box-sizing: border-box;
+  padding-block: calc(var(--lcars-brand-pad) - 4.422 * var(--lcars-brand-unit)) calc(var(--lcars-brand-pad) - 4.036 * var(--lcars-brand-unit));
+  padding-inline: calc(var(--lcars-brand-pad) - 3.041 * var(--lcars-brand-unit)) calc(var(--lcars-brand-pad) + 0.5rem);
+  border-radius: var(--lcars-box-radius);
+  outline: 1px solid transparent;
+  outline-offset: -1px;
+  background: var(--lcars-brand-card);
+  color: var(--lcars-brand-ink);
 }
 
 .lcars-panel-top .site-logo > img[src*="lcars-ng-logo-v.svg"] {
-  translate: 0 calc(var(--lcars-logo-shift) * var(--lcars-logo-unit));
-  block-size: calc(72 * var(--lcars-logo-unit));
-  content: url("../../lcars-ng-logo-v-white-gaps.svg");
+  block-size: calc(72 * var(--lcars-brand-unit));
+  content: url("../../lcars-ng-logo-v-blue-gaps.svg");
+}
+
+.lcars-panel-top .block-system-branding-block:has(.site-logo > img[src*="lcars-ng-logo-v.svg"]) .site-name {
+  margin-block-start: calc(4.422 * var(--lcars-brand-unit));
+  font-size: var(--lcars-brand-name);
+  text-box: trim-start cap alphabetic;
+}
+
+.lcars-panel-top .block-system-branding-block:has(.site-logo > img[src*="lcars-ng-logo-v.svg"]) .site-name a,
+.lcars-panel-top .block-system-branding-block:has(.site-logo > img[src*="lcars-ng-logo-v.svg"]) .site-slogan {
+  color: var(--lcars-brand-ink);
+}
+
+.lcars-panel-top .block-system-branding-block:has(.site-logo > img[src*="lcars-ng-logo-v.svg"]) .site-slogan {
+  align-self: end;
+  max-inline-size: var(--lcars-brand-slogan);
+  margin-block-end: calc(4.036 * var(--lcars-brand-unit));
+  text-wrap: balance;
+  text-box: trim-end cap alphabetic;
 }
 
 /* Status line in the curve below the upper panel: the user right beside the
@@ -709,11 +703,11 @@
 }
 
 /* The status line starts where name and slogan do, beside the logo of the
-   theme on its disc (user wish 06.11.2026, after his draft; was at the edge
-   of the panel, below the logo). Another logo keeps its own width, so the
-   line stays at the edge there. */
+   theme in its card (user wish 06.11.2026, after his draft; was at the edge
+   of the panel, below the logo; until 19.11.2026 beside the disc). Another
+   logo keeps its own width, so the line stays at the edge there. */
 .lcars-frame--panel:has(.lcars-panel-top .site-logo > img[src*="lcars-ng-logo-v.svg"]) .lcars-status {
-  margin-inline-start: calc(var(--lcars-panel-logo-size) + var(--lcars-panel-brand-gap));
+  margin-inline-start: calc(var(--lcars-brand-pad) + (77 - 3.041) * var(--lcars-brand-unit) + var(--lcars-panel-brand-gap));
 }
 
 /* Panel blocks side by side, as the four-column Gpanel of LCNG. */

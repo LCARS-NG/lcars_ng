@@ -79,14 +79,16 @@
     forced-color-adjust: auto;
   }
 
-  /* The disc under the logo in the upper panel and in the login panel takes
-     the background of the system (Firefox drops it even with
-     forced-color-adjust: none, unless the whole panel keeps its colors), so
-     the image shows the colored logo again instead of its white
-     one-colored form, which would vanish on a light system background
-     (01.11.2026: the light blue form then stood at 1.54:1). Since 18.11.2026
-     both are the V in six areas with the same outlines, so the colored one
-     keeps the place and size of the white one. */
+  /* The disc under the logo in the login panel and the card of the logo in
+     the upper panel take the background of the system (Firefox drops it even
+     with forced-color-adjust: none, unless the whole panel keeps its colors),
+     so the image shows the colored logo again instead of its one-colored
+     form, white on the disc, deep blue on the card, which would vanish on a
+     system background (01.11.2026: the light blue form then stood at
+     1.54:1). Since 18.11.2026 all are the V in six areas with the same
+     outlines, so the colored one keeps the place and size of the other. The
+     card shows its edge as the transparent outline in a color of the system
+     (frame.css, 19.11.2026). */
   .lcars-panel-top .site-logo > img[src*="lcars-ng-logo-v.svg"],
   .lcars-login__panel .site-logo > img[src*="lcars-ng-logo-v.svg"] {
     content: normal;

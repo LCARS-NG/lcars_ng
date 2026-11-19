@@ -171,8 +171,8 @@ The theme chooses its layout per page:
 - **Login panel** on the account pages (log in, register, reset password);
   in windows wider than high the card with the logo stands beside the form.
 - **Two-part screen** on the front page for signed-in users and on user
-  profiles: an upper panel with site name, logo and slogan, a status line with
-  date, time and the signed-in user, the content below.
+  profiles: an upper panel with logo, site name and slogan on a white card, a
+  status line with date, time and the signed-in user, the content below.
 - **Red alert** on the pages for 401 and 403, **yellow alert** (orange) on
   the page not found (404).
 
@@ -264,9 +264,10 @@ Basic site settings*. Anonymous visitors then get the login panel.
 - `lcars-ng-logo-v-white-gaps.svg` is the mark of the theme: the
   one-colored form of the flat logo in white, the edges as slightly wider
   gaps, without the wing opposite the apex, so that the six remaining areas
-  form a V around the cube. The upper panel and the login page show it on a
-  dark blue disc in place of the theme logo, its three tips just inside the
-  edge of the disc.
+  form a V around the cube. The login page shows it on a dark blue disc in
+  place of the theme logo, its three tips just inside the edge of the disc.
+  `lcars-ng-logo-v-blue-gaps.svg` is the same form in that blue: the upper
+  panel shows it on a white card with the site name and slogan.
 - `favicon.ico` (16, 32 and 48 px) shows the mark in white on the dark
   blue disc, with wider gaps, so the wings and the cube stay visible at small
   sizes. Beside it, for shortcuts on the desktop and the
@@ -275,7 +276,7 @@ Basic site settings*. Anonymous visitors then get the login panel.
   square, for iOS). The theme links them only while the site shows the
   favicon of the theme.
 - `logo.png` (512 x 512) is the logo of the project on drupal.org and in
-  Project Browser: the mark in white on the disc, as in the upper panel.
+  Project Browser: the mark in white on the disc, as on the login page.
   The theme itself does not use it.
 - The icons in `images/icons/` come from Drupal core (the Starterkit theme;
   `ex.svg`, `chevron-right.svg` and `chevron-down.svg` from `core/misc/icons`)
