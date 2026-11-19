@@ -83,35 +83,48 @@
   inline-size: auto;
 }
 
-/* The logo of the theme on the disc of the upper panel (frame.css), in white
-   with the gaps of 2.4 units, since 18.11.2026 the mark in six areas as
-   there (lcars-ng-logo-v-white-gaps.svg; until then the whole flat logo,
-   since 17.11.2026 in white, before in the light blue of the labels): the
-   disc 9rem, the tips as far inside its edge as there, 2px on 88px (until
-   18.11.2026 the corners of the triangle, 5px on 88px; user decision
-   01.11.2026, variant A; the colored logo stood on the page). Like there the
-   logo stands on its head (04.11.2026), so the image moves down. The
-   contrast themes of the system (forced-colors.css) show the colored logo,
-   the V as well, in the same place. Another logo keeps the rules above. */
-.lcars-login__panel .site-logo:has(> img[src*="lcars-ng-logo-v.svg"]) {
-  --lcars-logo-size: 9rem; /* 144px */
-  --lcars-logo-gap: calc(var(--lcars-logo-size) * 2 / 88);
-  --lcars-logo-radius: 41.67;
-  --lcars-logo-shift: 9.69;
-  --lcars-logo-unit: calc((var(--lcars-logo-size) / 2 - var(--lcars-logo-gap)) / var(--lcars-logo-radius));
+/* The logo of the theme with name and slogan on a white card, as in the
+   upper panel (user wish 19.11.2026; frame.css): the V without its disc in
+   the deep blue of the disc (lcars-ng-logo-v-blue-gaps.svg), 6.5rem from the
+   tips of its wings to its apex, as large as it was on the disc; name and
+   slogan in that blue as well (--lcars-brand-ink, 10:1). The card keeps its
+   padding to the tips of the wings, measured at the V, not at its image, and
+   as much from the apex to the capitals of the name (text-box). Its line
+   stays, transparent: the contrast themes of the system show it, with the
+   colored logo in place of the V (forced-colors.css). Until 19.11.2026 the
+   V stood in white on a disc of 9rem (--lcars-logo-disc), its tips 2/88 of
+   the disc inside its edge, name and slogan in the steel blue of the frame
+   on the page (the disc since 01.11.2026, variant A; the colored logo stood
+   on the page before; the V since 18.11.2026, the whole flat logo before,
+   in white since 17.11.2026, in the light blue of the labels before). Like
+   everywhere the logo stands on its head (04.11.2026). Another logo keeps
+   the rules above. */
+.lcars-login__panel .block-system-branding-block:has(.site-logo > img[src*="lcars-ng-logo-v.svg"]) {
+  --lcars-brand-unit: calc(6.5rem / 63.542);
 
-  display: inline-grid;
-  place-items: center;
-  border-radius: 50%;
-  background: var(--lcars-logo-disc);
-  inline-size: var(--lcars-logo-size);
-  block-size: var(--lcars-logo-size);
+  border-color: transparent;
+  background: var(--lcars-brand-card);
+}
+
+.lcars-login__panel .site-logo:has(> img[src*="lcars-ng-logo-v.svg"]) {
+  display: block;
+  margin-block: calc(-4.422 * var(--lcars-brand-unit)) calc(1.25rem - 4.036 * var(--lcars-brand-unit));
+  margin-inline: auto;
+  inline-size: fit-content;
 }
 
 .lcars-login__panel .site-logo > img[src*="lcars-ng-logo-v.svg"] {
-  translate: 0 calc(var(--lcars-logo-shift) * var(--lcars-logo-unit));
-  block-size: calc(72 * var(--lcars-logo-unit));
-  content: url("../../lcars-ng-logo-v-white-gaps.svg");
+  block-size: calc(72 * var(--lcars-brand-unit));
+  content: url("../../lcars-ng-logo-v-blue-gaps.svg");
+}
+
+.lcars-login__panel .block-system-branding-block:has(.site-logo > img[src*="lcars-ng-logo-v.svg"]) .site-name {
+  text-box: trim-start cap alphabetic;
+}
+
+.lcars-login__panel .block-system-branding-block:has(.site-logo > img[src*="lcars-ng-logo-v.svg"]) .site-name,
+.lcars-login__panel .block-system-branding-block:has(.site-logo > img[src*="lcars-ng-logo-v.svg"]) .site-slogan {
+  color: var(--lcars-brand-ink);
 }
 
 /* The branding and the content as cards inside the panel, with the line and

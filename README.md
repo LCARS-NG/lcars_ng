@@ -264,10 +264,10 @@ Basic site settings*. Anonymous visitors then get the login panel.
 - `lcars-ng-logo-v-white-gaps.svg` is the mark of the theme: the
   one-colored form of the flat logo in white, the edges as slightly wider
   gaps, without the wing opposite the apex, so that the six remaining areas
-  form a V around the cube. The login page shows it on a dark blue disc in
-  place of the theme logo, its three tips just inside the edge of the disc.
-  `lcars-ng-logo-v-blue-gaps.svg` is the same form in that blue: the upper
-  panel shows it on a white card with the site name and slogan.
+  form a V around the cube, for dark and colored surfaces.
+  `lcars-ng-logo-v-blue-gaps.svg` is the same form in the dark blue of the
+  favicon: the upper panel and the login page show it in place of the theme
+  logo on a white card with the site name and slogan.
 - `favicon.ico` (16, 32 and 48 px) shows the mark in white on the dark
   blue disc, with wider gaps, so the wings and the cube stay visible at small
   sizes. Beside it, for shortcuts on the desktop and the
@@ -276,7 +276,7 @@ Basic site settings*. Anonymous visitors then get the login panel.
   square, for iOS). The theme links them only while the site shows the
   favicon of the theme.
 - `logo.png` (512 x 512) is the logo of the project on drupal.org and in
-  Project Browser: the mark in white on the disc, as on the login page.
+  Project Browser: the mark in white on the disc, as in the favicon.
   The theme itself does not use it.
 - The icons in `images/icons/` come from Drupal core (the Starterkit theme;
   `ex.svg`, `chevron-right.svg` and `chevron-down.svg` from `core/misc/icons`)
