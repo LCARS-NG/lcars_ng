@@ -317,14 +317,17 @@ fieldset {
    black label. The buttons stay the only filled blue in the content, so they
    read as actions (user decision 27.10.2026, variant C; until then filled
    like the buttons, user decision 25.10.2026). Corners as the form buttons,
-   labels in their narrow font (user decision 05.11.2026). The login panel
-   keeps its own outlines (login.css). */
+   labels in their narrow font (user decision 05.11.2026). Their face a little
+   lighter than the page, in the blue of the cards (--lcars-card-bg, 8 %;
+   labels at 6.6:1; user decision 20.11.2026, variant B of 5, 8, 12 and 16 %;
+   until then without a face). The login panel keeps its own outlines
+   (login.css). */
 .tabs a {
   padding: 0.35em 1.4em 0.5em;
   color: var(--lcars-link);
   border: 1px solid var(--lcars-field-border);
   border-radius: 0.625rem; /* 10px, as .button */
-  background: none;
+  background: var(--lcars-card-bg);
   font-family: var(--lcars-font-label);
   font-weight: bold;
 }
@@ -333,7 +336,7 @@ fieldset {
 .tabs a:focus {
   color: var(--lcars-link-hover);
   border-color: var(--lcars-frame);
-  background: none;
+  background: var(--lcars-card-bg);
 }
 
 .tabs .is-active a,

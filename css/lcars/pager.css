@@ -29,8 +29,9 @@
   padding: 0;
 }
 
-/* The tabs of forms.css; the current page of the mini pager of Views is text,
-   not a link, and gets the face of the current tab. */
+/* The tabs of forms.css, with their face in --lcars-card-bg (20.11.2026);
+   the current page of the mini pager of Views is text, not a link, and gets
+   the face of the current tab. */
 .pager__item a,
 .pager__item.is-active:not(:has(a)) {
   --lcars-italic: normal;
@@ -42,6 +43,7 @@
   color: var(--lcars-link);
   border: 1px solid var(--lcars-field-border);
   border-radius: 0.625rem; /* 10px, as .button and .tabs a */
+  background: var(--lcars-card-bg);
   font-family: var(--lcars-font-label);
   font-weight: bold;
 }

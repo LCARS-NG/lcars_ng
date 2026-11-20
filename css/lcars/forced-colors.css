@@ -68,6 +68,7 @@
     --lcars-title-bar: Highlight;
     --lcars-field-border: CanvasText;
     --lcars-box-border-color: CanvasText;
+    --lcars-card-bg: Canvas; /* the face of tabs and pager links (20.11.2026), resolved on :root in the dark blue */
 
     forced-color-adjust: none;
   }
