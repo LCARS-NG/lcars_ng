@@ -296,7 +296,15 @@ Basic site settings*. Anonymous visitors then get the login panel.
   taken as the variable font `ofl/antonio/Antonio[wght].ttf` from
   [github.com/google/fonts](https://github.com/google/fonts) (commit
   `1e47308`) and converted to WOFF2
-  (`fonts/antonio/Antonio-VariableFont_wght.woff2`) without other changes.
+  (`fonts/antonio/Antonio-VariableFont_wght-vi.woff2`). Changes: Vietnamese
+  added with fontTools for all weights. New are the combining hook above
+  (U+0309), horn (U+031B) and dot below (U+0323), drawn after the question
+  mark, the stroke and the dot of Antonio, and the 92 Vietnamese letters that
+  were missing (Ơ ơ Ư ư and U+1EA0–U+1EF9 except Ỳ ỳ), composed from the
+  letters and accents of Antonio at its anchors. With a circumflex, the
+  acute, grave and hook stand to its right as usual in Vietnamese, the tilde
+  above it. Kerning of the new letters follows their base letter. The 440
+  glyphs of the original are unchanged.
 - Running text is set in the font Inter by Rasmus Andersson, version 4.001,
   licensed under the SIL Open Font License 1.1 (OFL-1.1, full text in
   `fonts/inter/OFL.txt`). Source:

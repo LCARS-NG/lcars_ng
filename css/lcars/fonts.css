@@ -6,8 +6,11 @@
  * Antonio by Vernon Adams (version 1.002) for the controls and the frame:
  * buttons, tabs, the pager, the bars with their titles and the menu;
  * --lcars-font-label in tokens.css. One variable file,
- * weights 100 to 700, Latin and Latin Extended-A; other scripts take the next
- * font of the stack. The library global preloads it.
+ * weights 100 to 700, Latin, Latin Extended-A and Vietnamese; other scripts
+ * take the next font of the stack. Vietnamese is added for LCARS-NG: the hook
+ * above, the horn and the dot below, drawn after Antonio, and the letters that
+ * need them, so that no letter of a Vietnamese name falls back to Inter
+ * (README.md, Credits). The library global preloads it.
  *
  * Inter by Rasmus Andersson (version 4.001) for the running text:
  * --lcars-font. Variable, weights 100 to 900 and optical sizes, upright and
@@ -20,7 +23,7 @@
 
 @font-face {
   font-family: Antonio;
-  src: url("../../fonts/antonio/Antonio-VariableFont_wght.woff2") format("woff2");
+  src: url("../../fonts/antonio/Antonio-VariableFont_wght-vi.woff2") format("woff2");
   font-weight: 100 700;
   font-style: normal;
   font-display: swap;

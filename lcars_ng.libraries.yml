@@ -127,7 +127,7 @@ user:
         weight: -10
 global:
   fonts:
-    fonts/antonio/Antonio-VariableFont_wght.woff2:
+    fonts/antonio/Antonio-VariableFont_wght-vi.woff2:
       preload: true
     fonts/inter/InterVariable-latin.woff2:
       preload: true
