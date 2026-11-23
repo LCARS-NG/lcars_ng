@@ -7,10 +7,11 @@
  * library system/admin (lcars_ng.info.yml, libraries-extend).
  */
 
-/* Modules and uninstall pages */
+/* Modules and uninstall pages: the names of the modules white as all labels
+   (forms.css, user wish 23.11.2026; until then --lcars-frame). */
 .system-modules label,
 .system-modules-uninstall label {
-  color: var(--lcars-frame);
+  color: var(--lcars-text);
 }
 
 .system-modules details {

@@ -18,13 +18,14 @@
 .token-tree {
   border-collapse: collapse;
 }
+/* Column headings white as in every table (table.css, user wish 23.11.2026). */
 .token-tree th {
   --lcars-italic: normal;
   --lcars-value: currentColor;
 
   text-align: start;
   text-transform: uppercase;
-  color: var(--lcars-frame);
+  color: var(--lcars-text);
   font-weight: normal;
   font-style: normal;
 }

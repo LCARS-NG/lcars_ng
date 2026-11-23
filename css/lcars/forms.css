@@ -5,7 +5,10 @@
 
 /* Labels and legends in capitals in the font of the text, medium and slightly
    spaced; Antonio is for the controls and the frame (user decision
-   05.11.2026, variant B, as the headings in base.css). */
+   05.11.2026, variant B, as the headings in base.css). White in every form,
+   as the column headings of tables (user wish 23.11.2026: neither links nor
+   sortable, the frame color looked like a link beside the link color; until
+   then --lcars-frame). The login panel keeps its own color (login.css). */
 label,
 fieldset legend {
   --lcars-italic: normal;
@@ -13,7 +16,7 @@ fieldset legend {
 
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--lcars-frame);
+  color: var(--lcars-text);
   font-family: var(--lcars-font);
   font-weight: 500;
   font-style: normal;

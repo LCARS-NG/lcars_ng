@@ -52,19 +52,21 @@ tbody td {
   overflow-wrap: anywhere;
 }
 
-/* Column headings as labels: capitals in the frame color, not bold, at the
-   start like the cells, as in the revision overviews, the token browser and
-   the labels of forms (variant D, user decision 29.10.2026). Sortable
-   headings stay links in their color. Before, headings without sorting were
-   white, bold, centered and not in capitals. Columns of checkboxes stay
-   centered (tableselect.css). */
+/* Headings as labels: capitals, not bold, at the start like the cells, as
+   in the revision overviews and the token browser (variant D, user decision
+   29.10.2026). White as the labels of forms (forms.css), the headings of
+   columns and of rows alike (user wishes 23.11.2026; until then in the frame
+   color, which looked like a link beside the link color). Sortable headings
+   stay links in their color (confirmed 23.11.2026). Before 29.10.2026,
+   headings without sorting were white, bold, centered and not in capitals.
+   Columns of checkboxes stay centered (tableselect.css). */
 th {
   --lcars-italic: normal;
   --lcars-value: currentColor;
 
   text-align: start;
   text-transform: uppercase;
-  color: var(--lcars-frame);
+  color: var(--lcars-text);
   font-weight: normal;
   font-style: normal;
 }
