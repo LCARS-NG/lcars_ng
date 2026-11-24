@@ -63,9 +63,15 @@
  * - comment: Full comment object.
  * - commented_entity: Entity the comments are attached to.
  *
+ * LCARS-NG: each comment in a box with a small picture of its author beside
+ * the head "NAME · date", without the permalink; the subject shows only where
+ * the comment form asks for one (comment.css, LcarsNgHooks::preprocessComment(),
+ * which sets date and date_iso; user decision 24.11.2026, variant B).
+ *
  * @see \Drupal\comment\CommentThemeHooks::preprocessComment()
  */
 #}
+{{ attach_library('lcars_ng/comment') }}
 {% if threaded %}
   {{ attach_library('lcars_ng/indented') }}
 {% endif %}
@@ -89,7 +95,14 @@
   {% if submitted %}
     <footer class="comment__meta">
       {{ user_picture }}
-      <p class="comment__submitted">{{ submitted }}</p>
+      <p class="comment__submitted">
+        <span class="comment__author">{{ author }}</span>
+        {% if date %}
+          <time class="comment__date" datetime="{{ date_iso }}">{{ date }}</time>
+        {% else %}
+          <span class="comment__date">{{ created }}</span>
+        {% endif %}
+      </p>
 
       {#
         Indicate the semantic relationship between parent and child comments for
@@ -99,8 +112,6 @@
       {% if parent %}
         <p class="parent visually-hidden">{{ parent }}</p>
       {% endif %}
-
-      {{ permalink }}
     </footer>
   {% endif %}
 

@@ -6,6 +6,7 @@ use Drupal\block\BlockInterface;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Extension\ModuleExtensionList;
 use Drupal\Core\Extension\ThemeExtensionList;
@@ -134,6 +135,7 @@ class LcarsNgHooks {
     private readonly ThemeExtensionList $themeList,
     private readonly CurrentPathStack $currentPath,
     private readonly AliasManagerInterface $aliasManager,
+    private readonly DateFormatterInterface $dateFormatter,
   ) {}
 
   /**
@@ -463,6 +465,33 @@ class LcarsNgHooks {
         'custom_date_format' => 'j F Y',
       ],
     ]);
+  }
+
+  /**
+   * Implements hook_preprocess_comment().
+   *
+   * The head of a comment reads "NAME · 24 Nov 2026, 21:07" (comment.html.twig,
+   * comment.css; user decision 24.11.2026, variant B). The subject shows only
+   * where the form of the comment type has a field for it: without one, core
+   * takes the start of the text as the subject, and the heading would repeat
+   * it.
+   */
+  #[Hook('preprocess_comment')]
+  public function preprocessComment(array &$variables): void {
+    $comment = $variables['comment'];
+    $created = $comment->getCreatedTime();
+    $variables['date'] = $this->dateFormatter->format($created, 'custom', 'j M Y, H:i');
+    $variables['date_iso'] = $this->dateFormatter->format($created, 'custom', 'c');
+    $form_display = $this->entityTypeManager->getStorage('entity_form_display')
+      ->load('comment.' . $comment->bundle() . '.default');
+    if ($form_display) {
+      if (!$form_display->getComponent('subject')) {
+        $variables['title'] = NULL;
+      }
+      CacheableMetadata::createFromRenderArray($variables)
+        ->addCacheableDependency($form_display)
+        ->applyTo($variables);
+    }
   }
 
   /**

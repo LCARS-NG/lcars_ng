@@ -90,6 +90,12 @@ messages:
     component:
       css/components/messages.css:
         weight: -10
+comment:
+  version: VERSION
+  css:
+    component:
+      css/components/comment.css:
+        weight: -10
 node:
   version: VERSION
   css:
