@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: lcars_ng_date_time
+label: 'LCARS-NG date and time'
+locked: false
+pattern: 'j M Y, H:i'

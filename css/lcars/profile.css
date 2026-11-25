@@ -54,3 +54,15 @@
 .profile--view-mode-full > .form-type-item {
   margin-block: 0;
 }
+
+/* The button to the form of the account below "Member for" (user wish
+   25.11.2026; LcarsNgHooks::preprocessUser()), centered like them, without
+   the margins of buttons in the text (forms.css). */
+.profile--view-mode-full > .profile__actions {
+  margin-block-start: 1rem;
+  text-align: center;
+}
+
+.profile--view-mode-full > .profile__actions .button {
+  margin: 0;
+}

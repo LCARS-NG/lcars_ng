@@ -12,10 +12,13 @@
  *   such as 'user_picture' are available as 'content.user_picture'.
  * - attributes: HTML attributes for the container element.
  * - user: A Drupal User entity.
+ * - edit_link: A link to the form of the account, drawn as a button, for
+ *   whoever may change it, where the Navigation module shows the tabs in its
+ *   top bar (LcarsNgHooks::preprocessUser()).
  *
  * The page of the account itself (view mode full) shows picture and "Member
- * for" in a box (profile.css). Other view modes, such as compact for the
- * picture of the author of a comment, keep no box.
+ * for" in a box (profile.css), the button below them. Other view modes, such
+ * as compact for the picture of the author of a comment, keep no box.
  *
  * @see \Drupal\user\UserThemeHooks::preprocessUser()
  */
@@ -29,5 +32,8 @@
 <article{{ attributes.addClass('profile', view_mode ? 'profile--view-mode-' ~ view_mode|clean_class) }}>
   {% if content %}
     {{- content -}}
+  {% endif %}
+  {% if edit_link %}
+    <div class="profile__actions">{{ edit_link }}</div>
   {% endif %}
 </article>

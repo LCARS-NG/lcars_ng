@@ -249,3 +249,7 @@ permissions:
     - core/drupalSettings
     - core/drupal.debounce
     - core/once
+language-switcher:
+  css:
+    theme:
+      css/lcars/language-switcher.css: {  }

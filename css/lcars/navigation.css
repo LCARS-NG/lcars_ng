@@ -23,8 +23,12 @@
   margin: 0;
   /* The label at the end, by the content, as far from the bottom as from the
      end: 6px each (user wish 06.11.2026; was 3px and 5px). The button stays
-     34px high (--lcars-button-height), as the form buttons and fields. */
-  padding-block: 0.75rem 0.375rem; /* 12px 6px */
+     34px high (--lcars-button-height), as the form buttons and fields. A label
+     on two lines has a line height of 1.25, so that accents of the second
+     line (Vietnamese) keep clear of the first (user decision 25.11.2026,
+     variant B; was 1). The padding is 0.125em less at each end, the label of
+     one line stays where it was. */
+  padding-block: calc(0.75rem - 0.125em) calc(0.375rem - 0.125em); /* 10px 4px */
   padding-inline: 0 0.375rem;
   text-align: end;
   letter-spacing: normal;
@@ -35,7 +39,7 @@
   font-size: 1rem;
   font-weight: bold;
   font-style: normal;
-  line-height: 1;
+  line-height: 1.25;
   overflow-wrap: anywhere;
 }
 

@@ -9,6 +9,7 @@ use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Extension\ModuleExtensionList;
+use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Extension\ThemeExtensionList;
 use Drupal\Core\Extension\ThemeSettingsProvider;
 use Drupal\Core\File\FileUrlGeneratorInterface;
@@ -137,6 +138,7 @@ class LcarsNgHooks {
     private readonly CurrentPathStack $currentPath,
     private readonly AliasManagerInterface $aliasManager,
     private readonly DateFormatterInterface $dateFormatter,
+    private readonly ModuleHandlerInterface $moduleHandler,
   ) {}
 
   /**
@@ -440,7 +442,8 @@ class LcarsNgHooks {
    * The submission information shows the day of the post only, as
    * "7 June 2011": weekday and time stay in the title of the time element
    * (node.html.twig, node.css; #35, user decision 30.10.2026, variant A). The
-   * created field of nodes has no display settings, so its format is set here.
+   * created field of nodes has no display settings, so its format is set here:
+   * the date format lcars_ng_date of the theme (dateFormat()).
    */
   #[Hook('preprocess_node')]
   public function preprocessNode(array &$variables): void {
@@ -458,21 +461,48 @@ class LcarsNgHooks {
     if (empty($variables['display_submitted']) || empty($variables['date'])) {
       return;
     }
+    $cacheability = new CacheableMetadata();
+    [$type, $pattern] = $this->dateFormat('lcars_ng_date', 'j F Y', $cacheability);
     $variables['date'] = $variables['node']->get('created')->view([
       'label' => 'hidden',
       'type' => 'timestamp',
       'settings' => [
-        'date_format' => 'custom',
-        'custom_date_format' => 'j F Y',
+        'date_format' => $type,
+        'custom_date_format' => $pattern,
       ],
     ]);
+    CacheableMetadata::createFromRenderArray($variables['date'])
+      ->merge($cacheability)
+      ->applyTo($variables['date']);
+  }
+
+  /**
+   * The date format of the theme, or its pattern where the site lacks it.
+   *
+   * The theme brings the formats lcars_ng_date ("7 June 2011") and
+   * lcars_ng_date_time ("24 Nov 2026, 21:07") as configuration
+   * (config/install, for sites from before lcars_ng_post_update_date_formats),
+   * so a site can translate them per language. Without the format (deleted on
+   * a site) the English pattern stays; the cache tag of the format brings the
+   * new one when it comes.
+   *
+   * @return string[]
+   *   The type for the date formatter and its custom pattern ('' for a format).
+   */
+  private function dateFormat(string $id, string $pattern, CacheableMetadata $cacheability): array {
+    $cacheability->addCacheTags(['config:core.date_format.' . $id]);
+    if ($this->entityTypeManager->getStorage('date_format')->load($id)) {
+      return [$id, ''];
+    }
+    return ['custom', $pattern];
   }
 
   /**
    * Implements hook_preprocess_comment().
    *
    * The head of a comment reads "NAME · 24 Nov 2026, 21:07" (comment.html.twig,
-   * comment.css; user decision 24.11.2026, variant B). The subject shows only
+   * comment.css; user decision 24.11.2026, variant B), in the date format
+   * lcars_ng_date_time of the theme (dateFormat()). The subject shows only
    * where the form of the comment type has a field for it: without one, core
    * takes the start of the text as the subject, and the heading would repeat
    * it.
@@ -481,7 +511,9 @@ class LcarsNgHooks {
   public function preprocessComment(array &$variables): void {
     $comment = $variables['comment'];
     $created = $comment->getCreatedTime();
-    $variables['date'] = $this->dateFormatter->format($created, 'custom', 'j M Y, H:i');
+    $cacheability = CacheableMetadata::createFromRenderArray($variables);
+    [$type, $pattern] = $this->dateFormat('lcars_ng_date_time', 'j M Y, H:i', $cacheability);
+    $variables['date'] = $this->dateFormatter->format($created, $type, $pattern);
     $variables['date_iso'] = $this->dateFormatter->format($created, 'custom', 'c');
     $form_display = $this->entityTypeManager->getStorage('entity_form_display')
       ->load('comment.' . $comment->bundle() . '.default');
@@ -489,10 +521,43 @@ class LcarsNgHooks {
       if (!$form_display->getComponent('subject')) {
         $variables['title'] = NULL;
       }
-      CacheableMetadata::createFromRenderArray($variables)
-        ->addCacheableDependency($form_display)
-        ->applyTo($variables);
+      $cacheability->addCacheableDependency($form_display);
     }
+    $cacheability->applyTo($variables);
+  }
+
+  /**
+   * Implements hook_preprocess_user().
+   *
+   * The page of an account (view mode full) gets a button to its form below
+   * "Member for", for whoever may change the account (user wish 25.11.2026).
+   * For users with access to the Navigation module, core moves the tabs of an
+   * entity (View, Edit) into the top bar, at its right end
+   * (NavigationHooks::blockBuildLocalTasksBlockAlter()); the page itself had
+   * no way to the form then. Without the Navigation module the tabs stay
+   * above the content, and the button would repeat them.
+   */
+  #[Hook('preprocess_user')]
+  public function preprocessUser(array &$variables): void {
+    if (($variables['elements']['#view_mode'] ?? NULL) !== 'full') {
+      return;
+    }
+    $cacheability = CacheableMetadata::createFromRenderArray($variables)
+      ->addCacheContexts(['user.permissions']);
+    $account = $variables['user'];
+    if ($this->moduleHandler->moduleExists('navigation') && $this->currentUser->hasPermission('access navigation')) {
+      $access = $account->access('update', $this->currentUser, TRUE);
+      $cacheability->addCacheableDependency($access);
+      if ($access->isAllowed()) {
+        $variables['edit_link'] = [
+          '#type' => 'link',
+          '#title' => $this->t('Edit'),
+          '#url' => $account->toUrl('edit-form'),
+          '#attributes' => ['class' => ['button']],
+        ];
+      }
+    }
+    $cacheability->applyTo($variables);
   }
 
   /**
@@ -507,6 +572,50 @@ class LcarsNgHooks {
   public function preprocessViewsViewSummary(array &$variables): void {
     $classes = explode(' ', (string) $variables['view']->display_handler->getOption('css_class'));
     $variables['tabs'] = in_array('lcars-summary-tabs', $classes, TRUE);
+  }
+
+  /**
+   * Implements hook_preprocess_HOOK() for links__language_block.
+   *
+   * The language switcher (block "Language switcher" of core) shows the codes
+   * of the languages, "EN DE VI", each with its own name in its language as
+   * the title and accessible name (language-switcher.css; user decision
+   * 25.11.2026, variant C: cut into the header bar beside the site name).
+   * Elsewhere, as in the login panel, the codes stand in a row of small
+   * capitals. Reuse: place the block of core in any region of the theme.
+   */
+  #[Hook('preprocess_links__language_block')]
+  public function preprocessLinksLanguageBlock(array &$variables): void {
+    foreach ($variables['links'] as $langcode => &$item) {
+      if (!isset($item['link']['#title'])) {
+        continue;
+      }
+      $name = (string) $item['link']['#title'];
+      $item['link']['#title'] = mb_strtoupper((string) $langcode);
+      $item['link']['#options']['attributes']['title'] = $name;
+      $item['link']['#options']['attributes']['aria-label'] = $name;
+      $item['link']['#options']['attributes']['lang'] = $langcode;
+      $item['link']['#options']['attributes']['hreflang'] = $langcode;
+    }
+    unset($item);
+    $variables['attributes']['class'][] = 'lcars-language-switcher';
+    $variables['#attached']['library'][] = 'lcars_ng/language-switcher';
+  }
+
+  /**
+   * Implements hook_preprocess_HOOK() for block.
+   *
+   * The language switcher of core is a navigation without a name when its
+   * title is hidden; it gets the name "Language" and a class for its place.
+   */
+  #[Hook('preprocess_block')]
+  public function preprocessBlock(array &$variables): void {
+    if (str_starts_with((string) $variables['plugin_id'], 'language_block:')) {
+      $variables['attributes']['class'][] = 'lcars-language-block';
+      if (empty($variables['configuration']['label_display'])) {
+        $variables['attributes']['aria-label'] = $this->t('Language');
+      }
+    }
   }
 
   /**

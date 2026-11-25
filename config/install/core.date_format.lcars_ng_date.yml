@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: lcars_ng_date
+label: 'LCARS-NG date'
+locked: false
+pattern: 'j F Y'
