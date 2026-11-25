@@ -6,8 +6,17 @@
  * round picture of its author beside the head "NAME · date", the text below
  * (comment.html.twig, LcarsNgHooks::preprocessComment(); user decision
  * 24.11.2026, variant B — A was the box without the picture, C a line between
- * the comments, D a bar of the frame's color on the left).
+ * the comments, D a bar of the frame's color on the left). The form to add a
+ * comment in a box of the same kind, with its heading, and the comments with
+ * the form apart from the content above (field--comment.html.twig; user wish
+ * 25.11.2026).
  */
+
+/* Room between the content and the comments, or the form when there are
+   none yet. */
+.comment-wrapper {
+  margin-block-start: 2rem;
+}
 
 .comment {
   margin-block: 0.75rem;
@@ -76,7 +85,23 @@
   font-size: 0.8125rem;
 }
 
-/* The form below the comments, apart from the last box. */
+/* The form below the comments in a box of its own, a little apart from the
+   last comment; its heading inside at the top. */
+.comment-form__box {
+  margin-block: 1.5rem 0;
+  padding: 1rem 1.25rem 1.25rem;
+  border: var(--lcars-box-border-width) solid var(--lcars-box-border-color);
+  border-radius: var(--lcars-box-radius);
+}
+
+.comment-wrapper > .comment-form__box:first-child {
+  margin-block-start: 0;
+}
+
 .comment-form__title {
-  margin-block-start: 2rem;
+  margin-block: 0 0.75rem;
+}
+
+.comment-form__box .form-actions {
+  margin-block-end: 0;
 }

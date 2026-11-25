@@ -21,10 +21,15 @@
  * - field_type: The type of the field.
  * - label_display: The display settings for the label.
  *
+ * The form with its heading stands in a box of its own, as the comments do,
+ * and the library comes with the field, so its spacing holds also on a post
+ * without comments (user wish 25.11.2026).
+ *
  * @see \Drupal\Core\Field\FieldPreprocess::preprocessField()
  * @see comment_preprocess_field()
  */
 #}
+{{ attach_library('lcars_ng/comment') }}
 {%
   set classes = [
     'field',
@@ -50,8 +55,10 @@
   {{ comments }}
 
   {% if comment_form %}
-    <h2 class="title comment-form__title">{{ 'Add new comment'|t }}</h2>
-    {{ comment_form }}
+    <div class="comment-form__box">
+      <h2 class="title comment-form__title">{{ 'Add new comment'|t }}</h2>
+      {{ comment_form }}
+    </div>
   {% endif %}
 
 </section>
