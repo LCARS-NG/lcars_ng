@@ -706,13 +706,18 @@ class LcarsNgHooks {
    * they are.
    *
    * Entity references shown as links to their labels (Tags, Related) become
-   * pills: referencePills().
+   * pills: referencePills(). The files of a file field shown as links
+   * (Generic file) become a list in a box: fileList().
    */
   #[Hook('preprocess_field')]
   public function preprocessField(array &$variables): void {
     $element = $variables['element'];
     if ($element['#formatter'] === 'entity_reference_label') {
       $this->referencePills($variables);
+      return;
+    }
+    if ($element['#formatter'] === 'file_default') {
+      $this->fileList($variables);
       return;
     }
     $account = $element['#object'] ?? NULL;
@@ -1165,6 +1170,31 @@ class LcarsNgHooks {
     }
     $variables['attributes']['class'][] = 'lcars-pills';
     $variables['#attached']['library'][] = 'lcars_ng/pills';
+  }
+
+  /**
+   * Shows the files of a file field as a list in a box (preprocessField()).
+   *
+   * Core's formatter Generic file renders each file as a link with a small
+   * icon. Here each one takes the template file-link--lcars-files.html.twig:
+   * the type as a block in color, the description or the file name as the
+   * link, the size on the right, in a box as the comments below a post
+   * (files.css; user decision 25.11.2026, variant B; first for the
+   * attachments of posts). Every file field with this formatter takes it, as
+   * the pills every reference field with links.
+   */
+  private function fileList(array &$variables): void {
+    if (empty($variables['items'])) {
+      return;
+    }
+    foreach ($variables['items'] as &$item) {
+      if (($item['content']['#theme'] ?? NULL) === 'file_link') {
+        $item['content']['#theme'] = 'file_link__lcars_files';
+      }
+    }
+    unset($item);
+    $variables['attributes']['class'][] = 'lcars-files';
+    $variables['#attached']['library'][] = 'lcars_ng/files';
   }
 
   /**

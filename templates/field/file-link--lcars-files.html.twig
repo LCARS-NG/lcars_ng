@@ -1,0 +1,35 @@
+{#
+/**
+ * @file
+ * One file of a file field shown as a list in a box (LcarsNgHooks::fileList(),
+ * css/lcars/files.css): the type of the file, the description or the file
+ * name as the link, the file name below a description, the size.
+ *
+ * Available variables:
+ * - attributes: Attributes of the item; the classes of core's file link
+ *   (file--mime-*, file--application-pdf, file--package-x-generic …) set the
+ *   color of the type, the class "file" with core's icon stays off.
+ * - file: The file entity.
+ * - description: The description of the file, or empty.
+ * - file_size: The size of the file, or empty.
+ *
+ * @see \Drupal\file\Hook\FileThemeHooks::preprocessFileLink()
+ */
+#}
+{% set name = file.getFilename() %}
+{% set parts = name|split('.') %}
+{% set type = parts|length > 1 ? parts|last|upper : 'FILE'|t %}
+<span{{ attributes.removeClass('file').addClass('lcars-files__entry') }}>
+  <a class="lcars-files__link" href="{{ file_url(file.getFileUri()) }}" type="{{ file.getMimeType() }}">
+    <span class="lcars-files__type">{{ type }}</span>
+    <span class="lcars-files__text">
+      <span class="lcars-files__name">{{ description ?: name }}</span>
+      {%- if description %}
+        <span class="lcars-files__file">{{ name }}</span>
+      {%- endif %}
+    </span>
+    {%- if file_size %}
+      <span class="lcars-files__size">{{ file_size }}</span>
+    {%- endif %}
+  </a>
+</span>

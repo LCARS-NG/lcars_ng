@@ -230,6 +230,10 @@ pills:
   css:
     theme:
       css/lcars/pills.css: {  }
+files:
+  css:
+    theme:
+      css/lcars/files.css: {  }
 permissions:
   css:
     theme:
