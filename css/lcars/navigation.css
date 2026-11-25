@@ -67,19 +67,44 @@
   background: var(--lcars-button-active);
 }
 
-/* Up to a page of 1080px (frame.css; phones before 04.11.2026): each menu
-   above the content as a grid of buttons of at least 7rem, the menus one
-   below the other. Gaps replace the seams; the buttons of a row are equally
-   high, their labels stay at the bottom right. */
+/* Up to a page of 1080px (frame.css; phones before 04.11.2026): the menus
+   above the content as one grid of buttons of at least 7rem. The buttons of
+   a menu follow straight on those of the menu before, in the order of the
+   sidebar column on wider pages (user decision 26.11.2026, variant B; until
+   then each menu had a grid of its own, and the account menu began a new
+   row beside free cells). Other blocks of the region take a whole row. Gaps
+   replace the seams; the buttons of a row are equally high, their labels stay
+   at the bottom right. */
 @container lcars-page not (min-width: 67.5625rem) {
-  .lcars-sidebar .region,
-  .lcars-sidebar .block > .menu {
+  .lcars-sidebar .region {
+    position: relative;
     display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr));
     gap: var(--lcars-seam);
   }
 
-  .lcars-sidebar .block > .menu {
-    grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr));
+  .lcars-sidebar .region > * {
+    grid-column: 1 / -1;
+  }
+
+  /* A menu block and its list hand their items to the grid of the region.
+     The nav element keeps its landmark and its heading (a visible heading
+     takes a cell before the items, a hidden one none). */
+  .lcars-sidebar .region > .block-menu,
+  .lcars-sidebar .block-menu > .menu {
+    display: contents;
+  }
+
+  /* The contextual links of a menu block take no cell either: at the top end
+     of the grid, those of the account menu at its bottom end. */
+  .lcars-sidebar .block-menu > [data-contextual-id] {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-end: 0;
+  }
+
+  .lcars-sidebar .menu--account > [data-contextual-id] {
+    inset-block: auto 0;
   }
 
   .lcars-sidebar .block > .menu > .menu-item {
