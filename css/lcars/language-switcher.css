@@ -3,10 +3,12 @@
  * The language switcher: the block "Language switcher" of core.
  *
  * The codes of the languages ("EN DE VI") in Antonio; the active one in the
- * color of the text, the others in the link color. In the header bar they are
- * cut into the bar as the site name, at its start (user decision 25.11.2026,
- * variant C; the active one white). Elsewhere, as in the login panel, a row
- * of small capitals.
+ * color of the text, the others in the link color. In the footer they stand
+ * at the end of the line before the footer menu, in its small capitals (user
+ * wish 25.11.2026; lcars-ng.org places the block there). In the header bar
+ * they are cut into the bar as the site name, at its start (user decision
+ * 25.11.2026, variant C, until the move to the footer the same evening).
+ * Elsewhere a row of small capitals.
  */
 
 .lcars-language-switcher {
@@ -83,4 +85,19 @@
 
 .lcars-head__bar .lcars-language-switcher a.is-active {
   color: var(--lcars-text);
+}
+
+/* Footer: the blocks of the region in one row at the end of the line instead
+   of the columns of the grid (frame.css), the codes before the footer menu,
+   with its spacing of letters; in the frame and in the login panel. */
+:is(.lcars-foot__inner, .lcars-login__foot) .region-footer:has(> .lcars-language-block) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 0.25rem 1.5rem;
+}
+
+.region-footer .lcars-language-switcher a {
+  letter-spacing: 0.04em;
 }
