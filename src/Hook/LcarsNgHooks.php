@@ -27,6 +27,7 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
+use Drupal\lcars_ng\CommentFormBox;
 use Drupal\lcars_ng\StatusLine;
 use Drupal\node\NodeInterface;
 use Drupal\path_alias\AliasManagerInterface;
@@ -1102,6 +1103,23 @@ class LcarsNgHooks {
       // The fieldset would show the description of the field, which the
       // container never did ("The moderation state of this piece of content").
       unset($form['moderation_state']['widget'][0]['#description']);
+    }
+  }
+
+  /**
+   * Implements hook_form_BASE_FORM_ID_alter() for comment_form.
+   *
+   * The styles of comments come with each comment form, also on the pages
+   * Edit and Reply, where no comment and no comment field is rendered. There
+   * the fields and buttons of the form stand in a box like the form below a
+   * post (user wish 25.11.2026).
+   */
+  #[Hook('form_comment_form_alter')]
+  public function formCommentFormAlter(array &$form): void {
+    $form['#attached']['library'][] = 'lcars_ng/comment';
+    $form['#cache']['contexts'][] = 'route';
+    if (in_array($this->routeMatch->getRouteName(), ['entity.comment.edit_form', 'comment.reply'], TRUE)) {
+      $form['#pre_render'][] = [CommentFormBox::class, 'preRender'];
     }
   }
 

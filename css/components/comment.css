@@ -9,7 +9,13 @@
  * the comments, D a bar of the frame's color on the left). The form to add a
  * comment in a box of the same kind, with its heading, and the comments with
  * the form apart from the content above (field--comment.html.twig; user wish
- * 25.11.2026).
+ * 25.11.2026). The boxes filled in the blue of the cards (--lcars-card-bg,
+ * 8 %, as the tabs), the links of a comment (Edit, Delete, Reply) drawn as the
+ * buttons of forms (forms.css lists .comment .links a with the buttons), 1rem
+ * below the text (user decision 25.11.2026, variant A of four: white buttons
+ * or outlines, faces of 8 or 14 %). On the pages Edit and Reply the fields
+ * and buttons of the form in a box of the same kind, without a heading
+ * (CommentFormBox; user wish 25.11.2026).
  */
 
 /* Room between the content and the comments, or the form when there are
@@ -23,6 +29,7 @@
   padding: 1rem 1.25rem;
   border: var(--lcars-box-border-width) solid var(--lcars-box-border-color);
   border-radius: var(--lcars-box-radius);
+  background: var(--lcars-card-bg);
 }
 
 /* With a picture of the author: the picture in a column of its own, beside
@@ -80,9 +87,26 @@
   margin-block-end: 0;
 }
 
-.comment .links {
-  margin-block: 0.25rem 0;
-  font-size: 0.8125rem;
+/* The links as buttons in a row, 1rem below the text; the size of the
+   text, so the buttons take the size of the other buttons (0.85em). Four
+   classes, so the rule wins over the inline lists of links.css
+   (ul.links.inline, in RTL [dir="rtl"] ul.links.inline with its padding). */
+.comment .content > .links.inline {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1rem 0 0;
+  padding: 0;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+
+.comment .links > li {
+  margin: 0;
+  padding: 0;
+}
+
+.comment .links > li > a {
+  margin: 0;
 }
 
 /* The form below the comments in a box of its own, a little apart from the
@@ -92,10 +116,25 @@
   padding: 1rem 1.25rem 1.25rem;
   border: var(--lcars-box-border-width) solid var(--lcars-box-border-color);
   border-radius: var(--lcars-box-radius);
+  background: var(--lcars-card-bg);
 }
 
-.comment-wrapper > .comment-form__box:first-child {
+.comment-wrapper > .comment-form__box:first-child,
+.comment-form > .comment-form__box:first-child {
   margin-block-start: 0;
+}
+
+/* On the pages Edit and Reply (CommentFormBox) the box has no heading: the
+   first field brings its top margin of 1em (the comment, for admins the
+   details Administration), so the box keeps 0.25rem above it, 1.25rem in all
+   as below the buttons. After Preview core shows the post below the form,
+   2rem apart as the comments from the content. */
+.comment-form > .comment-form__box {
+  padding-block-start: 0.25rem;
+}
+
+.comment-form > .comment-form__box:not(:last-child) {
+  margin-block-end: 2rem;
 }
 
 .comment-form__title {

@@ -243,13 +243,15 @@ details .form-item:has(> label:first-child:not(.visually-hidden)):not(.container
    29px). The padding fills the line (1.4em) up to that height. The
    operations of the themes on the Appearance page are links of core, drawn
    as buttons as well (admin.css lays them out), so are the links of teasers
-   shown as cards (teaser-cards.css). */
+   shown as cards (teaser-cards.css) and the links of comments (Edit, Delete,
+   Reply; comment.css). */
 .button,
 .form-submit,
 input:where([type="submit"], [type="button"], [type="reset"]),
 [data-vertical-tabs-panes] > .token-dialog,
 .theme-selector .operations a,
-.lcars-teaser-cards .node__links a {
+.lcars-teaser-cards .node__links a,
+.comment .links a {
   --lcars-italic: normal;
   --lcars-value: currentColor;
 
@@ -283,7 +285,8 @@ input:where([type="submit"], [type="button"], [type="reset"]),
 input:where([type="submit"], [type="button"], [type="reset"]):hover,
 [data-vertical-tabs-panes] > .token-dialog:hover,
 .theme-selector .operations a:hover,
-.lcars-teaser-cards .node__links a:hover {
+.lcars-teaser-cards .node__links a:hover,
+.comment .links a:hover {
   color: var(--lcars-on-color);
   background: var(--lcars-button-hover);
 }
