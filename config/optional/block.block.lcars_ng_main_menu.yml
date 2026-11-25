@@ -15,7 +15,7 @@ provider: null
 plugin: 'system_menu_block:main'
 settings:
   id: 'system_menu_block:main'
-  label: ''
+  label: 'Main navigation'
   label_display: '0'
   provider: system
   level: 1
