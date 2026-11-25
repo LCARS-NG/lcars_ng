@@ -1,0 +1,53 @@
+/**
+ * @file
+ * The teasers of a view as cards (class lcars-teaser-cards on the view,
+ * LcarsNgHooks::preprocessViewsView()): each row in a box with the line and
+ * the corners of the boxes, as the comments below a post, 1rem apart; the
+ * links of the teaser (Read more, comments) drawn as the buttons of forms
+ * (forms.css lists .lcars-teaser-cards .node__links a with the buttons), in a
+ * row at the foot of the card (user decision 25.11.2026, variant A of four:
+ * the box with white buttons, the box with pills, a card filled without a
+ * line, a card with a bar in the frame color and the links as one bar).
+ */
+
+/* The card takes its corners from --lcars-box-radius (js/box-radius.js). */
+.lcars-teaser-cards .views-row {
+  margin-block-end: 1rem;
+  padding: 1.25rem 1.5rem 0.5rem;
+  border: var(--lcars-box-border-width, 1px) solid var(--lcars-box-border-color, #234569);
+  border-radius: var(--lcars-box-radius, 0.375rem);
+}
+
+/* The title at the top of the card. */
+.lcars-teaser-cards .views-row > article > h2:first-child {
+  margin-block-start: 0;
+}
+
+.lcars-teaser-cards .node__links {
+  margin-block-start: 1rem;
+}
+
+.lcars-teaser-cards .node__links .links {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  gap: 0 0.5rem;
+}
+
+.lcars-teaser-cards .node__links .links > li {
+  margin: 0;
+  padding: 0;
+}
+
+/* The buttons without their margin of forms: the row sets the space
+   between them, the card the space below. */
+.lcars-teaser-cards .node__links .links > li > a {
+  margin: 0 0 0.75rem;
+}
+
+@media (max-width: 40rem) {
+  .lcars-teaser-cards .views-row {
+    padding: 1rem 1rem 0.25rem;
+  }
+}

@@ -52,6 +52,7 @@
     '.block-system-main-block > form:not(.node-form, .user-form) > :is(.form-item, fieldset):not(.form-type-vertical-tabs)',
     '.system-themes-list .theme-selector',
     '.lcars-files > .field__items',
+    '.lcars-teaser-cards .views-row',
   ].join(', ');
 
   /**

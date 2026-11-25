@@ -509,6 +509,22 @@ class LcarsNgHooks {
   }
 
   /**
+   * Implements hook_preprocess_views_view().
+   *
+   * A display with the CSS class lcars-teaser-cards shows each row as a card
+   * and the links of its teasers as buttons (teaser-cards.css; user decision
+   * 25.11.2026, variant A; first for an overview of posts). Views puts the
+   * class on the view itself; the library comes only with it.
+   */
+  #[Hook('preprocess_views_view')]
+  public function preprocessViewsView(array &$variables): void {
+    $classes = explode(' ', (string) $variables['view']->display_handler->getOption('css_class'));
+    if (in_array('lcars-teaser-cards', $classes, TRUE)) {
+      $variables['#attached']['library'][] = 'lcars_ng/teaser-cards';
+    }
+  }
+
+  /**
    * Implements hook_preprocess_views_view_field().
    *
    * Dates in the tables of Views pages (Content, Media, Files, Comments, the

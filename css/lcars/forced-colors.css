@@ -37,6 +37,7 @@
   input:where([type="submit"], [type="button"], [type="reset"]),
   [data-vertical-tabs-panes] > .token-dialog,
   .theme-selector .operations a,
+  .lcars-teaser-cards .node__links a,
   .js .dropbutton-widget,
   .select_button,
   .lcars-button,

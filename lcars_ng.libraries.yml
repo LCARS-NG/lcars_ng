@@ -234,6 +234,10 @@ files:
   css:
     theme:
       css/lcars/files.css: {  }
+teaser-cards:
+  css:
+    theme:
+      css/lcars/teaser-cards.css: {  }
 permissions:
   css:
     theme:
