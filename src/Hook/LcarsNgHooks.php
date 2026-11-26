@@ -386,6 +386,16 @@ class LcarsNgHooks {
    * of the title of the content, which stands below as the heading of the
    * page (user wish 19.11.2026): through node.html.twig for a type of the
    * setting content_type_in_title_bar, through content_title otherwise.
+   *
+   * The same holds for the other pages directly below content,
+   * /node/{node}/translations and /node/{node}/delete (nodeSubpageTitle()):
+   * the bar names the page, "Translations" instead of core's "Translations
+   * of @title", "Delete" instead of "Are you sure you want to delete the
+   * content item @title?", and the title of the content stands below it as
+   * the heading (user wish 26.11.2026, as the default of the administration
+   * pages of content). Pages further down (adding or deleting one
+   * translation, reverting a revision) keep the title of core, which names
+   * the language or the revision.
    */
   #[Hook('preprocess_page_title')]
   public function preprocessPageTitle(array &$variables): void {
@@ -425,6 +435,13 @@ class LcarsNgHooks {
         $variables['content_title'] = $latest->label();
       }
       $cacheability->addCacheableDependency($latest);
+    }
+    $subpage = $this->nodeSubpageTitle();
+    if ($subpage) {
+      [$variables['title'], $node] = $subpage;
+      $variables['title_tag'] = 'div';
+      $variables['content_title'] = $node->label();
+      $cacheability->addCacheableDependency($node)->addCacheContexts(['languages:language_content']);
     }
     CacheableMetadata::createFromRenderArray($variables)
       ->merge($cacheability)
@@ -1451,6 +1468,31 @@ class LcarsNgHooks {
       default => NULL,
     };
     return $node instanceof NodeInterface ? $node : NULL;
+  }
+
+  /**
+   * The title of the bar on a page directly below content, and the content.
+   *
+   * Pages whose path is the one of content plus one part, such as
+   * /node/{node}/translations, named after that part. Edit, Revisions and
+   * Latest version have their own titles (preprocessPageTitle()); a page not
+   * listed here keeps the title of core.
+   *
+   * @return array{0: \Drupal\Core\StringTranslation\TranslatableMarkup, 1: \Drupal\node\NodeInterface}|null
+   *   The title and the content, NULL on other pages.
+   */
+  private function nodeSubpageTitle(): ?array {
+    $node = $this->routeMatch->getParameter('node');
+    $path = $this->routeMatch->getRouteObject()?->getPath() ?? '';
+    if (!$node instanceof NodeInterface || !preg_match('#^/node/\{node\}/([a-z_-]+)$#', $path, $matches)) {
+      return NULL;
+    }
+    $title = match ($matches[1]) {
+      'translations' => $this->t('Translations'),
+      'delete' => $this->t('Delete'),
+      default => NULL,
+    };
+    return $title ? [$title, $node] : NULL;
   }
 
   /**
